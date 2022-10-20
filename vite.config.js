@@ -55,6 +55,7 @@ export default defineConfig({
             // Auto import for module exports under directories
             // by default it only scan one level of modules under the directory
             dirs: [
+                './resources/js/composables'
                 // './hooks',
                 // './composables' // only root modules
                 // './composables/**', // all nested modules
@@ -64,7 +65,7 @@ export default defineConfig({
             // Filepath to generate corresponding .d.ts file.
             // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
             // Set `false` to disable.
-            dts: false,
+            dts: './auto-imports.d.ts',
 
             // Auto import inside Vue template
             // see https://github.com/unjs/unimport/pull/15 and https://github.com/unjs/unimport/pull/72
@@ -87,7 +88,10 @@ export default defineConfig({
         // vite.config.ts
         Components({
             // relative paths to the directory to search for components.
-            dirs: ['resources/js'],
+            dirs: [
+                'resources/js/components',
+                'resources/js/layouts'
+            ],
 
             // valid file extensions for components.
             extensions: ['vue'],
@@ -99,7 +103,7 @@ export default defineConfig({
             // generate `components.d.ts` global declarations,
             // also accepts a path for custom filename
             // default: `true` if package typescript is installed
-            dts: false,
+            dts: true,
 
             // Allow subdirectories as namespace prefix for components.
             directoryAsNamespace: false,

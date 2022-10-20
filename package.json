@@ -22,5 +22,10 @@
         "unplugin-vue-components": "^0.22.8",
         "vite": "^3.0.0",
         "vue": "^3.2.31"
+    },
+    "dependencies": {
+        "@headlessui/vue": "^1.7.3",
+        "@heroicons/vue": "^2.0.12",
+        "pinia": "^2.0.23"
     }
 }

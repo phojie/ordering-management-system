@@ -1,5 +1,4 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 
 const test = ref('test');
@@ -7,12 +6,12 @@ const test = ref('test');
 
 <template>
 
-    <Head title="Dashboard" />
+    <Head title="Admin" />
 
-    <AuthenticatedLayout>
+    <AdminLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Dashboard {{ test}}
+                Admin {{test }}
             </h2>
         </template>
 
@@ -25,5 +24,5 @@ const test = ref('test');
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>
