@@ -11,5 +11,10 @@ export const useUser = () => {
     Inertia.post('/logout')
   }
 
-  return { user, signOut }
+  //   signIn
+  function signIn(data: any) {
+    Inertia.post('/login', data)
+  }
+
+  return { user, signOut, signIn }
 }

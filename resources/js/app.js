@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import './bootstrap'
 import '../css/app.css'
 
@@ -18,12 +19,10 @@ createInertiaApp({
   setup({ el, app, props, plugin }) {
     return createApp({ render: () => h(app, props) })
       .use(plugin)
-      // eslint-disable-next-line no-undef
       .use(ZiggyVue, Ziggy)
       .use(pinia)
       .component('InertiaHead', Head)
       .component('InertiaLink', Link)
-
       .mount(el)
   },
 })

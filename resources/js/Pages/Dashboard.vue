@@ -1,9 +1,10 @@
 <script setup>
+import { Head } from '@inertiajs/inertia-vue3'
 const { user } = useUser()
 </script>
 
 <template>
-  <Head title="Dashboard" />
+  <Head title="tester" />
   <AuthenticatedLayout>
     <template #header>
       <h2 class="text-xl font-semibold leading-tight text-gray-800">
