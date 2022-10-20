@@ -1,12 +1,9 @@
 <script setup>
-
-const props = defineProps(['name']);
-
+const props = defineProps(['name'])
 </script>
 
 <template>
-    <div>
-
-        <slot />
-    </div>
+  <div>
+    <slot />
+  </div>
 </template>

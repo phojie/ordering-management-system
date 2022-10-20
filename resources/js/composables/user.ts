@@ -1,9 +1,15 @@
-export const useUser = () => {
-    // loader
-    const user = ref({
-        full_name: 'Phojie',
-        avatar_url: 'https://i.pravatar.cc/150?img=1',
-    })
+import { Inertia } from '@inertiajs/inertia'
+import { usePage } from '@inertiajs/inertia-vue3'
 
-    return { user }
+export const useUser = () => {
+  const props = usePage().props.value as any
+
+  const user = computed(() => props.auth?.user)
+
+  // signout
+  function signOut() {
+    Inertia.post('/logout')
+  }
+
+  return { user, signOut }
 }

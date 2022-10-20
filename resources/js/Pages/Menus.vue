@@ -2,9 +2,9 @@
 </script>
 
 <template>
-  <Head title="Admin" />
+  <Head title="Menus" />
 
   <AdminLayout>
-    You're logged in!
+    Menu Page
   </AdminLayout>
 </template>
