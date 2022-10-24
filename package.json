@@ -8,7 +8,7 @@
     "@antfu/eslint-config": "^0.27.0",
     "@headlessui/vue": "^1.7.3",
     "@heroicons/vue": "^2.0.12",
-    "eslint": "^8.25.0",
+    "eslint": "^8.23.0",
     "pinia": "^2.0.23"
   },
   "devDependencies": {

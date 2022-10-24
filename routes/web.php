@@ -37,4 +37,7 @@ Route::get('/menus', function () {
     return Inertia::render('Admin/Menus');
 });
 
+//create a route for items
+
+
 require __DIR__ . '/auth.php';
