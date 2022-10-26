@@ -5,7 +5,7 @@ import createServer from '@inertiajs/server';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
-const appName = 'Laravel';
+const appName = 'RMS';
 
 createServer((page) =>
     createInertiaApp({

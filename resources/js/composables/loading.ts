@@ -1,16 +1,16 @@
 export const useLoading = () => {
-    // loader
-    const state = ref(false)
+  // loader
+  const state = ref(false)
 
-    // show loader
-    function show() {
-        state.value = true
-    }
+  // show loader
+  function show() {
+    state.value = true
+  }
 
-    // hide loader
-    function hide() {
-        state.value = false
-    }
+  // hide loader
+  function hide() {
+    state.value = false
+  }
 
-    return { state, show, hide }
+  return { state, show, hide }
 }
