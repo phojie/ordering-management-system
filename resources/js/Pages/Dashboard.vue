@@ -1,10 +1,9 @@
-<script setup>
-import { Head } from '@inertiajs/inertia-vue3'
+<script setup lang="ts">
 const { user } = useUser()
 </script>
 
 <template>
-  <Head title="tester" />
+  <Head title="Home" />
   <AuthenticatedLayout>
     <template #header>
       <h2 class="text-xl font-semibold leading-tight text-gray-800">
@@ -16,7 +15,7 @@ const { user } = useUser()
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
           <div class="p-6 bg-white border-b border-gray-200">
-            You're logged in! {{ user }}
+            You're logged in! {{ user.name }}
           </div>
         </div>
       </div>

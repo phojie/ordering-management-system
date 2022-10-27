@@ -18,6 +18,7 @@ export default defineConfig({
           includeAbsolute: false,
         },
       },
+      reactivityTransform: true,
     }),
     AutoImport({
       // targets to transform
@@ -31,31 +32,23 @@ export default defineConfig({
       imports: [
         // presets
         'vue',
-        'vue-router',
-        // custom
         {
-          '@vueuse/core': [
-            // named imports
-            'useMouse', // import { useMouse } from '@vueuse/core',
-            // alias
-            ['useFetch', 'useMyFetch'], // import { useFetch as useMyFetch } from '@vueuse/core',
+          '@inertiajs/inertia-vue3': [
+            'Head',
+            'Link',
+            'useForm',
           ],
-          'axios': [
-            // default imports
-            ['default', 'axios'], // import { default as axios } from 'axios',
-          ],
-          '[package-name]': [
-            '[import-names]',
-            // alias
-            ['[from]', '[alias]'],
-          ],
+        //   'ziggy-js': [
+        //     // default imports
+        //     ['default', 'route'],
+        //   ],
         },
       ],
 
       // Auto import for module exports under directories
       // by default it only scan one level of modules under the directory
       dirs: [
-        './resources/js/composables',
+        './resources/js/composables/**',
         // './hooks',
         // './composables' // only root modules
         // './composables/**', // all nested modules
@@ -65,7 +58,7 @@ export default defineConfig({
       // Filepath to generate corresponding .d.ts file.
       // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
       // Set `false` to disable.
-      dts: './auto-imports.d.ts',
+      dts: 'resources/js/types/auto-imports.d.ts',
 
       // Auto import inside Vue template
       // see https://github.com/unjs/unimport/pull/15 and https://github.com/unjs/unimport/pull/72
@@ -89,8 +82,8 @@ export default defineConfig({
     Components({
       // relative paths to the directory to search for components.
       dirs: [
-        'resources/js/components',
-        'resources/js/layouts',
+        'resources/js/components/**',
+        'resources/js/layouts/**',
       ],
 
       // valid file extensions for components.
@@ -103,13 +96,15 @@ export default defineConfig({
       // generate `components.d.ts` global declarations,
       // also accepts a path for custom filename
       // default: `true` if package typescript is installed
-      dts: true,
+      dts: 'resources/js/types/components.d.ts',
 
       // Allow subdirectories as namespace prefix for components.
       directoryAsNamespace: false,
       // Subdirectory paths for ignoring namespace prefixes
       // works when `directoryAsNamespace: true`
-      globalNamespaces: [],
+      globalNamespaces: [
+        // add j-components to global namespace
+      ],
 
       // auto import for directives
       // default: `true` for Vue 3, `false` for Vue 2
@@ -128,6 +123,16 @@ export default defineConfig({
       exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
     }),
   ],
+  resolve: {
+    alias: {
+      ziggy: 'vendor/tightenco/ziggy/dist/vue',
+    },
+  },
+  build: {
+    rollupOptions: {
+      external: 'ziggy',
+    },
+  },
   ssr: {
     noExternal: ['@inertiajs/server'],
   },

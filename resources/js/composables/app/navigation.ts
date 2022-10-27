@@ -1,5 +1,5 @@
 export const useNavigation = () => {
-  const adminItems = ref([
+  const adminItems = $ref([
     {
       name: 'Home',
       icon: 'heroicons:home',
@@ -37,7 +37,7 @@ export const useNavigation = () => {
     },
   ])
 
-  const miscItems = ref([
+  const miscItems = $ref([
     {
       name: 'Users',
       icon: 'heroicons:user-group',

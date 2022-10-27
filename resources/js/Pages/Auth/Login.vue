@@ -1,12 +1,4 @@
-<script setup>
-import { Head, Link, useForm } from '@inertiajs/inertia-vue3'
-// import Checkbox from '@/Components/Checkbox.vue'
-// import GuestLayout from '@/Layouts/GuestLayout.vue'
-// import InputError from '@/Components/InputError.vue'
-// import InputLabel from '@/Components/InputLabel.vue'
-// import PrimaryButton from '@/Components/PrimaryButton.vue'
-// import TextInput from '@/Components/TextInput.vue'
-
+<script setup lang="ts">
 defineProps({
   canResetPassword: Boolean,
   status: String,
@@ -36,13 +28,13 @@ const submit = () => {
     <form @submit.prevent="submit">
       <div>
         <InputLabel for="email" value="Email" />
-        <TextInput id="email" v-model="form.email" type="email" class="block w-full mt-1" required autofocus autocomplete="username" />
+        <TextInput id="email" v-model="form.email" type="text" class="block w-full mt-1" autofocus autocomplete="username" />
         <InputError class="mt-2" :message="form.errors.email" />
       </div>
 
       <div class="mt-4">
         <InputLabel for="password" value="Password" />
-        <TextInput id="password" v-model="form.password" type="password" class="block w-full mt-1" required autocomplete="current-password" />
+        <TextInput id="password" v-model="form.password" type="password" class="block w-full mt-1" autocomplete="current-password" />
         <InputError class="mt-2" :message="form.errors.password" />
       </div>
 

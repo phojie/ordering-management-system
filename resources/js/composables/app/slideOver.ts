@@ -1,15 +1,15 @@
 export const useSlideOver = () => {
   // loader
-  const state = ref<boolean>(false)
+  let state = $ref<boolean>(false)
 
   // show slide-over
   function show() {
-    state.value = true
+    state = true
   }
 
   // hide slide-over
   function hide() {
-    state.value = false
+    state = false
   }
 
   return { state, show, hide }
