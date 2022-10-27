@@ -18,7 +18,6 @@ createServer(page =>
         .use(plugin)
         .use(ZiggyVue, {
           ...page.props.ziggy,
-          //   fix the ts
           location: new URL(page.props.ziggy.location),
         })
     },

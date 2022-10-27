@@ -2,7 +2,7 @@ import './bootstrap'
 import '../css/app.css'
 
 import { createApp, h } from 'vue'
-import { createInertiaApp } from '@inertiajs/inertia-vue3'
+import { Head, Link, createInertiaApp } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { createPinia } from 'pinia'
@@ -22,6 +22,8 @@ createInertiaApp({
       .use(plugin)
       .use(pinia)
       .use(ZiggyVue, Ziggy)
+      .component('Head', Head)
+      .component('Link', Link)
       .mount(el)
   },
 })

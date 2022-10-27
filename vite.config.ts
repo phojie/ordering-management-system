@@ -34,14 +34,8 @@ export default defineConfig({
         'vue',
         {
           '@inertiajs/inertia-vue3': [
-            'Head',
-            'Link',
             'useForm',
           ],
-        //   'ziggy-js': [
-        //     // default imports
-        //     ['default', 'route'],
-        //   ],
         },
       ],
 
