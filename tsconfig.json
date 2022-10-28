@@ -19,7 +19,7 @@
       //   "vitest",
       "vite/client",
       "vue/ref-macros",
-      //   "unplugin-vue-define-options",
+      "unplugin-vue-define-options",
       //   "vite-plugin-pages/client",
       //   "vite-plugin-vue-layouts/client",
       "unplugin-icons/types/vue"

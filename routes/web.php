@@ -21,8 +21,10 @@ Route::get('/admin', function () {
     return Inertia::render('Admin');
 });
 
-Route::get('/menus', function () {
-    return Inertia::render('Admin/Menus');
+Route::get('/admin/menus', function () {
+    return Inertia::render('Admin/Menus', [
+        // 'menus' => \App\Models\Menu::all(),
+    ]);
 });
 
 //create a route for items
