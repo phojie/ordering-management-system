@@ -6,24 +6,26 @@ const { adminItems, miscItems } = useNavigation()
   <nav class="flex-1 py-2 overflow-y-auto " aria-label="Sidebar">
     <div class="flex flex-col divide-y divide-primary-800">
       <div class="px-2 py-6 space-y-1">
-        <NavLink
-          v-for="item in adminItems" :key="item.name" :href="item.to"
+        <JLink
+          v-for="item in adminItems" :key="item.name" :href="item.href"
+          :active="$page.url === item.href"
+          active-class="bg-primary-800 text-white"
           class="flex items-center px-2 py-2 text-sm font-medium leading-6 rounded-md group text-primary-100 hover:text-white hover:bg-primary-600"
         >
           <component :is="item.icon" size="24" class="flex-shrink-0 mr-4 text-primary-200" aria-hidden="true" />
           {{ item.name }}
-        </NavLink>
+        </JLink>
       </div>
 
       <div class="px-2 py-6 space-y-1">
-        <NavLink
-          v-for="item in miscItems" :key="item.name" :href="item.to"
+        <JLink
+          v-for="item in miscItems" :key="item.name" :href="item.href"
           class="flex items-center px-2 py-2 text-sm font-medium leading-6 rounded-md group text-primary-100 hover:text-white hover:bg-primary-600"
           exact-active-class="!text-white !bg-primary-800"
         >
           <component :is="item.icon" size="24" class="flex-shrink-0 mr-4 text-primary-200" aria-hidden="true" />
           {{ item.name }}
-        </NavLink>
+        </JLink>
       </div>
     </div>
 

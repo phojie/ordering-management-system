@@ -39,6 +39,7 @@ declare module '@vue/runtime-core' {
     InputLabel: typeof import('./components/InputLabel.vue')['default']
     JButton: typeof import('./j-components/JButton.vue')['default']
     JCheckbox: typeof import('./j-components/JCheckbox.vue')['default']
+    JLink: typeof import('./j-components/JLink.vue')['default']
     JSlideOver: typeof import('./j-components/JSlideOver.vue')['default']
     JTextArea: typeof import('./j-components/JTextArea.vue')['default']
     JTextField: typeof import('./j-components/JTextField.vue')['default']

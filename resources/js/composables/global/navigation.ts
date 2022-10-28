@@ -11,66 +11,66 @@ import HeroiconsDocumentText from '~icons/heroicons/document-text'
 import HeroiconsQuestionMarkCircle from '~icons/heroicons/question-mark-circle'
 
 export const useNavigation = () => {
-  const adminItems = $ref([
+  const adminItems = [
     {
       name: 'Home',
       icon: HeroiconsHome,
-      to: '/admin/',
+      href: '/admin/',
     },
     {
       name: 'Menus',
       icon: HeroiconsDocumentDuplicate,
-      to: '/admin/menus',
+      href: '/admin/menus',
     },
     {
       name: 'Orders',
       icon: HeroiconsShoppingCart,
-      to: '/admin/orders',
+      href: '/admin/orders',
     },
     {
       name: 'Items',
       icon: HeroiconsBars3,
-      to: '/admin/items',
+      href: '/admin/items',
     },
     {
       name: 'Add-ons',
       icon: HeroiconsBeaker,
-      to: '/admin/add_ons',
+      href: '/admin/add_ons',
     },
     {
       name: 'Item Types',
       icon: HeroiconsBookmark,
-      to: '/admin/item_types',
+      href: '/admin/item_types',
     },
     {
       name: 'Offers',
       icon: HeroiconsClipboard,
-      to: '/admin/offers',
+      href: '/admin/offers',
     },
-  ])
+  ]
 
-  const miscItems = $ref([
+  const miscItems = [
     {
       name: 'Users',
       icon: HeroiconsUserGroup,
-      to: '/admin/users',
+      href: '/admin/users',
     },
     {
       name: 'Settings',
       icon: HeroiconsCog,
-      to: '/admin/settings',
+      href: '/admin/settings',
     },
     {
       name: 'Information',
       icon: HeroiconsDocumentText,
-      to: '/admin/pages',
+      href: '/admin/pages',
     },
     {
       name: 'Help',
       icon: HeroiconsQuestionMarkCircle,
-      to: '/admin/help',
+      href: '/admin/help',
     },
-  ])
+  ]
 
   return {
     adminItems,
