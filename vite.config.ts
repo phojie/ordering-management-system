@@ -21,12 +21,6 @@ export default defineConfig({
       },
       reactivityTransform: true,
     }),
-    // Layouts(
-    //   {
-    //     layoutsDirs: 'resources/js/layouts',
-    //     defaultLayout: 'AuthenticatedLayout',
-    //   },
-    // ),
     AutoImport({
       // targets to transform
       include: [
