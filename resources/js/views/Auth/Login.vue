@@ -1,8 +1,8 @@
 <script setup lang="ts">
-defineProps({
-  canResetPassword: Boolean,
-  status: String,
-})
+defineProps<{
+  canResetPassword: Boolean
+  status: String
+}>()
 
 useHead({
   // ref syntax
@@ -45,20 +45,13 @@ const submit = () => {
       <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
         <form class="space-y-6" @submit.prevent="submit">
           <JTextField
-            id="email"
-            v-model="form.email"
-            label="Email address"
-            :error-message="form.errors?.email"
-            :is-dirty="form.errors?.email !== undefined"
+            id="email" v-model="form.email" label="Email address"
+            :error-message="form.errors?.email" :is-dirty="form.errors?.email !== undefined"
           />
 
           <JTextField
-            id="password"
-            v-model="form.password"
-            label="Password"
-            type="password"
-            :error-message="form.errors?.password"
-            :is-dirty="form.errors?.password !== undefined"
+            id="password" v-model="form.password" label="Password" type="password"
+            :error-message="form.errors?.password" :is-dirty="form.errors?.password !== undefined"
           />
 
           <div class="flex items-center justify-between">
@@ -71,7 +64,10 @@ const submit = () => {
             </div>
 
             <div class="text-sm">
-              <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
+              <Link :href="route('password.request')" class="font-medium text-indigo-600 hover:text-indigo-500">
+                Forgot your
+                password?
+              </Link>
             </div>
           </div>
 
