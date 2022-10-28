@@ -8,8 +8,8 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { createPinia } from 'pinia'
 import { createHead } from '@vueuse/head'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m'
-import { Ziggy } from './ziggy'
-import DefaultLayout from './layouts/default.vue'
+import { Ziggy } from '@/ziggy'
+import DefaultLayout from '@/layouts/default.vue'
 
 const pinia = createPinia()
 const head = createHead()
@@ -34,9 +34,9 @@ createInertiaApp({
   //   setup
   setup({ el, app, props, plugin }) {
     createApp({ render: () => h(app, props) })
-      .use(head)
       .use(plugin)
       .use(pinia)
+      .use(head)
       .use(ZiggyVue, Ziggy)
       .component('Link', Link)
       .mount(el)
