@@ -1,10 +1,10 @@
 <script setup>
-import { Head } from '@inertiajs/inertia-vue3'
+useHead({
+  title: 'Admin',
+})
 </script>
 
 <template>
-  <Head title="Admin" />
-
   <AdminLayout>
     You're logged in!
   </AdminLayout>

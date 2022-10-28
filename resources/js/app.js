@@ -21,8 +21,8 @@ createInertiaApp({
 //   resolve: name => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue') as any),
   resolve: (name) => {
     const page = resolvePageComponent(
-            `./views/${name}.vue`,
-            import.meta.glob('./views/**/*.vue'),
+            `./pages/${name}.vue`,
+            import.meta.glob('./pages/**/*.vue'),
     )
 
     page.then((module) => {

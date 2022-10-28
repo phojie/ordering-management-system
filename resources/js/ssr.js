@@ -13,7 +13,7 @@ createServer(page =>
     page,
     render: renderToString,
     // title: title => `${title} - ${appName}`,
-    resolve: name => resolvePageComponent(`./views/${name}.vue`, import.meta.glob('./views/**/*.vue')),
+    resolve: name => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob('./pages/**/*.vue')),
     setup({ app, props, plugin }) {
       return createSSRApp({ render: () => h(app, props) })
         .use(plugin)
