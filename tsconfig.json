@@ -15,13 +15,13 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "types": [
-      "node",
-      "vitest",
-      "vite/client",
-      "vue/ref-macros",
-      "unplugin-vue-define-options",
-      "vite-plugin-pages/client",
-      "vite-plugin-vue-layouts/client"
+    //   "node",
+    //   "vitest",
+    //   "vite/client",
+    //   "vue/ref-macros",
+    //   "unplugin-vue-define-options",
+    //   "vite-plugin-pages/client",
+    //   "vite-plugin-vue-layouts/client"
     ],
     "paths": {
       "~/*": [
@@ -39,12 +39,11 @@
   "exclude": [
     "public",
     "dist",
-    "node_modules",
-    "**/*.spec.ts"
+    "node_modules"
   ],
   "include": [
     "resources/js/**/*.ts",
     "resources/js/**/*.d.ts",
-    "resources/js/**/*.vue",
-    "resources/js/app.js"]
+    "resources/js/**/*.vue"
+  ]
 }
