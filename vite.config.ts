@@ -85,7 +85,7 @@ export default defineConfig({
       // relative paths to the directory to search for components.
       dirs: [
         'resources/js/components/**',
-        // 'resources/js/layouts/**',
+        'resources/js/j-components/**',
       ],
 
       // valid file extensions for components.
@@ -104,9 +104,7 @@ export default defineConfig({
       directoryAsNamespace: false,
       // Subdirectory paths for ignoring namespace prefixes
       // works when `directoryAsNamespace: true`
-      globalNamespaces: [
-        // add j-components to global namespace
-      ],
+      globalNamespaces: [],
 
       // auto import for directives
       // default: `true` for Vue 3, `false` for Vue 2

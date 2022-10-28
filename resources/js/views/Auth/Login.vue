@@ -27,17 +27,14 @@ const submit = () => {
     <pre>{{ form }}</pre>
 
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      <img
-        class="w-auto h-12 mx-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-        alt="Your Company"
-      >
+      <AppIcon class="w-auto h-12 mx-auto" />
       <h2 class="mt-6 text-3xl font-bold tracking-tight text-center text-gray-900">
         Sign in to your account
       </h2>
       <p class="mt-2 text-sm text-center text-gray-600">
         Or
         {{ ' ' }}
-        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">start your 14-day free trial</a>
+        <a href="#" class="font-medium text-primary-600 hover:text-primary-500">start your 14-day free trial</a>
       </p>
     </div>
 
@@ -55,16 +52,14 @@ const submit = () => {
           />
 
           <div class="flex items-center justify-between">
-            <div class="flex items-center">
-              <input
-                id="remember-me" name="remember-me" type="checkbox"
-                class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-              >
-              <label for="remember-me" class="block ml-2 text-sm text-gray-900">Remember me</label>
-            </div>
+            <JCheckbox
+              id="remember-me"
+              v-model="form.remember"
+              label="Remember me"
+            />
 
             <div class="text-sm">
-              <Link :href="route('password.request')" class="font-medium text-indigo-600 hover:text-indigo-500">
+              <Link :href="route('password.request')" class="font-medium text-primary-600 hover:text-primary-500">
                 Forgot your
                 password?
               </Link>
@@ -74,7 +69,7 @@ const submit = () => {
           <div>
             <button
               type="submit"
-              class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
             >
               Sign in
             </button>

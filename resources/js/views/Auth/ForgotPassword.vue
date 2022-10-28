@@ -1,6 +1,10 @@
-<script setup>
-defineProps({
-  status: String,
+<script setup lang="ts">
+defineProps<{
+  status: String
+}>()
+
+useHead({
+  title: 'Forgot Password',
 })
 
 const form = useForm({
@@ -13,8 +17,6 @@ const submit = () => {
 </script>
 
 <template>
-  <Head title="Forgot Password" />
-
   <div class="mb-4 text-sm text-gray-600">
     Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
   </div>
