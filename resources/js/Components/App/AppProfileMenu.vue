@@ -2,9 +2,6 @@
 import { Menu, MenuButton, MenuItems } from '@headlessui/vue'
 
 const { user } = useUser()
-
-onBeforeMount(() => {
-})
 </script>
 
 <template>
