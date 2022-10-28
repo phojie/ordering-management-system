@@ -3,7 +3,7 @@
     <AdminSideBar />
     <div class="flex flex-col h-full pb-24 overflow-auto bg-gray-100 lg:pl-64">
       <AdminHeader />
-      <!-- <slot /> -->
+      <slot />
     </div>
   </div>
 </template>
