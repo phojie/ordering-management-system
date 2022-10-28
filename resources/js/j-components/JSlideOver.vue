@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { XMarkIcon } from '@heroicons/vue/24/outline'
 
 const props = defineProps<{
   state?: boolean
@@ -34,7 +33,7 @@ const emit = defineEmits<{
                         <div class="flex items-center ml-3 h-7">
                           <button type="button" class="rounded-md text-primary-200 bg-primary-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white" @click="emit('hide')">
                             <span class="sr-only">Close panel</span>
-                            <XMarkIcon class="w-6 h-6" aria-hidden="true" />
+                            <heroicons-x-mark class="w-6 h-6" aria-hidden="true" />
                           </button>
                         </div>
                       </div>
