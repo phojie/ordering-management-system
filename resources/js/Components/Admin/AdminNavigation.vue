@@ -33,9 +33,11 @@ const { adminItems, miscItems } = useNavigation()
           All rights reserved
           © 2022-2023
         </div>
-        <div class="text-xs text-primary-300">
-          App version 0.2.0
-          <Icon name="emojione-v1:rocket" size="16" />
+        <div class="text-xs text-primary-300 flex space-x-2 items-center">
+          <span>
+            App version 0.2.0
+          </span>
+          <emojione-v1-rocket size="16" />
         </div>
       </div>
     </footer>

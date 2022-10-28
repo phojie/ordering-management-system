@@ -10,7 +10,7 @@ const sidebar = useSidebarStore()
       @click="sidebar.open()"
     >
       <span class="sr-only">Open sidebar</span>
-      <Icon name="heroicons-outline:bars-3-center-left" size="24" aria-hidden="true" />
+      <heroicons-outline-bars-3-center-left size="24" aria-hidden="true" />
     </button>
     <!-- Search bar -->
     <div class="flex justify-between flex-1 px-4 sm:px-6 lg:mx-auto lg:px-8">
@@ -19,7 +19,7 @@ const sidebar = useSidebarStore()
           <label for="search-field" class="sr-only">Search</label>
           <div class="relative w-full text-gray-400 focus-within:text-gray-600">
             <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none" aria-hidden="true">
-              <Icon name="heroicons:magnifying-glass-20-solid" class="w-5 h-5" aria-hidden="true" />
+              <heroicons-magnifying-glass-20-solid class="w-5 h-5" aria-hidden="true" />
             </div>
             <input
               id="search-field" name="search-field"
@@ -35,7 +35,7 @@ const sidebar = useSidebarStore()
           class="p-1 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
         >
           <span class="sr-only">View notifications</span>
-          <Icon name="heroicons:bell" class="w-6 h-6" aria-hidden="true" />
+          <heroicons-bell class="w-6 h-6" aria-hidden="true" />
         </button>
         <AppProfileMenu />
       </div>

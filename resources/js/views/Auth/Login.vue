@@ -5,7 +5,6 @@ defineProps<{
 }>()
 
 useHead({
-  // ref syntax
   title: 'Login',
 })
 
@@ -24,7 +23,7 @@ const submit = () => {
 
 <template>
   <div class="flex flex-col justify-center min-h-full py-12 sm:px-6 lg:px-8">
-    <pre>{{ form }}</pre>
+    <!-- <pre>{{ form }}</pre> -->
 
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <AppIcon class="w-auto h-12 mx-auto" />

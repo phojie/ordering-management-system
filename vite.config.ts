@@ -3,7 +3,8 @@ import laravel from 'laravel-vite-plugin'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-// import Layouts from 'vite-plugin-vue-layouts'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 
 export default defineConfig({
   plugins: [
@@ -70,14 +71,23 @@ export default defineConfig({
         globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
       },
     }),
-    // vite.config.ts
     Components({
       // relative paths to the directory to search for components.
       dirs: [
         'resources/js/components/**',
+        'resources/js/layouts/**',
         'resources/js/j-components/**',
       ],
       dts: 'resources/js/components.d.ts',
+      resolvers: [
+        IconsResolver({
+          prefix: false,
+        }),
+      ],
+    }),
+    Icons({
+      compiler: 'vue3',
+      autoInstall: true,
     }),
   ],
   ssr: {

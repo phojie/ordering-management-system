@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import HeroiconsExclamationCircle20Solid from '~icons/heroicons/exclamation-circle-20-solid'
+import IcomoonFreeSpinner2 from '~icons/icomoon-free/spinner2'
 /**
   TODO: Add a way to set focus on the input
   TODO: Add hint prop
@@ -41,10 +43,10 @@ defineEmits<{
 // set computed
 const appendInnerIcon = computed(() => {
   if (props.isLoading)
-    return 'icomoon-free:spinner2'
+    return IcomoonFreeSpinner2
 
   else if (props.isDirty)
-    return 'heroicons:exclamation-circle-20-solid'
+    return HeroiconsExclamationCircle20Solid
 
   else
     return props.appendInnerIcon
@@ -81,7 +83,7 @@ const details = computed(() => {
 
       <!-- append inner icon -->
       <div v-if="appendInnerIcon" class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-        <Icon :name="appendInnerIcon" class="w-5 h-5" :class="[isDirty ? 'text-error-500' : 'text-gray-400', isLoading ? 'animate-spin' : '']" aria-hidden="true" />
+        <component :is="appendInnerIcon" class="w-5 h-5" :class="[isDirty ? 'text-error-500' : 'text-gray-400', isLoading ? 'animate-spin' : '']" aria-hidden="true" />
       </div>
     </div>
 

@@ -37,7 +37,7 @@ const sidebar = useSidebarStore()
                   @click="sidebar.close()"
                 >
                   <span class="sr-only">Close sidebar</span>
-                  <Icon name="heroicons:x-mark" class="w-6 h-6 text-gray-50" aria-hidden="true" />
+                  <heroicons-x-mark class="w-6 h-6 text-gray-50" aria-hidden="true" />
                 </button>
               </div>
             </TransitionChild>
@@ -58,7 +58,10 @@ const sidebar = useSidebarStore()
   <div
     class="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col lg:border-r border-primary-800 bg-gradient-to-b from-primary-700 via-primary-700 to-primary-900 lg:pt-5 lg:pb-16"
   >
-    <AppIcon />
+    <div class="flex items-center flex-shrink-0 px-4">
+      <AppIcon class="w-auto h-8" />
+    </div>
+
     <div class="flex flex-col flex-1 h-0 overflow-y-auto">
       <!-- Navigation -->
       <AdminNavigation />
