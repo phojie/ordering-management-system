@@ -240,6 +240,11 @@
   dependencies:
     "@types/unist" "*"
 
+"@types/node@^18.11.7":
+  version "18.11.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.7.tgz#8ccef136f240770c1379d50100796a6952f01f94"
+  integrity sha512-LhFTglglr63mNXUSRYD8A+ZAIu5sFqNJ4Y2fPuY7UlrySJH87rRRlhtVmMHplmfk5WkoJGmDjE9oiTfyX94CpQ==
+
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz#d3357479a0fdfdd5907fe67e17e0a85c906e1301"
@@ -367,7 +372,7 @@
     "@vue/compiler-core" "3.2.41"
     "@vue/shared" "3.2.41"
 
-"@vue/compiler-sfc@3.2.41":
+"@vue/compiler-sfc@3.2.41", "@vue/compiler-sfc@^3.2.31":
   version "3.2.41"
   resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.2.41.tgz#238fb8c48318408c856748f4116aff8cc1dc2a73"
   integrity sha512-+1P2m5kxOeaxVmJNXnBskAn3BenbTmbxBxWOtBq3mQTCokIreuMULFantBUclP0+KnzNCMOvcnKinqQZmiOF8w==
@@ -443,6 +448,43 @@
   version "3.2.41"
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.41.tgz#fbc95422df654ea64e8428eced96ba6ad555d2bb"
   integrity sha512-W9mfWLHmJhkfAmV+7gDjcHeAWALQtgGT3JErxULl0oz6R6+3ug91I7IErs93eCFhPCZPHBs4QJS7YWEV7A3sxw==
+
+"@vueuse/head@^0.9.8":
+  version "0.9.8"
+  resolved "https://registry.yarnpkg.com/@vueuse/head/-/head-0.9.8.tgz#0216fb44fa832ec710862cc60351dbb3e2c6b84c"
+  integrity sha512-zt8+JksoVFKxRvmABlaUHA62w+8nOcD8cJnaJ0+SHcr6xaIP3GXgh7/n2TzUoWw4l3d9UxRNs+tapgHdsQ7RbA==
+  dependencies:
+    "@vueuse/shared" "^9.3.0"
+    "@zhead/schema" "^0.8.5"
+    "@zhead/schema-vue" "^0.8.5"
+
+"@vueuse/shared@^9.2.0", "@vueuse/shared@^9.3.0":
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-9.4.0.tgz#634022fe42b3d5ece1d81d749724966f5071c8c3"
+  integrity sha512-fTuem51KwMCnqUKkI8B57qAIMcFovtGgsCtAeqxIzH3i6nE9VYge+gVfneNHAAy7lj8twbkNfqQSygOPJTm4tQ==
+  dependencies:
+    vue-demi "*"
+
+"@zhead/schema-raw@0.8.5":
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/@zhead/schema-raw/-/schema-raw-0.8.5.tgz#934d8680eac26576e526aefabc50eaf3b7f7bfb2"
+  integrity sha512-Aq+9mksf5zbtj7HYluT6PVyfpQ6z7mja9MzjFxg76Vt+Q9i0oL1XN6ZYaCXImWRafwbyAxjFQ5aUCVyFn79OpA==
+  dependencies:
+    "@zhead/schema" "0.8.5"
+
+"@zhead/schema-vue@^0.8.5":
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/@zhead/schema-vue/-/schema-vue-0.8.5.tgz#5bc52b363b2eddcf489100602dfdb3f278b78dfe"
+  integrity sha512-6aXjYy3fZVeYBLrHcJQqzqwzC/2tafRO5UxZEgBHnryRnzeLNZV6nTptDvIPWiJObMoJTK21vbg3gkfLNQg84g==
+  dependencies:
+    "@vueuse/shared" "^9.2.0"
+    "@zhead/schema" "0.8.5"
+    "@zhead/schema-raw" "0.8.5"
+
+"@zhead/schema@0.8.5", "@zhead/schema@^0.8.5":
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/@zhead/schema/-/schema-0.8.5.tgz#17f5c6be3b587a938f76d93637a210c0d05a9069"
+  integrity sha512-1S3Otr2zpl1zwP72dNseVXQNG9tnTQ6hHUEUYwINvBjRj6bHcUwdE+Itc9OLxnGAJT/7p8P7GHGo5sshXJNJsA==
 
 acorn-jsx@^5.3.2:
   version "5.3.2"
@@ -788,7 +830,7 @@ debug@^3.2.7:
   dependencies:
     ms "^2.1.1"
 
-debug@^4.0.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.4:
+debug@^4.0.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.3, debug@^4.3.4:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
@@ -1384,7 +1426,7 @@ fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
   integrity sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
 
-fast-glob@^3.2.12, fast-glob@^3.2.9:
+fast-glob@^3.2.11, fast-glob@^3.2.12, fast-glob@^3.2.9:
   version "3.2.12"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.12.tgz#7f39ec99c2e6ab030337142da9e0c18f37afae80"
   integrity sha512-DVj4CQIYYow0BlaelwK1pHl5n5cRSJfM60UA0zK891sVInoPri2Ekj7+e1CT3/3qxXenpI+nBBmQAcJPJgaj4w==
@@ -2836,6 +2878,15 @@ vite-plugin-full-reload@^1.0.1:
   dependencies:
     picocolors "^1.0.0"
     picomatch "^2.3.1"
+
+vite-plugin-vue-layouts@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/vite-plugin-vue-layouts/-/vite-plugin-vue-layouts-0.7.0.tgz#1722c6d40fba65048f643172cc532a273453d03a"
+  integrity sha512-k5XDmRNFo4M/GmUjhbRXj2WmJiFcGoVI8l/uZ72RHyRDQr4wE/6Zq/KFq0lqXomWQxTSzakQRUswzNwtvZLE8A==
+  dependencies:
+    "@vue/compiler-sfc" "^3.2.31"
+    debug "^4.3.3"
+    fast-glob "^3.2.11"
 
 vite@^3.0.0:
   version "3.1.8"

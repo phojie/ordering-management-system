@@ -3,6 +3,7 @@ import laravel from 'laravel-vite-plugin'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+// import Layouts from 'vite-plugin-vue-layouts'
 
 export default defineConfig({
   plugins: [
@@ -20,6 +21,12 @@ export default defineConfig({
       },
       reactivityTransform: true,
     }),
+    // Layouts(
+    //   {
+    //     layoutsDirs: 'resources/js/layouts',
+    //     defaultLayout: 'AuthenticatedLayout',
+    //   },
+    // ),
     AutoImport({
       // targets to transform
       include: [
@@ -33,6 +40,7 @@ export default defineConfig({
         // presets
         'vue',
         {
+          '@vueuse/head': ['useHead'],
           '@inertiajs/inertia-vue3': [
             'useForm',
           ],
@@ -52,7 +60,7 @@ export default defineConfig({
       // Filepath to generate corresponding .d.ts file.
       // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
       // Set `false` to disable.
-      dts: 'resources/js/types/auto-imports.d.ts',
+      dts: 'resources/js/auto-imports.d.ts',
 
       // Auto import inside Vue template
       // see https://github.com/unjs/unimport/pull/15 and https://github.com/unjs/unimport/pull/72
@@ -77,7 +85,7 @@ export default defineConfig({
       // relative paths to the directory to search for components.
       dirs: [
         'resources/js/components/**',
-        'resources/js/layouts/**',
+        // 'resources/js/layouts/**',
       ],
 
       // valid file extensions for components.
@@ -90,7 +98,7 @@ export default defineConfig({
       // generate `components.d.ts` global declarations,
       // also accepts a path for custom filename
       // default: `true` if package typescript is installed
-      dts: 'resources/js/types/components.d.ts',
+      dts: 'resources/js/components.d.ts',
 
       // Allow subdirectories as namespace prefix for components.
       directoryAsNamespace: false,

@@ -4,6 +4,11 @@ defineProps({
   status: String,
 })
 
+useHead({
+  // ref syntax
+  title: 'Login',
+})
+
 const form = useForm({
   email: '',
   password: '',
@@ -18,8 +23,8 @@ const submit = () => {
 </script>
 
 <template>
-  <GuestLayout class="flex flex-col justify-center min-h-full py-12 sm:px-6 lg:px-8">
-    <Head title="Sign in" />
+  <div class="flex flex-col justify-center min-h-full py-12 sm:px-6 lg:px-8">
+    <pre>{{ form }}</pre>
 
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <img
@@ -39,25 +44,22 @@ const submit = () => {
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
         <form class="space-y-6" @submit.prevent="submit">
-          <div>
-            <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
-            <div class="mt-1">
-              <input
-                id="email" name="email" type="email" autocomplete="email"
-                class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-              >
-            </div>
-          </div>
+          <JTextField
+            id="email"
+            v-model="form.email"
+            label="Email address"
+            :error-message="form.errors?.email"
+            :is-dirty="form.errors?.email !== undefined"
+          />
 
-          <div>
-            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-            <div class="mt-1">
-              <input
-                id="password" name="password" type="password" autocomplete="current-password"
-                class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-              >
-            </div>
-          </div>
+          <JTextField
+            id="password"
+            v-model="form.password"
+            label="Password"
+            type="password"
+            :error-message="form.errors?.password"
+            :is-dirty="form.errors?.password !== undefined"
+          />
 
           <div class="flex items-center justify-between">
             <div class="flex items-center">
@@ -78,8 +80,7 @@ const submit = () => {
               type="submit"
               class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              Sign
-              in
+              Sign in
             </button>
           </div>
         </form>
@@ -144,5 +145,5 @@ const submit = () => {
         </div>
       </div>
     </div>
-  </GuestLayout>
+  </div>
 </template>

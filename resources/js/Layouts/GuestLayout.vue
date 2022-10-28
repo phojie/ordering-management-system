@@ -2,7 +2,8 @@
 </script>
 
 <template>
-  <div class="h-screen">
+  <div class="h-screen bg-green-500">
+    df
     <main>
       <slot />
     </main>
