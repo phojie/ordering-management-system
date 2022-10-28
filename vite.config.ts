@@ -34,8 +34,8 @@ export default defineConfig({
       imports: [
         // presets
         'vue',
-        '@vueuse/head',
-        // '@vueuse/core',
+        // '@vueuse/head',
+        '@vueuse/core',
         {
           '@inertiajs/inertia-vue3': [
             'useForm',

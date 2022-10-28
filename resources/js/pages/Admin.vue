@@ -1,11 +1,18 @@
-<script setup>
-useHead({
-  title: 'Admin',
-})
+<script lang="ts">
+import AdminLayout from '@/layouts/AdminLayout.vue'
+
+export default {
+  layout: AdminLayout,
+  setup() {
+    return {
+    }
+  },
+}
 </script>
 
 <template>
-  <AdminLayout>
-    You're logged in!
-  </AdminLayout>
+  <Head>
+    <title>Admin</title>
+  </Head>
+  You're logged in!
 </template>
