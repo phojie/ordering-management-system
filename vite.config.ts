@@ -39,8 +39,9 @@ export default defineConfig({
       imports: [
         // presets
         'vue',
+        '@vueuse/head',
+        // '@vueuse/core',
         {
-          '@vueuse/head': ['useHead'],
           '@inertiajs/inertia-vue3': [
             'useForm',
           ],
@@ -51,10 +52,6 @@ export default defineConfig({
       // by default it only scan one level of modules under the directory
       dirs: [
         './resources/js/composables/**',
-        // './hooks',
-        // './composables' // only root modules
-        // './composables/**', // all nested modules
-        // ...
       ],
 
       // Filepath to generate corresponding .d.ts file.
@@ -66,7 +63,6 @@ export default defineConfig({
       // see https://github.com/unjs/unimport/pull/15 and https://github.com/unjs/unimport/pull/72
       vueTemplate: false,
 
-      // Custom resolvers, compatible with `unplugin-vue-components`
       // see https://github.com/antfu/unplugin-auto-import/pull/23/
       resolvers: [
         /* ... */
@@ -87,52 +83,9 @@ export default defineConfig({
         'resources/js/components/**',
         'resources/js/j-components/**',
       ],
-
-      // valid file extensions for components.
-      extensions: ['vue'],
-      // search for subdirectories
-      deep: true,
-      // resolvers for custom components
-      resolvers: [],
-
-      // generate `components.d.ts` global declarations,
-      // also accepts a path for custom filename
-      // default: `true` if package typescript is installed
       dts: 'resources/js/components.d.ts',
-
-      // Allow subdirectories as namespace prefix for components.
-      directoryAsNamespace: false,
-      // Subdirectory paths for ignoring namespace prefixes
-      // works when `directoryAsNamespace: true`
-      globalNamespaces: [],
-
-      // auto import for directives
-      // default: `true` for Vue 3, `false` for Vue 2
-      // Babel is needed to do the transformation for Vue 2, it's disabled by default for performance concerns.
-      // To install Babel, run: `npm install -D @babel/parser`
-      directives: true,
-
-      // Transform path before resolving
-      importPathTransform: v => v,
-
-      // Allow for components to override other components with the same name
-      allowOverrides: false,
-
-      // filters for transforming targets
-      include: [/\.vue$/, /\.vue\?vue/],
-      exclude: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/, /[\\/]\.nuxt[\\/]/],
     }),
   ],
-  resolve: {
-    alias: {
-      ziggy: 'vendor/tightenco/ziggy/dist/vue',
-    },
-  },
-  build: {
-    rollupOptions: {
-      external: 'ziggy',
-    },
-  },
   ssr: {
     noExternal: ['@inertiajs/server'],
   },
