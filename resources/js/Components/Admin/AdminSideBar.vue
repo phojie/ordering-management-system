@@ -41,13 +41,18 @@ const sidebar = useSidebarStore()
                 </button>
               </div>
             </TransitionChild>
-            <AppIcon />
+
+            <div class="flex items-center flex-shrink-0 px-4">
+              <AppIcon class="w-auto h-10" />
+            </div>
+
             <div class="flex flex-1 h-0 overflow-y-auto">
               <!-- Navigation -->
               <AdminNavigation />
             </div>
           </DialogPanel>
         </TransitionChild>
+
         <div class="flex-shrink-0 w-14" aria-hidden="true">
           <!-- Dummy element to force sidebar to shrink to fit close icon -->
         </div>
