@@ -88,6 +88,7 @@ export default defineConfig({
     Icons({
       compiler: 'vue3',
       autoInstall: true,
+      scale: 1.6,
     }),
   ],
   ssr: {

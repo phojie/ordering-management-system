@@ -1,38 +1,50 @@
+import HeroiconsHome from '~icons/heroicons/home'
+import HeroiconsDocumentDuplicate from '~icons/heroicons/document-duplicate'
+import HeroiconsShoppingCart from '~icons/heroicons/shopping-cart'
+import HeroiconsBars3 from '~icons/heroicons/bars-3'
+import HeroiconsBeaker from '~icons/heroicons/beaker'
+import HeroiconsBookmark from '~icons/heroicons/bookmark'
+import HeroiconsClipboard from '~icons/heroicons/clipboard'
+import HeroiconsUserGroup from '~icons/heroicons/user-group'
+import HeroiconsCog from '~icons/heroicons/cog'
+import HeroiconsDocumentText from '~icons/heroicons/document-text'
+import HeroiconsQuestionMarkCircle from '~icons/heroicons/question-mark-circle'
+
 export const useNavigation = () => {
   const adminItems = $ref([
     {
       name: 'Home',
-      icon: 'heroicons:home',
+      icon: HeroiconsHome,
       to: '/admin/',
     },
     {
       name: 'Menus',
-      icon: 'heroicons:document-duplicate',
+      icon: HeroiconsDocumentDuplicate,
       to: '/admin/menus',
     },
     {
       name: 'Orders',
-      icon: 'heroicons:shopping-cart',
+      icon: HeroiconsShoppingCart,
       to: '/admin/orders',
     },
     {
       name: 'Items',
-      icon: 'heroicons:bars-3',
+      icon: HeroiconsBars3,
       to: '/admin/items',
     },
     {
       name: 'Add-ons',
-      icon: 'heroicons:beaker',
+      icon: HeroiconsBeaker,
       to: '/admin/add_ons',
     },
     {
       name: 'Item Types',
-      icon: 'heroicons:bookmark',
+      icon: HeroiconsBookmark,
       to: '/admin/item_types',
     },
     {
       name: 'Offers',
-      icon: 'heroicons:clipboard',
+      icon: HeroiconsClipboard,
       to: '/admin/offers',
     },
   ])
@@ -40,22 +52,22 @@ export const useNavigation = () => {
   const miscItems = $ref([
     {
       name: 'Users',
-      icon: 'heroicons:user-group',
+      icon: HeroiconsUserGroup,
       to: '/admin/users',
     },
     {
       name: 'Settings',
-      icon: 'heroicons:cog',
+      icon: HeroiconsCog,
       to: '/admin/settings',
     },
     {
       name: 'Information',
-      icon: 'heroicons:document-text',
+      icon: HeroiconsDocumentText,
       to: '/admin/pages',
     },
     {
       name: 'Help',
-      icon: 'heroicons:question-mark-circle',
+      icon: HeroiconsQuestionMarkCircle,
       to: '/admin/help',
     },
   ])

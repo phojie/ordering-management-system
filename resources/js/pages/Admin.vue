@@ -14,5 +14,4 @@ export default {
   <Head>
     <title>Admin</title>
   </Head>
-  You're logged in!
 </template>
