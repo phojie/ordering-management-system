@@ -18,14 +18,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin', function () {
-    return Inertia::render('Admin');
-});
+    return Inertia::render('Admin/Index');
+})->middleware(['auth', 'verified'])->name('admin');
 
 Route::get('/admin/menus', function () {
     return Inertia::render('Admin/Menus', [
         // 'menus' => \App\Models\Menu::all(),
     ]);
-});
+})->middleware(['auth', 'verified'])->name('admin.menus');
 
 //create a route for items
 

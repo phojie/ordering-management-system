@@ -1,6 +1,4 @@
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/inertia-vue3'
-
 const props = defineProps({
   status: String,
 })

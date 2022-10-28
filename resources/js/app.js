@@ -16,11 +16,11 @@ const appName = window.document.getElementsByTagName('title')[0]?.innerText || '
 
 createInertiaApp({
   title: title => `${title} - ${appName}`,
-  //   resolve: name => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue') as any),
+  //   resolve: name => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob('./pages/**/*.vue')),
   resolve: (name) => {
     const page = resolvePageComponent(
-            `./pages/${name}.vue`,
-            import.meta.glob('./pages/**/*.vue'),
+              `./pages/${name}.vue`,
+              import.meta.glob('./pages/**/*.vue'),
     )
 
     page.then((module) => {
@@ -42,6 +42,6 @@ createInertiaApp({
 })
 
 InertiaProgress.init({
-  color: 'red',
+//   color: 'blue',
   showSpinner: true,
 })

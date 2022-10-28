@@ -1,16 +1,29 @@
-<script setup lang="ts">
+<script lang="ts">
+import type { PropType } from 'vue'
 import type { Menu } from '@/types/menu'
+import AdminLayout from '@/layouts/AdminLayout.vue'
 
-const props = defineProps<{
-  menus?: Menu[]
-}>()
+export default defineComponent({
+  layout: AdminLayout,
+  props: {
+    menus: Array as PropType<Menu[]>,
+  },
+  setup(props) {
+    const { state, show, hide } = useSlideOver()
 
-const { state, show, hide } = useSlideOver()
-
-const closeSlideOver = () => {
-  useMenuStore().resetForm()
-  hide()
-}
+    const closeSlideOver = () => {
+      useMenuStore().resetForm()
+      hide()
+    }
+    return {
+      props,
+      state,
+      show,
+      hide,
+      closeSlideOver,
+    }
+  },
+})
 </script>
 
 <template>
@@ -44,13 +57,14 @@ const closeSlideOver = () => {
           type="button"
           class="inline-flex items-center p-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primary-600 order-0 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:order-1 sm:ml-3"
         >
-          <!-- <Icon name="zondicons:reload" :class="[pending ? 'animate-spin' : '']" class="w-5 h-5 " /> -->
+          <!-- :class="[pending ? 'animate-spin' : '']" -->
+          <zondicons-reload class="w-5 h-5 " />
         </button>
       </div>
     </div>
 
     <!-- Table -->
-    <AdminMenusTable :menus="props.menus ?? []" />
+    <!-- <AdminMenusTable :menus="props.menus ?? []" /> -->
 
     <!-- Slide over -->
     <AdminMenusSlideOver :state="state" @hide="closeSlideOver" />

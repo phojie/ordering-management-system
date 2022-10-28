@@ -1,9 +1,5 @@
 <script setup lang="ts">
 const { user } = useUser()
-
-useHead({
-  title: 'Dashboard',
-})
 </script>
 
 <template>

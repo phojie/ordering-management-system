@@ -35,6 +35,7 @@ declare module '@vue/runtime-core' {
     HeroiconsMagnifyingGlass20Solid: typeof import('~icons/heroicons/magnifying-glass20-solid')['default']
     HeroiconsOutlineBars3CenterLeft: typeof import('~icons/heroicons-outline/bars3-center-left')['default']
     HeroiconsXMark: typeof import('~icons/heroicons/x-mark')['default']
+    Icon: typeof import('~icons/ic/on')['default']
     InputError: typeof import('./components/InputError.vue')['default']
     InputLabel: typeof import('./components/InputLabel.vue')['default']
     JButton: typeof import('./j-components/JButton.vue')['default']
@@ -46,5 +47,6 @@ declare module '@vue/runtime-core' {
     PrimaryButton: typeof import('./components/PrimaryButton.vue')['default']
     ResponsiveNavLink: typeof import('./components/ResponsiveNavLink.vue')['default']
     TextInput: typeof import('./components/TextInput.vue')['default']
+    ZondiconsReload: typeof import('~icons/zondicons/reload')['default']
   }
 }

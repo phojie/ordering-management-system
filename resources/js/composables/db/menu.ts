@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import { useVuelidate } from '@vuelidate/core'
 import { helpers, required } from '@vuelidate/validators'
-import type { Menu } from '~/types/menu'
-import { MenuStatus } from '~/types/menu'
+import type { Menu } from '@/types/menu'
+import { MenuStatus } from '@/types/menu'
 
 export const useMenuStore = defineStore('menu', () => {
   const menuForm = reactive<Menu>({
