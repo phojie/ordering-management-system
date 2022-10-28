@@ -4,7 +4,7 @@ const { user, signOut } = useUser()
 
 <template>
   <div class="flex items-center justify-center p-4 space-x-10">
-    <NavLink v-if="!user" to="/login">
+    <!-- <NavLink v-if="!user" to="/login">
       Login form
     </NavLink>
     <NavLink to="/">
@@ -20,7 +20,7 @@ const { user, signOut } = useUser()
 
     <NavLink v-if="user" to="/admin/">
       Admin
-    </NavLink>
+    </NavLink> -->
 
     <button v-if="user" type="button" @click="signOut">
       Logout

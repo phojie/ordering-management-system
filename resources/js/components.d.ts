@@ -43,7 +43,6 @@ declare module '@vue/runtime-core' {
     JSlideOver: typeof import('./j-components/JSlideOver.vue')['default']
     JTextArea: typeof import('./j-components/JTextArea.vue')['default']
     JTextField: typeof import('./j-components/JTextField.vue')['default']
-    NavLink: typeof import('./components/NavLink.vue')['default']
     PrimaryButton: typeof import('./components/PrimaryButton.vue')['default']
     ResponsiveNavLink: typeof import('./components/ResponsiveNavLink.vue')['default']
     TextInput: typeof import('./components/TextInput.vue')['default']
