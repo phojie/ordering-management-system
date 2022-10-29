@@ -19,14 +19,13 @@ Route::get('/dashboard', function () {
 
 Route::get('/admin', function () {
     return Inertia::render('Admin/Index');
-})->middleware(['auth', 'verified'])->name('admin');
+});
 
 Route::get('/admin/menus', function () {
     return Inertia::render('Admin/Menus', [
         // 'menus' => \App\Models\Menu::all(),
     ]);
-})->middleware(['auth', 'verified'])->name('admin.menus');
-
+});
 //create a route for items
 
 require __DIR__ . '/auth.php';
