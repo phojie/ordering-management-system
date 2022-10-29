@@ -10,9 +10,9 @@ const { user } = useUser()
       <MenuButton
         class="flex items-center max-w-xs text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 lg:rounded-md lg:p-2 lg:hover:bg-gray-50"
       >
-        <img class="w-8 h-8 rounded-full" :src="user?.avatar_url" alt="Profile">
+        <img class="w-8 h-8 rounded-full" :src="`https://robohash.org/${user.id}?set=set3&bgset=bg2&size=400x400`" alt="Profile">
         <span class="hidden ml-3 text-sm font-medium text-gray-700 lg:block"><span class="sr-only">Open user
-          menu for </span>{{ user?.full_name }}</span>
+          menu for </span>{{ user?.username }}</span>
         <heroicons-chevron-down-20-solid
           class="flex-shrink-0 hidden w-5 h-5 ml-1 text-gray-400 lg:block" aria-hidden="true"
         />
