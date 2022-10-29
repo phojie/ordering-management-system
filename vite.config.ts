@@ -41,6 +41,10 @@ export default defineConfig({
           '@inertiajs/inertia-vue3': [
             'useForm',
           ],
+        //   'highcharts-vue': [
+        //     // 'Chart',
+        //     ['Chart', 'highcharts'],
+        //   ],
         },
       ],
 
@@ -57,7 +61,7 @@ export default defineConfig({
 
       // Auto import inside Vue template
       // see https://github.com/unjs/unimport/pull/15 and https://github.com/unjs/unimport/pull/72
-      vueTemplate: false,
+      vueTemplate: true,
 
       // see https://github.com/antfu/unplugin-auto-import/pull/23/
       resolvers: [
@@ -80,6 +84,11 @@ export default defineConfig({
         'resources/js/j-components/**',
       ],
       dts: 'resources/js/components.d.ts',
+      types: [{
+        from: 'highcharts-vue',
+        names: ['Chart', 'highcharts'],
+        // alias
+      }],
       resolvers: [
         IconsResolver({
           prefix: false,

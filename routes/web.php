@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Resources\UserCollection;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,6 +27,12 @@ Route::get('/admin/menus', function () {
         // 'menus' => \App\Models\Menu::all(),
     ]);
 });
-//create a route for items
+
+Route::get('/admin/users', function () {
+    sleep(5);
+    return Inertia::render('Admin/Users', [
+        'users' => \App\Models\User::all()
+    ]);
+});
 
 require __DIR__ . '/auth.php';
