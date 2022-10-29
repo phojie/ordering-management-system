@@ -1,19 +1,20 @@
 import { defineConfig } from 'vite'
-import laravel from 'laravel-vite-plugin'
-import vue from '@vitejs/plugin-vue'
+import Laravel from 'laravel-vite-plugin'
+import Vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import VueMacros from 'unplugin-vue-macros/vite'
 
 export default defineConfig({
   plugins: [
-    laravel({
+    Laravel({
       input: 'resources/js/app.js',
       ssr: 'resources/js/ssr.js',
       refresh: true,
     }),
-    vue({
+    Vue({
       template: {
         transformAssetUrls: {
           base: null,
@@ -90,6 +91,7 @@ export default defineConfig({
       autoInstall: true,
       scale: 1.6,
     }),
+    VueMacros(),
   ],
   ssr: {
     noExternal: ['@inertiajs/server'],

@@ -22,7 +22,8 @@
       "unplugin-vue-define-options",
       //   "vite-plugin-pages/client",
       //   "vite-plugin-vue-layouts/client",
-      "unplugin-icons/types/vue"
+      "unplugin-icons/types/vue",
+      "unplugin-vue-macros/macros-global"
 
     ],
     "paths": {
@@ -37,6 +38,14 @@
     "noUnusedLocals": true,
     "sourceMap": true,
     "strictNullChecks": true
+  },
+  "vueCompilerOptions": {
+    "plugins": [
+      "@vue-macros/volar/define-model",
+      "@vue-macros/volar/short-vmodel"
+      // ...more feature
+    ]
+    // ...
   },
   "exclude": [
     "public",

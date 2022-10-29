@@ -1,6 +1,4 @@
 <script setup>
-import { Link } from '@inertiajs/inertia-vue3'
-
 const showingNavigationDropdown = ref(false)
 </script>
 
@@ -21,9 +19,9 @@ const showingNavigationDropdown = ref(false)
 
               <!-- Navigation Links -->
               <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                <JLink :href="route('dashboard')" :active="route().current('dashboard')">
                   Dashboard
-                </NavLink>
+                </JLink>
               </div>
             </div>
 

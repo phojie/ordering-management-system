@@ -1,29 +1,21 @@
-<script lang="ts">
-import type { PropType } from 'vue'
+<script setup lang="ts">
 import type { Menu } from '@/types/menu'
 import AdminLayout from '@/layouts/AdminLayout.vue'
 
-export default defineComponent({
-  layout: AdminLayout,
-  props: {
-    menus: Array as PropType<Menu[]>,
-  },
-  setup(props) {
-    const { state, show, hide } = useSlideOver()
+defineProps<{
+  menus?: Menu[]
+}>()
 
-    const closeSlideOver = () => {
-      useMenuStore().resetForm()
-      hide()
-    }
-    return {
-      props,
-      state,
-      show,
-      hide,
-      closeSlideOver,
-    }
-  },
+defineOptions({
+  layout: AdminLayout,
 })
+
+const { state, show, hide } = useSlideOver()
+
+const closeSlideOver = () => {
+  useMenuStore().resetForm()
+  hide()
+}
 </script>
 
 <template>

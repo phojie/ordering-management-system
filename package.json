@@ -24,6 +24,7 @@
     "@types/lodash": "^4.14.186",
     "@types/ziggy-js": "^1.3.2",
     "@vitejs/plugin-vue": "^3.0.0",
+    "@vue-macros/volar": "^0.4.1",
     "@vue/server-renderer": "^3.2.31",
     "autoprefixer": "^10.4.2",
     "axios": "^0.27",
@@ -34,6 +35,7 @@
     "unplugin-auto-import": "^0.11.2",
     "unplugin-icons": "^0.14.12",
     "unplugin-vue-components": "^0.22.8",
+    "unplugin-vue-macros": "^0.15.0",
     "vite": "^3.0.0",
     "vue": "^3.2.31"
   }

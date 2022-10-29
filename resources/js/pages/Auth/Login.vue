@@ -4,10 +4,6 @@ defineProps<{
   status: String
 }>()
 
-useHead({
-  title: 'Login',
-})
-
 const form = useForm({
   email: '',
   password: '',
@@ -22,6 +18,7 @@ const submit = () => {
 </script>
 
 <template>
+  <Head title="Login" />
   <div class="flex flex-col justify-center min-h-full py-12 sm:px-6 lg:px-8">
     <!-- <pre>{{ form }}</pre> -->
 
