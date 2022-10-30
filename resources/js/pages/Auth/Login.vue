@@ -4,23 +4,21 @@ defineProps<{
   status: String
 }>()
 
-const form = useForm({
-  email: '',
-  password: '',
-  remember: false,
-})
+const auth = useAuth()
+
+const form = auth.form
 
 const submit = () => {
-  form.post(route('login'), {
-    onFinish: () => form.reset('password'),
-  })
+  auth.signIn(form)
 }
+
+const processing = computed(() => form.processing)
 </script>
 
 <template>
   <Head title="Login" />
   <div class="flex flex-col justify-center min-h-full py-12 sm:px-6 lg:px-8">
-    <!-- <pre>{{ form }}</pre> -->
+    <pre>{{ form }}</pre>
 
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <AppIcon class="w-auto h-12 mx-auto" />
@@ -39,11 +37,13 @@ const submit = () => {
         <form class="space-y-6" @submit.prevent="submit">
           <JTextField
             id="email" v-model="form.email" label="Email address"
+            :is-disabled="processing"
             :error-message="form.errors?.email" :is-dirty="form.errors?.email !== undefined"
           />
 
           <JTextField
             id="password" v-model="form.password" label="Password" type="password"
+            :is-disabled="processing"
             :error-message="form.errors?.password" :is-dirty="form.errors?.password !== undefined"
           />
 
@@ -52,6 +52,7 @@ const submit = () => {
               id="remember-me"
               v-model="form.remember"
               label="Remember me"
+              :is-disabled="processing"
             />
 
             <div class="text-sm">

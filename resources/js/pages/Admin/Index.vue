@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AdminLayout from '@/layouts/AdminLayout.vue'
 
-const { user } = useUser()
+const { auth } = useAuth()
 
 defineOptions({
   layout: AdminLayout,
@@ -18,14 +18,14 @@ defineOptions({
       <div class="flex-1 min-w-0">
         <div class="flex space-x-5">
           <div class="flex-shrink-0">
-            <img class="w-20 h-20 rounded-full" :src="`https://robohash.org/${user.id}?set=set3&bgset=bg2&size=400x400`" alt="profile">
+            <img class="w-20 h-20 rounded-full" :src="`https://robohash.org/${auth.id}?set=set3&bgset=bg2&size=400x400`" alt="profile">
           </div>
           <div class="pt-1 text-left">
             <p class="text-sm font-medium text-gray-600">
               Welcome back,
             </p>
             <p class="text-2xl font-bold text-gray-900">
-              {{ user?.username }}
+              {{ auth?.username }}
             </p>
             <p class="flex items-center text-sm font-medium text-gray-600 capitalize">
               <heroicons-shield-check-solid class="mr-1 text-success-600" size="18" />

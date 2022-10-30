@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { MenuItem } from '@headlessui/vue'
 
-const { signOut } = useUser()
+const { signOut } = useAuth()
 </script>
 
 <template>
