@@ -45,7 +45,6 @@
       "@vue-macros/volar/short-vmodel"
       // ...more feature
     ]
-    // ...
   },
   "exclude": [
     "public",
