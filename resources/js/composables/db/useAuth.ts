@@ -14,6 +14,12 @@ export const useAuth = defineStore('auth', () => {
         form.clearErrors('email')
     })
 
+  watch(() => form.password,
+    () => {
+      if (_has(form.errors, 'password'))
+        form.clearErrors('password')
+    })
+
   // signout
   function signOut() {
     Inertia.post('/logout')
