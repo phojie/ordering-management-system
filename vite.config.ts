@@ -6,6 +6,7 @@ import Components from 'unplugin-vue-components/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import VueMacros from 'unplugin-vue-macros/vite'
+// import { HeadlessUiResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineConfig({
   plugins: [
@@ -35,16 +36,20 @@ export default defineConfig({
       imports: [
         // presets
         'vue',
-        // '@vueuse/head',
         '@vueuse/core',
         {
           '@inertiajs/inertia-vue3': [
             'useForm',
           ],
-        //   'highcharts-vue': [
-        //     // 'Chart',
-        //     ['Chart', 'highcharts'],
-        //   ],
+          'highcharts-vue': [
+            ['Chart', 'highcharts'],
+          ],
+          'lodash': [
+            // ['isEmpty', '_isEmpty'],
+          ],
+          'ziggy-js': [
+            ['default', 'route'],
+          ],
         },
       ],
 
@@ -61,7 +66,7 @@ export default defineConfig({
 
       // Auto import inside Vue template
       // see https://github.com/unjs/unimport/pull/15 and https://github.com/unjs/unimport/pull/72
-      vueTemplate: false,
+      vueTemplate: true,
 
       // see https://github.com/antfu/unplugin-auto-import/pull/23/
       resolvers: [
@@ -71,7 +76,7 @@ export default defineConfig({
       // Generate corresponding .eslintrc-auto-import.json file.
       // eslint globals Docs - https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals
       eslintrc: {
-        enabled: false, // Default `false`
+        enabled: true, // Default `false`
         filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
         globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
       },
@@ -80,16 +85,18 @@ export default defineConfig({
       // relative paths to the directory to search for components.
       dirs: [
         'resources/js/components/**',
-        'resources/js/layouts/**',
         'resources/js/j-components/**',
       ],
       dts: 'resources/js/components.d.ts',
-      types: [{
-        from: 'highcharts-vue',
-        names: ['Chart', 'highcharts'],
+      types: [
+        {
+          from: 'highcharts-vue',
+          names: ['Chart', 'highcharts'],
         // alias
-      }],
+        },
+      ],
       resolvers: [
+        // HeadlessUiResolver(),
         IconsResolver({
           prefix: false,
         }),
