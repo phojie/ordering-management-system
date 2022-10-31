@@ -5,7 +5,6 @@ defineProps<{
 }>()
 
 const auth = useAuth()
-const $v = auth.$v
 const form = auth.form
 const processing = $computed(() => form.processing)
 </script>
@@ -14,7 +13,7 @@ const processing = $computed(() => form.processing)
   <Head title="Login" />
   <div class="flex flex-col justify-center min-h-full py-12 sm:px-6 lg:px-8">
     <pre>
-    {{ $v.$invalid }}
+    {{ form }}
   </pre>
 
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
@@ -31,14 +30,14 @@ const processing = $computed(() => form.processing)
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
-        <form class="space-y-6" @submit.prevent="auth.submitForm()">
+        <form class="space-y-6" @submit.prevent="auth.signIn()">
           <JTextField
             id="email"
             v-model="form.email"
             :is-disabled="processing"
             label="Email address"
-            :error-message="$v.email.$errors[0]?.$message"
-            :is-dirty="$v.email.$error"
+            :error-message="form.errors?.email"
+            :is-dirty="_has(form.errors, 'email')"
           />
 
           <JTextField
@@ -47,17 +46,17 @@ const processing = $computed(() => form.processing)
             type="password"
             label="Password"
             :is-disabled="processing"
-            :error-message="$v.password.$errors[0]?.$message"
-            :is-dirty="$v.password.$error"
+            :error-message="form.errors?.password"
+            :is-dirty="_has(form.errors, 'password')"
           />
 
           <div class="flex items-center justify-between">
             <JCheckbox
               id="remember-me"
-              v-model="form.processing"
+              v-model="form.remember"
               label="Remember me"
+              :is-disabled="processing"
             />
-            <!-- :is-disabled="processing" -->
 
             <div class="text-sm">
               <Link
@@ -71,7 +70,7 @@ const processing = $computed(() => form.processing)
 
           <div>
             <JBtn
-              :is-disabled="$v.$invalid || processing"
+              :is-disabled="processing"
               :is-loading="processing"
               type="submit"
               label="Submit"

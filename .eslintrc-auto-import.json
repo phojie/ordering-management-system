@@ -2,6 +2,8 @@
   "globals": {
     "EffectScope": true,
     "Inertia": true,
+    "_has": true,
+    "acceptHMRUpdate": true,
     "asyncComputed": true,
     "autoResetRef": true,
     "computed": true,

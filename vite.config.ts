@@ -13,7 +13,11 @@ export default defineConfig({
     Laravel({
       input: 'resources/js/app.js',
       ssr: 'resources/js/ssr.js',
-      refresh: true,
+      refresh: [
+        'routes/**',
+        'resources/js/*/**',
+        'resources/css/**',
+      ],
     }),
     Vue({
       template: {
@@ -52,13 +56,14 @@ export default defineConfig({
             ['Chart', 'highcharts'],
           ],
           'lodash': [
-            // ['isEmpty', '_isEmpty'],
+            ['has', '_has'],
           ],
           'ziggy-js': [
             ['default', 'route'],
           ],
           'pinia': [
             'defineStore',
+            'acceptHMRUpdate',
           ],
         },
       ],
