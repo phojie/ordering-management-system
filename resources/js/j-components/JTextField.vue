@@ -75,7 +75,11 @@ const details = computed(() => {
         :name="name"
         :autofocus="autofocus"
         :placeholder="placeholder"
-        :class="[isDirty ? 'text-error-900 placeholder-error-300 border-error-300 focus:border-error-500 focus:outline-none focus:ring-error-500' : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500']"
+        :class="[
+          isDirty
+            ? 'text-error-900 placeholder-error-300 border-error-300 focus:border-error-500 focus:outline-none focus:ring-error-500'
+            : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500',
+        ]"
         class="block w-full pr-10 rounded-md sm:text-sm"
         @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
         @blur="$emit('blur')"
