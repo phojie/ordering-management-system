@@ -12,7 +12,6 @@ import exportingInit from 'highcharts/modules/exporting'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m'
 import { Ziggy } from '@/ziggy'
 import DefaultLayout from '@/layouts/default.vue'
-
 const pinia = createPinia()
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'RMS'
 
@@ -21,14 +20,12 @@ createInertiaApp({
   //   resolve: name => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob('./pages/**/*.vue')),
   resolve: (name) => {
     const page = resolvePageComponent(
-              `./pages/${name}.vue`,
-              import.meta.glob('./pages/**/*.vue'),
+            `./pages/${name}.vue`,
+            import.meta.glob('./pages/**/*.vue'),
     )
-
     page.then((module) => {
       module.default.layout = module.default.layout || DefaultLayout
     })
-
     return page
   },
   //   setup
@@ -49,5 +46,5 @@ exportingInit(Highcharts)
 
 InertiaProgress.init({
   color: '#3b82f6',
-  showSpinner: true,
+  showSpinner: false,
 })

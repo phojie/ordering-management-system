@@ -40,6 +40,13 @@ export default defineConfig({
         {
           '@inertiajs/inertia-vue3': [
             'useForm',
+            'usePage',
+          ],
+          '@vuelidate/core': [
+            'useVuelidate',
+          ],
+          '@inertiajs/inertia': [
+            'Inertia',
           ],
           'highcharts-vue': [
             ['Chart', 'highcharts'],
@@ -49,6 +56,9 @@ export default defineConfig({
           ],
           'ziggy-js': [
             ['default', 'route'],
+          ],
+          'pinia': [
+            'defineStore',
           ],
         },
       ],

@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <Link :href="href" :class="active ? activeClass : ''">
+  <Link :href="href" :class="{ activeClass: active }">
     <slot />
   </Link>
 </template>

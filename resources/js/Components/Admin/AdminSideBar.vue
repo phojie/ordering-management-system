@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
 
-const sidebar = useToggleSidebar()
+const sidebar = useSidebar()
 </script>
 
 <template>

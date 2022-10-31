@@ -19,6 +19,8 @@ const closeSlideOver = () => {
 </script>
 
 <template>
+  <Head title="Menus | Admin" />
+
   <main class="flex-1">
     <!-- Page title & actions -->
     <div

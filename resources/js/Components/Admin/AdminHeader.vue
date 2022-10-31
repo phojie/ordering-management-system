@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const sidebar = useToggleSidebar()
+const sidebar = useSidebar()
 </script>
 
 <template>

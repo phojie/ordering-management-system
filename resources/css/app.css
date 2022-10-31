@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+button:disabled,
+input:disabled,
+textarea:disabled {
+    @apply opacity-70;
+}
