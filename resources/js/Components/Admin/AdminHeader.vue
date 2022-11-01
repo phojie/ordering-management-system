@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const sidebar = useSidebar()
+const sidebar = useSidebarStore()
 </script>
 
 <template>

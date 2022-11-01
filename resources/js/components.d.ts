@@ -35,8 +35,10 @@ declare module '@vue/runtime-core' {
     HeroiconsBanknotes20Solid: typeof import('~icons/heroicons/banknotes20-solid')['default']
     HeroiconsBell: typeof import('~icons/heroicons/bell')['default']
     HeroiconsChevronDown20Solid: typeof import('~icons/heroicons/chevron-down20-solid')['default']
+    HeroiconsLink20Solid: typeof import('~icons/heroicons/link20-solid')['default']
     HeroiconsMagnifyingGlass20Solid: typeof import('~icons/heroicons/magnifying-glass20-solid')['default']
     HeroiconsOutlineBars3CenterLeft: typeof import('~icons/heroicons-outline/bars3-center-left')['default']
+    HeroiconsQuestionMarkCircle20Solid: typeof import('~icons/heroicons/question-mark-circle20-solid')['default']
     HeroiconsShieldCheckSolid: typeof import('~icons/heroicons/shield-check-solid')['default']
     HeroiconsXMark: typeof import('~icons/heroicons/x-mark')['default']
     highcharts: typeof import('highcharts-vue')['highcharts']
@@ -56,5 +58,6 @@ declare module '@vue/runtime-core' {
     PrimaryButton: typeof import('./components/PrimaryButton.vue')['default']
     ResponsiveNavLink: typeof import('./components/ResponsiveNavLink.vue')['default']
     TextInput: typeof import('./components/TextInput.vue')['default']
+    ZondiconsReload: typeof import('~icons/zondicons/reload')['default']
   }
 }

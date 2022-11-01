@@ -1,5 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-export const useSidebar = defineStore('sidebar', () => {
+export const useSidebarStore = defineStore('sidebar', () => {
   // sidebar
   const state = ref(false)
 
@@ -27,4 +27,4 @@ export const useSidebar = defineStore('sidebar', () => {
 })
 
 if (import.meta.hot)
-  import.meta.hot.accept(acceptHMRUpdate(useSidebar, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useSidebarStore, import.meta.hot))

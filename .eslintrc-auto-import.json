@@ -214,7 +214,7 @@
     "useScrollLock": true,
     "useSessionStorage": true,
     "useShare": true,
-    "useSidebar": true,
+    "useSidebarStore": true,
     "useSlideOver": true,
     "useSlots": true,
     "useSorted": true,
