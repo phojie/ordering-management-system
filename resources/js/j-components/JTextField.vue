@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import HeroiconsExclamationCircle20Solid from '~icons/heroicons/exclamation-circle-20-solid'
-import IcomoonFreeSpinner2 from '~icons/icomoon-free/spinner2'
+
 /**
   TODO: Add a way to set focus on the input
   TODO: Add hint prop
@@ -42,10 +42,7 @@ defineEmits<{
 
 // set computed
 const appendInnerIcon = computed(() => {
-  if (props.isLoading)
-    return IcomoonFreeSpinner2
-
-  else if (props.isDirty)
+  if (props.isDirty)
     return HeroiconsExclamationCircle20Solid
 
   else
@@ -85,9 +82,22 @@ const details = computed(() => {
         @blur="$emit('blur')"
       >
 
-      <!-- append inner icon -->
-      <div v-if="appendInnerIcon" class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-        <component :is="appendInnerIcon" class="w-5 h-5" :class="[isDirty ? 'text-error-500' : 'text-gray-400', isLoading ? 'animate-spin' : '']" aria-hidden="true" />
+      <!-- append inner area -->
+      <div v-if="appendInnerIcon || isLoading" class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+        <!-- icon area -->
+        <component
+          :is="appendInnerIcon"
+          class="w-5 h-5" :class="[
+            isDirty
+              ? 'text-error-500'
+              : 'text-gray-400',
+            { 'animate-spin': isLoading },
+          ]"
+          aria-hidden="true"
+        />
+
+        <!-- spinner area -->
+        <j-spinner v-if="isLoading" class="w-5 h-5 text-gray-400" />
       </div>
     </div>
 
