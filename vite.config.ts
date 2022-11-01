@@ -13,10 +13,7 @@ export default defineConfig({
     Laravel({
       input: 'resources/js/app.js',
       ssr: 'resources/js/ssr.js',
-      refresh: [
-        'routes/**',
-        'resources/js/composables/**',
-      ],
+      refresh: true,
     }),
     Vue({
       template: {
