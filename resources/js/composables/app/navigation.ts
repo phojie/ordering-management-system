@@ -9,6 +9,8 @@ import HeroiconsUserGroup from '~icons/heroicons/user-group'
 import HeroiconsCog from '~icons/heroicons/cog'
 import HeroiconsDocumentText from '~icons/heroicons/document-text'
 import HeroiconsQuestionMarkCircle from '~icons/heroicons/question-mark-circle'
+import HeroiconsFingerPrint from '~icons/heroicons/finger-print'
+import HeroiconsShieldCheck from '~icons/heroicons/shield-check'
 
 export const useNavigation = () => {
   const adminItems = [
@@ -56,6 +58,16 @@ export const useNavigation = () => {
       href: '/admin/users',
     },
     {
+      name: 'Roles',
+      icon: HeroiconsFingerPrint,
+      href: '/admin/roles',
+    },
+    {
+      name: 'Permissions',
+      icon: HeroiconsShieldCheck,
+      href: '/admin/permissions',
+    },
+    {
       name: 'Settings',
       icon: HeroiconsCog,
       href: '/admin/settings',
@@ -70,6 +82,7 @@ export const useNavigation = () => {
       icon: HeroiconsQuestionMarkCircle,
       href: '/admin/help',
     },
+
   ]
 
   return {
