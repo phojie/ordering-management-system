@@ -4,7 +4,7 @@ const { auth } = useAuthStore()
 
 <template>
   <h2 class="text-xl font-semibold leading-tight text-gray-800">
-    Dashboard
+    Dashboard test
   </h2>
 
   <div class="py-12">
