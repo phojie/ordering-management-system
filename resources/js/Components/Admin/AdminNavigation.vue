@@ -7,7 +7,8 @@ const { adminItems, miscItems } = useNavigation()
     <div class="flex flex-col divide-y divide-primary-800">
       <div class="px-2 py-6 space-y-1">
         <JLink
-          v-for="item in adminItems" :key="item.name" :href="item.href"
+          v-for="item in adminItems" :key="item.name"
+          :to="item.href"
           :active="$page.url === item.href"
           active-class="bg-primary-800 text-white"
           class="flex items-center px-2 py-2 text-sm font-medium leading-6 rounded-md group text-primary-100 hover:text-white hover:bg-primary-600"
@@ -19,7 +20,9 @@ const { adminItems, miscItems } = useNavigation()
 
       <div class="px-2 py-6 space-y-1">
         <JLink
-          v-for="item in miscItems" :key="item.name" :href="item.href"
+          v-for="item in miscItems"
+          :key="item.name"
+          :to="item.href"
           :active="$page.url === item.href"
           active-class="bg-primary-800 text-white"
           class="flex items-center px-2 py-2 text-sm font-medium leading-6 rounded-md group text-primary-100 hover:text-white hover:bg-primary-600"

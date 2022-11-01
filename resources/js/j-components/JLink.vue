@@ -1,13 +1,13 @@
 <script setup lang="ts">
 defineProps<{
-  href: string
+  to: string
   active?: boolean
   activeClass?: string
 }>()
 </script>
 
 <template>
-  <Link :href="href" :class="{ activeClass: active }">
+  <Link :href="to" :class="active ? activeClass : ''">
     <slot />
   </Link>
 </template>
