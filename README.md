@@ -35,7 +35,6 @@
 	- [ ] Overview charts
 	- [ ] Recent activity table
 - [ ] Menus
-	- [ ] Manage
 	- [ ] Create
 	- [ ] Read
 	- [ ] Update
@@ -50,8 +49,15 @@
 - Combo meals (packages)
 - [ ] users
 - [ ] roles
-- Kitchen manager
-- Delivery
+	- [ ] Create
+	- [ ] Read
+	- [ ] Update
+	- [ ] Delete
+- [ ] permissions
+	- [ ] Create
+	- [ ] Read
+	- [ ] Update
+	- [ ] Delete
 - [ ] customers profile list 
 - [ ] orders (status)
 - New orders
@@ -89,28 +95,3 @@
 - `Domain name` -
 - `Hosting platform` -
 - `Server platform` -
-
-
----
-
-## 🌳 Resources
-
-##### Repository
-- https://github.com/advance-restaurant-management-system
-
-##### Frontend
-- https://v3.nuxtjs.org/
-
-##### Backend
-- https://supabase.com/
-
-##### Packages
-- https://github.com/antfu/eslint-config
-- https://github.com/antfu/vscode-settings
-- https://supabase.nuxtjs.org/
-
-----
-
-## 📇 Additional Metadata
-
-- 🗂 Type:: #type/note
