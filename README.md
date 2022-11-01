@@ -15,7 +15,7 @@
 
 - [ ] Ability to display all the food and services
 - [ ] Create account upon checkout
-- [ ] Login account
+- [x] Login account
 
  **About us**
 - [ ] **Contact us**
