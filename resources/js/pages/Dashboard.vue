@@ -1,8 +1,10 @@
 <script setup lang="ts">
-const { auth } = useAuthStore()
+const auth = useAuthStore()
 </script>
 
 <template>
+  <AppHeader />
+
   <h2 class="text-xl font-semibold leading-tight text-gray-800">
     Dashboard test
   </h2>
@@ -11,7 +13,7 @@ const { auth } = useAuthStore()
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
-          You're logged in! {{ auth.name }}
+          You're logged in! {{ auth.user.name }}
         </div>
       </div>
     </div>
