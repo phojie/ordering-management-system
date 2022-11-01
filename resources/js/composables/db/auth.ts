@@ -1,3 +1,5 @@
+import { acceptHMRUpdate, defineStore } from 'pinia'
+
 export const useAuth = defineStore('auth', () => {
   const props = usePage().props.value as any
   const auth = $computed(() => props.auth?.user)
@@ -7,6 +9,8 @@ export const useAuth = defineStore('auth', () => {
     password: null,
     remember: false,
   })
+
+  const test = ref('Hello World')
 
   watch(() => form.email,
     () => {
@@ -39,6 +43,7 @@ export const useAuth = defineStore('auth', () => {
 
   return {
     // states
+    test,
     form,
     auth,
 
@@ -48,5 +53,7 @@ export const useAuth = defineStore('auth', () => {
   }
 })
 
+// make sure to pass the right store definition, `useAuth` in this case.
 if (import.meta.hot)
   import.meta.hot.accept(acceptHMRUpdate(useAuth, import.meta.hot))
+

@@ -12,6 +12,7 @@ import exportingInit from 'highcharts/modules/exporting'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m'
 import { Ziggy } from '@/ziggy'
 import DefaultLayout from '@/layouts/default.vue'
+
 const pinia = createPinia()
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'RMS'
 
@@ -31,8 +32,8 @@ createInertiaApp({
   //   setup
   setup({ el, app, props, plugin }) {
     createApp({ render: () => h(app, props) })
-      .use(plugin)
       .use(pinia)
+      .use(plugin)
       .use(ZiggyVue, Ziggy)
       .use(HighchartsVue)
       .component('Link', Link)

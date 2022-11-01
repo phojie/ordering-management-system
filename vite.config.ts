@@ -15,8 +15,7 @@ export default defineConfig({
       ssr: 'resources/js/ssr.js',
       refresh: [
         'routes/**',
-        'resources/js/*/**',
-        'resources/css/**',
+        'resources/js/composables/**',
       ],
     }),
     Vue({
@@ -71,7 +70,7 @@ export default defineConfig({
       // Auto import for module exports under directories
       // by default it only scan one level of modules under the directory
       dirs: [
-        './resources/js/composables/**',
+        'resources/js/composables/*/**',
       ],
 
       // Filepath to generate corresponding .d.ts file.
