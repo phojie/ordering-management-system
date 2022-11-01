@@ -1,4 +1,4 @@
-# Application Features
+# ✨ Application Features 
 
 ## 👱 Types of User
 
@@ -11,14 +11,13 @@
 
 ## 👱 User Interface
 
- **Public Landing Page**
-
+ **Landing Page**
 - [ ] Ability to display all the food and services
 - [ ] Create account upon checkout
 - [x] Login account
 
  **About us**
-- [ ] **Contact us**
+- [ ] Contacts info
 
  **Customer Account**
 - [ ] List of menu 
@@ -30,8 +29,17 @@
 - COD
 - Online Payment (GCASH)
 
-**Admin**
+**Admin Account**
 - [ ] Dashboard
+	- [ ] Summary (last 30 days)
+	- [ ] Overview charts
+	- [ ] Recent activity table
+- [ ] Menus
+	- [ ] Manage
+	- [ ] Create
+	- [ ] Read
+	- [ ] Update
+	- [ ] Delete
 - [ ] Items
 - [ ] Add-ons
 - [ ] Options
@@ -81,3 +89,28 @@
 - `Domain name` -
 - `Hosting platform` -
 - `Server platform` -
+
+
+---
+
+## 🌳 Resources
+
+##### Repository
+- https://github.com/advance-restaurant-management-system
+
+##### Frontend
+- https://v3.nuxtjs.org/
+
+##### Backend
+- https://supabase.com/
+
+##### Packages
+- https://github.com/antfu/eslint-config
+- https://github.com/antfu/vscode-settings
+- https://supabase.nuxtjs.org/
+
+----
+
+## 📇 Additional Metadata
+
+- 🗂 Type:: #type/note
