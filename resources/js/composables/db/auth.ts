@@ -10,8 +10,6 @@ export const useAuth = defineStore('auth', () => {
     remember: false,
   })
 
-  const test = ref('Hello World')
-
   watch(() => form.email,
     () => {
       if (_has(form.errors, 'email'))
@@ -43,7 +41,6 @@ export const useAuth = defineStore('auth', () => {
 
   return {
     // states
-    test,
     form,
     auth,
 

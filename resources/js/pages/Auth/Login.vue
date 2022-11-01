@@ -24,7 +24,6 @@ const processing = $computed(() => form.processing)
       </p>
     </div>
 
-    {{ useAuth().test }}
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
         <form class="space-y-6" @submit.prevent="auth.signIn()">
