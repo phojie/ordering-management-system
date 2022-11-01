@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { user, signOut } = useUser()
+const auth = useAuthStore()
 </script>
 
 <template>
@@ -22,12 +22,12 @@ const { user, signOut } = useUser()
       Admin
     </NavLink> -->
 
-    <button v-if="user" type="button" @click="signOut">
+    <button v-if="auth.signedIn" type="button" @click="auth.signOut">
       Logout
     </button>
 
     <div>
-      {{ user?.email || 'No user signIn' }}
+      {{ auth.user?.email || 'No user signIn' }}
     </div>
   </div>
 </template>
