@@ -11,7 +11,7 @@ import Highcharts from 'highcharts'
 import exportingInit from 'highcharts/modules/exporting'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m'
 import { Ziggy } from '@/ziggy'
-import DefaultLayout from '~/layouts/Default.vue'
+import DefaultLayout from '@/layouts/Default.vue'
 
 const pinia = createPinia()
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'RMS'
