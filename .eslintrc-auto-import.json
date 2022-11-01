@@ -113,7 +113,7 @@
     "useAsyncQueue": true,
     "useAsyncState": true,
     "useAttrs": true,
-    "useAuth": true,
+    "useAuthStore": true,
     "useBase64": true,
     "useBattery": true,
     "useBluetooth": true,

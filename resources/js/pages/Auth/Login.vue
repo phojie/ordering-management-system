@@ -4,7 +4,7 @@ defineProps<{
   status: String
 }>()
 
-const auth = useAuth()
+const auth = useAuthStore()
 const form = auth.form
 const processing = $computed(() => form.processing)
 </script>
