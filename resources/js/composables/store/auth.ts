@@ -1,8 +1,7 @@
-import { acceptHMRUpdate, defineStore } from 'pinia'
-
 export const useAuthStore = defineStore('auth', () => {
-  const props = usePage().props.value as any
-  const auth = $computed(() => props.auth?.user)
+  const pageProps = $computed<any>(() => usePage().props.value)
+  const user = computed(() => pageProps.auth?.user)
+  const signedIn = computed(() => pageProps.auth?.signedIn)
 
   const form = useForm({
     email: null,
@@ -42,7 +41,8 @@ export const useAuthStore = defineStore('auth', () => {
   return {
     // states
     form,
-    auth,
+    user,
+    signedIn,
 
     // actions
     signOut,
