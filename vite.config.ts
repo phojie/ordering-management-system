@@ -61,6 +61,9 @@ export default defineConfig({
             'defineStore',
             'acceptHMRUpdate',
           ],
+          '@/layouts/AdminLayout.vue': [
+            ['default', 'AdminLayout'],
+          ],
         },
       ],
 

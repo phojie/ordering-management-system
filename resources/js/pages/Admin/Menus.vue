@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Menu } from '@/types/menu'
-import AdminLayout from '@/layouts/AdminLayout.vue'
 
 defineProps<{
   menus?: Menu[]

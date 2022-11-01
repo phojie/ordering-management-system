@@ -1,5 +1,6 @@
 {
   "globals": {
+    "AdminLayout": true,
     "EffectScope": true,
     "Inertia": true,
     "_has": true,
