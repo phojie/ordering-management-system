@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { MenuItem } from '@headlessui/vue'
 
-const { signOut } = useAuth()
+const signOut = useAuthStore().signOut()
 </script>
 
 <template>
@@ -31,7 +31,7 @@ const { signOut } = useAuth()
   </div>
   <div class="py-1">
     <MenuItem v-slot="{ active }">
-      <AppProfileMenuItem :is-active="active" @click="signOut()">
+      <AppProfileMenuItem :is-active="active" @click="signOut">
         Logout
       </AppProfileMenuItem>
     </MenuItem>
