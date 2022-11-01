@@ -9,6 +9,10 @@ module.exports = {
     './resources/js/**/*.vue',
   ],
 
+  safelist: [
+    // some safe classes here
+  ],
+
   theme: {
     extend: {
       colors: {
