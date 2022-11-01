@@ -13,10 +13,10 @@ Route::get('/', function () {
     ]);
 });
 
-Route::group(['middleware' => ['auth', 'verified']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
-    });
+    })->name('dashboard');
 
     Route::get('/admin', function () {
         return Inertia::render('Admin/Index');
