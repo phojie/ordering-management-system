@@ -72,3 +72,19 @@ export interface Btn {
 
   // object
 }
+
+export interface Header {
+  text: string
+  value: string
+  sortable?: boolean
+  align?: 'start' | 'center' | 'end'
+  filterable?: boolean
+  filter?: (value: any, search: string, item: any) => boolean
+  divider?: boolean
+  class?: string
+  width?: string
+}
+
+export interface Items {
+  [key: string]: any
+}
