@@ -4,10 +4,13 @@ const $v = useMenuStore().vuelidate
 </script>
 
 <template>
+  <pre>
+  {{ menuForm }}
+  </pre>
   <div class="pt-6 pb-5 space-y-6">
     <JTextField
       id="name"
-      v-model:model-value="menuForm.name"
+      v-model="menuForm.name"
       placeholder="Name"
       :error-message="$v.name.$errors[0]?.$message"
       :is-dirty="$v.name.$error"
@@ -15,7 +18,7 @@ const $v = useMenuStore().vuelidate
     />
     <JTextField
       id="description"
-      v-model:model-value="menuForm.description"
+      v-model="menuForm.description"
       label="Description"
       error-message="Description is required"
       :is-dirty="$v.description.$error"
