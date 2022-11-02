@@ -27,6 +27,13 @@ const details = computed(() => {
   if (props.isDirty)
     return props.errorMessage
 })
+
+// autofocus
+const inputRef = $ref<HTMLInputElement>()
+onMounted(() => {
+  if (inputRef?.hasAttribute('autofocus'))
+    inputRef?.focus()
+})
 </script>
 
 <template>
@@ -38,6 +45,7 @@ const details = computed(() => {
     <div class="relative mt-1 mb-2 rounded-md shadow-sm">
       <textarea
         :id="id"
+        ref="inputRef"
         :rows="props.rows"
         :readonly="isReadOnly"
         :disabled="isDisabled"
