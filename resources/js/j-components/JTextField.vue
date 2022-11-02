@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { TextField } from './Types'
-
 import HeroiconsExclamationCircle20Solid from '~icons/heroicons/exclamation-circle-20-solid'
+
 /**
   TODO: Add a way to set focus on the input
   TODO: Add hint prop
