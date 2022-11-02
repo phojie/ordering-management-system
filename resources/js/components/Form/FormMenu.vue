@@ -38,7 +38,14 @@ const $v = useMenuStore().vuelidate
       <div class="mt-2 space-y-5">
         <div class="relative flex items-start">
           <div class="absolute flex items-center h-5">
-            <input id="privacy-public" name="privacy" aria-describedby="privacy-public-description" type="radio" class="w-4 h-4 border-gray-300 text-primary-600 focus:ring-primary-500" checked="true">
+            <input
+              id="privacy-public"
+              name="privacy"
+              aria-describedby="privacy-public-description"
+              type="radio"
+              class="w-4 h-4 border-gray-300 text-primary-600 focus:ring-primary-500"
+              checked="true"
+            >
           </div>
           <div class="text-sm pl-7">
             <label for="privacy-public" class="font-medium text-gray-900">Available</label>
@@ -50,7 +57,13 @@ const $v = useMenuStore().vuelidate
         <div>
           <div class="relative flex items-start">
             <div class="absolute flex items-center h-5">
-              <input id="privacy-private-to-menu" name="privacy" aria-describedby="privacy-private-to-menu-description" type="radio" class="w-4 h-4 border-gray-300 text-primary-600 focus:ring-primary-500">
+              <input
+                id="privacy-private-to-menu"
+                name="privacy"
+                aria-describedby="privacy-private-to-menu-description"
+                type="radio"
+                class="w-4 h-4 border-gray-300 text-primary-600 focus:ring-primary-500"
+              >
             </div>
             <div class="text-sm pl-7">
               <label for="privacy-private-to-menu" class="font-medium text-gray-900">For dining only</label>
@@ -63,10 +76,17 @@ const $v = useMenuStore().vuelidate
         <div>
           <div class="relative flex items-start">
             <div class="absolute flex items-center h-5">
-              <input id="privacy-private" name="privacy" aria-describedby="privacy-private-to-menu-description" type="radio" class="w-4 h-4 border-gray-300 text-primary-600 focus:ring-primary-500">
+              <input
+                id="privacy-private"
+                name="privacy"
+                aria-describedby="privacy-private-to-menu-description"
+                type="radio"
+                class="w-4 h-4 border-gray-300 text-primary-600 focus:ring-primary-500"
+              >
             </div>
             <div class="text-sm pl-7">
-              <label for="privacy-private" class="font-medium text-gray-900">For take out only </label>
+              <label for="privacy-private" class="font-medium text-gray-900">For take out only
+              </label>
               <p id="privacy-private-description" class="text-gray-500">
                 You are the only one able to access this menu.
               </p>
