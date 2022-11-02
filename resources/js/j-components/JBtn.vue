@@ -1,22 +1,8 @@
 <script setup lang="ts">
-interface Props {
-  // string
-  id?: string
-  name?: string
-  type?: 'submit' | 'reset' | 'button'
-  label?: string
-
-  // boolean
-  isDirty?: boolean
-  isDisabled?: boolean
-  isReadOnly?: boolean
-  isLoading?: boolean
-
-  // object
-}
+import type { Btn } from './types'
 
 // set default props
-withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Btn>(), {
   type: 'button',
 })
 </script>

@@ -54,3 +54,19 @@ export interface Checkbox {
 
   // object
 }
+
+export interface Btn {
+  // string
+  id?: string
+  name?: string
+  type?: 'submit' | 'reset' | 'button'
+  label?: string
+
+  // boolean
+  isDirty?: boolean
+  isDisabled?: boolean
+  isReadOnly?: boolean
+  isLoading?: boolean
+
+  // object
+}
