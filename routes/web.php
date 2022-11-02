@@ -29,7 +29,6 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/admin/users', function () {
-        sleep(5);
         return Inertia::render('Admin/Users', [
             'users' => \App\Models\User::all()
         ]);
