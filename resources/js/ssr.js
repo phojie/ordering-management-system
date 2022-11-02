@@ -16,7 +16,7 @@ createServer(page =>
     setup({ app, props, plugin }) {
       return createSSRApp({ render: () => h(app, props) })
         .use(plugin)
-        .use(HighchartsVue, { tagName: 'highcharts' })
+        // .use(HighchartsVue, { tagName: 'highcharts' })
         .use(ZiggyVue, {
           ...page.props.ziggy,
           location: new URL(page.props.ziggy.location),
