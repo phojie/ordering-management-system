@@ -18,3 +18,23 @@ export interface TextField {
 
   // object
 }
+
+export interface TextArea {
+  // string
+  id: string
+  name?: string
+  placeholder?: string
+  modelValue?: string
+  label?: string
+  appendInnerIcon?: string
+  errorMessage?: string
+
+  // boolean
+  isDirty?: boolean
+  isDisabled?: boolean
+  isReadOnly?: boolean
+  isLoading?: boolean
+
+  // number
+  rows?: number
+}

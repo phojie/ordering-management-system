@@ -1,26 +1,8 @@
 <script setup lang="ts">
-interface Props {
-  // string
-  id: string
-  name?: string
-  placeholder?: string
-  modelValue?: string
-  label?: string
-  appendInnerIcon?: string
-  errorMessage?: string
-
-  // boolean
-  isDirty?: boolean
-  isDisabled?: boolean
-  isReadOnly?: boolean
-  isLoading?: boolean
-
-  // number
-  rows?: number
-}
+import type { TextArea } from './types'
 
 // set default props
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<TextArea>(), {
   rows: 4,
 })
 
