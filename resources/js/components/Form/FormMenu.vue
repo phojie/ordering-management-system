@@ -4,9 +4,6 @@ const $v = useMenuStore().vuelidate
 </script>
 
 <template>
-  <pre>
-  {{ menuForm }}
-  </pre>
   <div class="pt-6 pb-5 space-y-6">
     <JTextField
       id="name"
