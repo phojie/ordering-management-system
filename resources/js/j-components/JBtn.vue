@@ -16,10 +16,9 @@ withDefaults(defineProps<Btn>(), {
   >
     <span v-if="!isLoading">
       <!-- label area -->
-      {{ label }}
-      <template v-if="label">
-        <slot />
-      </template>
+      <slot>
+        {{ label }}
+      </slot>
     </span>
 
     <span v-if="isLoading" class="flex space-x-2">
