@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import HeroiconsExclamationCircle20Solid from '~icons/heroicons/exclamation-circle-20-solid'
+import type { TextField } from './Types'
 
+import HeroiconsExclamationCircle20Solid from '~icons/heroicons/exclamation-circle-20-solid'
 /**
   TODO: Add a way to set focus on the input
   TODO: Add hint prop
@@ -8,29 +9,8 @@ import HeroiconsExclamationCircle20Solid from '~icons/heroicons/exclamation-circ
   }
 */
 
-interface Props {
-  // string
-  id: string
-  name?: string
-  type?: string
-  placeholder?: string
-  modelValue?: string
-  label?: string
-  appendInnerIcon?: string
-  errorMessage?: string
-  autofocus?: boolean
-
-  // boolean
-  isDirty?: boolean
-  isDisabled?: boolean
-  isReadOnly?: boolean
-  isLoading?: boolean
-
-  // object
-}
-
 // set default props
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<TextField>(), {
   type: 'text',
 })
 
@@ -53,6 +33,13 @@ const details = computed(() => {
   if (props.isDirty)
     return props.errorMessage
 })
+
+// autofocus
+const inputRef = $ref<HTMLInputElement>()
+onMounted(() => {
+  if (inputRef?.hasAttribute('autofocus'))
+    inputRef?.focus()
+})
 </script>
 
 <template>
@@ -65,6 +52,7 @@ const details = computed(() => {
       <!-- input -->
       <input
         :id="id"
+        ref="inputRef"
         :readonly="isReadOnly"
         :disabled="isDisabled"
         :value="modelValue"
