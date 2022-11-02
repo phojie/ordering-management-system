@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TextField } from './Types'
+import type { TextField } from './types'
 import HeroiconsExclamationCircle20Solid from '~icons/heroicons/exclamation-circle-20-solid'
 
 /**
