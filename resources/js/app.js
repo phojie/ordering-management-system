@@ -8,7 +8,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { createPinia } from 'pinia'
 import HighchartsVue from 'highcharts-vue'
 import Highcharts from 'highcharts'
-// import exportingInit from 'highcharts/modules/exporting'
+import exportingInit from 'highcharts/modules/exporting'
 import DefaultLayout from '@/layouts/Default.vue'
 
 const pinia = createPinia()
