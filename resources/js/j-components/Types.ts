@@ -35,6 +35,8 @@ export interface TextArea {
   isReadOnly?: boolean
   isLoading?: boolean
 
+  // object
+
   // number
   rows?: number
 }
