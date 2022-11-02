@@ -38,3 +38,19 @@ export interface TextArea {
   // number
   rows?: number
 }
+
+export interface Checkbox {
+  // string
+  id: string
+  name?: string
+  modelValue?: boolean
+  label?: string
+
+  // boolean
+  isDirty?: boolean
+  isDisabled?: boolean
+  isReadOnly?: boolean
+  isLoading?: boolean
+
+  // object
+}

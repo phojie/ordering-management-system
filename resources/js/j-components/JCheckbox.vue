@@ -1,21 +1,7 @@
 <script setup lang="ts">
-interface Props {
-  // string
-  id: string
-  name?: string
-  modelValue?: boolean
-  label?: string
+import type { Checkbox } from './types'
 
-  // boolean
-  isDirty?: boolean
-  isDisabled?: boolean
-  isReadOnly?: boolean
-  isLoading?: boolean
-
-  // object
-}
-
-withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Checkbox>(), {
   modelValue: false,
 })
 
