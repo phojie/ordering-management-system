@@ -83,5 +83,4 @@ const onCheckBoxChange = (e: any) => {
       </div>
     </div>
   </div>
-  <JPagination />
 </template>

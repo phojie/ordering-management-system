@@ -7,7 +7,11 @@ defineProps<{
 </script>
 
 <template>
-  <Link :href="to" :class="active ? activeClass : ''">
+  <Link
+
+    :href="to"
+    :class="[active ? activeClass : '', { 'cursor-not-allowed': !to }]"
+  >
     <slot />
   </Link>
 </template>

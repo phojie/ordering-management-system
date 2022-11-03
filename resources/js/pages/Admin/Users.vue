@@ -1,7 +1,18 @@
 <script setup lang="ts">
+import type { PaginationLink } from '@/types/constants'
 import type { User } from '@/types/user'
+
+interface PaginationProps {
+  data: User[]
+  currentPage: number
+  lastPage: number
+  links: Array<PaginationLink>
+  nextPageUrl: string
+  prevPageUrl: string
+}
+
 defineProps<{
-  users: User[]
+  users: PaginationProps
 }>()
 
 defineOptions({
@@ -61,7 +72,7 @@ const user = useUser()
       <!-- Table -->
       <section class="flex flex-col px-4 mt-8 space-y-6 sm:px-6 lg:px-8">
         <JTable
-          :items="users ?? []"
+          :items="users?.data ?? []"
           item-key="id"
           :headers="user.headers"
         >
@@ -86,6 +97,7 @@ const user = useUser()
             </td>
           </template>
         </JTable>
+        <JPagination :links="users.links" />
       </section>
 
       <!-- Slide over -->
