@@ -30,7 +30,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/admin/users', function () {
         return Inertia::render('Admin/Users', [
-            'users' => \App\Models\User::all()
+            // 'users' => \App\Models\User::all()
+            'users' => Inertia::lazy(fn () => User::get()),
         ]);
     });
 });
