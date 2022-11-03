@@ -1,10 +1,27 @@
 // import type { Header } from '@/j-components/types'
 export const useUser = defineStore('user', () => {
   const headers = ref([
-    { text: 'Username', value: 'username' },
-    { text: 'Email', value: 'email' },
-    { text: 'Role', value: 'role' },
-    { text: 'Actions', value: 'actions', sortable: false },
+    {
+      text: 'Username',
+      value: 'username',
+      class: 'min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900',
+    },
+    {
+      text: 'Email',
+      value: 'email',
+      class: 'px-3 py-3.5 text-left text-sm font-semibold text-gray-900',
+    },
+    {
+      text: 'Role',
+      value: 'role',
+      class: 'px-3 py-3.5 text-left text-sm font-semibold text-gray-900',
+    },
+    {
+      text: '',
+      value: 'actions',
+      class: 'relative py-3.5 pl-3 pr-4 sm:pr-6',
+      sortable: false,
+    },
   ])
 
   const processing = ref<boolean>(false)
