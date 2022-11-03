@@ -4,6 +4,7 @@ import type { Btn } from './types'
 // set default props
 withDefaults(defineProps<Btn>(), {
   type: 'button',
+  variant: 'primary',
 })
 </script>
 
