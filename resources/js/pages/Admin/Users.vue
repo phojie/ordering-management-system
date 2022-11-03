@@ -64,7 +64,28 @@ const user = useUser()
           :items="users ?? []"
           item-key="id"
           :headers="user.headers"
-        />
+        >
+          <template
+            #table-data="{ item, selected }"
+          >
+            <td
+              class="py-4 pr-3 text-sm font-medium whitespace-nowrap"
+              :class="[selected ? 'text-primary-600' : 'text-gray-900']"
+            >
+              {{ item.username }}
+            </td>
+            <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+              {{ item.email }}
+            </td>
+            <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+              {{ item.created_at }}
+            </td>
+            <td class="py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
+              <a href="#" class="text-primary-600 hover:text-primary-900">Edit<span class="sr-only">,
+                {{ item.name }}</span></a>
+            </td>
+          </template>
+        </JTable>
       </section>
 
       <!-- Slide over -->
