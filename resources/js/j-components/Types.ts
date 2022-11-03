@@ -63,6 +63,8 @@ export interface Btn {
   name?: string
   type?: 'submit' | 'reset' | 'button'
   label?: string
+  variant?: 'primary' | 'danger' | 'secondary' | 'success' | 'warning'
+  size?: 'small' | 'medium' | 'large'
 
   // boolean
   isDirty?: boolean
