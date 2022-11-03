@@ -51,10 +51,13 @@
     "public",
     "dist",
     "node_modules"
-  ],
-  "include": [
-    "resources/js/**/*.ts",
-    "resources/js/**/*.d.ts",
-    "resources/js/**/*.vue",
-    "resources/js/app.js"]
+  ]
+  // "include": [
+  //   "resources/js/**/*.ts",
+  //   "resources/js/**/*.d.ts",
+  //   "resources/js/**/*.vue",
+  //   "resources/js/app.js",
+  //   "resources/js/bootstrap.js"
+  // ]
 }
+
