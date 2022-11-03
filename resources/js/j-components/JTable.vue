@@ -4,6 +4,8 @@ const props = defineProps<{
   items: Array<TableItems>
   itemKey: string
   headers: Array<TableHeader>
+  isLoading?: boolean
+  loadingDebounce?: number
 }>()
 
 // selected table row
@@ -16,6 +18,15 @@ const onCheckBoxChange = (e: any) => {
   else
     selectedMenu.value = []
 }
+
+// set loading state
+let isProgressLinear = $ref(false)
+watch(
+  () => props.isLoading,
+  _.debounce((value) => {
+    isProgressLinear = value
+  }, props.loadingDebounce ?? 1000),
+)
 </script>
 
 <template>
@@ -59,6 +70,19 @@ const onCheckBoxChange = (e: any) => {
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
+            <!-- progress linear area -->
+            <tr>
+              <td
+                v-show="isProgressLinear"
+                :colspan="headers.length + 1"
+                class="relative"
+              >
+                <JProgressLinear
+                  class="absolute bg-transparent"
+                />
+              </td>
+            </tr>
+
             <tr
               v-for="item in items" :key="item[props.itemKey]"
               :class="[selectedMenu.includes(item[props.itemKey]) && 'bg-gray-50']"
@@ -77,6 +101,17 @@ const onCheckBoxChange = (e: any) => {
 
               <!-- table-data area -->
               <slot name="table-data" :item="item" :selected="selectedMenu.includes(item[props.itemKey])" />
+            </tr>
+
+            <!-- callback area -->
+            <tr
+              v-show="!items?.length"
+            >
+              <td colspan="100" class="py-4 text-center">
+                <div class="text-sm text-gray-400">
+                  No data available
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
