@@ -33,8 +33,10 @@ createInertiaApp({
       .use(pinia)
       .use(plugin)
       .use(HighchartsVue)
+
       .component('Link', Link)
       .component('Head', Head)
+
       .mount(el)
   },
 })
