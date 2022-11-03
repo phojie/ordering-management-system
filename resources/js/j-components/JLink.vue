@@ -8,9 +8,8 @@ defineProps<{
 
 <template>
   <Link
-
     :href="to"
-    :class="[active ? activeClass : '', { 'cursor-not-allowed': !to }]"
+    :class="[active ? activeClass : '', { 'cursor-not-allowed': !to || to === '#' }]"
   >
     <slot />
   </Link>
