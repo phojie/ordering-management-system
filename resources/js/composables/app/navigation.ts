@@ -17,7 +17,7 @@ export const useNavigation = () => {
     {
       name: 'Home',
       icon: HeroiconsHome,
-      href: '/admin/',
+      href: '/admin',
     },
     {
       name: 'Menus',
