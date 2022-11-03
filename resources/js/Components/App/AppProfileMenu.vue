@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { Menu, MenuButton, MenuItems } from '@headlessui/vue'
+import { Menu, MenuButton } from '@headlessui/vue'
 
 const auth = useAuthStore()
 </script>
 
 <template>
-  <Menu v-if="auth" as="div" class="relative ml-3">
+  <Menu v-if="auth.signedIn" as="div" class="relative ml-3">
     <div>
       <MenuButton
         class="flex items-center max-w-xs text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 lg:rounded-md lg:p-2 lg:hover:bg-gray-50"
@@ -24,11 +24,7 @@ const auth = useAuthStore()
       leave-active-class="transition duration-75 ease-in" leave-from-class="transform scale-100 opacity-100"
       leave-to-class="transform scale-95 opacity-0"
     >
-      <MenuItems
-        class="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-      >
-        <AppProfileMenuItems />
-      </MenuItems>
+      <AppProfileMenuItems />
     </transition>
   </Menu>
 </template>
