@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Header, Items } from './types'
+import type { TableHeader, TableItems } from './types'
 const props = defineProps<{
-  items: Array<Items>
+  items: Array<TableItems>
   itemKey: string
-  headers: Array<Header>
+  headers: Array<TableHeader>
 }>()
 
 // selected table row

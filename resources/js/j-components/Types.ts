@@ -57,25 +57,7 @@ export interface Checkbox {
   // object
 }
 
-export interface Btn {
-  // string
-  id?: string
-  name?: string
-  type?: 'submit' | 'reset' | 'button'
-  label?: string
-  variant?: 'primary' | 'danger' | 'secondary' | 'success' | 'warning'
-  size?: 'small' | 'medium' | 'large'
-
-  // boolean
-  isDirty?: boolean
-  isDisabled?: boolean
-  isReadOnly?: boolean
-  isLoading?: boolean
-
-  // object
-}
-
-export interface Header {
+export interface TableHeader {
   text: string
   value: string
   sortable?: boolean
@@ -87,6 +69,6 @@ export interface Header {
   width?: string
 }
 
-export interface Items {
+export interface TableItems {
   [key: string]: any
 }
