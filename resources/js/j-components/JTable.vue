@@ -52,60 +52,31 @@ const onCheckBoxChange = (e: any) => {
               </th>
               <th
                 v-for="(header, id) in headers" :key="id" scope="col"
-                class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
+                :class="header.class"
               >
                 {{ header.text }}
               </th>
-              <!-- <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                Punch line
-              </th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                Description
-              </th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                Status
-              </th>
-              <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                <span class="sr-only">Edit</span>
-              </th> -->
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
             <tr
-              v-for="itemData in items" :key="itemData[props.itemKey]"
-              :class="[selectedMenu.includes(itemData[props.itemKey]) && 'bg-gray-50']"
+              v-for="item in items" :key="item[props.itemKey]"
+              :class="[selectedMenu.includes(item[props.itemKey]) && 'bg-gray-50']"
             >
               <td class="relative w-12 px-6 sm:w-16 sm:px-8">
                 <div
-                  v-if="selectedMenu.includes(itemData[props.itemKey])"
+                  v-if="selectedMenu.includes(item[props.itemKey])"
                   class="absolute inset-y-0 left-0 w-0.5 bg-primary-600"
                 />
                 <input
                   v-model="selectedMenu" type="checkbox"
                   class="absolute w-4 h-4 -mt-2 border-gray-300 rounded text-primary-600 left-4 top-1/2 focus:ring-primary-500 sm:left-6"
-                  :value="itemData[props.itemKey]"
+                  :value="item[props.itemKey]"
                 >
               </td>
-              <td
-                v-for="(header, id) in headers" :key="id" class="py-4 pr-3 text-sm font-medium whitespace-nowrap"
-                :class="[selectedMenu.includes(itemData[props.itemKey]) ? 'text-primary-600' : 'text-gray-900']"
-              >
-                {{ itemData[header.value] }}
-              </td>
 
-              <!-- <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                          {{ itemData.username }}
-                        </td> -->
-              <!-- <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                          {{ itemData.description }}
-                        </td>
-                        <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                          {{ itemData.status }}
-                        </td> -->
-              <td class="py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                <a href="#" class="text-primary-600 hover:text-primary-900">Edit<span class="sr-only">,
-                  {{ itemData.name }}</span></a>
-              </td>
+              <!-- table-data area -->
+              <slot name="table-data" :item="item" :selected="selectedMenu.includes(item[props.itemKey])" />
             </tr>
           </tbody>
         </table>
