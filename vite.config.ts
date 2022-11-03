@@ -53,6 +53,7 @@ export default defineConfig({
           ],
           'lodash': [
             ['has', '_has'],
+            ['trim', '_trim'],
           ],
           'ziggy-js': [
             ['default', 'route'],
@@ -70,6 +71,7 @@ export default defineConfig({
       // Auto import for module exports under directories
       // by default it only scan one level of modules under the directory
       dirs: [
+        'resources/js/composables/*',
         'resources/js/composables/*/**',
       ],
 
@@ -90,7 +92,7 @@ export default defineConfig({
       // Generate corresponding .eslintrc-auto-import.json file.
       // eslint globals Docs - https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals
       eslintrc: {
-        enabled: true, // Default `false`
+        enabled: false, // Default `false`
         filepath: 'resources/js/.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
         globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
       },
