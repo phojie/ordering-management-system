@@ -4,8 +4,8 @@ export const useAuthStore = defineStore('auth', () => {
   const signedIn = computed(() => pageProps.auth?.signedIn)
 
   const form = useForm({
-    email: null,
-    password: null,
+    email: '',
+    password: '',
     remember: false,
   })
 
@@ -33,7 +33,7 @@ export const useAuthStore = defineStore('auth', () => {
         form.reset()
       },
       onError: () => {
-        form.password = null
+        form.password = ''
       },
     })
   }
