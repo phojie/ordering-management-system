@@ -75,6 +75,7 @@ const user = useUser()
           :items="users?.data ?? []"
           item-key="id"
           :headers="user.headers"
+          :is-loading="user.processing"
         >
           <template
             #table-data="{ item, selected }"
