@@ -54,6 +54,8 @@ export default defineConfig({
           'lodash': [
             ['has', '_has'],
             ['trim', '_trim'],
+            // ['trimEnd', '_trimEnd'],
+            ['debounce', '_debounce'],
           ],
           'ziggy-js': [
             ['default', 'route'],
