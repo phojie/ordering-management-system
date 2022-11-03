@@ -12,12 +12,19 @@ import HeroiconsQuestionMarkCircle from '~icons/heroicons/question-mark-circle'
 import HeroiconsFingerPrint from '~icons/heroicons/finger-print'
 import HeroiconsShieldCheck from '~icons/heroicons/shield-check'
 
+interface NavigationItem {
+  name: string
+  href: string
+  icon: any
+  exact?: boolean
+}
+
 export const useNavigation = () => {
-  const adminItems = [
+  const adminItems: NavigationItem[] = [
     {
       name: 'Home',
-      icon: HeroiconsHome,
       href: '/admin',
+      icon: HeroiconsHome,
     },
     {
       name: 'Menus',
@@ -51,11 +58,12 @@ export const useNavigation = () => {
     },
   ]
 
-  const miscItems = [
+  const miscItems: NavigationItem[] = [
     {
       name: 'Users',
       icon: HeroiconsUserGroup,
       href: '/admin/users',
+      exact: true,
     },
     {
       name: 'Roles',
