@@ -46,5 +46,5 @@ exportingInit(Highcharts)
 
 InertiaProgress.init({
   color: '#3b82f6',
-  showSpinner: false,
+  showSpinner: true,
 })
