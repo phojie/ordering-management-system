@@ -30,8 +30,8 @@ createInertiaApp({
   //   setup
   setup({ el, app, props, plugin }) {
     createApp({ render: () => h(app, props) })
-      .use(pinia)
       .use(plugin)
+      .use(pinia)
       .use(HighchartsVue)
 
       .component('Link', Link)
