@@ -40,11 +40,44 @@ export const useUser = defineStore('user', () => {
     )
   }
 
+  // delete user
+  async function deleteUser(id: number) {
+    // TODO add confirmation area here
+
+    await Inertia.delete(`/admin/users/${id}`, {
+      only: ['users'],
+      onBefore: () => {
+        processing.value = true
+      },
+      onFinish: () => {
+        processing.value = false
+      },
+    })
+  }
+
+  // delete multiple users
+  async function deleteUsers(ids: number[]) {
+    await Inertia.delete('/admin/users', {
+      only: ['users'],
+      data: {
+        ids,
+      },
+      onBefore: () => {
+        processing.value = true
+      },
+      onFinish: () => {
+        processing.value = false
+      },
+    })
+  }
+
   return {
     processing,
     headers,
 
     reload,
+    deleteUser,
+    deleteUsers,
   }
 })
 

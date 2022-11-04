@@ -28,7 +28,11 @@ const closeSlideOver = () => {
 
 const user = useUser()
 
-const selected = ref([] as any[])
+let selected = $ref([] as any[])
+const deleteAll = () => {
+  user.deleteUsers(selected)
+  selected = []
+}
 </script>
 
 <template>
@@ -79,6 +83,7 @@ const selected = ref([] as any[])
           :headers="user.headers"
           :is-loading="user.processing"
           :links="users?.links ?? []"
+          @deleteAll="deleteAll()"
         >
           <template
             #table-data="{ item, selected }"
@@ -115,9 +120,16 @@ const selected = ref([] as any[])
             <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
               <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
             </td>
-            <td class="py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-              <a href="#" class="text-primary-600 hover:text-primary-900">Edit<span class="sr-only">,
-                {{ item.name }}</span></a>
+            <td class="py-4 text-sm font-medium whitespace-nowrap">
+              <div class="flex items-center justify-center space-x-2 ">
+                <a href="#" class="text-primary-600 hover:text-primary-900">Edit<span class="sr-only">,
+                  {{ item.name }}</span></a>
+
+                <button type="button" class="text-error-600 hover:text-error-900" @click="user.deleteUser(item.id)">
+                  Delete
+                  <span class="sr-only">, {{ item.name }}</span>
+                </button>
+              </div>
             </td>
           </template>
         </JTable>
