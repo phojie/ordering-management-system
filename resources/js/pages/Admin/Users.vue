@@ -37,42 +37,40 @@ const selected = ref([] as any[])
 
     <main class="flex-1">
       <!-- Page title & actions -->
-      <div class="px-4 py-6 bg-white border-b border-gray-200 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <div class="px-4 py-6 border-gray-200 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
         <div class="flex-1 min-w-0">
           <div class="sm:flex-auto">
             <h1 class="text-xl font-semibold text-gray-900">
               Users
             </h1>
             <p class="mt-2 text-sm text-gray-700">
-              Manage your users
+              A list of all the users in your account including their name, title, email and role.
             </p>
           </div>
         </div>
-        <div class="flex mt-4 sm:mt-0 sm:ml-4">
+        <div class="flex justify-between gap-4 mt-4 sm:justify-start sm:mt-0 sm:ml-4">
           <!-- search area -->
+
           <button
-            type="button"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primary-600 order-0 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:order-1 sm:ml-3"
-            @click="show"
+            type="button" :disabled="user.processing"
+            class="inline-flex items-center p-2 text-sm font-medium text-gray-600 bg-transparent border border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 "
+            @click="user.reload()"
           >
-            Create
+            <zondicons-reload class="w-5 h-5 " />
           </button>
 
           <button
             type="button"
-            :disabled="user.processing"
-            class="inline-flex items-center p-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primary-600 order-0 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:order-1 sm:ml-3"
-            @click="user.reload()"
+            class="inline-flex items-center order-first px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm sm:order-last bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+            @click="show"
           >
-            <zondicons-reload
-              class="w-5 h-5 "
-            />
+            Add user
           </button>
         </div>
       </div>
 
       <!-- Table -->
-      <section class="flex flex-col px-4 mt-8 space-y-6 sm:px-6 lg:px-8">
+      <section class="flex flex-col px-4 mt-2 space-y-6 sm:px-6 lg:px-8">
         <JTable
           v-model="selected"
           :indeterminate="true"
@@ -85,17 +83,37 @@ const selected = ref([] as any[])
           <template
             #table-data="{ item, selected }"
           >
-            <td
-              class="py-4 pr-3 text-sm font-medium whitespace-nowrap"
-              :class="[selected ? 'text-primary-600' : 'text-gray-900']"
-            >
-              {{ item.username }}
+            <td class="py-4 pl-4 pr-3 text-sm whitespace-nowrap sm:pl-6">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 w-10 h-10">
+                  <img
+                    class="w-10 h-10 rounded-full" :src="`https://robohash.org/${item?.id}?set=set3&bgset=bg2&size=400x400`"
+                    alt="Profile"
+                  >
+                </div>
+                <div class="ml-4">
+                  <div
+                    class="font-medium"
+                    :class="[selected ? 'text-primary-600' : 'text-gray-900']"
+                  >
+                    {{ item.username }}
+                  </div>
+                  <div class="text-gray-500">
+                    {{ item.email }}
+                  </div>
+                </div>
+              </div>
             </td>
             <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-              {{ item.email }}
+              <div class="text-gray-900">
+                Front-end Developer
+              </div>
+              <div class="text-gray-500">
+                Optimization
+              </div>
             </td>
             <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-              {{ item.created_at }}
+              <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
             </td>
             <td class="py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
               <a href="#" class="text-primary-600 hover:text-primary-900">Edit<span class="sr-only">,

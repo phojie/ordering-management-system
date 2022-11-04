@@ -7,8 +7,8 @@ export const useUser = defineStore('user', () => {
       class: 'min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900',
     },
     {
-      text: 'Email',
-      value: 'email',
+      text: 'Title',
+      value: 'title',
       class: 'px-3 py-3.5 text-left text-sm font-semibold text-gray-900',
     },
     {
