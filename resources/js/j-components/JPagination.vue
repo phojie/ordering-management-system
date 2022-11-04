@@ -13,6 +13,9 @@ const previousLink = computed(() => props.links[0])
 
 // get the next page number
 const nextLink = computed(() => props.links[props.links.length - 1])
+
+// TODO: Add a way to state a loading
+// const isLoading = $ref(false)
 </script>
 
 <template>
