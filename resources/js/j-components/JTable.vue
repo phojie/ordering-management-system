@@ -14,6 +14,7 @@ const props = defineProps<{
 // emits
 const emit = defineEmits<{
   (e: 'update:modelValue', value: any): void
+  (e: 'deleteAll'): void
 }>()
 
 // set loading state
@@ -53,6 +54,7 @@ const onCheckBoxChange = (e: any) => {
           <button
             type="button"
             class="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
+            @click="$emit('deleteAll')"
           >
             Delete all
           </button>
