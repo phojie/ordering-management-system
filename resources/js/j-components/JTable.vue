@@ -8,6 +8,7 @@ const props = defineProps<{
   loadingDebounce?: number
   modelValue: Array<any>
   indeterminate: boolean
+  links?: Array<any>
 }>()
 
 // emits
@@ -127,4 +128,5 @@ const onCheckBoxChange = (e: any) => {
       </div>
     </div>
   </div>
+  <JPagination :links="links ?? []" />
 </template>
