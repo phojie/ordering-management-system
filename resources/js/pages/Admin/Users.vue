@@ -27,6 +27,8 @@ const closeSlideOver = () => {
 }
 
 const user = useUser()
+
+const selected = ref([] as any[])
 </script>
 
 <template>
@@ -72,10 +74,13 @@ const user = useUser()
       <!-- Table -->
       <section class="flex flex-col px-4 mt-8 space-y-6 sm:px-6 lg:px-8">
         <JTable
+          v-model="selected"
+          :indeterminate="true"
           :items="users?.data ?? []"
           item-key="id"
           :headers="user.headers"
           :is-loading="user.processing"
+          :links="users?.links ?? []"
         >
           <template
             #table-data="{ item, selected }"
@@ -98,7 +103,6 @@ const user = useUser()
             </td>
           </template>
         </JTable>
-        <JPagination :links="users.links" />
       </section>
 
       <!-- Slide over -->
