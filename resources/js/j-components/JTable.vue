@@ -6,18 +6,14 @@ const props = defineProps<{
   headers: Array<TableHeader>
   isLoading?: boolean
   loadingDebounce?: number
+  modelValue: Array<any>
+  indeterminate: boolean
 }>()
 
-// selected table row
-const selectedMenu = ref([] as any[])
-const indeterminate = computed(() => selectedMenu.value.length > 0 && selectedMenu.value.length < Object.keys(props.items as any[])?.length)
-const onCheckBoxChange = (e: any) => {
-  const { checked } = e.target
-  if (checked)
-    selectedMenu.value = props.items?.map(m => m[props.itemKey]) ?? []
-  else
-    selectedMenu.value = []
-}
+// emits
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: any): void
+}>()
 
 // set loading state
 let isProgressLinear = $ref(false)
@@ -27,6 +23,16 @@ watch(
     isProgressLinear = value
   }, props.loadingDebounce ?? 1000),
 )
+
+// set checkbox state
+const indeterminate = computed(() => props.modelValue.length > 0 && props.modelValue.length < Object.keys(props.items as any[])?.length)
+const onCheckBoxChange = (e: any) => {
+  const { checked } = e.target
+  if (checked)
+    emit('update:modelValue', props.items?.map(m => m[props.itemKey]) ?? [])
+  else
+    emit('update:modelValue', [])
+}
 </script>
 
 <template>
@@ -34,7 +40,7 @@ watch(
     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
       <div class="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
         <div
-          v-if="selectedMenu.length > 0"
+          v-if="modelValue.length > 0"
           class="absolute top-0 flex items-center h-12 space-x-3 left-12 bg-gray-50 sm:left-16"
         >
           <button
@@ -56,8 +62,8 @@ watch(
               <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
                 <input
                   type="checkbox"
-                  class="absolute w-4 h-4 -mt-2 text-indigo-600 border-gray-300 rounded left-4 top-1/2 focus:ring-indigo-500 sm:left-6"
-                  :checked="indeterminate || selectedMenu.length === items?.length" :indeterminate="indeterminate"
+                  :checked="indeterminate || modelValue.length === items?.length" :indeterminate="indeterminate"
+                  class="absolute w-4 h-4 -mt-2 border-gray-300 rounded text-primary-600 left-4 top-1/2 focus:ring-primary-500 sm:left-6"
                   @change="onCheckBoxChange"
                 >
               </th>
@@ -83,24 +89,27 @@ watch(
               </td>
             </tr>
 
+            <!-- table selection -->
             <tr
               v-for="item in items" :key="item[props.itemKey]"
-              :class="[selectedMenu.includes(item[props.itemKey]) && 'bg-gray-50']"
+              :class="[modelValue.includes(item[props.itemKey]) && 'bg-gray-50']"
             >
               <td class="relative w-12 px-6 sm:w-16 sm:px-8">
                 <div
-                  v-if="selectedMenu.includes(item[props.itemKey])"
+                  v-if="modelValue.includes(item[props.itemKey])"
                   class="absolute inset-y-0 left-0 w-0.5 bg-primary-600"
                 />
                 <input
-                  v-model="selectedMenu" type="checkbox"
+                  type="checkbox"
+                  :checked="modelValue.includes(item[props.itemKey])"
                   class="absolute w-4 h-4 -mt-2 border-gray-300 rounded text-primary-600 left-4 top-1/2 focus:ring-primary-500 sm:left-6"
                   :value="item[props.itemKey]"
+                  @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked ? [...modelValue, item[props.itemKey]] : modelValue.filter(f => f !== item[props.itemKey]))"
                 >
               </td>
 
               <!-- table-data area -->
-              <slot name="table-data" :item="item" :selected="selectedMenu.includes(item[props.itemKey])" />
+              <slot name="table-data" :item="item" :selected="modelValue.includes(item[props.itemKey])" />
             </tr>
 
             <!-- callback area -->
