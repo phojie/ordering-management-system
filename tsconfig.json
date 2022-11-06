@@ -53,6 +53,8 @@
     "node_modules"
   ]
   // "include": [
+  // "reosurces/js/**/*"
+  // "resources/js/**/*"
   //   "resources/js/**/*.ts",
   //   "resources/js/**/*.d.ts",
   //   "resources/js/**/*.vue",
