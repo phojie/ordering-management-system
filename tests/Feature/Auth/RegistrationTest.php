@@ -22,8 +22,13 @@ class RegistrationTest extends TestCase
         $response = $this->post('/register', [
             'username' => 'Test User',
             'email' => 'test@example.com',
+            'firstName' => 'Test',
+            'middleName' => 'User',
+            'imageUrl' => 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+            'lastName' => 'Test',
+
             'password' => 'password',
-            'password_confirmation' => 'password',
+            'passwordConfirmation' => 'password',
         ]);
 
         $this->assertAuthenticated();
