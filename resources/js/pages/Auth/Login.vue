@@ -6,7 +6,7 @@ defineProps<{
 
 const auth = useAuthStore()
 const form = auth.form
-const processing = $computed(() => form.processing)
+const processing = computed(() => form.processing)
 </script>
 
 <template>
