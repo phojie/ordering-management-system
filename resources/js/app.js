@@ -9,6 +9,8 @@ import { createPinia } from 'pinia'
 import HighchartsVue from 'highcharts-vue'
 import Highcharts from 'highcharts'
 import exportingInit from 'highcharts/modules/exporting'
+import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m'
+import { Ziggy } from './ziggy'
 import DefaultLayout from '@/layouts/Default.vue'
 
 const pinia = createPinia()
@@ -33,6 +35,7 @@ createInertiaApp({
       .use(plugin)
       .use(pinia)
       .use(HighchartsVue)
+      .use(ZiggyVue, Ziggy)
 
       .component('Link', Link)
       .component('Head', Head)
