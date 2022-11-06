@@ -132,6 +132,11 @@ export const useUser = defineStore('user', () => {
 
   // reset form
   function resetForm() {
+    // reset form
+    form.username = ''
+    form.email = ''
+    form.password = ''
+
     vuelidate.value.$reset()
   }
 
