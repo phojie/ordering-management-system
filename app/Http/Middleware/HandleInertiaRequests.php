@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Resources\UserResource;
 use Auth;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -38,7 +39,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'auth' => [
                 'signedIn' => Auth::check(),
-                'user' => $request->user(),
+                'user' => new UserResource(Auth::user()),
             ],
             // 'ziggy' => function () use ($request) {
             //     return array_merge((new Ziggy)->toArray(), [
