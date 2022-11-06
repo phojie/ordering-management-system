@@ -4,9 +4,6 @@ const $v = useUser().vuelidate
 </script>
 
 <template>
-  <pre>
-    {{ form }}
-  </pre>
   <div class="pt-6 pb-5 space-y-6">
     <JTextField
       id="username"
