@@ -1,19 +1,30 @@
 import type { PaginationLink } from '@/types/constants'
 
 export interface User {
-  id: number
+  id?: number
   username: string
   email: string
-  emailVerifiedAt: string
-  createdAt: string
-  updatedAt: string
+  emailVerifiedAt?: string
+  createdAt?: string
+  updatedAt?: string
+  password?: string
+  passwordConfirmation?: string
 }
 
 export interface Pagination {
-  data: User[]
-  currentPage: number
-  lastPage: number
-  links: Array<PaginationLink>
-  nextPageUrl: string
-  prevPageUrl: string
+  data: Array<User>
+  links: Array<any>
+  meta: PaginationMeta
 }
+
+interface PaginationMeta {
+  current_page: number
+  from: number
+  last_page: number
+  path: string
+  links: Array<PaginationLink>
+  per_page: number
+  to: number
+  total: number
+}
+

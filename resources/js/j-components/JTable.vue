@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { TableHeader, TableItems } from './types'
+import type { PaginationLink } from '~/global'
 const props = defineProps<{
   items: Array<TableItems>
   itemKey: string
@@ -8,7 +9,7 @@ const props = defineProps<{
   loadingDebounce?: number
   modelValue: Array<any>
   indeterminate: boolean
-  links?: Array<any>
+  links?: Array<PaginationLink>
 }>()
 
 // emits

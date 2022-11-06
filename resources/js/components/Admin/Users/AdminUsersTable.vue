@@ -16,8 +16,14 @@ const deleteAll = () => {
 <template>
   <section class="flex flex-col px-4 mt-2 space-y-6 sm:px-6 lg:px-8">
     <JTable
-      v-model="selected" :indeterminate="true" :items="users?.data ?? []" item-key="id" :headers="user.headers"
-      :is-loading="user.processing" :links="users?.links ?? []" @deleteAll="deleteAll()"
+      v-model="selected"
+      :indeterminate="true"
+      :items="users?.data ?? []"
+      item-key="id"
+      :headers="user.headers"
+      :is-loading="user.processing"
+      :links="users?.meta?.links ?? []"
+      @deleteAll="deleteAll()"
     >
       <template #table-data="{ item, selected }">
         <td class="py-4 pl-4 pr-3 text-sm whitespace-nowrap sm:pl-6">
@@ -47,11 +53,14 @@ const deleteAll = () => {
           </div>
         </td>
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+        <!-- Role row -->
+        </td>
+        <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
           <span
             class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
           >Active</span>
         </td>
-        <td class="py-4 text-sm font-medium whitespace-nowrap">
+        <td class="px-3 py-4 text-sm font-medium whitespace-nowrap">
           <div class="flex items-center justify-center space-x-2 ">
             <a href="#" class="text-primary-600 hover:text-primary-900">Edit<span class="sr-only">,
               {{ item.name }}</span></a>

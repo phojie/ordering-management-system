@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PaginationLink } from '@/types/constants'
+import type { PaginationLink } from '~/global'
 
 const props = defineProps<{
   links: Array<PaginationLink>
