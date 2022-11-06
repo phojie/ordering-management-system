@@ -11,11 +11,11 @@ defineOptions({
 const { state, show, hide } = useSlideOver()
 
 const closeSlideOver = () => {
-  useUser().resetForm()
+  useUserStore().resetForm()
   hide()
 }
 
-const user = useUser()
+const user = useUserStore()
 </script>
 
 <template>

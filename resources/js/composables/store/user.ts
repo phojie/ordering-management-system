@@ -1,7 +1,7 @@
 import { email, helpers, required } from '@vuelidate/validators'
 import type { User } from '@/types/user'
 
-export const useUser = defineStore('user', () => {
+export const useUserStore = defineStore('user', () => {
   const form = reactive<User | any>({
     username: '',
     email: '',
@@ -155,5 +155,5 @@ export const useUser = defineStore('user', () => {
 
 // make sure to pass the right store definition, `useUser` in this case.
 if (import.meta.hot)
-  import.meta.hot.accept(acceptHMRUpdate(useUser, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useUserStore, import.meta.hot))
 

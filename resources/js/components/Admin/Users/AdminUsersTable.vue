@@ -4,7 +4,7 @@ defineProps<{
   users: Pagination
 }>()
 
-const user = useUser()
+const user = useUserStore()
 
 const selected = ref<any>([])
 const deleteAll = () => {
