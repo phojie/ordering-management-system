@@ -47,4 +47,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->image_url = 'https://robohash.org/' . $model->id . '?set=set3&bgset=bg2&size=400x400';
+        });
+    }
 }
