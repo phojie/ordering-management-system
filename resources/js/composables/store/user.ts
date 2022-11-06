@@ -3,12 +3,27 @@ import type { User } from '@/types/user'
 
 export const useUserStore = defineStore('user', () => {
   const form = reactive<User | any>({
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    imageUrl: '',
+
     username: '',
     email: '',
     password: '',
   })
 
   const rules = {
+    firstName: {
+      required: helpers.withMessage('First name is required', required),
+      $autoDirty: true,
+    },
+    middleName: {},
+    lastName: {
+      required: helpers.withMessage('Last name is required', required),
+      $autoDirty: true,
+    },
+    imageUrl: {},
     username: {
       required: helpers.withMessage('Username is required', required),
       $autoDirty: true,
@@ -132,6 +147,10 @@ export const useUserStore = defineStore('user', () => {
 
   // reset form
   function resetForm() {
+    form.firstName = ''
+    form.middleName = ''
+    form.lastName = ''
+    form.imageUrl = ''
     form.username = ''
     form.email = ''
     form.password = ''
