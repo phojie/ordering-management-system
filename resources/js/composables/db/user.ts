@@ -1,8 +1,8 @@
 import { email, helpers, required } from '@vuelidate/validators'
-// import type { User } from '@/types/user'
+import type { User } from '@/types/user'
 
 export const useUser = defineStore('user', () => {
-  const form = reactive({
+  const form = reactive<User | any>({
     username: '',
     email: '',
     password: '',
