@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Requests\UserRequest;
-use App\Http\Resources\UserResource;
-use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
