@@ -23,7 +23,7 @@ defineOptions({
                 Welcome back,
               </p>
               <p class="text-2xl font-bold text-gray-900">
-                {{ auth.user?.username }}
+                {{ auth.user?.fullName }}
               </p>
               <p class="flex items-center text-sm font-medium text-gray-600 capitalize">
                 <heroicons-shield-check-solid class="mr-1 text-success-600" size="18" />
