@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Requests\UserRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,12 +31,37 @@ Route::group(['middleware' => ['auth']], function () {
         ]);
     });
 
+    // get users
     Route::get('/admin/users', function () {
+        $users = User::query()
+                    ->where('id', '!=', auth()->user()->id)
+                    ->paginate(15);
+
+        $query =  UserResource::collection($users);
+
         return Inertia::render('Admin/Users', [
-            // 'users' => \App\Models\User::all()
-            'users' => User::paginate(10),
+            'users' => $query
         ]);
     });
+
+    // store user
+    Route::post('/admin/users', function (UserRequest $userRequest) {
+        $validator = $userRequest->validated();
+        User::create($validator);
+        return redirect()->back()->with('success', 'User created successfully.');
+    })->name( 'users.store');
+
+    // delete users
+    Route::delete('/admin/users/{user}', function (User $user) {
+        $user->delete();
+        return redirect()->back();
+    })->name('users.delete');
+
+    // delete multiple users
+    Route::delete('/admin/users', function () {
+        User::whereIn('id', request('ids'))->delete();
+        return redirect()->back();
+    })->name('users.delete-multiple');
 });
 
 require __DIR__ . '/auth.php';
