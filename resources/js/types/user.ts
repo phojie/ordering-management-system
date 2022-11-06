@@ -1,4 +1,4 @@
-import type { PaginationLink } from '@/types/constants'
+import type { PaginationLink } from '~/global'
 
 export interface User {
   id?: number
