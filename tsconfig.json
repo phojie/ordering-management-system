@@ -13,19 +13,16 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "forceConsistentCasingInFileNames": true,
+    // "forceConsistentCasingInFileNames": true,
     "types": [
       "vite/client",
-      "vue/ref-macros",
+      // "vue/ref-macros",
       "unplugin-vue-define-options",
       "unplugin-icons/types/vue",
-      "unplugin-vue-macros/macros-global",
-      "ziggy-js",
-      "lodash",
-      "node"
-    ],
-    "typeRoots": [
-      "node_modules/@types"
+      "unplugin-vue-macros/macros-global"
+      // "ziggy-js",
+      // "lodash",
+      // "node"
     ],
     "paths": {
       "~/*": [
@@ -35,10 +32,14 @@
         "resources/js/*"
       ]
     },
+    // "allowJs": true,
+    // "noUnusedLocals": true,
+    // "sourceMap": true,
+    // "strictNullChecks": true,
+
+    "strictNullChecks": true,
     "allowJs": true,
-    "noUnusedLocals": true,
-    "sourceMap": true,
-    "strictNullChecks": true
+    "forceConsistentCasingInFileNames": true
   },
   "vueCompilerOptions": {
     "plugins": [
