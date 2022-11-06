@@ -23,7 +23,7 @@ const { adminItems, miscItems } = useNavigation()
           v-for="item in miscItems"
           :key="item.name"
           :to="item.href"
-          :active="useRoute().isActive(item.href)"
+          :active="useRoute().isActive(item.href, item.exact)"
           active-class="text-white bg-primary-800"
           class="flex items-center px-2 py-2 text-sm font-medium leading-6 rounded-md group text-primary-100 hover:text-white hover:bg-primary-600"
         >
