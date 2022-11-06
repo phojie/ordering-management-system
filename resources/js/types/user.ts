@@ -8,6 +8,7 @@ export interface User {
   firstName?: string
   middleName?: string
   lastName: string
+  fullName: string
   emailVerifiedAt?: string
   createdAt?: string
   updatedAt?: string
