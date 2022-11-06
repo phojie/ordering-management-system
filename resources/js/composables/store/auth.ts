@@ -1,6 +1,8 @@
+import type { User } from '@/types/user'
+
 export const useAuthStore = defineStore('auth', () => {
   const pageProps = computed<any>(() => usePage().props.value)
-  const user = computed(() => pageProps.value.auth?.user)
+  const user = computed<User>(() => pageProps.value.auth?.user)
   const signedIn = computed(() => pageProps.value.auth?.signedIn)
 
   const form = useForm({
