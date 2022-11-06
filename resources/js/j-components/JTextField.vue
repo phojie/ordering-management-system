@@ -32,6 +32,8 @@ const appendInnerIcon = computed(() => {
 const details = computed(() => {
   if (props.isDirty)
     return props.errorMessage
+
+  return props.hints
 })
 
 // autofocus
@@ -63,7 +65,7 @@ onMounted(() => {
         :class="[
           isDirty
             ? 'text-error-900 placeholder-error-300 border-error-300 focus:border-error-500 focus:outline-none focus:ring-error-500'
-            : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500',
+            : 'border-gray-300 focus:border-primary-500 focus:ring-primary-500',
         ]"
         class="block w-full pr-10 rounded-md sm:text-sm"
         @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
@@ -85,13 +87,13 @@ onMounted(() => {
         />
 
         <!-- spinner area -->
-        <j-spinner v-if="isLoading" class="w-5 h-5 text-gray-400" />
+        <JSpinner v-if="isLoading" class="w-5 h-5 text-gray-400" />
       </div>
     </div>
 
     <!-- details -->
     <p
-      :id="`${name}-error`"
+      :id="`${id}-details`"
       :class="[isDirty ? 'text-error-600' : 'text-gray-500']"
       class="mt-1 text-sm"
     >
