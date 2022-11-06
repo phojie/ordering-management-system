@@ -7,6 +7,6 @@
       <div class="px-4 divide-y divide-gray-200 sm:px-6">
         <FormUser />
       </div>
-    </div>
+  </div>
   </JSlideOver>
 </template>

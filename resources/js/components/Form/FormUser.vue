@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const form = useUser().form
-const $v = useUser().vuelidate
+const form = useUserStore().form
+const $v = useUserStore().vuelidate
 </script>
 
 <template>
