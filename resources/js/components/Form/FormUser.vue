@@ -1,18 +1,12 @@
 <script setup lang="ts">
 const form = useUser().form
 const $v = useUser().vuelidate
-
-watch(
-  () => form.password,
-  () => {
-    form.passwordConfirmation = form.password
-  })
 </script>
 
 <template>
   <pre>
-   {{ form }}
-    </pre>
+    {{ form }}
+  </pre>
   <div class="pt-6 pb-5 space-y-6">
     <JTextField
       id="username"
