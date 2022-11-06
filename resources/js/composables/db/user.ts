@@ -132,7 +132,6 @@ export const useUser = defineStore('user', () => {
 
   // reset form
   function resetForm() {
-    // reset form
     form.username = ''
     form.email = ''
     form.password = ''
@@ -148,6 +147,7 @@ export const useUser = defineStore('user', () => {
 
     reload,
     submitForm,
+    resetForm,
     deleteUser,
     deleteUsers,
   }
