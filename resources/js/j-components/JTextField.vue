@@ -33,7 +33,12 @@ const details = computed(() => {
   if (props.isDirty)
     return props.errorMessage
 
-  return props.hints
+  else
+    return props.hints
+})
+
+const hasDetails = computed(() => {
+  return props.isDirty || props.hints
 })
 
 // autofocus
@@ -93,6 +98,7 @@ onMounted(() => {
 
     <!-- details -->
     <p
+      v-if="hasDetails"
       :id="`${id}-details`"
       :class="[isDirty ? 'text-error-600' : 'text-gray-500']"
       class="mt-1 text-sm"

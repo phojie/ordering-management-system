@@ -7,6 +7,7 @@ export interface TextField {
   modelValue?: string
   label?: string
   appendInnerIcon?: string
+  hints?: string
   errorMessage?: string
   autofocus?: boolean
 
