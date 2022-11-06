@@ -1,9 +1,13 @@
-import type { PaginationLink } from '~/global'
+import type { PaginationLink } from '@/global'
 
 export interface User {
   id?: number
   username: string
   email: string
+  imageUrl?: string
+  firstName?: string
+  middleName?: string
+  lastName: string
   emailVerifiedAt?: string
   createdAt?: string
   updatedAt?: string

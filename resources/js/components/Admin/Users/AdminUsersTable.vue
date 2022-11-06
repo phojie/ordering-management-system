@@ -6,10 +6,10 @@ defineProps<{
 
 const user = useUser()
 
-let selected = $ref([] as any[])
+const selected = ref<any>([])
 const deleteAll = () => {
-  user.deleteUsers(selected)
-  selected = []
+  user.deleteUsers(selected.value)
+  selected.value = []
 }
 </script>
 
@@ -31,12 +31,12 @@ const deleteAll = () => {
             <div class="flex-shrink-0 w-10 h-10">
               <img
                 class="w-10 h-10 rounded-full"
-                :src="`https://robohash.org/${item?.id}?set=set3&bgset=bg2&size=400x400`" alt="Profile"
+                :src="item.imageUrl" alt="Profile"
               >
             </div>
             <div class="ml-4">
               <div class="font-medium" :class="[selected ? 'text-primary-600' : 'text-gray-900']">
-                {{ item.username }}
+                {{ item.fullName }}
               </div>
               <div class="text-gray-500">
                 {{ item.email }}
@@ -61,7 +61,7 @@ const deleteAll = () => {
           >Active</span>
         </td>
         <td class="px-3 py-4 text-sm font-medium whitespace-nowrap">
-          <div class="flex items-center justify-center space-x-2 ">
+          <div class="flex items-center space-x-2 ">
             <a href="#" class="text-primary-600 hover:text-primary-900">Edit<span class="sr-only">,
               {{ item.name }}</span></a>
 
