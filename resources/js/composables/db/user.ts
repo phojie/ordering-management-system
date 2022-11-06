@@ -1,12 +1,11 @@
-import { email, helpers, required, sameAs } from '@vuelidate/validators'
-import { useVuelidate } from '@vuelidate/core'
-import type { User } from '@/types/user'
+import { email, helpers, required } from '@vuelidate/validators'
+// import type { User } from '@/types/user'
+
 export const useUser = defineStore('user', () => {
-  const form = reactive<User>({
+  const form = reactive({
     username: '',
     email: '',
     password: '',
-    passwordConfirmation: '',
   })
 
   const rules = {
@@ -23,15 +22,11 @@ export const useUser = defineStore('user', () => {
       required: helpers.withMessage('Password is required', required),
       $autoDirty: true,
     },
-    passwordConfirmation: {
-      required: helpers.withMessage('Password confirmation is required', required),
-      sameAsPassword: helpers.withMessage('Password confirmation must match password', sameAs(form.password)),
-    },
   }
 
   const $externalResults = ref({})
 
-  const headers = $ref([
+  const headers = ref([
     {
       text: 'Username',
       value: 'username',
@@ -62,7 +57,7 @@ export const useUser = defineStore('user', () => {
 
   const processing = ref<boolean>(false)
 
-  const vuelidate = useVuelidate(rules, form as any, { $externalResults })
+  const vuelidate = useVuelidate(rules, form, { $externalResults })
 
   function reload() {
     Inertia.reload(
@@ -80,8 +75,7 @@ export const useUser = defineStore('user', () => {
 
   // create user
   async function submitForm() {
-    const isFormCorrect = await vuelidate.value.$validate()
-    if (!isFormCorrect)
+    if (!await vuelidate.value.$validate())
       return
 
     createUser()
@@ -89,7 +83,7 @@ export const useUser = defineStore('user', () => {
 
   // create user
   async function createUser() {
-    await Inertia.post('/admin/users', form, {
+    await Inertia.post(route('users.store'), form, {
       onBefore: () => {
         processing.value = true
       },
@@ -109,7 +103,7 @@ export const useUser = defineStore('user', () => {
   async function deleteUser(id: number) {
     // TODO add confirmation area here
 
-    await Inertia.delete(`/admin/users/${id}`, {
+    await Inertia.delete(route('users.destroy', id), {
       only: ['users'],
       onBefore: () => {
         processing.value = true
@@ -122,7 +116,7 @@ export const useUser = defineStore('user', () => {
 
   // delete multiple users
   async function deleteUsers(ids: number[]) {
-    await Inertia.delete(route('users.delete-multiple'), {
+    await Inertia.delete(route('users.destroy-multiple'), {
       only: ['users'],
       data: {
         ids,
@@ -138,11 +132,6 @@ export const useUser = defineStore('user', () => {
 
   // reset form
   function resetForm() {
-    form.username = ''
-    form.email = ''
-    form.password = ''
-    form.passwordConfirmation = ''
-
     vuelidate.value.$reset()
   }
 

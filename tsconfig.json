@@ -13,30 +13,18 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    // "forceConsistentCasingInFileNames": true,
     "types": [
       "vite/client",
       // "vue/ref-macros",
       "unplugin-vue-define-options",
       "unplugin-icons/types/vue",
       "unplugin-vue-macros/macros-global"
-      // "ziggy-js",
-      // "lodash",
-      // "node"
     ],
     "paths": {
-      "~/*": [
-        "resources/js/*"
-      ],
       "@/*": [
         "resources/js/*"
       ]
     },
-    // "allowJs": true,
-    // "noUnusedLocals": true,
-    // "sourceMap": true,
-    // "strictNullChecks": true,
-
     "strictNullChecks": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true
@@ -49,18 +37,8 @@
     ]
   },
   "exclude": [
-    "public",
-    "dist",
-    "node_modules"
+    "node_modules",
+    "public"
   ]
-  // "include": [
-  // "reosurces/js/**/*"
-  // "resources/js/**/*"
-  //   "resources/js/**/*.ts",
-  //   "resources/js/**/*.d.ts",
-  //   "resources/js/**/*.vue",
-  //   "resources/js/app.js",
-  //   "resources/js/bootstrap.js"
-  // ]
 }
 
