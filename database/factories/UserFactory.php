@@ -18,7 +18,6 @@ class UserFactory extends Factory
 			'first_name' => fake()->firstName(),
 			'middle_name' => fake()->optional()->firstName(),
 			'last_name' => fake()->lastName(),
-			'image_url' =>'https://robohash.org/'.fake()->username().'?set=set3&bgset=bg2&size=400x400',
 			'email_verified_at' => now(),
 			'password' => bcrypt('password'), // password
 			'remember_token' => Str::random(10),
