@@ -16,7 +16,7 @@ defineOptions({
         <div class="flex-1 min-w-0">
           <div class="flex space-x-5">
             <div class="flex-shrink-0">
-              <img class="w-20 h-20 rounded-full" :src="`https://robohash.org/${auth.user?.id}?set=set3&bgset=bg2&size=400x400`" alt="profile">
+              <img class="w-20 h-20 rounded-full" :src="auth.user?.imageUrl" alt="profile">
             </div>
             <div class="pt-1 text-left">
               <p class="text-sm font-medium text-gray-600">
