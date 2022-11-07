@@ -7,6 +7,7 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import VueMacros from 'unplugin-vue-macros/vite'
 // import { HeadlessUiResolver } from 'unplugin-vue-components/resolvers'
+import { VueUseComponentsResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineConfig({
   plugins: [
@@ -117,6 +118,7 @@ export default defineConfig({
         IconsResolver({
           prefix: false,
         }),
+        VueUseComponentsResolver(),
       ],
     }),
     Icons({

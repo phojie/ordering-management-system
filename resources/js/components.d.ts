@@ -60,12 +60,14 @@ declare module '@vue/runtime-core' {
     JTable: typeof import('./j-components/JTable.vue')['default']
     JTextArea: typeof import('./j-components/JTextArea.vue')['default']
     JTextField: typeof import('./j-components/JTextField.vue')['default']
+    LazyUseImage: typeof import('~icons/la/zy-use-image')['default']
     MingcuteFacebookFill: typeof import('~icons/mingcute/facebook-fill')['default']
     MingcuteGoogleFill: typeof import('~icons/mingcute/google-fill')['default']
     MingcuteTwitterFill: typeof import('~icons/mingcute/twitter-fill')['default']
     PrimaryButton: typeof import('./components/PrimaryButton.vue')['default']
     ResponsiveNavLink: typeof import('./components/ResponsiveNavLink.vue')['default']
     TextInput: typeof import('./components/TextInput.vue')['default']
+    UseImage: typeof import('@vueuse/components')['UseImage']
     ZondiconsReload: typeof import('~icons/zondicons/reload')['default']
   }
 }
