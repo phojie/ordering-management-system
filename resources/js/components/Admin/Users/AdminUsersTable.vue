@@ -30,6 +30,7 @@ const deleteAll = () => {
           <div class="flex items-center">
             <div class="flex-shrink-0 w-10 h-10">
               <img
+                loading="lazy"
                 class="w-10 h-10 rounded-full"
                 :src="item.imageUrl" alt="Profile"
               >
