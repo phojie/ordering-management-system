@@ -1,14 +1,15 @@
 import type { PaginationLink } from '@/global'
 
 export interface User {
-  id?: number
   username: string
+  lastName: string
   email: string
+
+  id?: string
+  fullName?: string
+  middleName?: string
   imageUrl?: string
   firstName?: string
-  middleName?: string
-  lastName: string
-  fullName: string
   emailVerifiedAt?: string
   createdAt?: string
   updatedAt?: string
