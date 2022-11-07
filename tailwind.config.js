@@ -20,6 +20,7 @@ module.exports = {
         primary: colors.blue,
         success: colors.green,
         error: colors.red,
+        warning: colors.amber,
       },
       fontFamily: {
         sans: ['Poppins', 'Helvetica', 'Arial', 'sans-serif', ...defaultTheme.fontFamily.sans],
