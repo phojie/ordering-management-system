@@ -54,8 +54,8 @@ class User extends Authenticatable
         parent::boot();
 
         static::creating(function ($model) {
-            if (!$model->image_url) {
-                $model->image_url = 'https://robohash.org/' . $model->id . '?set=set3&bgset=bg2&size=400x400';
+            if (! $model->image_url) {
+                $model->image_url = 'https://robohash.org/'.$model->id.'?set=set3&bgset=bg2&size=400x400';
             }
         });
     }
