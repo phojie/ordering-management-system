@@ -1,7 +1,19 @@
+export interface Pagination {
+  links: PaginationLinks
+  meta: PaginationMeta
+}
+
 export interface PaginationLink {
   url: string
   label: string
   active: boolean
+}
+
+export interface PaginationLinks{
+  first: string
+  last: string
+  prev: string
+  next: string
 }
 
 export interface PaginationProps {
@@ -11,4 +23,15 @@ export interface PaginationProps {
   links: Array<PaginationLink>
   nextPageUrl: string
   prevPageUrl: string
+}
+
+interface PaginationMeta {
+  current_page: number
+  from: number
+  last_page: number
+  path: string
+  links: Array<PaginationLink>
+  per_page: number
+  to: number
+  total: number
 }
