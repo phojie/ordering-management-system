@@ -30,6 +30,7 @@ const baseClasses = 'border border-transparent rounded-md focus:outline-none fon
 
 const variantsLookup = {
   primary: 'focus:ring-primary-500 bg-primary-600 hover:bg-primary-700 text-white shadow-sm',
+  warning: 'focus:ring-warning-500 bg-warning-600 hover:bg-warning-700 text-white shadow-sm',
   // secondary: 'bg-slate-200 text-slate-800 shadow hover:bg-slate-300 focus:bg-slate-300 focus:ring-slate-500',
   // danger: 'bg-red-500 text-white shadow-lg uppercase tracking-wider hover:bg-red-400 focus:bg-red-400 focus:ring-red-500',
   // text: 'text-slate-700 uppercase underline hover:text-slate-600 hover:bg-slate-900/5 focus:text-slate-600 focus:ring-slate-500',
