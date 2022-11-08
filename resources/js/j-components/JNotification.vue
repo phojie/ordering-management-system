@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Notification } from './types'
-
 import HeroiconsInformationCircle from '~icons/heroicons/information-circle'
 import HeroiconsExclamationCircle from '~icons/heroicons/exclamation-circle'
 import HeroiconsExclamationTriangle from '~icons/heroicons/exclamation-triangle'
@@ -10,6 +9,7 @@ const props = withDefaults(defineProps<Notification>(), {
   duration: 5,
   showClose: true,
   showIcon: true,
+  showUndo: false,
   type: 'info',
 })
 
@@ -107,6 +107,7 @@ const iconClass = computed(() => {
             </p>
             <div class="flex mt-3 space-x-7">
               <button
+                v-if="props.showUndo"
                 type="button"
                 class="text-sm font-medium bg-white rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
               >
