@@ -24,7 +24,6 @@ export const useUserStore = defineStore('user', () => {
     username: '',
     email: '',
     password: '',
-    passwordConfirmation: '',
   })
 
   // form state
@@ -124,7 +123,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   // create user
-  async function createUser() {
+  function createUser() {
     Inertia.post(route('users.store'), form, {
       onBefore: () => {
         processing.value = true
@@ -142,7 +141,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   // update user
-  async function updateUser(id: string) {
+  function updateUser(id: string) {
     Inertia.put(route('users.update', id), form, {
       onBefore: () => {
         processing.value = true
@@ -161,7 +160,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   // delete user
-  async function deleteUser(id: string) {
+  function deleteUser(id: string) {
     // TODO add confirmation area here
 
     Inertia.delete(route('users.destroy', id), {
@@ -176,7 +175,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   // delete multiple users
-  async function deleteUsers(ids: string[]) {
+  function deleteUsers(ids: string[]) {
     Inertia.delete(route('users.destroy-multiple'), {
       only: ['users'],
       data: {
