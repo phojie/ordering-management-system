@@ -75,7 +75,7 @@ class UserController extends Controller
 	{
 		$user->delete();
 
-		return redirect()->back();
+		return redirect()->back()->with('success', 'User deleted successfully.');
 	}
 
 	public function destroyMultiple(Request $request)

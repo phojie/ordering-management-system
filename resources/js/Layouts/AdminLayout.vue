@@ -8,5 +8,8 @@
       <AdminHeader />
       <slot />
     </div>
+
+    <!-- notifications -->
+    <AppNotification />
   </div>
 </template>

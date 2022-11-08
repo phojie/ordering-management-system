@@ -56,6 +56,7 @@ export default defineConfig({
             ['has', '_has'],
             ['trim', '_trim'],
             ['debounce', '_debounce'],
+            ['uniqueId', '_uniqueId'],
           ],
           'ziggy-js': [
             ['default', 'route'],

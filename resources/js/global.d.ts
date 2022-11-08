@@ -25,7 +25,7 @@ export interface PaginationProps {
   prevPageUrl: string
 }
 
-interface PaginationMeta {
+export interface PaginationMeta {
   current_page: number
   from: number
   last_page: number
@@ -34,4 +34,15 @@ interface PaginationMeta {
   per_page: number
   to: number
   total: number
+}
+
+export interface Notification {
+  id: number
+  title: string
+  type: string
+  message?: string
+  duration?: number
+  showClose?: boolean
+  showIcon?: boolean
+  position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
 }

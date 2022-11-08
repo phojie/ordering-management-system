@@ -7,6 +7,7 @@ declare global {
   const _debounce: typeof import('lodash')['debounce']
   const _has: typeof import('lodash')['has']
   const _trim: typeof import('lodash')['trim']
+  const _uniqueId: typeof import('lodash')['uniqueId']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
@@ -193,6 +194,7 @@ declare global {
   const useNavigation: typeof import('./composables/app/navigation')['useNavigation']
   const useNavigatorLanguage: typeof import('@vueuse/core')['useNavigatorLanguage']
   const useNetwork: typeof import('@vueuse/core')['useNetwork']
+  const useNotificationStore: typeof import('./composables/store/notification')['useNotificationStore']
   const useNow: typeof import('@vueuse/core')['useNow']
   const useObjectUrl: typeof import('@vueuse/core')['useObjectUrl']
   const useOffsetPagination: typeof import('@vueuse/core')['useOffsetPagination']
@@ -289,6 +291,7 @@ declare module 'vue' {
     readonly _debounce: UnwrapRef<typeof import('lodash')['debounce']>
     readonly _has: UnwrapRef<typeof import('lodash')['has']>
     readonly _trim: UnwrapRef<typeof import('lodash')['trim']>
+    readonly _uniqueId: UnwrapRef<typeof import('lodash')['uniqueId']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
@@ -475,6 +478,7 @@ declare module 'vue' {
     readonly useNavigation: UnwrapRef<typeof import('./composables/app/navigation')['useNavigation']>
     readonly useNavigatorLanguage: UnwrapRef<typeof import('@vueuse/core')['useNavigatorLanguage']>
     readonly useNetwork: UnwrapRef<typeof import('@vueuse/core')['useNetwork']>
+    readonly useNotificationStore: UnwrapRef<typeof import('./composables/store/notification')['useNotificationStore']>
     readonly useNow: UnwrapRef<typeof import('@vueuse/core')['useNow']>
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>

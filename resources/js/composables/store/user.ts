@@ -171,6 +171,14 @@ export const useUserStore = defineStore('user', () => {
       onFinish: () => {
         processing.value = false
       },
+      onSuccess: () => {
+        useNotificationStore().add({
+          id: parseInt(_uniqueId()),
+          title: 'User deleted',
+          type: 'success',
+          message: 'User deleted successfully',
+        })
+      },
     })
   }
 
