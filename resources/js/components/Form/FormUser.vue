@@ -56,8 +56,8 @@ const $v = useUserStore().vuelidate
       :is-dirty="$v.email.$error"
     />
 
-    <!-- v-if="formState.type === 'Create'" -->
     <JTextField
+      v-if="formState.type === 'create'"
       id="password"
       v-model="form.password"
       type="password"
