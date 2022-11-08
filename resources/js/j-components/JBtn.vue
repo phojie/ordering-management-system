@@ -3,7 +3,7 @@ withDefaults(defineProps<Btn>(), {
   type: 'button',
   variant: 'primary',
   size: 'medium',
-  isExpanded: true,
+  isExpanded: false,
 })
 
 type BtnVariant = keyof typeof variantsLookup
