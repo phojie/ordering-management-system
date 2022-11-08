@@ -6,28 +6,29 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
+	public function authorize() : bool
+	{
+		return true;
+	}
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
-    public function rules()
-    {
-        return [
-            'username' => 'required|unique:users,username',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required',
-            'passwordConfirmation' => 'required|same:password',
-        ];
-    }
+   public function rules() : array
+   {
+   	$rules = [
+      'username' => ['required', 'unique:users'],
+      // 'roles' => ['required', 'array', 'min:1'],
+      'password' => ['required', 'min:6'],
+      'firstName' => ['required'],
+      'lastName' => ['required'],
+      'email' => ['required', 'email', 'unique:users'],
+    ];
+
+   	if ($this->getMethod() == 'PUT') {
+   		// unique except present present username, detect by id
+   		$rules['username'][1] = ['unique:users,username,'.request()->id];
+   		$rules['password'] = [];
+   		$rules['email'] = ['unique:users,email,'.request()->id];
+   	}
+
+   	return $rules;
+   }
 }

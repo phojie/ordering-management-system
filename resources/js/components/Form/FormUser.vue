@@ -1,13 +1,8 @@
 <script setup lang="ts">
 const form = useUserStore().form
+const formState = useUserStore().formState
+const processing = useUserStore().processing
 const $v = useUserStore().vuelidate
-
-// watch password changes
-watch(
-  () => form.password,
-  (value) => {
-    form.passwordConfirmation = value
-  })
 </script>
 
 <template>
@@ -17,7 +12,7 @@ watch(
       v-model="form.firstName"
       placeholder="John"
       label="First Name"
-      :is-disabled="form.processing"
+      :is-disabled="processing"
       :error-message="$v.firstName.$errors[0]?.$message"
       :is-dirty="$v.firstName.$error"
     />
@@ -27,7 +22,7 @@ watch(
       v-model="form.middleName"
       placeholder=""
       label="Middle Name"
-      :is-disabled="form.processing"
+      :is-disabled="processing"
       hints="Optional"
     />
 
@@ -36,7 +31,7 @@ watch(
       v-model="form.lastName"
       placeholder="Doe"
       label="Last Name"
-      :is-disabled="form.processing"
+      :is-disabled="processing"
       :error-message="$v.lastName.$errors[0]?.$message"
       :is-dirty="$v.lastName.$error"
     />
@@ -46,7 +41,7 @@ watch(
       v-model="form.username"
       placeholder="Username"
       label="Username"
-      :is-disabled="form.processing"
+      :is-disabled="processing"
       :error-message="$v.username.$errors[0]?.$message"
       :is-dirty="$v.username.$error"
     />
@@ -56,20 +51,25 @@ watch(
       v-model="form.email"
       placeholder="Email address"
       label="Email"
-      :is-disabled="form.processing"
+      :is-disabled="processing"
       :error-message="$v.email.$errors[0]?.$message"
       :is-dirty="$v.email.$error"
     />
 
+    <!-- v-if="formState.type === 'Create'" -->
     <JTextField
       id="password"
       v-model="form.password"
       type="password"
       placeholder="Password"
       label="Password"
-      :is-disabled="form.processing"
+      :is-disabled="processing"
       :error-message="$v.password.$errors[0]?.$message"
       :is-dirty="$v.password.$error"
     />
+
+    <!-- <div v-else>
+      Reset users password
+    </div> -->
   </div>
 </template>

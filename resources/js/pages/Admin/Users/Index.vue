@@ -1,21 +1,19 @@
 <script setup lang="ts">
-import type { Pagination } from '@/types/user'
+import type { PaginationUsers } from '@/types/user'
 defineProps<{
-  users: Pagination
+  users: PaginationUsers
 }>()
 
 defineOptions({
   layout: AdminLayout,
 })
 
-const { state, show, hide } = useSlideOver()
-
-const closeSlideOver = () => {
-  useUserStore().resetForm()
-  hide()
-}
-
 const user = useUserStore()
+const formState = useUserStore().formState
+
+const toggleCreate = () => {
+  formState.show = true
+}
 </script>
 
 <template>
@@ -48,7 +46,7 @@ const user = useUserStore()
         <button
           type="button"
           class="inline-flex items-center order-first px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm sm:order-last bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-          @click="show"
+          @click="toggleCreate"
         >
           Add user
         </button>
@@ -59,6 +57,6 @@ const user = useUserStore()
     <AdminUsersTable :users="users" />
 
     <!-- Slide over -->
-    <AdminUsersSlideOver :state="state" @hide="closeSlideOver" />
+    <AdminUsersSlideOver :state="formState.show" />
   </main>
 </template>

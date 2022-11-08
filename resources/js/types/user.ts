@@ -2,6 +2,7 @@ import type { Pagination } from '@/global'
 
 export interface User {
   username: string
+  firstName: string
   lastName: string
   email: string
 
@@ -9,7 +10,6 @@ export interface User {
   fullName?: string
   middleName?: string
   imageUrl?: string
-  firstName?: string
   emailVerifiedAt?: string
   createdAt?: string
   updatedAt?: string

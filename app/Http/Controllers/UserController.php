@@ -15,11 +15,11 @@ class UserController extends Controller
 		$users = User::query()
 			->where('id', '!=', auth()->user()->id)
 			->orderBy('created_at', 'desc')
-			->paginate(100);
+			->paginate(15);
 
 		$query = UserResource::collection($users);
 
-		return inertia('Admin/Users', [
+		return inertia('Admin/Users/Index', [
 		  'users' => $query,
 	  ]);
 	}
@@ -47,18 +47,29 @@ class UserController extends Controller
 
 	public function show(User $user)
 	{
-		//
+		// get user
 	}
 
 	public function edit(User $user)
 	{
-		//
-	}
+    // edit user
+  }
 
-	public function update(UserRequest $userRequest, User $user)
-	{
-		//
-	}
+  public function update(UserRequest $userRequest, User $user)
+  {
+    $userRequest->validated();
+
+    $user->update([
+      'username' => $userRequest->username,
+      'email' => $userRequest->email,
+      'first_name' => $userRequest->firstName,
+      'last_name' => $userRequest->lastName,
+      'image_url' => $userRequest->imageUrl,
+      'password' => bcrypt($userRequest->password),
+    ]);
+
+    return redirect()->back()->with('success', 'User updated successfully.');
+  }
 
 	public function destroy(User $user)
 	{

@@ -1,12 +1,23 @@
 <script setup lang="ts">
+const user = useUserStore()
+const formState = user.formState
+const closeSlideOver = () => {
+  user.resetForm()
+  user.resetFormState()
+}
 </script>
 
 <template>
-  <JSlideOver title="New User" description="Create a new user" @submit="useUserStore().submitForm()">
+  <JSlideOver
+    :title="formState.title"
+    :description="formState.description"
+    @submit="useUserStore().submitForm()"
+    @hide="closeSlideOver()"
+  >
     <div class="flex flex-col justify-between flex-1">
       <div class="px-4 divide-y divide-gray-200 sm:px-6">
         <FormUser />
       </div>
-  </div>
+    </div>
   </JSlideOver>
 </template>

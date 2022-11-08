@@ -1,8 +1,21 @@
-import { email, helpers, required } from '@vuelidate/validators'
+import { email, helpers, minLength, required } from '@vuelidate/validators'
 import type { User } from '@/types/user'
 
+type FormType = 'Create' | 'Edit'
+
+interface FormState {
+  type: FormType
+  show: boolean
+  title: string
+  description: string
+}
+
 export const useUserStore = defineStore('user', () => {
-  const form = reactive<User | any>({
+  const processing = ref<boolean>(false)
+
+  // data form
+  const form = reactive<User>({
+    id: '',
     firstName: '',
     middleName: '',
     lastName: '',
@@ -11,36 +24,18 @@ export const useUserStore = defineStore('user', () => {
     username: '',
     email: '',
     password: '',
+    passwordConfirmation: '',
   })
 
-  const rules = {
-    firstName: {
-      required: helpers.withMessage('First name is required', required),
-      $autoDirty: true,
-    },
-    middleName: {},
-    lastName: {
-      required: helpers.withMessage('Last name is required', required),
-      $autoDirty: true,
-    },
-    imageUrl: {},
-    username: {
-      required: helpers.withMessage('Username is required', required),
-      $autoDirty: true,
-    },
-    email: {
-      required: helpers.withMessage('Email is required', required),
-      email: helpers.withMessage('Email is not valid', email),
-      $autoDirty: true,
-    },
-    password: {
-      required: helpers.withMessage('Password is required', required),
-      $autoDirty: true,
-    },
-  }
+  // form state
+  const formState = reactive<FormState>({
+    type: 'Create',
+    show: false,
+    title: 'New User',
+    description: 'Create a new user',
+  })
 
-  const $externalResults = ref({})
-
+  // table headers
   const headers = ref([
     {
       text: 'Username',
@@ -70,10 +65,38 @@ export const useUserStore = defineStore('user', () => {
     },
   ])
 
-  const processing = ref<boolean>(false)
+  // validate state
+  const rules = {
+    id: {},
+    firstName: {
+      required: helpers.withMessage('First name is required', required),
+      $autoDirty: true,
+    },
+    middleName: {},
+    lastName: {
+      required: helpers.withMessage('Last name is required', required),
+      $autoDirty: true,
+    },
+    imageUrl: {},
+    username: {
+      required: helpers.withMessage('Username is required', required),
+      $autoDirty: true,
+    },
+    email: {
+      required: helpers.withMessage('Email is required', required),
+      email: helpers.withMessage('Email is not valid', email),
+      $autoDirty: true,
+    },
+    password: {
+      required: helpers.withMessage('Password is required', required),
+      minLength: helpers.withMessage('Password must be at least 6 characters', minLength(6)),
+      $autoDirty: true,
+    },
+  }
+  const $externalResults = ref({})
+  const vuelidate = useVuelidate(rules as any, form, { $externalResults })
 
-  const vuelidate = useVuelidate(rules, form, { $externalResults })
-
+  // reload users
   function reload() {
     Inertia.reload(
       {
@@ -88,12 +111,16 @@ export const useUserStore = defineStore('user', () => {
     )
   }
 
-  // create user
+  // submit form
   async function submitForm() {
     if (!await vuelidate.value.$validate())
       return
 
-    createUser()
+    if (formState.type === 'Create')
+      createUser()
+
+    else
+      updateUser(form.id as string)
   }
 
   // create user
@@ -114,8 +141,27 @@ export const useUserStore = defineStore('user', () => {
     })
   }
 
+  // update user
+  async function updateUser(id: string) {
+    await Inertia.put(route('users.update', id), form, {
+      onBefore: () => {
+        processing.value = true
+      },
+      onFinish: () => {
+        processing.value = false
+      },
+      onError: (error) => {
+        $externalResults.value = error
+      },
+      onSuccess: () => {
+        resetForm()
+        resetFormState()
+      },
+    })
+  }
+
   // delete user
-  async function deleteUser(id: number) {
+  async function deleteUser(id: string) {
     // TODO add confirmation area here
 
     await Inertia.delete(route('users.destroy', id), {
@@ -130,7 +176,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   // delete multiple users
-  async function deleteUsers(ids: number[]) {
+  async function deleteUsers(ids: string[]) {
     await Inertia.delete(route('users.destroy-multiple'), {
       only: ['users'],
       data: {
@@ -158,17 +204,27 @@ export const useUserStore = defineStore('user', () => {
     vuelidate.value.$reset()
   }
 
+  // reset form state
+  function resetFormState() {
+    formState.type = 'Create'
+    formState.show = false
+    formState.title = 'New User'
+    formState.description = 'Create a new user'
+  }
+
   return {
     processing,
     headers,
     vuelidate,
     form,
+    formState,
 
     reload,
     submitForm,
     resetForm,
     deleteUser,
     deleteUsers,
+    resetFormState,
   }
 })
 

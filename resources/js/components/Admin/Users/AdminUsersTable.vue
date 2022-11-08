@@ -1,15 +1,34 @@
 <script setup lang="ts">
-import type { Pagination } from '@/types/user'
+import type { PaginationUsers, User } from '@/types/user'
+
 defineProps<{
-  users: Pagination
+  users: PaginationUsers
+  edit?: []
 }>()
 
 const user = useUserStore()
+const formState = useUserStore().formState
+const form = useUserStore().form
 
 const selected = ref<any>([])
 const deleteAll = () => {
   user.deleteUsers(selected.value)
   selected.value = []
+}
+
+const toggleEdit = (user: User) => {
+  form.id = user.id
+  form.firstName = user.firstName
+  form.middleName = user.middleName
+  form.lastName = user.lastName
+  form.username = user.username
+  form.email = user.email
+  form.password = 'password'
+
+  formState.type = 'Edit'
+  formState.show = true
+  formState.title = 'Edit User'
+  formState.description = `Edit the details for ${user.fullName}`
 }
 </script>
 
@@ -26,7 +45,7 @@ const deleteAll = () => {
       @deleteAll="deleteAll()"
     >
       <template #table-data="{ item, selected }">
-        <td class="py-4 pl-4 pr-3 text-sm whitespace-nowrap sm:pl-6">
+        <td class="py-4 pr-3 text-sm whitespace-nowrap">
           <div class="flex items-center">
             <div class="flex-shrink-0 w-10 h-10">
               <img
@@ -63,10 +82,15 @@ const deleteAll = () => {
         </td>
         <td class="px-3 py-4 text-sm font-medium whitespace-nowrap">
           <div class="flex items-center space-x-2 ">
-            <a href="#" class="text-primary-600 hover:text-primary-900">Edit<span class="sr-only">,
-              {{ item.name }}</span></a>
+            <button
+              :disabled="user.processing" type="button" class="text-warning-600 hover:text-warning-900"
+              @click="toggleEdit(item as any)"
+            >
+              Edit
+              <span class="sr-only">, {{ item.name }}</span>
+            </button>
 
-            <button type="button" class="text-error-600 hover:text-error-900" @click="user.deleteUser(item.id)">
+            <button :disabled="user.processing" type="button" class="text-error-600 hover:text-error-900" @click="user.deleteUser(item.id)">
               Delete
               <span class="sr-only">, {{ item.name }}</span>
             </button>
