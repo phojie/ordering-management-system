@@ -7,7 +7,7 @@ import HeroiconsExclamationTriangle from '~icons/heroicons/exclamation-triangle'
 import HeroiconsCheckCircle from '~icons/heroicons/check-circle'
 
 const props = withDefaults(defineProps<Notification>(), {
-  duration: 3,
+  duration: 5,
   showClose: true,
   showIcon: true,
   type: 'info',
