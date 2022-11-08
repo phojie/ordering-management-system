@@ -3,7 +3,7 @@ const { notifications, remove } = useNotificationStore()
 </script>
 
 <template>
-  <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:items-start sm:p-6">
+  <div aria-live="assertive" class="fixed inset-0 flex z-[1000] items-end px-4 py-6 pointer-events-none sm:items-start sm:p-6">
     <div class="flex flex-col items-center w-full space-y-4 sm:items-end">
       <JNotification
         v-for="notification in notifications"
