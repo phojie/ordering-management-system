@@ -24,6 +24,7 @@ interface Btn {
   isReadOnly?: boolean
   isLoading?: boolean
   isExpanded?: boolean
+  isIcon?: boolean
 }
 
 const baseClasses = 'border rounded-md focus:outline-none font-medium flex justify-center items-center'
@@ -49,11 +50,10 @@ const sizesLookup = {
     :readonly="isReadOnly"
     :disabled="isDisabled"
     :class="`
-      ${baseClasses}
-      ${variantsLookup[variant]}
-      ${sizesLookup[size]}
-      ${isExpanded ? 'w-full' : ''}
-    `"
+    ${baseClasses}
+    ${variantsLookup[variant]}
+    ${isExpanded ? 'w-full' : ''}
+    ${isIcon ? 'p-0 focus:ring-2 focus:ring-offset-2' : sizesLookup[size]}`"
   >
     <span v-if="!isLoading">
       <!-- label area -->
