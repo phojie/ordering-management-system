@@ -24,9 +24,9 @@ class UserRequest extends FormRequest
 
    	if ($this->getMethod() == 'PUT') {
    		// unique except present present username, detect by id
-   		$rules['username'][1] = ['unique:users,username,'.request()->id];
+   		$rules['username'][1] = 'unique:users,username,'.request()->id;
    		$rules['password'] = [];
-   		$rules['email'] = ['unique:users,email,'.request()->id];
+   		$rules['email'] = 'unique:users,email,'.request()->id;
    	}
 
    	return $rules;
