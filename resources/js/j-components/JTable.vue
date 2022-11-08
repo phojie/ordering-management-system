@@ -6,7 +6,7 @@ const props = defineProps<{
   headers: Array<TableHeader>
   isLoading?: boolean
   loadingDebounce?: number
-  modelValue: Array<any>
+  modelValue: Array<string | number>
   indeterminate: boolean
   links?: Array<PaginationLink>
 }>()
