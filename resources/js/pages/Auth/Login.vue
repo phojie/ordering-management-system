@@ -70,6 +70,7 @@ const processing = computed(() => form.processing)
               :is-loading="processing"
               type="submit"
               label="Submit"
+              is-expanded
             />
           </div>
         </form>
