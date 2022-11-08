@@ -6,6 +6,10 @@
 
 /* base area */
 @layer base {
+  html {
+    font-size: 14px;
+  }
+
   button:disabled,
   input:disabled,
   textarea:disabled {
