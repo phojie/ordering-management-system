@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type { TableHeader, TableItems } from './types'
-import type { PaginationLink } from '~/global'
+import type { PaginationLink, TableHeader, TableItems } from './types'
 const props = defineProps<{
   items: Array<TableItems>
   itemKey: string
@@ -19,7 +18,7 @@ const emit = defineEmits<{
 }>()
 
 // set loading state
-let isProgressLinear = $ref(false)
+let isProgressLinear = ref(false)
 watch(
   () => props.isLoading,
   _.debounce((value) => {
@@ -47,6 +46,7 @@ const onCheckBoxChange = (e: any) => {
           class="absolute top-0 flex items-center h-12 space-x-3 left-12 bg-gray-50 sm:left-16"
         >
           <button
+            v-if="false"
             type="button"
             class="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
           >

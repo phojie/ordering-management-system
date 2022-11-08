@@ -84,3 +84,9 @@ export interface Notification {
   showIcon?: boolean
   position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
 }
+
+export interface PaginationLink {
+  url: string
+  label: string
+  active: boolean
+}
