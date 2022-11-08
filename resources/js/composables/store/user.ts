@@ -1,7 +1,7 @@
 import { email, helpers, minLength, required } from '@vuelidate/validators'
 import type { User } from '@/types/user'
 
-type FormType = 'Create' | 'Edit'
+type FormType = 'create' | 'edit'
 
 interface FormState {
   type: FormType
@@ -28,7 +28,7 @@ export const useUserStore = defineStore('user', () => {
 
   // form state
   const formState = reactive<FormState>({
-    type: 'Create',
+    type: 'create',
     show: false,
     title: 'New User',
     description: 'Create a new user',
@@ -115,7 +115,7 @@ export const useUserStore = defineStore('user', () => {
     if (!await vuelidate.value.$validate())
       return
 
-    if (formState.type === 'Create')
+    if (formState.type === 'create')
       createUser()
 
     else
@@ -205,7 +205,7 @@ export const useUserStore = defineStore('user', () => {
 
   // reset form state
   function resetFormState() {
-    formState.type = 'Create'
+    formState.type = 'create'
     formState.show = false
     formState.title = 'New User'
     formState.description = 'Create a new user'

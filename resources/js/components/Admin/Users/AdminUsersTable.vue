@@ -25,7 +25,7 @@ const toggleEdit = (user: User) => {
   form.email = user.email
   form.password = 'password'
 
-  formState.type = 'Edit'
+  formState.type = 'edit'
   formState.show = true
   formState.title = 'Edit User'
   formState.description = `Edit the details for ${user.fullName}`

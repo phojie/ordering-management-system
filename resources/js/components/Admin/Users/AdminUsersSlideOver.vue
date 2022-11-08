@@ -9,6 +9,7 @@ const closeSlideOver = () => {
 
 <template>
   <JSlideOver
+    :type="formState.type"
     :title="formState.title"
     :description="formState.description"
     @submit="useUserStore().submitForm()"
