@@ -136,6 +136,12 @@ export const useUserStore = defineStore('user', () => {
       },
       onSuccess: () => {
         resetForm()
+        useNotificationStore().add({
+          id: parseInt(_uniqueId()),
+          title: 'User created',
+          type: 'success',
+          message: 'User created successfully',
+        })
       },
     })
   }
