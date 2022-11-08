@@ -73,3 +73,14 @@ export interface TableHeader {
 export interface TableItems {
   [key: string]: any
 }
+
+export interface Notification {
+  id: number
+  title: string
+  type: string
+  message?: string
+  duration?: number
+  showClose?: boolean
+  showIcon?: boolean
+  position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
+}
