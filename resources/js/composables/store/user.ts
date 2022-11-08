@@ -106,6 +106,15 @@ export const useUserStore = defineStore('user', () => {
         onFinish: () => {
           processing.value = false
         },
+        onSuccess: () => {
+          useNotificationStore().add({
+            id: parseInt(_uniqueId()),
+            title: 'Users is successfully reloaded',
+            type: 'success',
+            showClose: false,
+            duration: 3,
+          })
+        },
       },
     )
   }
