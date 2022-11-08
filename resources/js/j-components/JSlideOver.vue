@@ -49,7 +49,8 @@ const bgColorsLookup = {
                             :variant="props.type === 'create' ? 'primary' : 'warning'"
                             :class="`${
                               bgColorsLookup[props.type]
-                            } !p-0`"
+                            } `"
+                            is-icon
                             @click="emit('hide')"
                           >
                             <heroicons-x-mark class="w-6 h-6" aria-hidden="true" />
