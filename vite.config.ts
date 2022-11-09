@@ -6,6 +6,8 @@ import Components from 'unplugin-vue-components/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import VueMacros from 'unplugin-vue-macros/vite'
+import { VitePWA } from 'vite-plugin-pwa'
+
 // import { HeadlessUiResolver } from 'unplugin-vue-components/resolvers'
 import { VueUseComponentsResolver } from 'unplugin-vue-components/resolvers'
 
@@ -128,6 +130,7 @@ export default defineConfig({
       scale: 1.6,
     }),
     VueMacros(),
+    VitePWA(),
   ],
   ssr: {
     noExternal: ['@inertiajs/server'],
