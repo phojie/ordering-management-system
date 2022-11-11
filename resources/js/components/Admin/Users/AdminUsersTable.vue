@@ -6,8 +6,8 @@ defineProps<{
   edit?: []
 }>()
 
-const { formState, form, headers, processing, deleteUsers, deleteUser } = useUserStore()
-
+const { formState, form, headers, deleteUsers, deleteUser } = useUserStore()
+const processing = toRef(useUserStore(), 'processing')
 const selected = ref<any>([])
 
 const deleteAll = () => {
