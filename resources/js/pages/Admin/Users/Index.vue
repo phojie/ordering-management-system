@@ -9,7 +9,7 @@ defineOptions({
 })
 
 const user = useUserStore()
-const formState = useUserStore().formState
+const formState = user.formState
 
 const toggleCreate = () => {
   formState.show = true
