@@ -83,6 +83,7 @@ export interface Notification {
   showClose?: boolean
   showIcon?: boolean
   showUndo?: boolean
+  // TODO define this position options, it was not yet used
   position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
 }
 
