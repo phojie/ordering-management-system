@@ -95,6 +95,18 @@ export const useUserStore = defineStore('user', () => {
   const $externalResults = ref({})
   const vuelidate = useVuelidate(rules as any, form, { $externalResults })
 
+  // submit form
+  async function submitForm() {
+    if (!await vuelidate.value.$validate())
+      return
+
+    if (formState.type === 'create')
+      createUser()
+
+    else
+      updateUser(form.id as string)
+  }
+
   // reload users
   function reload() {
     Inertia.reload(
@@ -119,20 +131,8 @@ export const useUserStore = defineStore('user', () => {
     )
   }
 
-  // submit form
-  async function submitForm() {
-    if (!await vuelidate.value.$validate())
-      return
-
-    if (formState.type === 'create')
-      createUser()
-
-    else
-      updateUser(form.id as string)
-  }
-
   // create user
-  function createUser() {
+  async function createUser() {
     Inertia.post(route('users.store'), form, {
       onBefore: () => {
         processing.value = true
@@ -156,8 +156,8 @@ export const useUserStore = defineStore('user', () => {
   }
 
   // update user
-  function updateUser(id: string) {
-    Inertia.put(route('users.update', id), form, {
+  async function updateUser(id: string) {
+    await Inertia.put(route('users.update', id), form, {
       onBefore: () => {
         processing.value = true
       },

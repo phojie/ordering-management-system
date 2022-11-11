@@ -1,12 +1,11 @@
 <script setup lang="ts">
-const form = useUserStore().form
-const formState = useUserStore().formState
-const processing = useUserStore().processing
-const $v = useUserStore().vuelidate
+const store = useUserStore()
+const { form, formState, processing, vuelidate: $v } = toRefs(store)
 </script>
 
 <template>
   <div class="pt-6 pb-5 space-y-6">
+    {{ processing }}
     <JTextField
       id="firstName"
       v-model="form.firstName"
