@@ -12,6 +12,7 @@ const closeSlideOver = () => {
     :type="formState.type"
     :title="formState.title"
     :description="formState.description"
+    :is-loading="user.processing"
     @submit="useUserStore().submitForm()"
     @hide="closeSlideOver()"
   >

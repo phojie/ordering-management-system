@@ -6,6 +6,7 @@ interface SlideOver {
   title: string
   description?: string
   type: 'create' | 'edit'
+  isLoading?: boolean
 }
 
 const props = withDefaults(defineProps<SlideOver>(), {
@@ -72,6 +73,7 @@ const bgColorsLookup = {
                     <JBtn
                       :variant="props.type === 'create' ? 'primary' : 'warning'"
                       type="submit" :label="props.type === 'create' ? 'Create' : 'Update'"
+                      :is-loading="isLoading"
                     />
                   </div>
                 </form>
