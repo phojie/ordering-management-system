@@ -18,11 +18,11 @@ const emit = defineEmits<{
 }>()
 
 // set loading state
-let isProgressLinear = ref(false)
+const isProgressLinear = ref(false)
 watch(
   () => props.isLoading,
   _.debounce((value) => {
-    isProgressLinear = value
+    isProgressLinear.value = value
   }, props.loadingDebounce ?? 1000),
 )
 

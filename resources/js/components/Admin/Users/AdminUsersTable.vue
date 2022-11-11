@@ -6,13 +6,12 @@ defineProps<{
   edit?: []
 }>()
 
-const user = useUserStore()
-const formState = useUserStore().formState
-const form = useUserStore().form
+const { formState, form, headers, processing, deleteUsers, deleteUser } = useUserStore()
 
 const selected = ref<any>([])
+
 const deleteAll = () => {
-  user.deleteUsers(selected.value)
+  deleteUsers(selected.value)
   selected.value = []
 }
 
@@ -39,8 +38,8 @@ const toggleEdit = (user: User) => {
       :indeterminate="true"
       :items="users?.data ?? []"
       item-key="id"
-      :headers="user.headers"
-      :is-loading="user.processing"
+      :headers="headers"
+      :is-loading="processing"
       :links="users?.meta?.links ?? []"
       @deleteAll="deleteAll()"
     >
@@ -83,14 +82,14 @@ const toggleEdit = (user: User) => {
         <td class="px-3 py-4 text-sm font-medium whitespace-nowrap">
           <div class="flex items-center space-x-2 ">
             <button
-              :disabled="user.processing" type="button" class="text-warning-600 hover:text-warning-900"
+              :disabled="processing" type="button" class="text-warning-600 hover:text-warning-900"
               @click="toggleEdit(item as any)"
             >
               Edit
               <span class="sr-only">, {{ item.name }}</span>
             </button>
 
-            <button :disabled="user.processing" type="button" class="text-error-600 hover:text-error-900" @click="user.deleteUser(item.id)">
+            <button :disabled="processing" type="button" class="text-error-600 hover:text-error-900" @click="deleteUser(item.id)">
               Delete
               <span class="sr-only">, {{ item.name }}</span>
             </button>

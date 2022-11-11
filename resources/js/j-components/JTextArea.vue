@@ -29,10 +29,10 @@ const details = computed(() => {
 })
 
 // autofocus
-const inputRef = $ref<HTMLInputElement>()
+const inputRef = ref<HTMLInputElement>()
 onMounted(() => {
-  if (inputRef?.hasAttribute('autofocus'))
-    inputRef?.focus()
+  if (inputRef.value?.hasAttribute('autofocus'))
+    inputRef.value?.focus()
 })
 </script>
 
