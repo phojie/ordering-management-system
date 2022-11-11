@@ -5,7 +5,6 @@ const { form, formState, processing, vuelidate: $v } = toRefs(store)
 
 <template>
   <div class="pt-6 pb-5 space-y-6">
-    {{ processing }}
     <JTextField
       id="firstName"
       v-model="form.firstName"
