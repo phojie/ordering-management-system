@@ -11,9 +11,10 @@ interface FormState {
 }
 
 export const useUserStore = defineStore('user', () => {
+  // processing state
   const processing = ref<boolean>(false)
 
-  // data form
+  // data form state
   const form = reactive<User>({
     id: '',
     firstName: '',
@@ -157,7 +158,7 @@ export const useUserStore = defineStore('user', () => {
 
   // update user
   async function updateUser(id: string) {
-    await Inertia.put(route('users.update', id), form, {
+    Inertia.put(route('users.update', id), form, {
       onBefore: () => {
         processing.value = true
       },
