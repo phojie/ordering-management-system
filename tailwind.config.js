@@ -21,6 +21,7 @@ module.exports = {
         success: colors.green,
         error: colors.red,
         warning: colors.amber,
+        info: colors.sky,
       },
       fontFamily: {
         sans: ['Poppins', 'Helvetica', 'Arial', 'sans-serif', ...defaultTheme.fontFamily.sans],
