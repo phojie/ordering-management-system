@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const store = useUserStore()
-const { form, formState, processing, vuelidate: $v } = toRefs(store)
+const { form, formState, vuelidate: $v } = useUserStore()
+const processing = toRef(useUserStore(), 'processing')
 </script>
 
 <template>
