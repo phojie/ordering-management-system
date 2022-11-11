@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { PaginationLink, TableHeader, TableItems } from './types'
+
+// TODO transfer this type to the types file
 const props = defineProps<{
   items: Array<TableItems>
   itemKey: string
