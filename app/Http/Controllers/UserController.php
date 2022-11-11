@@ -13,9 +13,9 @@ class UserController extends Controller
 	public function index()
 	{
 		$users = User::query()
-			->where('id', '!=', auth()->user()->id)
-			->orderBy('created_at', 'desc')
-			->paginate(15);
+				->where('id', '!=', auth()->user()->id)
+				->orderBy('created_at', 'desc')
+				->paginate(15);
 
 		$query = UserResource::collection($users);
 
@@ -52,23 +52,23 @@ class UserController extends Controller
 
 	public function edit(User $user)
 	{
-    // edit user
-  }
+		// edit user
+	}
 
   public function update(UserRequest $userRequest, User $user)
   {
-    $userRequest->validated();
+  	$userRequest->validated();
 
-    $user->update([
-      'username' => $userRequest->username,
-      'email' => $userRequest->email,
-      'first_name' => $userRequest->firstName,
-      'last_name' => $userRequest->lastName,
-      'image_url' => $userRequest->imageUrl,
-      'password' => bcrypt($userRequest->password),
-    ]);
+  	$user->update([
+  	  'username' => $userRequest->username,
+  	  'email' => $userRequest->email,
+  	  'first_name' => $userRequest->firstName,
+  	  'last_name' => $userRequest->lastName,
+  	  'image_url' => $userRequest->imageUrl,
+  	  'password' => bcrypt($userRequest->password),
+  	]);
 
-    return redirect()->back()->with('success', 'User updated successfully.');
+  	return redirect()->back()->with('success', 'User updated successfully.');
   }
 
 	public function destroy(User $user)
