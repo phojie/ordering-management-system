@@ -3,7 +3,6 @@ import type { PaginationUsers, User } from '@/types/user'
 
 defineProps<{
   users: PaginationUsers
-  edit?: []
 }>()
 
 const { formState, form, headers, deleteUsers, deleteUser } = useUserStore()
