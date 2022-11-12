@@ -2,10 +2,10 @@ import type { Notification } from '@/global'
 
 export const useNotificationStore = defineStore('notification', () => {
   const pageProps = computed<any>(() => usePage().props.value)
-  const flash = computed<Notification>(() => pageProps.value.flash.message)
+  const flashNotification = computed<Notification>(() => pageProps.value.flash.notification)
 
   // watch flash
-  watch(() => flash.value, (value) => {
+  watch(() => flashNotification.value, (value) => {
     if (value) {
       const notification: Notification = {
         ...value,

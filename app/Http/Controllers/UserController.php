@@ -49,7 +49,7 @@ class UserController extends Controller
 			'password' => bcrypt($userRequest->password),
 		]);
 
-		return redirect()->back()->with('message', [
+		return redirect()->back()->with('notification', [
 			'type' => 'success',
 			'title' => $userRequest->username.' has been created.',
 		]);
@@ -78,7 +78,7 @@ class UserController extends Controller
   		'password' => bcrypt($userRequest->password),
   	]);
 
-  	return redirect()->back()->with('message', [
+  	return redirect()->back()->with('notification', [
   		'type' => 'success',
   		'title' => $userRequest->username.' has been updated.',
   	]);
@@ -88,7 +88,7 @@ class UserController extends Controller
 	{
 		$user->delete();
 
-		return redirect()->back()->with('message', [
+		return redirect()->back()->with('notification', [
 			'type' => 'success',
 			'title' => $user->username.' has been deleted.',
 		]);
@@ -98,7 +98,7 @@ class UserController extends Controller
 	{
 		User::whereIn('id', $request->ids)->delete();
 
-		return redirect()->back()->with('message', [
+		return redirect()->back()->with('notification', [
 			'type' => 'success',
 			'title' => count($request->ids).' users deleted successfully.',
 		]);
