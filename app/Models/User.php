@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -13,7 +13,7 @@ class User extends Authenticatable
 	use HasApiTokens;
 	use HasFactory;
 	use Notifiable;
-	use HasUlids;
+	use HasUuids;
 
 	/**
 	 * The attributes that are mass assignable.
@@ -59,10 +59,10 @@ class User extends Authenticatable
 			}
 		});
 
-    static::updating(function ($model) {
-      if ($model->image_url === '' || $model->image_url === null) {
-        $model->image_url = 'https://robohash.org/'.$model->id.'?set=set1&bgset=bg2&size=400x400';
-      }
-    });
+		static::updating(function ($model) {
+			if ($model->image_url === '' || $model->image_url === null) {
+				$model->image_url = 'https://robohash.org/'.$model->id.'?set=set1&bgset=bg2&size=400x400';
+			}
+		});
 	}
 }
