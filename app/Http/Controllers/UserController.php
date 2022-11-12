@@ -13,13 +13,14 @@ class UserController extends Controller
 	public function index(Request $request)
 	{
 		$users = User::query()
+      ->withTrashed()
 		  ->where('id', '!=', auth()->user()->id)
 		  ->when($request->search, function ($query, $search) {
 		  	$query->where('username', 'ilike', "%{$search}%")
 		  	->orWhere('email', 'ilike', "%{$search}%")
-		  	->orWhere('first_name', 'ilike', "%{$search}%");
+		  	->orWhere('fullname', 'ilike', "%{$search}%");
 		  })
-		  ->orderBy('created_at', 'desc')
+		  // ->orderBy('created_at', 'desc')
 		  ->paginate(15)
 			->appends($request->all());
 
@@ -96,11 +97,31 @@ class UserController extends Controller
 
 	public function destroyMultiple(Request $request)
 	{
-		User::whereIn('id', $request->ids)->delete();
+		User::whereIn('id', $request->ids)->get()->each->delete();
 
 		return redirect()->back()->with('notification', [
 			'type' => 'success',
 			'title' => count($request->ids).' users deleted successfully.',
 		]);
 	}
+
+  public function restore(User $user)
+  {
+  	$user->restore();
+
+  	return redirect()->back()->with('notification', [
+  		'type' => 'success',
+  		'title' => $user->username.' has been restored.',
+  	]);
+  }
+
+  public function restoreMultiple(Request $request)
+  {
+  	User::whereIn('id', $request->ids)->restore();
+
+  	return redirect()->back()->with('notification', [
+  		'type' => 'success',
+  		'title' => count($request->ids).' users restored successfully.',
+  	]);
+  }
 }

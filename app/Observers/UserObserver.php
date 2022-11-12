@@ -19,7 +19,7 @@ class UserObserver
 		$user->full_name = $this->generateFullname($user);
 	}
 
-	public function updating(User $user)
+	public function updating(User $user): void
 	{
 		// set default image
 		if ($user->image_url === '' || $user->image_url === null) {
@@ -32,12 +32,14 @@ class UserObserver
 
 	public function deleted(User $user): void
 	{
-		//
-	}
+		$user->status = 'deleted';
+		$user->save();
+  }
 
 	public function restored(User $user): void
 	{
-		//
+		$user->status = 'active';
+		$user->save();
 	}
 
 	public function forceDeleted(User $user): void

@@ -5,7 +5,7 @@ defineProps<{
   users: PaginationUsers
 }>()
 
-const { formState, form, headers, deleteUsers, deleteUser } = useUserStore()
+const { formState, form, headers, deleteUsers, deleteUser, restoreUser } = useUserStore()
 const processing = toRef(useUserStore(), 'processing')
 const selected = ref<any>([])
 
@@ -76,11 +76,12 @@ const toggleEdit = (user: User) => {
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
           <span
             class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
-          >Active</span>
+          >{{ item.status }}</span>
         </td>
         <td class="px-3 py-4 text-sm font-medium whitespace-nowrap">
           <div class="flex items-center space-x-2 ">
             <button
+              v-if="item.status === 'active'"
               :disabled="processing" type="button" class="text-warning-600 hover:text-warning-900"
               @click="toggleEdit(item as any)"
             >
@@ -88,8 +89,14 @@ const toggleEdit = (user: User) => {
               <span class="sr-only">, {{ item.name }}</span>
             </button>
 
-            <button :disabled="processing" type="button" class="text-error-600 hover:text-error-900" @click="deleteUser(item.id)">
+            <button v-if="item.status === 'active'" :disabled="processing" type="button" class="text-error-600 hover:text-error-900" @click="deleteUser(item.id)">
               Delete
+              <span class="sr-only">, {{ item.name }}</span>
+            </button>
+
+            <!-- restore -->
+            <button v-if="item.status === 'deleted'" :disabled="processing" type="button" class="text-success-600 hover:text-success-900" @click="restoreUser(item.id)">
+              Restore
               <span class="sr-only">, {{ item.name }}</span>
             </button>
           </div>

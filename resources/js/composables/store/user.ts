@@ -222,6 +222,43 @@ export const useUserStore = defineStore('user', () => {
     })
   }
 
+  // restore user
+  function restoreUser(id: string) {
+    Inertia.put(route('users.restore', id),
+      {
+        // request data
+      },
+      {
+        only: ['users', 'flash'],
+        onBefore: () => {
+          processing.value = true
+        },
+        onFinish: () => {
+          processing.value = false
+        },
+      })
+  }
+
+  // restore users
+  function restoreUsers(ids: string[]) {
+    Inertia.put(route('users.restore-multiple'),
+      {
+        ids,
+      },
+      {
+        only: ['users', 'flash'],
+        data: {
+          ids,
+        },
+        onBefore: () => {
+          processing.value = true
+        },
+        onFinish: () => {
+          processing.value = false
+        },
+      })
+  }
+
   // reset form
   function resetForm() {
     form.firstName = ''
@@ -256,6 +293,8 @@ export const useUserStore = defineStore('user', () => {
     resetForm,
     deleteUser,
     deleteUsers,
+    restoreUser,
+    restoreUsers,
     resetFormState,
   }
 })
