@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -14,6 +15,7 @@ class User extends Authenticatable
 	use HasFactory;
 	use Notifiable;
 	use HasUuids;
+	use SoftDeletes;
 
 	/**
 	 * The attributes that are mass assignable.
@@ -26,6 +28,7 @@ class User extends Authenticatable
 		'first_name',
 		'middle_name',
 		'last_name',
+    'full_name',
 		'image_url',
 		'password',
 	];
@@ -49,20 +52,4 @@ class User extends Authenticatable
 		'email_verified_at' => 'datetime',
 	];
 
-	protected static function boot()
-	{
-		parent::boot();
-
-		static::creating(function ($model) {
-			if ($model->image_url === '' || $model->image_url === null) {
-				$model->image_url = 'https://robohash.org/'.$model->id.'?set=set1&bgset=bg2&size=400x400';
-			}
-		});
-
-		static::updating(function ($model) {
-			if ($model->image_url === '' || $model->image_url === null) {
-				$model->image_url = 'https://robohash.org/'.$model->id.'?set=set1&bgset=bg2&size=400x400';
-			}
-		});
-	}
 }
