@@ -13,21 +13,22 @@ class UserController extends Controller
 	public function index(Request $request)
 	{
 		$users = User::query()
-			  ->where('id', '!=', auth()->user()->id)
-			  ->when($request->search, function ($query, $search) {
-			  	$query->where('username', 'like', "%{$search}%")
-			  	->orWhere('email', 'like', "%{$search}%")
-			  	->orWhere('first_name', 'like', "%{$search}%");
-			  })
-			  ->orderBy('created_at', 'desc')
-			  ->paginate(15);
+		  ->where('id', '!=', auth()->user()->id)
+		  ->when($request->search, function ($query, $search) {
+		  	$query->where('username', 'ilike', "%{$search}%")
+		  	->orWhere('email', 'ilike', "%{$search}%")
+		  	->orWhere('first_name', 'ilike', "%{$search}%");
+		  })
+		  ->orderBy('created_at', 'desc')
+		  ->paginate(15)
+			->appends($request->all());
 
 		$query = UserResource::collection($users);
 
 		return inertia('Admin/Users/Index', [
-		  'users' => $query,
-		  'search' => $request->search,
-	  ]);
+			'users' => $query,
+			'search' => $request->search,
+		]);
 	}
 
 	public function create()
@@ -51,7 +52,7 @@ class UserController extends Controller
 		return redirect()->back()->with('message', [
 			'type' => 'success',
 			'title' => $userRequest->username.' has been created.',
-	  ]);
+		]);
 	}
 
 	public function show(User $user)
@@ -69,17 +70,17 @@ class UserController extends Controller
   	$userRequest->validated();
 
   	$user->update([
-  	  'username' => $userRequest->username,
-  	  'email' => $userRequest->email,
-  	  'first_name' => $userRequest->firstName,
-  	  'last_name' => $userRequest->lastName,
-  	  'image_url' => $userRequest->imageUrl,
-  	  'password' => bcrypt($userRequest->password),
+  		'username' => $userRequest->username,
+  		'email' => $userRequest->email,
+  		'first_name' => $userRequest->firstName,
+  		'last_name' => $userRequest->lastName,
+  		'image_url' => $userRequest->imageUrl,
+  		'password' => bcrypt($userRequest->password),
   	]);
 
   	return redirect()->back()->with('message', [
-  	  'type' => 'success',
-  	  'title' => $userRequest->username.' has been updated.',
+  		'type' => 'success',
+  		'title' => $userRequest->username.' has been updated.',
   	]);
   }
 
@@ -88,9 +89,9 @@ class UserController extends Controller
 		$user->delete();
 
 		return redirect()->back()->with('message', [
-		  'type' => 'success',
-		  'title' => $user->username.' has been deleted.',
-	  ]);
+			'type' => 'success',
+			'title' => $user->username.' has been deleted.',
+		]);
 	}
 
 	public function destroyMultiple(Request $request)
@@ -98,8 +99,8 @@ class UserController extends Controller
 		User::whereIn('id', $request->ids)->delete();
 
 		return redirect()->back()->with('message', [
-      'type' => 'success',
-      'title' => count($request->ids).' users deleted successfully.',
-    ]);
+			'type' => 'success',
+			'title' => count($request->ids).' users deleted successfully.',
+		]);
 	}
 }
