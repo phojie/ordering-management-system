@@ -23,6 +23,7 @@ return new class extends Migration {
 			$table->string('full_name');
 			$table->string('image_url')->nullable();
 			$table->string('password');
+      $table->string('status')->default('active');
 
 			$table->timestamp('email_verified_at')->nullable();
 
