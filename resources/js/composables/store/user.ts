@@ -132,9 +132,30 @@ export const useUserStore = defineStore('user', () => {
     )
   }
 
+  // get users
+  function getUsers(reqestData: any) {
+    Inertia.get(route('users.index'),
+      {
+        ...reqestData,
+      },
+      {
+        preserveState: true,
+        replace: true,
+        only: ['users'],
+        onBefore: () => {
+          processing.value = true
+        },
+        onFinish: () => {
+          processing.value = false
+        },
+      },
+    )
+  }
+
   // create user
   async function createUser() {
     Inertia.post(route('users.store'), form, {
+      only: ['users', 'flash'],
       onBefore: () => {
         processing.value = true
       },
@@ -146,12 +167,6 @@ export const useUserStore = defineStore('user', () => {
       },
       onSuccess: () => {
         resetForm()
-        useNotificationStore().add({
-          id: parseInt(_uniqueId()),
-          title: 'User created',
-          type: 'success',
-          message: 'User created successfully',
-        })
       },
     })
   }
@@ -159,6 +174,7 @@ export const useUserStore = defineStore('user', () => {
   // update user
   async function updateUser(id: string) {
     Inertia.put(route('users.update', id), form, {
+      only: ['users', 'flash'],
       onBefore: () => {
         processing.value = true
       },
@@ -171,12 +187,6 @@ export const useUserStore = defineStore('user', () => {
       onSuccess: () => {
         resetForm()
         resetFormState()
-        useNotificationStore().add({
-          id: parseInt(_uniqueId()),
-          title: 'User updated',
-          type: 'success',
-          message: 'User updated successfully',
-        })
       },
     })
   }
@@ -186,20 +196,12 @@ export const useUserStore = defineStore('user', () => {
     // TODO add confirmation area here
 
     Inertia.delete(route('users.destroy', id), {
-      only: ['users'],
+      only: ['users', 'flash'],
       onBefore: () => {
         processing.value = true
       },
       onFinish: () => {
         processing.value = false
-      },
-      onSuccess: () => {
-        useNotificationStore().add({
-          id: parseInt(_uniqueId()),
-          title: 'User deleted',
-          type: 'success',
-          message: 'User deleted successfully',
-        })
       },
     })
   }
@@ -207,7 +209,7 @@ export const useUserStore = defineStore('user', () => {
   // delete multiple users
   function deleteUsers(ids: string[]) {
     Inertia.delete(route('users.destroy-multiple'), {
-      only: ['users'],
+      only: ['users', 'flash'],
       data: {
         ids,
       },
@@ -216,14 +218,6 @@ export const useUserStore = defineStore('user', () => {
       },
       onFinish: () => {
         processing.value = false
-      },
-      onSuccess: () => {
-        useNotificationStore().add({
-          id: parseInt(_uniqueId()),
-          title: 'Users deleted',
-          type: 'success',
-          message: 'Users deleted successfully',
-        })
       },
     })
   }
@@ -257,6 +251,7 @@ export const useUserStore = defineStore('user', () => {
     formState,
 
     reload,
+    getUsers,
     submitForm,
     resetForm,
     deleteUser,

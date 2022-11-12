@@ -1,36 +1,21 @@
 import type { Notification } from '@/global'
 
 export const useNotificationStore = defineStore('notification', () => {
-  const notifications = reactive<Array<Notification>>([
-    // {
-    //   id: 1,
-    //   title: 'Discussion moved 1',
-    //   message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit oluptatum tenetur.',
-    //   type: 'success',
-    //   showClose: true,
-    //   showIcon: true,
-    //   position: 'top-right',
-    // },
-    // {
-    //   id: 2,
-    //   title: 'Discussion moved 2',
-    //   message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit oluptatum tenetur.',
-    //   type: 'error',
-    //   showClose: false,
-    //   showIcon: true,
-    //   position: 'top-right',
-    // },
-    // {
-    //   id: 3,
-    //   title: 'Discussion moved 3',
-    //   message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit oluptatum tenetur.',
-    //   type: 'warning',
-    //   duration: 5000,
-    //   showClose: true,
-    //   showIcon: true,
-    //   position: 'top-right',
-    // },
-  ])
+  const pageProps = computed<any>(() => usePage().props.value)
+  const flash = computed<Notification>(() => pageProps.value.flash.message)
+
+  // watch flash
+  watch(() => flash.value, (value) => {
+    if (value) {
+      const notification: Notification = {
+        ...value,
+        id: parseInt(_uniqueId()),
+      }
+      add(notification)
+    }
+  })
+
+  const notifications = reactive<Array<Notification>>([])
 
   // add notification
   function add(notification: Notification) {

@@ -99,10 +99,10 @@ const iconClass = computed(() => {
             <component :is="icon" :class="iconClass" />
           </div>
           <div class="ml-3 w-0 flex-1 pt-0.5">
-            <p class="text-sm font-medium text-gray-900">
+            <p v-if="props.title" class="text-sm font-medium text-gray-900">
               {{ props.title }}
             </p>
-            <p class="mt-1 text-sm text-gray-500">
+            <p v-if="props.message" class="mt-1 text-sm text-gray-500">
               {{ props.message }}
             </p>
             <div class="flex mt-3 space-x-7">

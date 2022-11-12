@@ -10,17 +10,23 @@ use Inertia\Controller;
 
 class UserController extends Controller
 {
-	public function index()
+	public function index(Request $request)
 	{
 		$users = User::query()
-				->where('id', '!=', auth()->user()->id)
-				->orderBy('created_at', 'desc')
-				->paginate(15);
+			  ->where('id', '!=', auth()->user()->id)
+			  ->when($request->search, function ($query, $search) {
+			  	$query->where('username', 'like', "%{$search}%")
+			  	->orWhere('email', 'like', "%{$search}%")
+			  	->orWhere('first_name', 'like', "%{$search}%");
+			  })
+			  ->orderBy('created_at', 'desc')
+			  ->paginate(15);
 
 		$query = UserResource::collection($users);
 
 		return inertia('Admin/Users/Index', [
 		  'users' => $query,
+		  'search' => $request->search,
 	  ]);
 	}
 
@@ -42,7 +48,10 @@ class UserController extends Controller
 			'password' => bcrypt($userRequest->password),
 		]);
 
-		return redirect()->back()->with('success', 'User created successfully.');
+		return redirect()->back()->with('message', [
+			'type' => 'success',
+			'title' => $userRequest->username.' has been created.',
+	  ]);
 	}
 
 	public function show(User $user)
@@ -68,20 +77,29 @@ class UserController extends Controller
   	  'password' => bcrypt($userRequest->password),
   	]);
 
-  	return redirect()->back()->with('success', 'User updated successfully.');
+  	return redirect()->back()->with('message', [
+  	  'type' => 'success',
+  	  'title' => $userRequest->username.' has been updated.',
+  	]);
   }
 
 	public function destroy(User $user)
 	{
 		$user->delete();
 
-		return redirect()->back()->with('success', 'User deleted successfully.');
+		return redirect()->back()->with('message', [
+		  'type' => 'success',
+		  'title' => $user->username.' has been deleted.',
+	  ]);
 	}
 
 	public function destroyMultiple(Request $request)
 	{
 		User::whereIn('id', $request->ids)->delete();
 
-		return redirect()->back();
+		return redirect()->back()->with('message', [
+      'type' => 'success',
+      'title' => count($request->ids).' users deleted successfully.',
+    ]);
 	}
 }
