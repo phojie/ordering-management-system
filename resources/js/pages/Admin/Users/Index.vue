@@ -1,15 +1,23 @@
 <script setup lang="ts">
 import type { PaginationUsers } from '@/types/user'
-defineProps<{
+const props = defineProps<{
   users: PaginationUsers
+  search: string | null
 }>()
 
 defineOptions({
   layout: AdminLayout,
 })
 
-const user = useUserStore()
-const formState = user.formState
+const { formState, getUsers, reload } = useUserStore()
+const processing = toRef(useUserStore(), 'processing')
+
+const search = ref<string>(props.search ?? '')
+
+// watch effect
+watch(search, _.debounce((value) => {
+  getUsers({ search: value })
+}, 500))
 
 const toggleCreate = () => {
   formState.show = true
@@ -33,12 +41,10 @@ const toggleCreate = () => {
         </div>
       </div>
       <div class="flex justify-between gap-4 mt-4 sm:justify-start sm:mt-0 sm:ml-4">
-        <!-- search area -->
-
         <button
-          type="button" :disabled="user.processing"
+          type="button" :disabled="processing"
           class="inline-flex items-center p-2 text-sm font-medium text-gray-600 bg-transparent border border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 "
-          @click="user.reload()"
+          @click="reload()"
         >
           <zondicons-reload class="w-5 h-5 " />
         </button>
@@ -51,6 +57,18 @@ const toggleCreate = () => {
           Add user
         </button>
       </div>
+    </div>
+
+    <!-- Query area -->
+    <div class="grid grid-cols-10 px-4 sm:px-6 lg:px-8">
+      <!-- search area -->
+      <JTextField
+        id="search"
+        v-model="search"
+        :is-loading="processing && search !== ''"
+        class="col-span-3"
+        placeholder="Search by name, email or role"
+      />
     </div>
 
     <!-- Table -->
