@@ -7,23 +7,29 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Controller;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends Controller
 {
 	public function index(Request $request)
 	{
-		$users = User::query()
-      ->withTrashed()
-		  ->where('id', '!=', auth()->user()->id)
-		  ->when($request->search, function ($query, $search) {
-		  	$query->where('username', 'ilike', "%{$search}%")
-		  	->orWhere('email', 'ilike', "%{$search}%")
-		  	->orWhere('fullname', 'ilike', "%{$search}%");
-		  })
-		  // ->orderBy('created_at', 'desc')
-		  ->paginate(15)
-			->appends($request->all());
+    // set query builder
+		$query = QueryBuilder::for(User::class)
+					->withTrashed()
+					->where('id', '!=', auth()->user()->id)
+					->allowedFilters(['username', 'email', 'full_name']);
 
+		// if request search
+		if ($request->has('search')) {
+			$query = $query->where('email', 'ilike', '%'.$request->search.'%')
+			  ->orWhere('username', 'ilike', '%'.$request->search.'%')
+			  ->orWhere('full_name', 'ilike', '%'.$request->search.'%');
+		}
+
+    // set pagination
+		$users = $query->paginate(15)->appends($request->all());
+
+    // set resource
 		$query = UserResource::collection($users);
 
 		return inertia('Admin/Users/Index', [
