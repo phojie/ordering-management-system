@@ -52,10 +52,13 @@ onMounted(() => {
 <template>
   <div>
     <!-- label -->
-    <label :for="id" class="block text-sm font-medium text-gray-900">{{ label }}</label>
+    <label
+      v-if="props.label"
+      :for="id" class="block mb-1 text-sm font-medium text-gray-900"
+    >{{ label }}</label>
 
     <!-- input wrapper -->
-    <div class="relative mt-1 mb-2 rounded-md shadow-sm">
+    <div class="relative rounded-md shadow-sm">
       <!-- input -->
       <input
         :id="id"
@@ -101,7 +104,7 @@ onMounted(() => {
       v-if="hasDetails"
       :id="`${id}-details`"
       :class="[isDirty ? 'text-error-600' : 'text-gray-500']"
-      class="mt-1 text-sm"
+      class="mt-3 text-sm"
     >
       {{ details }}
     </p>
