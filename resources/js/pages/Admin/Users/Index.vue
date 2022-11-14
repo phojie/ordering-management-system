@@ -60,13 +60,18 @@ const toggleCreate = () => {
     </div>
 
     <!-- Query area -->
-    <div class="grid grid-cols-10 px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 px-4 mb-4 sm:grid-cols-10 sm:px-6 lg:px-8">
+      <!-- sorting area -->
+      <div class="col-span-7">
+        <!-- some text -->
+      </div>
+
       <!-- search area -->
       <JTextField
         id="search"
         v-model="search"
-        :is-loading="processing && search !== ''"
         class="col-span-3"
+        :is-loading="processing && search !== ''"
         placeholder="Search by name, email or role"
       />
     </div>

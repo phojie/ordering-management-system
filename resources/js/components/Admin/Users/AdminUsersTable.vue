@@ -31,7 +31,7 @@ const toggleEdit = (user: User) => {
 </script>
 
 <template>
-  <section class="flex flex-col px-4 mt-2 space-y-6 sm:px-6 lg:px-8">
+  <section class="flex flex-col px-4 space-y-6 sm:px-6 lg:px-8">
     <JTable
       v-model="selected"
       :indeterminate="true"
