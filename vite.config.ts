@@ -55,10 +55,7 @@ export default defineConfig({
             ['Chart', 'highcharts'],
           ],
           'lodash': [
-            ['has', '_has'],
-            ['trim', '_trim'],
-            ['debounce', '_debounce'],
-            ['uniqueId', '_uniqueId'],
+            ['*', '_'],
           ],
           'ziggy-js': [
             ['default', 'route'],

@@ -4,10 +4,7 @@ declare global {
   const AdminLayout: typeof import('@/layouts/AdminLayout.vue')['default']
   const EffectScope: typeof import('vue')['EffectScope']
   const Inertia: typeof import('@inertiajs/inertia')['Inertia']
-  const _debounce: typeof import('lodash')['debounce']
-  const _has: typeof import('lodash')['has']
-  const _trim: typeof import('lodash')['trim']
-  const _uniqueId: typeof import('lodash')['uniqueId']
+  const _: typeof import('lodash')
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
@@ -289,10 +286,7 @@ declare module 'vue' {
     readonly AdminLayout: UnwrapRef<typeof import('@/layouts/AdminLayout.vue')['default']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly Inertia: UnwrapRef<typeof import('@inertiajs/inertia')['Inertia']>
-    readonly _debounce: UnwrapRef<typeof import('lodash')['debounce']>
-    readonly _has: UnwrapRef<typeof import('lodash')['has']>
-    readonly _trim: UnwrapRef<typeof import('lodash')['trim']>
-    readonly _uniqueId: UnwrapRef<typeof import('lodash')['uniqueId']>
+    readonly _: UnwrapRef<typeof import('lodash')>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>

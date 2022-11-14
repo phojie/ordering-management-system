@@ -4,7 +4,7 @@ export const useRoute = () => {
     if (exact)
       return currentUrl.startsWith(href)
 
-    return _trim(href, '/') === _trim(currentUrl, '/')
+    return _.trim(href, '/') === _.trim(currentUrl, '/')
   }
 
   return {

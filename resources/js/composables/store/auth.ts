@@ -13,13 +13,13 @@ export const useAuthStore = defineStore('auth', () => {
 
   watch(() => form.email,
     () => {
-      if (_has(form.errors, 'email'))
+      if (_.has(form.errors, 'email'))
         form.clearErrors('email')
     })
 
   watch(() => form.password,
     () => {
-      if (_has(form.errors, 'password'))
+      if (_.has(form.errors, 'password'))
         form.clearErrors('password')
     })
 
