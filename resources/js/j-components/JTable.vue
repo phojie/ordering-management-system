@@ -21,6 +21,7 @@ const emit = defineEmits<{
 
 // set loading state
 const isProgressLinear = ref(false)
+
 watch(
   () => props.isLoading,
   _.debounce((value) => {
@@ -76,8 +77,17 @@ const onCheckBoxChange = (e: any) => {
               <th
                 v-for="(header, id) in headers" :key="id" scope="col"
                 :class="header.class"
+                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
               >
-                {{ header.text }}
+                <JLink
+                  :to="header.sortable ? useJTable().sortLink(header) : ''"
+                  class="inline-flex group"
+                >
+                  {{ header.text }}
+                  <span v-if="header.sortable" class="flex-none ml-2 text-gray-900 bg-gray-200 rounded group-hover:bg-gray-300">
+                    <component :is="useJTable().sortIcon(header)" class="w-5 h-5" aria-hidden="true" />
+                  </span>
+                </JLink>
               </th>
             </tr>
           </thead>

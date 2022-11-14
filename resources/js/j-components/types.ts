@@ -62,6 +62,7 @@ export interface TableHeader {
   text: string
   value: string
   sortable?: boolean
+  sort?: 'asc' | 'desc' | null
   align?: 'start' | 'center' | 'end'
   filterable?: boolean
   filter?: (value: any, search: string, item: any) => boolean

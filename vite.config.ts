@@ -78,6 +78,7 @@ export default defineConfig({
       dirs: [
         'resources/js/composables/*',
         'resources/js/composables/*/**',
+        'resources/js/j-components/*',
       ],
 
       // Filepath to generate corresponding .d.ts file.
