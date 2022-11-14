@@ -33,7 +33,7 @@ const icon = computed(() => {
       return HeroiconsCheckCircle
     case 'warning':
       return HeroiconsExclamationTriangle
-    case 'error':
+    case 'danger':
       return HeroiconsExclamationCircle
     default:
       return HeroiconsInformationCircle
@@ -46,7 +46,7 @@ const iconColor = computed(() => {
       return 'text-success-500'
     case 'warning':
       return 'text-warning-500'
-    case 'error':
+    case 'danger':
       return 'text-danger-500'
     default:
       return 'text-info-500'
