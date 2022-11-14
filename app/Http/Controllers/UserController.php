@@ -14,19 +14,21 @@ class UserController extends Controller
 	public function index(Request $request)
 	{
 		$model = User::query()
-					->withTrashed()
-		  ->where('id', '!=', auth()->user()->id);
+          ->whereNotIn('id', [auth()->user()->id])
+          ->withTrashed();
 
 		// set query builder
 		$query = QueryBuilder::for($model)
-		  ->allowedSorts(['full_name', 'status']);
+          ->allowedSorts(['full_name', 'status']);
 		// ->allowedFilters(['username', 'email', 'full_name']);
 
 		// if request search
-		if ($request->has('search')) {
-			$query = $query->where('email', 'ilike', '%'.$request->search.'%')
-			  ->orWhere('username', 'ilike', '%'.$request->search.'%')
-			  ->orWhere('full_name', 'ilike', '%'.$request->search.'%');
+		if (!empty($request->search)) {
+      $query->where(function ($q) use ($request) {
+        $q->where('username', 'ilike', "%{$request->search}%")
+          ->orWhere('email', 'ilike', "%{$request->search}%")
+          ->orWhere('full_name', 'ilike', "%{$request->search}%");
+      });
 		}
 
 		// set pagination
