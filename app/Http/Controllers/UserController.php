@@ -114,7 +114,7 @@ class UserController extends Controller
 		User::whereIn('id', $request->ids)->get()->each->delete();
 
 		return redirect()->back()->with('notification', [
-			'varitan' => 'success',
+			'variant' => 'success',
       'title' => 'Successfully deleted!',
 			'message' => count($request->ids).' users deleted.',
 		]);
