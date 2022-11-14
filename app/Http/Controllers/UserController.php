@@ -13,11 +13,14 @@ class UserController extends Controller
 {
 	public function index(Request $request)
 	{
-    // set query builder
-		$query = QueryBuilder::for(User::class)
+		$model = User::query()
 					->withTrashed()
-					->where('id', '!=', auth()->user()->id)
-					->allowedFilters(['username', 'email', 'full_name']);
+		  ->where('id', '!=', auth()->user()->id);
+
+		// set query builder
+		$query = QueryBuilder::for($model)
+		  ->allowedSorts(['full_name', 'status']);
+		// ->allowedFilters(['username', 'email', 'full_name']);
 
 		// if request search
 		if ($request->has('search')) {
@@ -26,10 +29,10 @@ class UserController extends Controller
 			  ->orWhere('full_name', 'ilike', '%'.$request->search.'%');
 		}
 
-    // set pagination
+		// set pagination
 		$users = $query->paginate(15)->appends($request->all());
 
-    // set resource
+		// set resource
 		$query = UserResource::collection($users);
 
 		return inertia('Admin/Users/Index', [
