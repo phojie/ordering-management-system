@@ -77,6 +77,11 @@ const iconClass = computed(() => {
   return `${iconColor.value} w-7 h-7 p-1 rounded-full bg-opacity-10`
 })
 
+const disableUndo = ref(false)
+const showUndo = computed(() => {
+  return props.showUndo && props.undoUrl
+})
+
 // const notificationIconClass = computed(() => {
 //   return `${iconClass.value} mr-4`
 // })
@@ -122,11 +127,13 @@ const iconClass = computed(() => {
             </p>
             <div class="flex mt-3 space-x-7">
               <JLink
-                v-if="props.showUndo"
+                v-if="showUndo"
                 :to="props.undoUrl"
                 as="button"
+                :disabled="disableUndo"
                 method="put"
                 class="text-sm font-medium bg-white rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                @click.once="disableUndo = true"
               >
                 Undo
               </JLink>
