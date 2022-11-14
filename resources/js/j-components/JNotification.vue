@@ -47,7 +47,7 @@ const iconColor = computed(() => {
     case 'warning':
       return 'text-warning-500'
     case 'error':
-      return 'text-error-500'
+      return 'text-danger-500'
     default:
       return 'text-info-500'
   }
