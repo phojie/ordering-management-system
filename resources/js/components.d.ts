@@ -50,6 +50,7 @@ declare module '@vue/runtime-core' {
     IcomoonFreeSpinner2: typeof import('~icons/icomoon-free/spinner2')['default']
     InputError: typeof import('./components/InputError.vue')['default']
     InputLabel: typeof import('./components/InputLabel.vue')['default']
+    JBadge: typeof import('./j-components/JBadge.vue')['default']
     JBtn: typeof import('./j-components/JBtn.vue')['default']
     JCheckbox: typeof import('./j-components/JCheckbox.vue')['default']
     JLink: typeof import('./j-components/JLink.vue')['default']
