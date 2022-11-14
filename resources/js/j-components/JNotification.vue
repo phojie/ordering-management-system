@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<Notification>(), {
   showClose: true,
   showIcon: true,
   showUndo: false,
-  type: 'info',
+  variant: 'info',
 })
 
 const emit = defineEmits(['close'])
@@ -28,20 +28,22 @@ onMounted(() => {
 })
 
 const icon = computed(() => {
-  switch (props.type) {
+  switch (props.variant) {
     case 'success':
       return HeroiconsCheckCircle
     case 'warning':
       return HeroiconsExclamationTriangle
     case 'danger':
       return HeroiconsExclamationCircle
+    // case 'restore':
+    //   return HeroiconsExclamationCircle
     default:
       return HeroiconsInformationCircle
   }
 })
 
 const iconColor = computed(() => {
-  switch (props.type) {
+  switch (props.variant) {
     case 'success':
       return 'text-success-500'
     case 'warning':

@@ -62,7 +62,6 @@ export interface TableHeader {
   text: string
   value: string
   sortable?: boolean
-  sort?: 'asc' | 'desc' | null
   align?: 'start' | 'center' | 'end'
   filterable?: boolean
   filter?: (value: any, search: string, item: any) => boolean
@@ -78,7 +77,7 @@ export interface TableItems {
 export interface Notification {
   id: number
   title: string
-  type: string
+  variant?: 'success' | 'info' | 'warning' | 'danger'
   message?: string
   duration?: number
   showClose?: boolean

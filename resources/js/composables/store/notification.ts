@@ -1,4 +1,4 @@
-import type { Notification } from '@/global'
+import type { Notification } from '@/j-components/types'
 
 export const useNotificationStore = defineStore('notification', () => {
   const pageProps = computed<any>(() => usePage().props.value)

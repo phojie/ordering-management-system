@@ -63,8 +63,9 @@ class UserController extends Controller
 		]);
 
 		return redirect()->back()->with('notification', [
-			'type' => 'success',
-			'title' => $userRequest->username.' has been created.',
+			'variant' => 'success',
+      'title' => 'Successfully saved!',
+			'message' => $userRequest->username.' has been created.',
 		]);
 	}
 
@@ -92,8 +93,9 @@ class UserController extends Controller
   	]);
 
   	return redirect()->back()->with('notification', [
-  		'type' => 'success',
-  		'title' => $userRequest->username.' has been updated.',
+  		'variant' => 'success',
+      'title' => 'Successfully saved!',
+  		'message' => $userRequest->username.' has been updated.',
   	]);
   }
 
@@ -102,7 +104,7 @@ class UserController extends Controller
 		$user->delete();
 
 		return redirect()->back()->with('notification', [
-			'type' => 'success',
+			'variant' => 'success',
 			'title' => $user->username.' has been deleted.',
 		]);
 	}
@@ -112,8 +114,9 @@ class UserController extends Controller
 		User::whereIn('id', $request->ids)->get()->each->delete();
 
 		return redirect()->back()->with('notification', [
-			'type' => 'success',
-			'title' => count($request->ids).' users deleted successfully.',
+			'varitan' => 'success',
+      'title' => 'Successfully deleted!',
+			'message' => count($request->ids).' users deleted.',
 		]);
 	}
 
@@ -122,8 +125,9 @@ class UserController extends Controller
   	$user->restore();
 
   	return redirect()->back()->with('notification', [
-  		'type' => 'success',
-  		'title' => $user->username.' has been restored.',
+  		'variant' => 'success',
+      'title' => 'Successfully restored!',
+  		'message' => $user->username.' has been restored.',
   	]);
   }
 
@@ -132,8 +136,9 @@ class UserController extends Controller
   	User::whereIn('id', $request->ids)->restore();
 
   	return redirect()->back()->with('notification', [
-  		'type' => 'success',
-  		'title' => count($request->ids).' users restored successfully.',
+  		'variant' => 'success',
+      'title' => 'Successfully restored!',
+  		'message' => count($request->ids).' users restored.',
   	]);
   }
 }
