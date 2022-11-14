@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  to: string
+  to: URL | string
   active?: boolean
   activeClass?: string
 }>()
