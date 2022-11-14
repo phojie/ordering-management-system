@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<JBadgeProps>(), {
 type BadgeVariant = keyof typeof variantsLookup
 type BadgeSize = keyof typeof sizesLookup
 
-const baseClasses = 'inline-flex items-center capitalize'
+const baseClasses = 'inline-flex items-center capitalize rounded-md'
 
 const variantsLookup = {
   text: 'text-gray-800 bg-gray-100',
