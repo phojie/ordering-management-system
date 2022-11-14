@@ -13,6 +13,7 @@ class UserController extends Controller
 {
 	public function index(Request $request)
 	{
+    // set model
 		$model = User::query()
           ->whereNotIn('id', [auth()->user()->id])
           ->withTrashed();
@@ -20,7 +21,7 @@ class UserController extends Controller
 		// set query builder
 		$query = QueryBuilder::for($model)
           ->allowedSorts(['full_name', 'status']);
-		// ->allowedFilters(['username', 'email', 'full_name']);
+          // ->allowedFilters(['username', 'email', 'full_name']);
 
 		// if request search
 		if (!empty($request->search)) {
