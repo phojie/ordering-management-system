@@ -16,7 +16,9 @@ const { notifications, remove } = useNotificationStore()
         :icon="notification.icon"
         :duration="notification.duration"
         :show-icon="notification.showIcon"
+        :show-undo="notification.showUndo"
         :show-close="notification.showClose"
+        :undo-url="notification.undoUrl"
         :position="notification.position"
         @close="remove(notification.id)"
       />

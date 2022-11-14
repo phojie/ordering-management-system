@@ -8,7 +8,7 @@ import HeroiconsTrash from '~icons/heroicons/trash'
 import HeroiconsArrowPathRoundedSquare from '~icons/heroicons/arrow-path-rounded-square'
 
 const props = withDefaults(defineProps<Notification>(), {
-  duration: 3,
+  duration: 5,
   showClose: true,
   showIcon: true,
   showUndo: false,
@@ -121,13 +121,15 @@ const iconClass = computed(() => {
               {{ props.message }}
             </p>
             <div class="flex mt-3 space-x-7">
-              <button
+              <JLink
                 v-if="props.showUndo"
-                type="button"
+                :to="props.undoUrl"
+                as="button"
+                method="put"
                 class="text-sm font-medium bg-white rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
               >
                 Undo
-              </button>
+              </JLink>
               <button
                 type="button"
                 class="text-sm font-medium text-gray-700 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"

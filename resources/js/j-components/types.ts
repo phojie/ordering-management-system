@@ -76,14 +76,18 @@ export interface TableItems {
 
 export interface Notification {
   id: number
-  title: string
-  variant?: 'success' | 'info' | 'warning' | 'danger'
-  icon?: 'check' | 'info' | 'warning' | 'error' | 'trash' | 'restore'
-  message?: string
   duration?: number
+
+  title: string
+  message?: string
+  undoUrl?: URL
+
   showClose?: boolean
   showIcon?: boolean
   showUndo?: boolean
+
+  variant?: 'success' | 'info' | 'warning' | 'danger'
+  icon?: 'check' | 'info' | 'warning' | 'error' | 'trash' | 'restore'
   // TODO define this position options, it was not yet used
   position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
 }

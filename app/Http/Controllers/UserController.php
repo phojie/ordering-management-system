@@ -107,6 +107,8 @@ class UserController extends Controller
 			'variant' => 'danger',
       'icon' => 'trash',
       'title' => 'Successfully deleted!',
+      'showUndo' => true,
+      'undoUrl' => route('users.restore', $user->id),
 			'message' => $user->username.' has been deleted.',
 		]);
 	}
