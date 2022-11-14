@@ -41,7 +41,7 @@ export const useNotificationStore = defineStore('notification', () => {
 
   // add notification
   function add(notification: Notification) {
-    notifications.push(notification)
+    notifications.unshift(notification)
   }
 
   function remove(id: number) {
