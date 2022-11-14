@@ -117,7 +117,7 @@ export const useUserStore = defineStore('user', () => {
         },
         onSuccess: () => {
           useNotificationStore().add({
-            id: parseInt(_uniqueId()),
+            id: parseInt(_.uniqueId()),
             title: 'Users is successfully reloaded',
             type: 'success',
             showClose: false,
@@ -132,6 +132,7 @@ export const useUserStore = defineStore('user', () => {
   function getUsers(reqestData: any) {
     Inertia.get(route('users.index'),
       {
+        ...route().params,
         ...reqestData,
       },
       {

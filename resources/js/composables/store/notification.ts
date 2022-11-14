@@ -9,7 +9,7 @@ export const useNotificationStore = defineStore('notification', () => {
     if (value) {
       const notification: Notification = {
         ...value,
-        id: parseInt(_uniqueId()),
+        id: parseInt(_.uniqueId()),
       }
       add(notification)
     }
