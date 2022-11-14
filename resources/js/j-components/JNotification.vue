@@ -137,6 +137,7 @@ const showUndo = computed(() => {
               >
                 Undo
               </JLink>
+
               <button
                 type="button"
                 class="text-sm font-medium text-gray-700 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
