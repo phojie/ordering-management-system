@@ -13,6 +13,7 @@ const { notifications, remove } = useNotificationStore()
         :title="notification.title"
         :variant="notification.variant"
         :message="notification.message"
+        :icon="notification.icon"
         :duration="notification.duration"
         :show-icon="notification.showIcon"
         :show-close="notification.showClose"

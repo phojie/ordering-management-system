@@ -78,6 +78,7 @@ export interface Notification {
   id: number
   title: string
   variant?: 'success' | 'info' | 'warning' | 'danger'
+  icon?: 'check' | 'info' | 'warning' | 'error' | 'trash' | 'restore'
   message?: string
   duration?: number
   showClose?: boolean

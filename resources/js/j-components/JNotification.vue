@@ -4,6 +4,8 @@ import HeroiconsInformationCircle from '~icons/heroicons/information-circle'
 import HeroiconsExclamationCircle from '~icons/heroicons/exclamation-circle'
 import HeroiconsExclamationTriangle from '~icons/heroicons/exclamation-triangle'
 import HeroiconsCheckCircle from '~icons/heroicons/check-circle'
+import HeroiconsTrash from '~icons/heroicons/trash'
+import HeroiconsArrowPathRoundedSquare from '~icons/heroicons/arrow-path-rounded-square'
 
 const props = withDefaults(defineProps<Notification>(), {
   duration: 3,
@@ -28,39 +30,51 @@ onMounted(() => {
 })
 
 const icon = computed(() => {
-  switch (props.variant) {
-    case 'success':
-      return HeroiconsCheckCircle
-    case 'warning':
-      return HeroiconsExclamationTriangle
-    case 'danger':
-      return HeroiconsExclamationCircle
-    // case 'restore':
-    //   return HeroiconsExclamationCircle
-    default:
-      return HeroiconsInformationCircle
+  if (props.icon) {
+    switch (props.icon) {
+      case 'check':
+        return HeroiconsCheckCircle
+      case 'warning':
+        return HeroiconsExclamationTriangle
+      case 'error':
+        return HeroiconsExclamationCircle
+      case 'trash':
+        return HeroiconsTrash
+      case 'restore':
+        return HeroiconsArrowPathRoundedSquare
+      default:
+        return HeroiconsInformationCircle
+    }
+  }
+  else {
+    switch (props.variant) {
+      case 'success':
+        return HeroiconsCheckCircle
+      case 'warning':
+        return HeroiconsExclamationTriangle
+      case 'danger':
+        return HeroiconsExclamationCircle
+      default:
+        return HeroiconsInformationCircle
+    }
   }
 })
 
 const iconColor = computed(() => {
   switch (props.variant) {
     case 'success':
-      return 'text-success-500'
+      return 'text-success-500 bg-success-500'
     case 'warning':
-      return 'text-warning-500'
+      return 'text-warning-500 bg-warning-500'
     case 'danger':
-      return 'text-danger-500'
+      return 'text-danger-500 bg-danger-500'
     default:
-      return 'text-info-500'
+      return 'text-info-500 bg-info-500'
   }
 })
 
-const iconSize = computed(() => {
-  return props.showIcon ? 'w-6 h-6' : 'w-0 h-0'
-})
-
 const iconClass = computed(() => {
-  return `${iconColor.value} ${iconSize.value}`
+  return `${iconColor.value} w-7 h-7 p-1 rounded-full bg-opacity-10`
 })
 
 // const notificationIconClass = computed(() => {
@@ -85,7 +99,6 @@ const iconClass = computed(() => {
 </script>
 
 <template>
-  <!-- Notification panel, dynamically insert this into the live region when it needs to be displayed -->
   <transition
     enter-active-class="transition duration-300 ease-out transform"
     enter-from-class="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"

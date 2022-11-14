@@ -104,8 +104,10 @@ class UserController extends Controller
 		$user->delete();
 
 		return redirect()->back()->with('notification', [
-			'variant' => 'trash',
-			'title' => $user->username.' has been deleted.',
+			'variant' => 'danger',
+      'icon' => 'trash',
+      'title' => 'Successfully deleted!',
+			'message' => $user->username.' has been deleted.',
 		]);
 	}
 
@@ -114,7 +116,8 @@ class UserController extends Controller
 		User::whereIn('id', $request->ids)->get()->each->delete();
 
 		return redirect()->back()->with('notification', [
-			'variant' => 'trash',
+			'variant' => 'danger',
+      'icon' => 'trash',
       'title' => 'Successfully deleted!',
 			'message' => count($request->ids).' users deleted.',
 		]);
@@ -125,7 +128,8 @@ class UserController extends Controller
   	$user->restore();
 
   	return redirect()->back()->with('notification', [
-  		'variant' => 'success',
+  		'variant' => 'warning',
+      'icon' => 'restore',
       'title' => 'Successfully restored!',
   		'message' => $user->username.' has been restored.',
   	]);
@@ -136,7 +140,8 @@ class UserController extends Controller
   	User::whereIn('id', $request->ids)->restore();
 
   	return redirect()->back()->with('notification', [
-  		'variant' => 'success',
+  		'variant' => 'warning',
+      'icon' => 'restore',
       'title' => 'Successfully restored!',
   		'message' => count($request->ids).' users restored.',
   	]);
