@@ -50,10 +50,11 @@ const sizesLookup = {
     :readonly="isReadOnly"
     :disabled="isDisabled"
     :class="`
-    ${baseClasses}
-    ${variantsLookup[variant]}
-    ${isExpanded ? 'w-full' : ''}
-    ${isIcon ? 'p-0 focus:ring-2 focus:ring-offset-2' : sizesLookup[size]}`"
+      ${baseClasses}
+      ${variantsLookup[variant]}
+      ${isExpanded ? 'w-full' : ''}
+      ${isIcon ? 'p-0 focus:ring-2 focus:ring-offset-2' : sizesLookup[size]}
+    `"
   >
     <span v-if="!isLoading">
       <!-- label area -->
