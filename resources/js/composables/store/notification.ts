@@ -15,7 +15,29 @@ export const useNotificationStore = defineStore('notification', () => {
     }
   })
 
-  const notifications = reactive<Array<Notification>>([])
+  const notifications = reactive<Array<Notification>>([
+    // {
+    //   id: 1,
+    //   variant: 'danger',
+    //   icon: 'trash',
+    //   title: 'This is a success notification',
+    //   message: 'This is a success message',
+    // },
+    // {
+    //   id: 2,
+    //   variant: 'danger',
+    //   icon: 'warning',
+    //   title: 'This is a success notification',
+    //   message: 'This is a success message',
+    // },
+    // {
+    //   id: 3,
+    //   variant: 'success',
+    //   icon: 'check',
+    //   title: 'This is a success notification',
+    //   message: 'This is a success message',
+    // },
+  ])
 
   // add notification
   function add(notification: Notification) {
