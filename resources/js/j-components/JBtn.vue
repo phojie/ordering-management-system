@@ -1,14 +1,4 @@
 <script setup lang="ts">
-withDefaults(defineProps<Btn>(), {
-  type: 'button',
-  variant: 'primary',
-  size: 'medium',
-  isExpanded: false,
-})
-
-type BtnVariant = keyof typeof variantsLookup
-type BtnSize = keyof typeof sizesLookup
-
 interface Btn {
   // string
   id?: string
@@ -27,6 +17,16 @@ interface Btn {
   isIcon?: boolean
 }
 
+withDefaults(defineProps<Btn>(), {
+  type: 'button',
+  variant: 'primary',
+  size: 'md',
+  isExpanded: false,
+})
+
+type BtnVariant = keyof typeof variantsLookup
+type BtnSize = keyof typeof sizesLookup
+
 const baseClasses = 'border rounded-md focus:outline-none font-medium flex justify-center items-center'
 
 const variantsLookup = {
@@ -38,9 +38,9 @@ const variantsLookup = {
 }
 
 const sizesLookup = {
-  small: 'px-3 py-1.5 text-sm focus:ring-2 focus:ring-offset-1',
-  medium: 'px-4 py-2 text-sm focus:ring-2 focus:ring-offset-2',
-  large: 'px-8 py-4 text-lg focus:ring focus:ring-offset-2',
+  sm: 'px-3 py-1.5 text-sm focus:ring-2 focus:ring-offset-1',
+  md: 'px-4 py-2 text-sm focus:ring-2 focus:ring-offset-2',
+  lg: 'px-8 py-4 text-lg focus:ring focus:ring-offset-2',
 }
 </script>
 
