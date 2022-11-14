@@ -34,7 +34,7 @@ const indeterminate = computed(() => props.modelValue.length > 0 && props.modelV
 const onCheckBoxChange = (e: any) => {
   const { checked } = e.target
   if (checked)
-    emit('update:modelValue', props.items?.map(m => m[props.itemKey]) ?? [])
+    emit('update:modelValue', props.items?.filter(f => f.status !== 'deleted').map(m => m[props.itemKey]) ?? [])
   else
     emit('update:modelValue', [])
 }
@@ -116,6 +116,7 @@ const onCheckBoxChange = (e: any) => {
                   class="absolute inset-y-0 left-0 w-0.5 bg-primary-600"
                 />
                 <input
+                  v-if="item?.status !== 'deleted'"
                   type="checkbox"
                   :checked="modelValue.includes(item[props.itemKey])"
                   class="absolute w-4 h-4 -mt-2 border-gray-300 rounded text-primary-600 left-4 top-1/2 focus:ring-primary-500 sm:left-6"
