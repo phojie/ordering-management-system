@@ -74,9 +74,11 @@ const toggleEdit = (user: User) => {
         <!-- Role row -->
         </td>
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-          <span
-            class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
-          >{{ item.status }}</span>
+          <JBadge
+            :label="item.status"
+            :variant="item.status === 'active' ? 'success' : 'danger'"
+            :class="item.status === 'active' ? '!font-semibold' : ''"
+          />
         </td>
         <td class="px-3 py-4 text-sm font-medium whitespace-nowrap">
           <div class="flex items-center space-x-2 ">
@@ -89,7 +91,7 @@ const toggleEdit = (user: User) => {
               <span class="sr-only">, {{ item.name }}</span>
             </button>
 
-            <button v-if="item.status === 'active'" :disabled="processing" type="button" class="text-error-600 hover:text-error-900" @click="deleteUser(item.id)">
+            <button v-if="item.status === 'active'" :disabled="processing" type="button" class="text-danger-600 hover:text-danger-900" @click="deleteUser(item.id)">
               Delete
               <span class="sr-only">, {{ item.name }}</span>
             </button>
