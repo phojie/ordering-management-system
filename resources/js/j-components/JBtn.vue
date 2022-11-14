@@ -33,8 +33,6 @@ const variantsLookup = {
   text: 'focus:ring-primary-500 bg-white hover:bg-gray-50 text-gray-700 shadow-sm border-gray-300',
   primary: 'focus:ring-primary-500 bg-primary-600 hover:bg-primary-700 text-white shadow-sm border-transparent',
   warning: 'focus:ring-warning-500 bg-warning-600 hover:bg-warning-700 text-white shadow-sm border-transparent',
-  // secondary: 'bg-slate-200 text-slate-800 shadow hover:bg-slate-300 focus:bg-slate-300 focus:ring-slate-500',
-  // danger: 'bg-red-500 text-white shadow-lg uppercase tracking-wider hover:bg-red-400 focus:bg-red-400 focus:ring-red-500',
 }
 
 const sizesLookup = {
