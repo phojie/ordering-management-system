@@ -13,6 +13,7 @@
     "@vueuse/components": "^9.4.0",
     "@vueuse/core": "^9.4.0",
     "eslint": "8.22.0",
+    "floating-vue": "^2.0.0-beta.20",
     "highcharts": "^10.2.1",
     "highcharts-vue": "^1.4.0",
     "pinia": "^2.0.23",
