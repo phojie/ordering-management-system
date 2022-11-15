@@ -4,11 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* base area */
-@layer base {
-  html {
+/* base area
+   html {
     font-size: 14px;
   }
+*/
+
+@layer base {
 
   button:disabled,
   input:disabled,
