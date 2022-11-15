@@ -81,6 +81,7 @@ export interface Notification {
   title: string
   message?: string
   undoUrl?: URL
+  undoData?: any
 
   showClose?: boolean
   showIcon?: boolean

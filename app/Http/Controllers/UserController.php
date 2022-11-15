@@ -13,23 +13,23 @@ class UserController extends Controller
 {
 	public function index(Request $request)
 	{
-    // set model
+		// set model
 		$model = User::query()
-          ->whereNotIn('id', [auth()->user()->id])
-          ->withTrashed();
+		  ->whereNotIn('id', [auth()->user()->id])
+		  ->withTrashed();
 
 		// set query builder
 		$query = QueryBuilder::for($model)
-          ->allowedSorts(['full_name', 'status']);
-          // ->allowedFilters(['username', 'email', 'full_name']);
+		  ->allowedSorts(['full_name', 'status']);
+		// ->allowedFilters(['username', 'email', 'full_name']);
 
 		// if request search
-		if (!empty($request->search)) {
-      $query->where(function ($q) use ($request) {
-        $q->where('username', 'ilike', "%{$request->search}%")
-          ->orWhere('email', 'ilike', "%{$request->search}%")
-          ->orWhere('full_name', 'ilike', "%{$request->search}%");
-      });
+		if (! empty($request->search)) {
+			$query->where(function ($q) use ($request) {
+				$q->where('username', 'ilike', "%{$request->search}%")
+				  ->orWhere('email', 'ilike', "%{$request->search}%")
+				  ->orWhere('full_name', 'ilike', "%{$request->search}%");
+			});
 		}
 
 		// set pagination
@@ -42,11 +42,6 @@ class UserController extends Controller
 			'users' => $query,
 			'search' => $request->search,
 		]);
-	}
-
-	public function create()
-	{
-		//
 	}
 
 	public function store(UserRequest $userRequest)
@@ -64,7 +59,7 @@ class UserController extends Controller
 
 		return redirect()->back()->with('notification', [
 			'variant' => 'success',
-      'title' => 'Successfully saved!',
+			'title' => 'Successfully saved!',
 			'message' => $userRequest->username.' has been created.',
 		]);
 	}
@@ -72,11 +67,6 @@ class UserController extends Controller
 	public function show(User $user)
 	{
 		// get user
-	}
-
-	public function edit(User $user)
-	{
-		// edit user
 	}
 
   public function update(UserRequest $userRequest, User $user)
@@ -94,7 +84,7 @@ class UserController extends Controller
 
   	return redirect()->back()->with('notification', [
   		'variant' => 'success',
-      'title' => 'Successfully saved!',
+  		'title' => 'Successfully saved!',
   		'message' => $userRequest->username.' has been updated.',
   	]);
   }
@@ -105,22 +95,29 @@ class UserController extends Controller
 
 		return redirect()->back()->with('notification', [
 			'variant' => 'danger',
-      'icon' => 'trash',
-      'title' => 'Successfully deleted!',
-      'showUndo' => true,
-      'undoUrl' => route('users.restore', $user->id),
+			'icon' => 'trash',
+			'title' => 'Successfully deleted!',
+			'showUndo' => true,
+			'undoUrl' => route('users.restore', $user->id),
 			'message' => $user->username.' has been deleted.',
 		]);
 	}
 
 	public function destroyMultiple(Request $request)
 	{
-		User::whereIn('id', $request->ids)->get()->each->delete();
+		\DB::transaction(function () use ($request) {
+			User::whereIn('id', $request->ids)->get()->each->delete();
+		});
 
 		return redirect()->back()->with('notification', [
 			'variant' => 'danger',
-      'icon' => 'trash',
-      'title' => 'Successfully deleted!',
+			'icon' => 'trash',
+			'title' => 'Successfully deleted!',
+			'showUndo' => true,
+			'undoUrl' => route('users.restore-multiple'),
+			'undoData' => [
+				'ids' => $request->ids,
+			],
 			'message' => count($request->ids).' users deleted.',
 		]);
 	}
@@ -131,20 +128,23 @@ class UserController extends Controller
 
   	return redirect()->back()->with('notification', [
   		'variant' => 'warning',
-      'icon' => 'restore',
-      'title' => 'Successfully restored!',
+  		'icon' => 'restore',
+  		'title' => 'Successfully restored!',
   		'message' => $user->username.' has been restored.',
   	]);
   }
 
   public function restoreMultiple(Request $request)
   {
-  	User::whereIn('id', $request->ids)->restore();
+  	// db transaction
+  	\DB::transaction(function () use ($request) {
+  		User::withTrashed()->whereIn('id', $request->ids)->get()->each->restore();
+  	});
 
   	return redirect()->back()->with('notification', [
   		'variant' => 'warning',
-      'icon' => 'restore',
-      'title' => 'Successfully restored!',
+  		'icon' => 'restore',
+  		'title' => 'Successfully restored!',
   		'message' => count($request->ids).' users restored.',
   	]);
   }
