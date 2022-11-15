@@ -8,7 +8,7 @@ import HeroiconsTrash from '~icons/heroicons/trash'
 import HeroiconsArrowPathRoundedSquare from '~icons/heroicons/arrow-path-rounded-square'
 
 const props = withDefaults(defineProps<Notification>(), {
-  duration: 5,
+  duration: 3,
   showClose: true,
   showIcon: true,
   showUndo: false,
