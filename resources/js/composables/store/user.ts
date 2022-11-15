@@ -48,16 +48,17 @@ export const useUserStore = defineStore('user', () => {
       value: 'title',
     },
     {
-      text: 'Role',
-      value: 'role',
-    },
-    {
       text: 'Status',
       value: 'status',
     },
     {
-      text: 'Actions',
+      text: 'Role',
+      value: 'role',
+    },
+    {
+      text: '',
       value: 'actions',
+      class: '!relative !pl-3 !pr-4 !sm:pr-6',
     },
   ])
 
