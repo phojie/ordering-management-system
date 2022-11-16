@@ -257,6 +257,7 @@ export const useUserStore = defineStore('user', () => {
 
   // reset form
   function resetForm() {
+    form.id = ''
     form.firstName = ''
     form.middleName = ''
     form.lastName = ''
