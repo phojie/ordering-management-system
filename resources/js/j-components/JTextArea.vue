@@ -7,9 +7,8 @@ const props = withDefaults(defineProps<TextArea>(), {
 })
 
 // set emits
-defineEmits<{
-  (e: 'update:modelValue', value: string): void
-}>()
+const emit = defineEmits(['update:modelValue', 'blur'])
+const value = useVModel(props, 'modelValue', emit)
 
 // set computed
 const appendInnerIcon = computed(() => {
@@ -46,14 +45,13 @@ onMounted(() => {
       <textarea
         :id="id"
         ref="inputRef"
+        v-model="value"
         :rows="props.rows"
         :readonly="isReadOnly"
         :disabled="isDisabled"
         :name="name"
-        :value="modelValue"
         :class="[isError ? 'text-danger-900 placeholder-error-300 border-error-300 focus:border-error-500 focus:outline-none focus:ring-error-500' : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500']"
         class="block w-full pr-10 rounded-md sm:text-sm"
-        @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       />
 
       <!-- append inner icon -->
