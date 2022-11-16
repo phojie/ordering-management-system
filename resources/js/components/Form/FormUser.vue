@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { form, formState, vuelidate: $v } = useUserStore()
+const { form, formState, $v } = useUserStore()
 const processing = toRef(useUserStore(), 'processing')
 </script>
 

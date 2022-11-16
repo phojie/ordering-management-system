@@ -91,11 +91,11 @@ export const useUserStore = defineStore('user', () => {
     },
   }
   const $externalResults = ref({})
-  const vuelidate = useVuelidate(rules as any, form, { $externalResults })
+  const $v = useVuelidate(rules as any, form, { $externalResults })
 
   // submit form
   async function submitForm() {
-    if (!await vuelidate.value.$validate())
+    if (!await $v.value.$validate())
       return
 
     if (formState.type === 'create')
@@ -265,7 +265,7 @@ export const useUserStore = defineStore('user', () => {
     form.email = ''
     form.password = ''
 
-    vuelidate.value.$reset()
+    $v.value.$reset()
   }
 
   // reset form state
@@ -279,7 +279,7 @@ export const useUserStore = defineStore('user', () => {
   return {
     processing,
     headers,
-    vuelidate,
+    $v,
     form,
     formState,
 
