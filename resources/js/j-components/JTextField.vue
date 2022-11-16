@@ -72,7 +72,7 @@ onMounted(() => {
         :placeholder="placeholder"
         :class="[
           isDirty
-            ? 'text-danger-900 placeholder-error-300 border-error-300 focus:border-error-500 focus:outline-none focus:ring-error-500'
+            ? 'text-danger-900 placeholder-danger-300 border-danger-300 focus:border-danger-500 focus:outline-none focus:ring-danger-500'
             : 'border-gray-300 focus:border-primary-500 focus:ring-primary-500',
         ]"
         class="block w-full pr-10 rounded-md sm:text-sm"
