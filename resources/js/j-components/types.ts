@@ -12,7 +12,7 @@ export interface TextField {
   autofocus?: boolean
 
   // boolean
-  isDirty?: boolean
+  isError?: boolean
   isDisabled?: boolean
   isReadOnly?: boolean
   isLoading?: boolean
@@ -31,7 +31,7 @@ export interface TextArea {
   errorMessage?: string
 
   // boolean
-  isDirty?: boolean
+  isError?: boolean
   isDisabled?: boolean
   isReadOnly?: boolean
   isLoading?: boolean

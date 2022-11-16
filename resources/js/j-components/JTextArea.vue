@@ -16,7 +16,7 @@ const appendInnerIcon = computed(() => {
   if (props.isLoading)
     return 'icomoon-free:spinner2'
 
-  else if (props.isDirty)
+  else if (props.isError)
     return 'heroicons:exclamation-circle-20-solid'
 
   else
@@ -24,7 +24,7 @@ const appendInnerIcon = computed(() => {
 })
 
 const details = computed(() => {
-  if (props.isDirty)
+  if (props.isError)
     return props.errorMessage
 })
 
@@ -51,21 +51,21 @@ onMounted(() => {
         :disabled="isDisabled"
         :name="name"
         :value="modelValue"
-        :class="[isDirty ? 'text-danger-900 placeholder-error-300 border-error-300 focus:border-error-500 focus:outline-none focus:ring-error-500' : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500']"
+        :class="[isError ? 'text-danger-900 placeholder-error-300 border-error-300 focus:border-error-500 focus:outline-none focus:ring-error-500' : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500']"
         class="block w-full pr-10 rounded-md sm:text-sm"
         @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       />
 
       <!-- append inner icon -->
       <div v-if="appendInnerIcon" class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-        <Icon :name="appendInnerIcon" class="w-5 h-5" :class="[isDirty ? 'text-danger-500' : 'text-gray-400', isLoading ? 'animate-spin' : '']" aria-hidden="true" />
+        <Icon :name="appendInnerIcon" class="w-5 h-5" :class="[isError ? 'text-danger-500' : 'text-gray-400', isLoading ? 'animate-spin' : '']" aria-hidden="true" />
       </div>
     </div>
 
     <!-- details -->
     <p
       :id="`${name}-error`"
-      :class="[isDirty ? 'text-danger-600' : 'text-gray-500']"
+      :class="[isError ? 'text-danger-600' : 'text-gray-500']"
       class="mt-1 text-sm"
     >
       {{ details }}

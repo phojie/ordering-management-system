@@ -22,7 +22,7 @@ defineEmits<{
 
 // set computed
 const appendInnerIcon = computed(() => {
-  if (props.isDirty)
+  if (props.isError)
     return HeroiconsExclamationCircle20Solid
 
   else
@@ -30,7 +30,7 @@ const appendInnerIcon = computed(() => {
 })
 
 const details = computed(() => {
-  if (props.isDirty)
+  if (props.isError)
     return props.errorMessage
 
   else
@@ -38,7 +38,7 @@ const details = computed(() => {
 })
 
 const hasDetails = computed(() => {
-  return props.isDirty || props.hints
+  return props.isError || props.hints
 })
 
 // autofocus
@@ -71,7 +71,7 @@ onMounted(() => {
         :autofocus="autofocus"
         :placeholder="placeholder"
         :class="[
-          isDirty
+          isError
             ? 'text-danger-900 placeholder-danger-300 border-danger-300 focus:border-danger-500 focus:outline-none focus:ring-danger-500'
             : 'border-gray-300 focus:border-primary-500 focus:ring-primary-500',
         ]"
@@ -86,7 +86,7 @@ onMounted(() => {
         <component
           :is="appendInnerIcon"
           class="w-5 h-5" :class="[
-            isDirty
+            isError
               ? 'text-danger-500'
               : 'text-gray-400',
             { 'animate-spin': isLoading },
@@ -103,7 +103,7 @@ onMounted(() => {
     <p
       v-if="hasDetails"
       :id="`${id}-details`"
-      :class="[isDirty ? 'text-danger-600' : 'text-gray-500']"
+      :class="[isError ? 'text-danger-600' : 'text-gray-500']"
       class="mt-3 text-sm"
     >
       {{ details }}

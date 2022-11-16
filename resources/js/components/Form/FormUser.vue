@@ -12,7 +12,7 @@ const processing = toRef(useUserStore(), 'processing')
       label="First Name"
       :is-disabled="processing"
       :error-message="$v.firstName.$errors[0]?.$message"
-      :is-dirty="$v.firstName.$error"
+      :is-error="$v.firstName.$error"
     />
 
     <JTextField
@@ -31,7 +31,7 @@ const processing = toRef(useUserStore(), 'processing')
       label="Last Name"
       :is-disabled="processing"
       :error-message="$v.lastName.$errors[0]?.$message"
-      :is-dirty="$v.lastName.$error"
+      :is-error="$v.lastName.$error"
     />
 
     <JTextField
@@ -41,7 +41,7 @@ const processing = toRef(useUserStore(), 'processing')
       label="Username"
       :is-disabled="processing"
       :error-message="$v.username.$errors[0]?.$message"
-      :is-dirty="$v.username.$error"
+      :is-error="$v.username.$error"
     />
 
     <JTextField
@@ -51,7 +51,7 @@ const processing = toRef(useUserStore(), 'processing')
       label="Email"
       :is-disabled="processing"
       :error-message="$v.email.$errors[0]?.$message"
-      :is-dirty="$v.email.$error"
+      :is-error="$v.email.$error"
     />
 
     <JTextField
@@ -63,7 +63,7 @@ const processing = toRef(useUserStore(), 'processing')
       label="Password"
       :is-disabled="processing"
       :error-message="$v.password.$errors[0]?.$message"
-      :is-dirty="$v.password.$error"
+      :is-error="$v.password.$error"
     />
 
     <!-- <div v-else>
