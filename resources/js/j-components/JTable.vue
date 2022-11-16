@@ -80,6 +80,7 @@ const onCheckBoxChange = (e: any) => {
                 class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
               >
                 <JLink
+                  v-show="modelValue.length === 0 && id === 0"
                   :to="header.sortable ? useJTable().sortLink(header) : ''"
                   class="inline-flex group"
                 >
