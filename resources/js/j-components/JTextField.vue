@@ -15,10 +15,8 @@ const props = withDefaults(defineProps<TextField>(), {
 })
 
 // set emits
-defineEmits<{
-  (e: 'update:modelValue', value: string): void
-  (e: 'blur'): void
-}>()
+const emit = defineEmits(['update:modelValue', 'blur'])
+const value = useVModel(props, 'modelValue', emit)
 
 // set computed
 const appendInnerIcon = computed(() => {
@@ -63,9 +61,9 @@ onMounted(() => {
       <input
         :id="id"
         ref="inputRef"
+        v-model="value"
         :readonly="isReadOnly"
         :disabled="isDisabled"
-        :value="modelValue"
         :type="type"
         :name="name"
         :autofocus="autofocus"
@@ -76,9 +74,9 @@ onMounted(() => {
             : 'border-gray-300 focus:border-primary-500 focus:ring-primary-500',
         ]"
         class="block w-full pr-10 rounded-md sm:text-sm"
-        @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
         @blur="$emit('blur')"
       >
+      <!-- @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" -->
 
       <!-- append inner area -->
       <div v-if="appendInnerIcon || isLoading" class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
