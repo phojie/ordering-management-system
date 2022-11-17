@@ -39,7 +39,7 @@ createInertiaApp({
       .use(HighchartsVue)
       .use(ZiggyVue, Ziggy)
       .use(FloatingVue, {
-        distance: 8,
+        distance: 10,
         themes: {
           tooltip: {
             // reset
