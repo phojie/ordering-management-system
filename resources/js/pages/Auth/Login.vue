@@ -33,7 +33,7 @@ const processing = computed(() => form.processing)
             :is-disabled="processing"
             label="Email address"
             :error-message="form.errors?.email"
-            :is-dirty="_.has(form.errors, 'email')"
+            :is-error="_.has(form.errors, 'email')"
           />
 
           <JTextField
@@ -43,7 +43,7 @@ const processing = computed(() => form.processing)
             label="Password"
             :is-disabled="processing"
             :error-message="form.errors?.password"
-            :is-dirty="_.has(form.errors, 'password')"
+            :is-error="_.has(form.errors, 'password')"
           />
 
           <div class="flex items-center justify-between">
