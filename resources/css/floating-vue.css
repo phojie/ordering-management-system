@@ -1,5 +1,9 @@
 @layer components {
   .v-popper__inner {
-    @apply !text-red-500;
+    @apply !px-2 !py-1 !bg-gray-800 !text-sm !text-gray-100 !rounded-lg !bg-opacity-95;
+  }
+
+  .v-popper__arrow-outer {
+    @apply !border-gray-800 !border-opacity-95;
   }
 }
