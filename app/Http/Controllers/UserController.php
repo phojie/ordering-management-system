@@ -20,7 +20,7 @@ class UserController extends Controller
 
 		// set query builder
 		$query = QueryBuilder::for($model)
-      ->defaultSort('created_at')
+              ->defaultSort('created_at')
 		  ->allowedSorts(['full_name', 'status']);
 
 		// ->allowedFilters(['username', 'email', 'full_name']);

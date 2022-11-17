@@ -50,6 +50,7 @@ export const useUserStore = defineStore('user', () => {
     {
       text: 'Status',
       value: 'status',
+      sortable: true,
     },
     {
       text: 'Role',
