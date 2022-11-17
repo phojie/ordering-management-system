@@ -57,6 +57,11 @@ export const useUserStore = defineStore('user', () => {
       value: 'role',
     },
     {
+      text: 'Created At',
+      value: 'created_at',
+      sortable: true,
+    },
+    {
       text: '',
       value: 'actions',
       class: '!relative !pl-3 !pr-4 !sm:pr-6',

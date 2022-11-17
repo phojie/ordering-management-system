@@ -78,6 +78,9 @@ const toggleEdit = (user: User) => {
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
           <!-- Role row --> Member
         </td>
+        <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+          {{ useDateFormat(item.createdAt, 'MMM DD, YYYY').value }}
+        </td>
         <td class="relative py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
           <button
             v-if="item.status === 'active'"
