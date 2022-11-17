@@ -80,17 +80,24 @@ export interface Notification {
 
   title: string
   message?: string
-  undoUrl?: URL
-  undoData?: any
 
   showClose?: boolean
   showIcon?: boolean
-  showUndo?: boolean
 
   variant?: 'success' | 'info' | 'warning' | 'danger'
   icon?: 'check' | 'info' | 'warning' | 'error' | 'trash' | 'restore'
   // TODO define this position options, it was not yet used
   position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
+
+  // array
+  actions?: Array<NotificationAction>
+}
+
+export interface NotificationAction {
+  label: string
+  url: URL
+  data?: any
+  method?: 'get' | 'post' | 'put' | 'patch' | 'delete'
 }
 
 export interface PaginationLink {

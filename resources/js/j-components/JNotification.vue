@@ -8,10 +8,9 @@ import HeroiconsTrash from '~icons/heroicons/trash'
 import HeroiconsArrowPathRoundedSquare from '~icons/heroicons/arrow-path-rounded-square'
 
 const props = withDefaults(defineProps<Notification>(), {
-  duration: 3,
+  duration: 4,
   showClose: true,
   showIcon: true,
-  showUndo: false,
   variant: 'info',
 })
 
@@ -77,11 +76,6 @@ const iconClass = computed(() => {
   return `${iconColor.value} w-7 h-7 p-1 rounded-full bg-opacity-10`
 })
 
-const disableUndo = ref(false)
-const showUndo = computed(() => {
-  return props.showUndo && props.undoUrl
-})
-
 // const notificationIconClass = computed(() => {
 //   return `${iconClass.value} mr-4`
 // })
@@ -125,18 +119,19 @@ const showUndo = computed(() => {
             <p v-if="props.message" class="mt-1 text-sm text-gray-500">
               {{ props.message }}
             </p>
-            <div class="flex mt-3 space-x-7">
+            <div v-if="props.actions?.length as any > 0" class="flex mt-3 space-x-7">
+              <!-- action buttons -->
               <JLink
-                v-if="showUndo"
-                :to="props.undoUrl"
+                v-for="(action, i) in props.actions"
+                :key="i"
+                :to="action.url"
                 as="button"
-                :disabled="disableUndo"
-                method="put"
-                :data="props.undoData"
+                :data="action.data"
+                :method="action.method"
                 class="text-sm font-medium bg-white rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-                @click.once="disableUndo = true"
+                @click.once="close"
               >
-                Undo
+                {{ action.label }}
               </JLink>
 
               <button

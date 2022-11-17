@@ -20,7 +20,7 @@ class UserController extends Controller
 
 		// set query builder
 		$query = QueryBuilder::for($model)
-              ->defaultSort('created_at')
+		  ->defaultSort('created_at')
 		  ->allowedSorts(['full_name', 'status']);
 
 		// ->allowedFilters(['username', 'email', 'full_name']);
@@ -99,9 +99,14 @@ class UserController extends Controller
 			'variant' => 'danger',
 			'icon' => 'trash',
 			'title' => 'Successfully deleted!',
-			'showUndo' => true,
-			'undoUrl' => route('users.restore', $user->id),
 			'message' => $user->username.' has been deleted.',
+      'actions' => [
+        [
+          'label' => 'Undo',
+          'url' => route('users.restore', $user->id),
+          'method' => 'put',
+        ],
+      ],
 		]);
 	}
 
@@ -115,12 +120,18 @@ class UserController extends Controller
 			'variant' => 'danger',
 			'icon' => 'trash',
 			'title' => 'Successfully deleted!',
-			'showUndo' => true,
-			'undoUrl' => route('users.restore-multiple'),
-			'undoData' => [
-				'ids' => $request->ids,
-			],
 			'message' => count($request->ids).' users deleted.',
+      'actions' => [
+        [
+          'label' => 'Undo',
+          'url' => route('users.restore-multiple'),
+          'method' => 'put',
+          'data' => [
+            'ids' => $request->ids,
+          ],
+        ],
+      ],
+
 		]);
 	}
 
@@ -133,6 +144,13 @@ class UserController extends Controller
   		'icon' => 'restore',
   		'title' => 'Successfully restored!',
   		'message' => $user->username.' has been restored.',
+      'actions' => [
+        [
+          'label' => 'Undo',
+          'url' => route('users.destroy', $user->id),
+          'method' => 'delete',
+        ],
+      ]
   	]);
   }
 
@@ -148,6 +166,16 @@ class UserController extends Controller
   		'icon' => 'restore',
   		'title' => 'Successfully restored!',
   		'message' => count($request->ids).' users restored.',
+      'actions' => [
+        [
+          'label' => 'Undo',
+          'url' => route('users.destroy-multiple'),
+          'method' => 'delete',
+          'data' => [
+            'ids' => $request->ids,
+          ],
+        ],
+      ]
   	]);
   }
 }
