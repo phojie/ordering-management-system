@@ -82,7 +82,6 @@ const toggleEdit = (user: User) => {
           <button
             v-if="item.status === 'active'"
             v-tooltip="'Edit user'"
-            :disabled="processing"
             type="button"
             class="text-primary-600 hover:text-primary-900" @click="toggleEdit(item as any)"
           >
@@ -92,7 +91,6 @@ const toggleEdit = (user: User) => {
           <button
             v-else-if="item.status === 'deleted'"
             v-tooltip="'Restore user'"
-            :disabled="processing"
             type="button"
             class="text-warning-600 hover:text-warning-900"
             @click="restoreUser(item.id)"
