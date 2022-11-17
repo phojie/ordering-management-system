@@ -10,7 +10,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 		Route::delete('/users', 'destroyMultiple')->name('users.destroy-multiple');
 
     // restore
-		Route::put('/users/{user}/restore', 'restore')->name('users.restore');
+		Route::put('/users/{user}/restore', 'restore')->name('users.restore')->withTrashed();
 		Route::put('/users/restore', 'restoreMultiple')->name('users.restore-multiple');
 
     // index
