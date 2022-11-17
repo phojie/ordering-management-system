@@ -4,7 +4,7 @@ defineProps<{
   users: PaginationUsers
 }>()
 
-const { formState, form, headers, deleteUsers, deleteUser, restoreUser } = useUserStore()
+const { formState, form, headers, deleteUsers, restoreUser } = useUserStore()
 const processing = toRef(useUserStore(), 'processing')
 const selected = ref<any>([])
 
@@ -80,38 +80,25 @@ const toggleEdit = (user: User) => {
         </td>
         <td class="relative py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
           <button
-            v-if="item.status === 'active'" :disabled="processing" type="button"
+            v-if="item.status === 'active'"
+            v-tooltip="'Edit user'"
+            :disabled="processing"
+            type="button"
             class="text-primary-600 hover:text-primary-900" @click="toggleEdit(item as any)"
           >
             <heroicons-pencil-square-20-solid class="w-5 h-5" />
-            <!-- Edit -->
-            <span class="sr-only">, {{ item.name }}</span>
           </button>
 
           <button
-            v-if="item.status === 'deleted'"
+            v-else-if="item.status === 'deleted'"
+            v-tooltip="'Restore user'"
             :disabled="processing"
             type="button"
-            class="text-warning-600 hover:text-warning-900" @click="restoreUser(item.id)"
+            class="text-warning-600 hover:text-warning-900"
+            @click="restoreUser(item.id)"
           >
-            <!-- Restore -->
             <heroicons-arrow-path-rounded-square-20-solid class="w-5 h-5" />
-            <span class="sr-only">, {{ item.name }}</span>
           </button>
-
-          <div v-if="false" class="flex items-center space-x-2 ">
-            <button v-if="item.status === 'active'" :disabled="processing" type="button" class="text-danger-600 hover:text-danger-900" @click="deleteUser(item.id)">
-              <heroicons-trash-20-solid class="w-5 h-5" />
-              <span class="sr-only">, {{ item.name }}</span>
-            </button>
-
-            <!-- restore -->
-            <button v-if="item.status === 'deleted'" :disabled="processing" type="button" class="text-warning-600 hover:text-warning-900" @click="restoreUser(item.id)">
-              Restore
-              <!-- <heroicons-arrow-path-rounded-square-20-solid class="w-5 h-5" /> -->
-              <span class="sr-only">, {{ item.name }}</span>
-            </button>
-          </div>
         </td>
       </template>
     </JTable>
