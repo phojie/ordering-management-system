@@ -223,7 +223,6 @@ export const useUserStore = defineStore('user', () => {
   function restoreUser(id: string) {
     Inertia.put(route('users.restore', id),
       {
-        // request data
       },
       {
         only: ['users', 'flash'],
