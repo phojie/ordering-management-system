@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Services\FlashNotification;
 use Illuminate\Http\Request;
 use Inertia\Controller;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -59,11 +60,9 @@ class UserController extends Controller
 			'password' => bcrypt($userRequest->password),
 		]);
 
-		return redirect()->back()->with('notification', [
-			'variant' => 'success',
-			'title' => 'Successfully saved!',
-			'message' => $userRequest->username.' has been created.',
-		]);
+		(new FlashNotification)->update($userRequest->username);
+
+		return redirect()->back();
 	}
 
 	public function show(User $user)
@@ -84,30 +83,24 @@ class UserController extends Controller
   		'password' => bcrypt($userRequest->password),
   	]);
 
-  	return redirect()->back()->with('notification', [
-  		'variant' => 'success',
-  		'title' => 'Successfully saved!',
-  		'message' => $userRequest->username.' has been updated.',
-  	]);
+  	(new FlashNotification)->update($userRequest->username);
+
+  	return redirect()->back();
   }
 
 	public function destroy(User $user)
 	{
 		$user->delete();
 
-		return redirect()->back()->with('notification', [
-			'variant' => 'danger',
-			'icon' => 'trash',
-			'title' => 'Successfully deleted!',
-			'message' => $user->username.' has been deleted.',
-      'actions' => [
-        [
-          'label' => 'Undo',
-          'url' => route('users.restore', $user->id),
-          'method' => 'put',
-        ],
-      ],
+		(new FlashNotification)->destroy($user->username, [
+			[
+				'url' => route('users.restore', $user->id),
+				'method' => 'put',
+
+			],
 		]);
+
+		return redirect()->back();
 	}
 
 	public function destroyMultiple(Request $request)
@@ -116,42 +109,31 @@ class UserController extends Controller
 			User::whereIn('id', $request->ids)->get()->each->delete();
 		});
 
-		return redirect()->back()->with('notification', [
-			'variant' => 'danger',
-			'icon' => 'trash',
-			'title' => 'Successfully deleted!',
-			'message' => count($request->ids).' users deleted.',
-      'actions' => [
-        [
-          'label' => 'Undo',
-          'url' => route('users.restore-multiple'),
-          'method' => 'put',
-          'data' => [
-            'ids' => $request->ids,
-          ],
-        ],
-      ],
-
+		(new FlashNotification)->destroy(count($request->ids).' users', [
+			[
+				'url' => route('users.restore-multiple'),
+				'method' => 'put',
+				'data' => [
+					'ids' => $request->ids,
+				],
+			],
 		]);
+
+		return redirect()->back();
 	}
 
   public function restore(User $user)
   {
   	$user->restore();
 
-  	return redirect()->back()->with('notification', [
-  		'variant' => 'warning',
-  		'icon' => 'restore',
-  		'title' => 'Successfully restored!',
-  		'message' => $user->username.' has been restored.',
-      'actions' => [
-        [
-          'label' => 'Undo',
-          'url' => route('users.destroy', $user->id),
-          'method' => 'delete',
-        ],
-      ]
+  	(new FlashNotification)->restore($user->username, [
+  		[
+  			'url' => route('users.destroy', $user->id),
+  			'method' => 'delete',
+  		],
   	]);
+
+  	return redirect()->back();
   }
 
   public function restoreMultiple(Request $request)
@@ -161,21 +143,16 @@ class UserController extends Controller
   		User::withTrashed()->whereIn('id', $request->ids)->get()->each->restore();
   	});
 
-  	return redirect()->back()->with('notification', [
-  		'variant' => 'warning',
-  		'icon' => 'restore',
-  		'title' => 'Successfully restored!',
-  		'message' => count($request->ids).' users restored.',
-      'actions' => [
-        [
-          'label' => 'Undo',
-          'url' => route('users.destroy-multiple'),
-          'method' => 'delete',
-          'data' => [
-            'ids' => $request->ids,
-          ],
-        ],
-      ]
+  	(new FlashNotification)->restore(count($request->ids).' users', [
+  		[
+  			'url' => route('users.destroy-multiple'),
+  			'method' => 'delete',
+  			'data' => [
+  				'ids' => $request->ids,
+  			],
+  		],
   	]);
+
+  	return redirect()->back();
   }
 }

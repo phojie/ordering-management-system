@@ -121,7 +121,6 @@ export const useUserStore = defineStore('user', () => {
           useNotificationStore().add({
             id: parseInt(_.uniqueId()),
             title: 'Users is successfully reloaded',
-            showClose: false,
           })
         },
       },

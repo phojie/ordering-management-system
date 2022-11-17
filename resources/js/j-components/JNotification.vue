@@ -131,7 +131,7 @@ const iconClass = computed(() => {
                 class="text-sm font-medium bg-white rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                 @click.once="close"
               >
-                {{ action.label }}
+                {{ action.label ?? 'Undo' }}
               </JLink>
 
               <button
