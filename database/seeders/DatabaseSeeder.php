@@ -2,13 +2,17 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-	public function run() : void
+
+	public function run(): void
 	{
-		\App\Models\User::factory(100)->create();
+		// generate admin account
+		$this->call(AdminSeeder::class);
+
+    // generate 100 users
+		$this->call(UserSeeder::class);
 	}
 }
