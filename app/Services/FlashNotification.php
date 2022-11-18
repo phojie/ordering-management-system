@@ -6,29 +6,21 @@ namespace App\Services;
 
 class FlashNotification
 {
-	public string $variant;
-
-	public string $message;
-
-	public string $title;
-
-	public string $icon;
-
-	public array $actions = [
-		'label' => null,
-		'url' => null,
-		'method' => null,
-		'data' => [],
-	];
-
-	public function __construct()
-	{
-		$this->variant = 'success';
-		$this->title = 'Successfully saved';
-		$this->icon = 'check';
+	public function __construct(
+		public string $variant = 'success',
+		public string $message = '',
+		public string $title = 'Successfully saved!',
+		public string $icon = 'check',
+		public array $actions = [
+			'label' => null,
+			'url' => null,
+			'method' => null,
+			'data' => [],
+		],
+	) {
 	}
 
-	public function create(string $prefixMessage, array $actions): void
+	public function create(string $prefixMessage, array $actions = []): void
 	{
 		$this->message = $prefixMessage.' has been created.';
 		$this->actions = $actions;
@@ -67,14 +59,15 @@ class FlashNotification
 		$this->flash();
 	}
 
-  public function info(string $message, array $actions = []): void {
-    $this->variant = 'info';
-    $this->message = $message;
-    $this->title = 'Information';
-    $this->icon = 'info';
-    $this->actions = $actions;
+  public function info(string $message, array $actions = []): void
+  {
+  	$this->variant = 'info';
+  	$this->message = $message;
+  	$this->title = 'Information';
+  	$this->icon = 'info';
+  	$this->actions = $actions;
 
-    $this->flash();
+  	$this->flash();
   }
 
 	public function flash(): void
