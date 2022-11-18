@@ -51,7 +51,7 @@ class UserController extends Controller
 			'password' => bcrypt($userRequest->password),
 		]);
 
-		(new FlashNotification)->update($userRequest->username);
+		(new FlashNotification)->create($userRequest->username);
 
 		return redirect()->back();
 	}
