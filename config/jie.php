@@ -1,6 +1,6 @@
 <?php
 
 return [
-  // pagination area
-  'per_page' => 10,
+	// pagination area
+	'per_page' => 10,
 ];
