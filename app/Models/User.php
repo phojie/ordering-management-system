@@ -37,7 +37,7 @@ class User extends Authenticatable
 		'email_verified_at' => 'datetime',
 	];
 
-	public function scopeSearch($query, $search): array
+	public function scopeSearch($query, $search): object
 	{
 		return $query->where(function ($q) use ($search) {
 			$q->where('username', 'ilike', "%{$search}%")
