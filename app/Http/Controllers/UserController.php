@@ -27,7 +27,7 @@ class UserController extends Controller
 		// ->allowedFilters(['username', 'email', 'full_name']);
 
 		// set pagination
-		$users = $query->paginate(15)->appends($request->all());
+		$users = $query->paginate(config('jie.per_page'))->appends($request->all());
 
 		// set resource
 		$query = UserResource::collection($users);
