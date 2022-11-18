@@ -6,7 +6,8 @@ export interface TextField {
   placeholder?: string
   modelValue?: string
   label?: string
-  appendInnerIcon?: string
+  appendInner?: unknown
+  prependInner?: unknown
   hints?: string
   errorMessage?: string
   autofocus?: boolean

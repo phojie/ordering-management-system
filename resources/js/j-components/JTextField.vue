@@ -19,12 +19,12 @@ const emit = defineEmits(['update:modelValue', 'blur'])
 const value = useVModel(props, 'modelValue', emit)
 
 // set computed
-const appendInnerIcon = computed(() => {
+const appendInner = computed(() => {
   if (props.isError)
     return HeroiconsExclamationCircle20Solid
 
   else
-    return props.appendInnerIcon
+    return props.appendInner
 })
 
 const details = computed(() => {
@@ -57,6 +57,22 @@ onMounted(() => {
 
     <!-- input wrapper -->
     <div class="relative rounded-md shadow-sm">
+      <!-- prepend inner area -->
+      <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+        <slot name="prependInner">
+          <component
+            :is="props.prependInner"
+            class="w-5 h-5 cursor-pointer"
+            :class="[
+              isError
+                ? 'text-danger-500'
+                : 'text-gray-400',
+            ]"
+            aria-hidden="true"
+          />
+        </slot>
+      </div>
+
       <!-- input -->
       <input
         :id="id"
@@ -72,27 +88,37 @@ onMounted(() => {
           isError
             ? 'text-danger-900 placeholder-danger-300 border-danger-300 focus:border-danger-500 focus:outline-none focus:ring-danger-500'
             : 'border-gray-300 focus:border-primary-500 focus:ring-primary-500',
+          props.prependInner
+            ? 'pl-10'
+            : 'pl-3',
+          appendInner
+            ? 'pr-10'
+            : 'pr-3',
         ]"
         class="block w-full pr-10 rounded-md sm:text-sm"
-        @blur="$emit('blur')"
+        @blur="emit('blur')"
       >
-      <!-- @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" -->
 
-      <!-- append inner area -->
-      <div v-if="appendInnerIcon || isLoading" class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-        <!-- icon area -->
-        <component
-          :is="appendInnerIcon"
-          class="w-5 h-5" :class="[
-            isError
-              ? 'text-danger-500'
-              : 'text-gray-400',
-            { 'animate-spin': isLoading },
-          ]"
-          aria-hidden="true"
-        />
+      <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+        <!-- append inner area -->
+        <slot
+          v-if="!isLoading"
+          name="appendInner"
+        >
+          <component
+            :is="appendInner"
+            v-if="appendInner"
+            class="w-5 h-5 cursor-pointer"
+            :class="[
+              isError
+                ? 'text-danger-500'
+                : 'text-gray-400',
+            ]"
+            aria-hidden="true"
+          />
+        </slot>
 
-        <!-- spinner area -->
+        <!-- default spinner area -->
         <JSpinner v-if="isLoading" class="w-5 h-5 text-gray-400" />
       </div>
     </div>
