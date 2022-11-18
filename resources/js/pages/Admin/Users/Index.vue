@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import HeroiconsMagnifyingGlass20Solid from '~icons/heroicons/magnifying-glass-20-solid'
+
 import type { PaginationUsers } from '@/types/user'
 const props = defineProps<{
   users: PaginationUsers
@@ -22,6 +24,15 @@ watch(search, _.debounce((value) => {
 const toggleCreate = () => {
   formState.show = true
 }
+
+const { meta, control, k } = useMagicKeys()
+
+watchEffect(() => {
+  if ((meta.value && k.value) || (control.value && k.value)) {
+    const input = document.querySelector('input[id="search"]') as HTMLInputElement
+    input.focus()
+  }
+})
 </script>
 
 <template>
@@ -63,17 +74,25 @@ const toggleCreate = () => {
     <div class="grid grid-cols-1 px-4 mb-4 sm:grid-cols-10 sm:px-6 lg:px-8">
       <!-- sorting area -->
       <div class="col-span-7">
-        <!-- some text -->
+        <!-- sorting content -->
       </div>
 
       <!-- search area -->
       <JTextField
         id="search"
         v-model="search"
+        autofocus
         class="col-span-3"
+        :prepend-inner="HeroiconsMagnifyingGlass20Solid"
         :is-loading="processing && search !== ''"
         placeholder="Search by name, email or role"
-      />
+      >
+        <template #appendInner>
+          <kbd
+            class="inline-flex items-center px-2 font-sans text-sm font-medium text-gray-400 bg-gray-100 border border-gray-300 rounded"
+          >⌘K</kbd>
+        </template>
+      </JTextField>
     </div>
 
     <!-- Table -->
