@@ -73,6 +73,7 @@ export default defineConfig({
       // Auto import for module exports under directories
       // by default it only scan one level of modules under the directory
       dirs: [
+        'resources/js/store/',
         'resources/js/composables/*',
         'resources/js/composables/*/**',
         'resources/js/j-components/',
