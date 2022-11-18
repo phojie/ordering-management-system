@@ -10,10 +10,11 @@ export interface TextField {
   prependInner?: unknown
   hints?: string
   errorMessage?: string
-  autofocus?: boolean
+  inputClass?: string
 
   // boolean
   isError?: boolean
+  autofocus?: boolean
   isDisabled?: boolean
   isReadOnly?: boolean
   isLoading?: boolean

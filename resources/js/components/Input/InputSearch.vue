@@ -21,11 +21,14 @@ watchEffect(() => {
 </script>
 
 <template>
+  <!-- class="col-span-3" -->
   <JTextField
     id="input-search"
     v-model="value"
-    autofocus
     class="col-span-3"
+    input-class="!pr-16"
+    autofocus
+    :append-inner="true"
     :prepend-inner="HeroiconsMagnifyingGlass20Solid"
     :is-loading="props.processing && value !== ''"
     :placeholder="props.placeholder ?? 'Search'"

@@ -62,7 +62,7 @@ onMounted(() => {
         <slot name="prependInner">
           <component
             :is="props.prependInner"
-            class="w-5 h-5 cursor-pointer"
+            class="w-5 h-5 cursor-pointer "
             :class="[
               isError
                 ? 'text-danger-500'
@@ -94,12 +94,13 @@ onMounted(() => {
           appendInner
             ? 'pr-10'
             : 'pr-3',
+          props.inputClass,
         ]"
         class="block w-full pr-10 rounded-md sm:text-sm"
         @blur="emit('blur')"
       >
 
-      <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+      <div v-if="appendInner || isLoading" class="absolute inset-y-0 right-0 flex items-center pr-3">
         <!-- append inner area -->
         <slot
           v-if="!isLoading"
