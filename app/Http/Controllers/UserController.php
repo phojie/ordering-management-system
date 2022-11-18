@@ -17,23 +17,14 @@ class UserController extends Controller
 		// set model
 		$model = User::query()
 		  ->whereNotIn('id', [auth()->user()->id])
-		  ->withTrashed();
+		  ->withTrashed()
+      ->when($request->search, fn ($q) => $q->search($request->search));
 
 		// set query builder
 		$query = QueryBuilder::for($model)
 		  ->defaultSort('created_at')
 		  ->allowedSorts(['full_name', 'status', 'created_at']);
-
 		// ->allowedFilters(['username', 'email', 'full_name']);
-
-		// if request search
-		if (! empty($request->search)) {
-			$query->where(function ($q) use ($request) {
-				$q->where('username', 'ilike', "%{$request->search}%")
-				  ->orWhere('email', 'ilike', "%{$request->search}%")
-				  ->orWhere('full_name', 'ilike', "%{$request->search}%");
-			});
-		}
 
 		// set pagination
 		$users = $query->paginate(15)->appends($request->all());
