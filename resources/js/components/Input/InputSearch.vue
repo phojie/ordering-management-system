@@ -27,7 +27,6 @@ watchEffect(() => {
     v-model="value"
     class="col-span-3"
     input-class="!pr-16"
-    autofocus
     :append-inner="true"
     :prepend-inner="HeroiconsMagnifyingGlass20Solid"
     :is-loading="props.processing && value !== ''"
