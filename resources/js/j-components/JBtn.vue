@@ -27,7 +27,7 @@ withDefaults(defineProps<Btn>(), {
 type BtnVariant = keyof typeof variantsLookup
 type BtnSize = keyof typeof sizesLookup
 
-const baseClasses = 'border rounded-md focus:outline-none font-medium flex justify-center items-center'
+const baseClass = 'border rounded-md focus:outline-none font-medium flex justify-center items-center'
 
 const variantsLookup = {
   text: 'focus:ring-primary-500 bg-white hover:bg-gray-50 text-gray-700 shadow-sm border-gray-300',
@@ -48,7 +48,7 @@ const sizesLookup = {
     :readonly="isReadOnly"
     :disabled="isDisabled"
     :class="`
-      ${baseClasses}
+      ${baseClass}
       ${variantsLookup[variant]}
       ${isExpanded ? 'w-full' : ''}
       ${isIcon ? 'p-0 focus:ring-2 focus:ring-offset-2' : sizesLookup[size]}
