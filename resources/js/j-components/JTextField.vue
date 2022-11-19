@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<TextField>(), {
 })
 
 // set emits
-const emit = defineEmits(['update:modelValue', 'blur'])
+const emit = defineEmits(['update:modelValue', 'blur', 'input'])
 const value = useVModel(props, 'modelValue', emit)
 
 // set computed
@@ -48,7 +48,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="group">
     <!-- label -->
     <label
       v-if="props.label"
@@ -103,10 +103,10 @@ onMounted(() => {
         @input="emit('input', ($event.target as HTMLInputElement).value)"
       >
 
-      <div v-if="appendInner || isLoading" class="absolute inset-y-0 right-0 flex items-center pr-3">
+      <div v-if="appendInner || isLoading || isClearable" class="absolute inset-y-0 right-0 flex items-center pr-3">
         <!-- append inner area -->
         <slot
-          v-if="!isLoading"
+          v-if="!isLoading && !isClearable"
           name="appendInner"
         >
           <component
@@ -124,6 +124,13 @@ onMounted(() => {
 
         <!-- default spinner area -->
         <JSpinner v-if="isLoading" class="w-5 h-5 text-gray-400" />
+
+        <!-- clearable area -->
+        <heroicons-x-mark-20-solid
+          v-if="isClearable"
+          class="invisible w-5 h-5 text-gray-400 cursor-pointer  group-hover:visible hover:text-gray-500"
+          @click="value = ''"
+        />
       </div>
     </div>
 
