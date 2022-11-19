@@ -128,7 +128,7 @@ onMounted(() => {
         <!-- clearable area -->
         <heroicons-x-mark-20-solid
           v-if="isClearable"
-          class="invisible w-5 h-5 text-gray-400 cursor-pointer  group-hover:visible hover:text-gray-500"
+          class="invisible w-5 h-5 text-gray-400 cursor-pointer group-hover:visible hover:text-gray-500"
           @click="value = ''"
         />
       </div>
