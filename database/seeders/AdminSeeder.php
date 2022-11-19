@@ -11,10 +11,10 @@ class AdminSeeder extends Seeder
 	{
 		User::factory(1)->create([
 			'username' => 'admin',
-			'email' => 'jie@y.com',
+			'email' => 'j@y.com',
 			'first_name' => 'Admin',
 			'last_name' => 'User',
-			'password' => bcrypt('jiejie'),
+			'password' => bcrypt('password'),
 		]);
 	}
 }
