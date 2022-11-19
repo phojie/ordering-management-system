@@ -53,12 +53,14 @@ onMounted(() => {
     <label
       v-if="props.label"
       :for="id" class="block mb-1 text-sm font-medium text-gray-900"
-    >{{ label }}</label>
+    >
+      {{ label }}
+    </label>
 
     <!-- input wrapper -->
     <div class="relative rounded-md shadow-sm">
       <!-- prepend inner area -->
-      <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+      <div v-if="props.prependInner" class="absolute inset-y-0 left-0 flex items-center pl-3">
         <slot name="prependInner">
           <component
             :is="props.prependInner"
