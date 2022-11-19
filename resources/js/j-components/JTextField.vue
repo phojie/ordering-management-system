@@ -98,8 +98,9 @@ onMounted(() => {
             : 'pr-3',
           props.inputClass,
         ]"
-        class="block w-full pr-10 rounded-md sm:text-sm"
+        class="block w-full pr-10 rounded-md sm:text-sm placeholder:font-normal"
         @blur="emit('blur')"
+        @input="emit('input', ($event.target as HTMLInputElement).value)"
       >
 
       <div v-if="appendInner || isLoading" class="absolute inset-y-0 right-0 flex items-center pr-3">
