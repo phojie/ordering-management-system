@@ -7,7 +7,7 @@ interface JBadgeProps {
 }
 
 const props = withDefaults(defineProps<JBadgeProps>(), {
-  variant: 'primary',
+  variant: 'text',
   size: 'md',
   pill: true,
 })
