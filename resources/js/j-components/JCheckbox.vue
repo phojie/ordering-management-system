@@ -8,6 +8,11 @@ const props = withDefaults(defineProps<Checkbox>(), {
 // set emits
 const emit = defineEmits(['update:modelValue'])
 const value = useVModel(props, 'modelValue', emit)
+
+/*
+  * how to use this component
+  * <JCheckbox id='' v-model="value" />
+  */
 </script>
 
 <template>
