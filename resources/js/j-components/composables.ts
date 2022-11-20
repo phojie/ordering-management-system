@@ -1,7 +1,6 @@
 import type { TableHeader } from './types'
 import HeroiconsChevronDown20Solid from '~icons/heroicons/chevron-down-20-solid'
 import HeroiconsChevronUp20Solid from '~icons/heroicons/chevron-up-20-solid'
-import HeroiconsChevronUpDown20Solid from '~icons/heroicons/chevron-up-down-20-solid'
 import HeroiconsMagnifyingGlassPlus20Solid from '~icons/heroicons/magnifying-glass-plus-20-solid'
 import HeroiconsMagnifyingGlassMinus20Solid from '~icons/heroicons/magnifying-glass-minus-20-solid'
 
@@ -38,6 +37,21 @@ export const useJTable = () => {
     }
   }
 
+  const isSortExist = (id: string) => {
+    // is sort exist in route params sort value
+    const sort = route().params.sort as string
+
+    if (sort) {
+      const sortArray = _.split(sort, ',') as any[]
+
+      const findId = _.findIndex(sortArray, (item) => {
+        return item === id || item === `-${id}`
+      })
+
+      return findId !== -1
+    }
+  }
+
   const sortLink = (header: TableHeader) => {
     const sortData = sorts(header.value) as string
     return route('users.index', {
@@ -60,7 +74,7 @@ export const useJTable = () => {
         return sortArray[findId].includes('-') ? HeroiconsChevronUp20Solid : HeroiconsChevronDown20Solid
     }
 
-    return HeroiconsChevronUpDown20Solid
+    return HeroiconsChevronDown20Solid
   }
 
   const sortIndex = (header: TableHeader) => {
@@ -107,6 +121,7 @@ export const useJTable = () => {
     sortLink,
     sortIcon,
     sortIndex,
+    isSortExist,
 
     filterFetch,
     filterIcon,

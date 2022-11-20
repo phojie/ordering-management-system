@@ -127,7 +127,9 @@ onMounted(() => {
                   >
                     {{ header.text }}
                     <span
-                      v-if="header.sortable" class="flex-none ml-2 text-gray-900 bg-gray-200 rounded group-hover:bg-gray-300"
+                      v-if="header.sortable"
+                      class="flex-none ml-2 text-gray-900 bg-gray-200 rounded group-hover:bg-gray-300"
+                      :class="useJTable().isSortExist(header.value) ? 'visible' : 'invisible group-hover:visible' "
                     >
                       <component :is="useJTable().sortIcon(header)" class="w-5 h-5" aria-hidden="true" />
                     </span>
