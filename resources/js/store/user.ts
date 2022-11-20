@@ -63,7 +63,12 @@ export const useUserStore = defineStore('user', () => {
     },
     {
       text: 'Role',
-      value: 'role',
+      value: 'roles.name',
+      sortable: true,
+      filterable: true,
+      filterOptions: {
+        type: 'text',
+      },
     },
     {
       text: 'Created',
