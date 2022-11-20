@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
-	public function definition() : array
+	public function definition(): array
 	{
 		return [
 			'username' => fake()->username(),
@@ -19,10 +19,10 @@ class UserFactory extends Factory
 			'password' => bcrypt('password'), // password
 			'remember_token' => Str::random(10),
 			'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
-    ];
+		];
 	}
 
-	public function unverified() : static
+	public function unverified(): static
 	{
 		return $this->state(fn (array $attributes) => [
 			'email_verified_at' => null,

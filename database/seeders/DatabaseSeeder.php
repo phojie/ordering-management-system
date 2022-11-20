@@ -3,15 +3,24 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\PermissionRegistrar;
 
 class DatabaseSeeder extends Seeder
 {
 	public function run(): void
 	{
-		// generate admin account
-		$this->call(AdminSeeder::class);
+		// Reset cached roles and permissions
+		app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-		// generate 100 users
-		$this->call(UserSeeder::class);
+		$this->call([
+			// create permissions
+			PermissionSeeder::class,
+
+			// create roles
+			RoleSeeder::class,
+
+			// STATIC generate default users
+			UserSeeder::class,
+		]);
 	}
 }

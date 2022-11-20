@@ -7,12 +7,7 @@ use Spatie\Permission\PermissionRegistrar;
 
 class CreatePermissionTables extends Migration
 {
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
+	public function up(): void
 	{
 		$tableNames = config('permission.table_names');
 		$columnNames = config('permission.column_names');
@@ -26,16 +21,19 @@ class CreatePermissionTables extends Migration
 		}
 
 		Schema::create($tableNames['permissions'], function (Blueprint $table) {
-			$table->bigIncrements('id'); // permission id
+			$table->uuid('id');
 			$table->string('name');       // For MySQL 8.0 use string('name', 125);
 			$table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
 			$table->timestamps();
 
 			$table->unique(['name', 'guard_name']);
+			$table->primary('id');
+			$table->string('color')->nullable();
+			$table->string('description')->nullable();
 		});
 
 		Schema::create($tableNames['roles'], function (Blueprint $table) use ($teams, $columnNames) {
-			$table->bigIncrements('id'); // role id
+			$table->uuid('id');
 			if ($teams || config('permission.testing')) { // permission.testing is a fix for sqlite testing
 				$table->unsignedBigInteger($columnNames['team_foreign_key'])->nullable();
 				$table->index($columnNames['team_foreign_key'], 'roles_team_foreign_key_index');
@@ -48,17 +46,21 @@ class CreatePermissionTables extends Migration
 			} else {
 				$table->unique(['name', 'guard_name']);
 			}
+
+			$table->primary('id');
+			$table->string('color')->nullable();
+			$table->string('description')->nullable();
 		});
 
 		Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames, $teams) {
-			$table->unsignedBigInteger(PermissionRegistrar::$pivotPermission);
+			$table->uuid(PermissionRegistrar::$pivotPermission);
 
 			$table->string('model_type');
-			$table->unsignedBigInteger($columnNames['model_morph_key']);
+			$table->uuid($columnNames['model_morph_key']);
 			$table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_permissions_model_id_model_type_index');
 
 			$table->foreign(PermissionRegistrar::$pivotPermission)
-				->references('id') // permission id
+				->references('id')
 				->on($tableNames['permissions'])
 				->onDelete('cascade');
 			if ($teams) {
@@ -78,14 +80,15 @@ class CreatePermissionTables extends Migration
 		});
 
 		Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames, $teams) {
-			$table->unsignedBigInteger(PermissionRegistrar::$pivotRole);
+			$table->uuid(PermissionRegistrar::$pivotRole);
 
 			$table->string('model_type');
-			$table->unsignedBigInteger($columnNames['model_morph_key']);
+			$table->uuid($columnNames['model_morph_key']);
+
 			$table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_roles_model_id_model_type_index');
 
 			$table->foreign(PermissionRegistrar::$pivotRole)
-				->references('id') // role id
+				->references('id')
 				->on($tableNames['roles'])
 				->onDelete('cascade');
 			if ($teams) {
@@ -105,16 +108,16 @@ class CreatePermissionTables extends Migration
 		});
 
 		Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
-			$table->unsignedBigInteger(PermissionRegistrar::$pivotPermission);
-			$table->unsignedBigInteger(PermissionRegistrar::$pivotRole);
+			$table->uuid(PermissionRegistrar::$pivotPermission);
+			$table->uuid(PermissionRegistrar::$pivotRole);
 
 			$table->foreign(PermissionRegistrar::$pivotPermission)
-				->references('id') // permission id
+				->references('id')
 				->on($tableNames['permissions'])
 				->onDelete('cascade');
 
 			$table->foreign(PermissionRegistrar::$pivotRole)
-				->references('id') // role id
+				->references('id')
 				->on($tableNames['roles'])
 				->onDelete('cascade');
 
@@ -126,12 +129,7 @@ class CreatePermissionTables extends Migration
 			->forget(config('permission.cache.key'));
 	}
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
+	public function down(): void
 	{
 		$tableNames = config('permission.table_names');
 

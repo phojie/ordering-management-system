@@ -214,5 +214,4 @@ return [
 	])->toArray(),
 
 	// extra
-
 ];
