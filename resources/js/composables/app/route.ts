@@ -7,8 +7,12 @@ export const useRoute = () => {
     return _.trim(href, '/') === _.trim(currentUrl, '/')
   }
 
+  const currentRoute = route().current() as string
+
   return {
     isActive,
+
+    currentRoute,
   }
 }
 
