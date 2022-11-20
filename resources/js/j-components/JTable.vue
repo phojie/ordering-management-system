@@ -135,7 +135,7 @@ onMounted(() => {
                   <button
                     v-if="header.filterable"
                     class="flex-none ml-2 rounded"
-                    :class="useJTable().isFilterExist(header.value) ? 'text-primary-600 hover:text-primary-500' : 'text-gray-600 hover:text-gray-900'"
+                    :class="useJTable().isFilterExist(header.value) ? 'text-primary-600 hover:text-primary-900' : 'text-gray-600 hover:text-gray-900'"
                     @click="toggleFilter(header.value)"
                   >
                     <component
