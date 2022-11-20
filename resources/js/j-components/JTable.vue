@@ -189,6 +189,7 @@ onMounted(() => {
                     v-if="useJTable().isFilterExist(header.value)"
                     :id="header.value"
                     v-model="filters[header.value]"
+                    autofocus
                     :placeholder="`Filter ${_.capitalize(header.text)}`"
                     class="max-w-xs py-1"
                     input-class="py-1.5 text-sm"
