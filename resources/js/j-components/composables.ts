@@ -79,10 +79,12 @@ export const useJTable = () => {
     return undefined
   }
 
-  const filterIcon = (header: TableHeader) => {
-    const isFilterExist = _.has(route().params.filter, header.value)
+  const isFilterExist = (id: string) => {
+    return _.has(route().params.filter, id)
+  }
 
-    if (isFilterExist)
+  const filterIcon = (id: string) => {
+    if (isFilterExist(id))
       return HeroiconsMagnifyingGlassMinus20Solid
 
     return HeroiconsMagnifyingGlassPlus20Solid
@@ -108,5 +110,6 @@ export const useJTable = () => {
 
     filterFetch,
     filterIcon,
+    isFilterExist,
   }
 }
