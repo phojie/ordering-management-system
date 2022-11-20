@@ -77,7 +77,7 @@ const toggleEdit = (user: User) => {
           />
         </td>
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-          <!-- Role row --> Member
+          <JBadge v-for="role in item.relationships.roles" :key="role.id" class="capitalize" :label="role.name" />
         </td>
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
           {{ useDateFormat(item.createdAt, 'MMM DD, YYYY').value }}
