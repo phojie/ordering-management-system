@@ -105,7 +105,6 @@ export const useJTable = () => {
   }
 
   const filterFetch = (value: Object) => {
-    // TODO - set the route name dynamically
     Inertia.get(route(useRoute().currentRoute), {
       ...route().params as any,
       filter: value,

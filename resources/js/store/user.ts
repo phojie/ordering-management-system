@@ -203,8 +203,6 @@ export const useUserStore = defineStore('user', () => {
 
   // delete user
   function deleteUser(id: string) {
-    // TODO add confirmation area here
-
     Inertia.delete(route('users.destroy', id), {
       only: ['users', 'flash'],
       onBefore: () => {
