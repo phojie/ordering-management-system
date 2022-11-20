@@ -23,6 +23,6 @@ class UserSeeder extends Seeder
 
 		// assign super admin
 		$admin = User::where('username', 'admin')->first();
-		$admin->assignRole('super-admin');
+		$admin->assignRole('super admin');
 	}
 }
