@@ -1,4 +1,5 @@
 import { email, helpers, minLength, required } from '@vuelidate/validators'
+import type { TableHeader } from './../j-components/types'
 import type { User } from '@/types/user'
 
 type FormType = 'create' | 'edit'
@@ -36,12 +37,16 @@ export const useUserStore = defineStore('user', () => {
   })
 
   // table headers
-  const headers = reactive([
+  const headers = ref<TableHeader[]>([
     {
       text: 'Name',
       value: 'full_name',
       class: 'min-w-[12rem]',
       sortable: true,
+      filterable: true,
+      filterOptions: {
+        type: 'text',
+      },
     },
     {
       text: 'Title',
@@ -51,13 +56,17 @@ export const useUserStore = defineStore('user', () => {
       text: 'Status',
       value: 'status',
       sortable: true,
+      filterable: true,
+      filterOptions: {
+        type: 'text',
+      },
     },
     {
       text: 'Role',
       value: 'role',
     },
     {
-      text: 'Created At',
+      text: 'Created',
       value: 'created_at',
       sortable: true,
     },
