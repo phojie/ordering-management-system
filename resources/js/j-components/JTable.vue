@@ -134,11 +134,12 @@ onMounted(() => {
                   </JLink>
                   <button
                     v-if="header.filterable"
-                    class="flex-none ml-2 text-gray-500 rounded hover:text-gray-900"
+                    class="flex-none ml-2 rounded"
+                    :class="useJTable().isFilterExist(header.value) ? 'text-primary-600 hover:text-primary-500' : 'text-gray-600 hover:text-gray-900'"
                     @click="toggleFilter(header.value)"
                   >
                     <component
-                      :is="useJTable().filterIcon(header)"
+                      :is="useJTable().filterIcon(header.value)"
                       class="w-5 h-5"
                       aria-hidden="true"
                     />
@@ -172,7 +173,7 @@ onMounted(() => {
                 class="py-1.5 text-left"
               >
                 <JTextField
-                  v-if="useJTable().isFilter(header.value)"
+                  v-if="useJTable().isFilterExist(header.value)"
                   :id="header.value"
                   v-model="filters[header.value]"
                   :placeholder="`Filter ${_.capitalize(header.text)}`"
