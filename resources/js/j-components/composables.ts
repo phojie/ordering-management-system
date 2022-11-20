@@ -2,9 +2,12 @@ import type { TableHeader } from './types'
 import HeroiconsChevronDown20Solid from '~icons/heroicons/chevron-down-20-solid'
 import HeroiconsChevronUp20Solid from '~icons/heroicons/chevron-up-20-solid'
 import HeroiconsChevronUpDown20Solid from '~icons/heroicons/chevron-up-down-20-solid'
+import HeroiconsMagnifyingGlassPlus20Solid from '~icons/heroicons/magnifying-glass-plus-20-solid'
+import HeroiconsMagnifyingGlassMinus20Solid from '~icons/heroicons/magnifying-glass-minus-20-solid'
 
 export const useJTable = () => {
-  const sortValue = (id: string) => {
+  //  sorts area
+  const sorts = (id: string) => {
     // get the route params sort value
     const sort = route().params.sort as string
 
@@ -36,7 +39,7 @@ export const useJTable = () => {
   }
 
   const sortLink = (header: TableHeader) => {
-    const sortData = sortValue(header.value) as string
+    const sortData = sorts(header.value) as string
     return route('users.index', {
       ...route().params as any,
       sort: sortData as string,
@@ -76,9 +79,34 @@ export const useJTable = () => {
     return undefined
   }
 
+  const filterIcon = (header: TableHeader) => {
+    const isFilterExist = _.has(route().params.filter, header.value)
+
+    if (isFilterExist)
+      return HeroiconsMagnifyingGlassMinus20Solid
+
+    return HeroiconsMagnifyingGlassPlus20Solid
+  }
+
+  const filterFetch = (value: Object) => {
+    // TODO - set the route name dynamically
+    Inertia.get(route('users.index'), {
+      ...route().params as any,
+      filter: value,
+    },
+    {
+      preserveState: true,
+      preserveScroll: true,
+    },
+    )
+  }
+
   return {
     sortLink,
     sortIcon,
     sortIndex,
+
+    filterFetch,
+    filterIcon,
   }
 }

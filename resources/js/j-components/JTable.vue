@@ -38,6 +38,45 @@ const onCheckBoxChange = (e: any) => {
   else
     emit('update:modelValue', [])
 }
+
+const filters = ref<any>({})
+
+const toggleFilter = (id: string) => {
+  const isFilterExist = _.has(filters.value, id)
+
+  if (isFilterExist) {
+    // remove filter
+    filters.value = _.omit(filters.value, id)
+  }
+
+  // add filter
+  else {
+    filters.value = {
+      ...filters.value,
+      [id]: '',
+    }
+  }
+}
+
+const debounceFilter = useDebounceFn(() => {
+  useJTable().filterFetch(filters.value)
+}, 500)
+
+watch(
+  () => filters.value,
+  (value, oldValue) => {
+    if (Object.keys(value).length !== Object.keys(oldValue).length)
+      useJTable().filterFetch(value)
+
+    else
+      debounceFilter()
+  },
+  { deep: true },
+)
+
+onMounted(() => {
+  filters.value = route().params?.filter ?? {}
+})
 </script>
 
 <template>
@@ -77,18 +116,34 @@ const onCheckBoxChange = (e: any) => {
               <th
                 v-for="(header, id) in headers" :key="id" scope="col"
                 :class="header.class"
-                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                class="px-3 py-3.5 text-left"
               >
-                <JLink
-                  v-if="id !== 0 || modelValue.length === 0"
-                  :to="header.sortable ? useJTable().sortLink(header) : ''"
-                  class="inline-flex group"
-                >
-                  {{ header.text }}
-                  <span v-if="header.sortable" class="flex-none ml-2 text-gray-900 bg-gray-200 rounded group-hover:bg-gray-300">
-                    <component :is="useJTable().sortIcon(header)" class="w-5 h-5" aria-hidden="true" />
-                  </span>
-                </JLink>
+                <div class="inline-flex justify-between w-full ">
+                  <JLink
+                    v-if="(id !== 0 || modelValue.length === 0)"
+                    :to="header.sortable ? useJTable().sortLink(header) : ''"
+                    class="inline-flex text-sm font-semibold text-gray-900 group"
+                    as="button"
+                  >
+                    {{ header.text }}
+                    <span
+                      v-if="header.sortable" class="flex-none ml-2 text-gray-900 bg-gray-200 rounded group-hover:bg-gray-300"
+                    >
+                      <component :is="useJTable().sortIcon(header)" class="w-5 h-5" aria-hidden="true" />
+                    </span>
+                  </JLink>
+                  <button
+                    v-if="header.filterable"
+                    class="flex-none ml-2 text-gray-500 rounded hover:text-gray-900"
+                    @click="toggleFilter(header.value)"
+                  >
+                    <component
+                      :is="useJTable().filterIcon(header)"
+                      class="w-5 h-5"
+                      aria-hidden="true"
+                    />
+                  </button>
+                </div>
               </th>
             </tr>
           </thead>
@@ -102,6 +157,28 @@ const onCheckBoxChange = (e: any) => {
               >
                 <JProgressLinear
                   class="absolute bg-transparent"
+                />
+              </td>
+            </tr>
+            <tr
+              v-if="route().params.filter"
+              class="bg-gray-50"
+            >
+              <td />
+              <td
+                v-for="header in headers"
+                :key="header.value"
+                :class="header.class"
+                class="py-1.5 text-left"
+              >
+                <JTextField
+                  v-if="useJTable().isFilter(header.value)"
+                  :id="header.value"
+                  v-model="filters[header.value]"
+                  :placeholder="`Filter ${_.capitalize(header.text)}`"
+                  class="max-w-xs py-1"
+                  input-class="py-1.5 text-sm"
+                  is-clearable
                 />
               </td>
             </tr>
