@@ -221,6 +221,7 @@ onMounted(() => {
                   v-if="modelValue.includes(item[props.itemKey])"
                   class="absolute inset-y-0 left-0 w-0.5 bg-primary-600"
                 />
+
                 <input
                   v-if="item?.status !== 'deleted'"
                   type="checkbox"
