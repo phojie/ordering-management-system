@@ -13,11 +13,12 @@ export interface TextField {
   inputClass?: string
 
   // boolean
-  isError?: boolean
   autofocus?: boolean
+  isError?: boolean
   isDisabled?: boolean
   isReadOnly?: boolean
   isLoading?: boolean
+  isClearable?: boolean
 
   // object
 }
@@ -66,7 +67,10 @@ export interface TableHeader {
   sortable?: boolean
   align?: 'start' | 'center' | 'end'
   filterable?: boolean
-  filter?: (value: any, search: string, item: any) => boolean
+  filterOptions?: {
+    type: 'text' | 'select' | 'date'
+    value: string
+  }
   divider?: boolean
   class?: string
   width?: string

@@ -100,13 +100,13 @@ onMounted(() => {
         ]"
         class="block w-full pr-10 rounded-md sm:text-sm placeholder:font-normal"
         @blur="emit('blur')"
-        @input="emit('input', ($event.target as HTMLInputElement).value)"
       >
+      <!-- @input="emit('input', ($event.target as HTMLInputElement).value)" -->
 
       <div v-if="appendInner || isLoading || isClearable" class="absolute inset-y-0 right-0 flex items-center pr-3">
         <!-- append inner area -->
         <slot
-          v-if="!isLoading && !isClearable"
+          v-if="!isLoading"
           name="appendInner"
         >
           <component
@@ -127,7 +127,7 @@ onMounted(() => {
 
         <!-- clearable area -->
         <heroicons-x-mark-20-solid
-          v-if="isClearable"
+          v-if="isClearable && !appendInner"
           class="invisible w-5 h-5 text-gray-400 cursor-pointer group-hover:visible hover:text-gray-500"
           @click="value = ''"
         />
