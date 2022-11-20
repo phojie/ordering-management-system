@@ -1,0 +1,13 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Contracts\Validation\InvokableRule;
+
+class {{ class }}  implements InvokableRule
+{
+    public function __invoke($attribute, $value, $fail)
+    {
+        //
+    }
+}
