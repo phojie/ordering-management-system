@@ -26,7 +26,8 @@ class PermissionSeeder extends Seeder
 		];
 
 		foreach ($permissions as $permission) {
-			Permission::create(['name' => $permission]);
+			$permission = Permission::make(['name' => $permission]);
+			$permission->saveOrFail();
 		}
 	}
 }
