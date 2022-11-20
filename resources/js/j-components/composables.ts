@@ -54,7 +54,7 @@ export const useJTable = () => {
 
   const sortLink = (header: TableHeader) => {
     const sortData = sorts(header.value) as string
-    return route('users.index', {
+    return route(useRoute().currentRoute, {
       ...route().params as any,
       sort: sortData as string,
     })
@@ -106,7 +106,7 @@ export const useJTable = () => {
 
   const filterFetch = (value: Object) => {
     // TODO - set the route name dynamically
-    Inertia.get(route('users.index'), {
+    Inertia.get(route(useRoute().currentRoute), {
       ...route().params as any,
       filter: value,
     },
