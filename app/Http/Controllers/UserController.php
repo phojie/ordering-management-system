@@ -18,15 +18,16 @@ class UserController extends Controller
 	{
 		// set model
 		$model = User::query()
-		  ->whereNotIn('id', [auth()->user()->id])
 		  ->withTrashed()
-      ->when($request->search, fn ($q) => $q->search($request->search));
+		  ->whereNotIn('id', [auth()->user()->id])
+		  ->with(['roles'])
+		  ->when($request->search, fn ($q) => $q->search($request->search));
 
 		// set query builder
 		$query = QueryBuilder::for($model)
-		  ->defaultSort('created_at')
-		  ->allowedSorts(['full_name', 'status', 'created_at'])
-      ->allowedFilters(['full_name','status']);
+			->defaultSort('created_at')
+			->allowedSorts(['full_name', 'status', 'created_at'])
+			->allowedFilters(['full_name', 'status']);
 
 		// set pagination
 		$users = $query->paginate(config('jie.per_page'))->appends($request->all());
