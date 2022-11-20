@@ -69,7 +69,6 @@ export interface TableHeader {
   filterable?: boolean
   filterOptions?: {
     type: 'text' | 'select' | 'date'
-    value: string
   }
   divider?: boolean
   class?: string
