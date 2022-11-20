@@ -5,12 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
+	public function up(): void
 	{
 		Schema::create('users', function (Blueprint $table) {
 			$table->uuid('id')->primary();
@@ -33,15 +28,5 @@ return new class extends Migration {
 
 			$table->index(['username', 'full_name']);
 		});
-	}
-
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::dropIfExists('users');
 	}
 };
