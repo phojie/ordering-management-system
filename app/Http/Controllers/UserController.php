@@ -25,8 +25,8 @@ class UserController extends Controller
 		// set query builder
 		$query = QueryBuilder::for($model)
 		  ->defaultSort('created_at')
-		  ->allowedSorts(['full_name', 'status', 'created_at']);
-		// ->allowedFilters(['username', 'email', 'full_name']);
+		  ->allowedSorts(['full_name', 'status', 'created_at'])
+      ->allowedFilters(['full_name','status']);
 
 		// set pagination
 		$users = $query->paginate(config('jie.per_page'))->appends($request->all());
