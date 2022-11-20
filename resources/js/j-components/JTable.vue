@@ -128,8 +128,12 @@ onMounted(() => {
                     {{ header.text }}
                     <span
                       v-if="header.sortable"
-                      class="flex-none ml-2 text-gray-900 bg-gray-200 rounded group-hover:bg-gray-300"
-                      :class="useJTable().isSortExist(header.value) ? 'visible' : 'invisible group-hover:visible' "
+                      class="flex-none ml-2 rounded "
+                      :class="[
+                        useJTable().isSortExist(header.value)
+                          ? 'visible group-hover:bg-gray-300 bg-gray-200 text-gray-900'
+                          : 'invisible group-hover:visible  text-gray-400',
+                      ]"
                     >
                       <component :is="useJTable().sortIcon(header)" class="w-5 h-5" aria-hidden="true" />
                     </span>
@@ -137,7 +141,11 @@ onMounted(() => {
                   <button
                     v-if="header.filterable"
                     class="flex-none ml-2 rounded"
-                    :class="useJTable().isFilterExist(header.value) ? 'text-primary-600 hover:text-primary-900' : 'text-gray-600 hover:text-gray-900'"
+                    :class="
+                      useJTable().isFilterExist(header.value)
+                        ? 'text-primary-600 hover:text-primary-900'
+                        : 'text-gray-600 hover:text-gray-900'
+                    "
                     @click="toggleFilter(header.value)"
                   >
                     <component
