@@ -14,11 +14,14 @@ class Role extends ModelsRole
 		'description' => 'required',
 	];
 
-	protected $casts = [
-		'model_id' => 'string',
-	];
-
 	protected $hidden = [
 		'pivot',
+		'guard_name',
+		'updated_at',
+		'created_at',
+	];
+
+	protected $casts = [
+		'model_id' => 'string',
 	];
 }
