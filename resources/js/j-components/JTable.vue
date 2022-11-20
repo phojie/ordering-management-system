@@ -166,21 +166,37 @@ onMounted(() => {
               class="bg-gray-50"
             >
               <td />
-              <td
+              <template
                 v-for="header in headers"
                 :key="header.value"
-                :class="header.class"
-                class="py-1.5 text-left"
               >
-                <JTextField
-                  v-if="useJTable().isFilterExist(header.value)"
-                  :id="header.value"
-                  v-model="filters[header.value]"
-                  :placeholder="`Filter ${_.capitalize(header.text)}`"
-                  class="max-w-xs py-1"
-                  input-class="py-1.5 text-sm"
-                  is-clearable
-                />
+                <td
+                  v-if="header.value !== 'actions'"
+                  :class="header.class"
+                  class="py-1.5 text-left"
+                >
+                  <JTextField
+                    v-if="useJTable().isFilterExist(header.value)"
+                    :id="header.value"
+                    v-model="filters[header.value]"
+                    :placeholder="`Filter ${_.capitalize(header.text)}`"
+                    class="max-w-xs py-1"
+                    input-class="py-1.5 text-sm"
+                    is-clearable
+                  />
+                </td>
+              </template>
+              <td class="relative pr-4 sm:pr-6 hitespace-nowrap">
+                <div class="flex justify-end">
+                  <button
+                    v-tooltip="'Clear filters'"
+                    type="button"
+                    class="text-danger-600 hover:text-danger-900"
+                    @click="filters = {}"
+                  >
+                    <heroicons-x-circle-20-solid class="w-6 h-6" />
+                  </button>
+                </div>
               </td>
             </tr>
 
