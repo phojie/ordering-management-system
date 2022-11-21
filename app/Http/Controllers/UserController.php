@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use App\Services\CustomSort\CustomRoleSort;
+use App\Services\CustomSorts\CustomRoleSort;
 use App\Services\FlashNotification;
 use Illuminate\Http\Request;
 use Inertia\Controller;
@@ -29,13 +29,13 @@ class UserController extends Controller
 		$query = QueryBuilder::for($model)
 			->defaultSort('created_at')
 			->allowedSorts([
-				'full_name', 'status','created_at',
+				'full_name', 'status', 'created_at',
 				AllowedSort::custom('roles.name', new CustomRoleSort, 'name'),
 			])
 			->allowedFilters(['full_name', 'status', 'roles.name']);
 
 		// set pagination
-		$users = $query->paginate(config('jie.per_page'))->appends($request->all());
+		$users = $query->paginate($request->rows ?? config('jie.per_page'))->appends($request->all());
 
 		// set resource
 		$query = UserResource::collection($users);
