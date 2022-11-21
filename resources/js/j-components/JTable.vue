@@ -241,8 +241,12 @@ onMounted(() => {
               v-show="!items?.length"
             >
               <td colspan="100" class="py-4 text-center">
-                <div class="text-sm text-gray-400">
-                  No data available
+                <div class="grid place-items-center">
+                  <img src="/svgs/empty_data.svg" class="w-72 h-72">
+
+                  <div class="text-sm text-gray-400">
+                    No data available
+                  </div>
                 </div>
               </td>
             </tr>
