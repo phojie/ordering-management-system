@@ -59,10 +59,18 @@ const toggleCreate = () => {
     </div>
 
     <!-- Query area -->
-    <div class="grid grid-cols-1 px-4 mb-4 sm:grid-cols-10 sm:px-6 lg:px-8">
-      <!-- sorting area -->
+    <div class="grid items-end grid-cols-1 px-4 mb-4 sm:grid-cols-10 sm:px-6 lg:px-8">
+      <!-- results summary area -->
       <div class="col-span-7">
-        <!-- sorting content -->
+        <p class="text-sm text-gray-700">
+          Showing
+          <span class="font-medium">{{ users.meta.from }}</span>
+          to
+          <span class="font-medium">{{ users.meta.to }}</span>
+          of
+          <span class="font-medium">{{ users.meta.total }}</span>
+          {{ users.meta.total > 0 ? 'results' : 'result' }}
+        </p>
       </div>
 
       <!-- search area -->
