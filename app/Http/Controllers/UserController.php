@@ -29,7 +29,7 @@ class UserController extends Controller
 		$query = QueryBuilder::for($model)
 			->defaultSort('created_at')
 			->allowedSorts([
-				'username','full_name', 'status', 'created_at',
+				'username', 'full_name', 'status', 'created_at',
 				AllowedSort::custom('roles.name', new CustomRoleSort, 'name'),
 			])
 			->allowedFilters(['username', 'full_name', 'status', 'roles.name']);
