@@ -19,8 +19,11 @@ class DatabaseSeeder extends Seeder
 			// create roles
 			RoleSeeder::class,
 
-			// STATIC generate default users
+			// generate default users
 			UserSeeder::class,
+
+      // generate admin user
+      AdminSeeder::class,
 		]);
 	}
 }
