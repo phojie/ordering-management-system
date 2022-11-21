@@ -2,7 +2,6 @@
 import type { PaginationUsers } from '@/types/user'
 const props = defineProps<{
   users: PaginationUsers
-  search: string | null
 }>()
 
 defineOptions({
@@ -12,8 +11,8 @@ defineOptions({
 const { formState, getUsers, reload } = useUserStore()
 const processing = toRef(useUserStore(), 'processing')
 
-const search = ref<string>(props.search ?? '')
-const rows = ref<string>('10')
+const search = ref<string>(useRoute().defaultSearch)
+const rows = ref<string>(useRoute().defaultRows)
 
 watch(search, _.debounce((value) => {
   getUsers({ search: value })

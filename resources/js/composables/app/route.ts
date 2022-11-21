@@ -9,8 +9,12 @@ export const useRoute = () => {
 
   const currentRoute = route().current() as string
 
+  const defaultSearch = _.get(route().params, 'search', '') as string
+  const defaultRows = _.get(route().params, 'rows', '') as string
   return {
     isActive,
+    defaultRows,
+    defaultSearch,
 
     currentRoute,
   }
