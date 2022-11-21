@@ -76,8 +76,15 @@ const toggleEdit = (user: User) => {
             :class="item.status === 'active' ? '!font-semibold' : ''"
           />
         </td>
-        <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-          <JBadge v-for="role in item.relationships.roles" :key="role.id" class="capitalize" :label="role.name" />
+        <td class="gap-2 px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+          <span class="inline-flex gap-2">
+            <JBadge
+              v-for="role in item.relationships.roles"
+              :key="role.id"
+              class="capitalize"
+              :label="role.name"
+            />
+          </span>
         </td>
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
           {{ useDateFormat(item.createdAt, 'MMM DD, YYYY').value }}
