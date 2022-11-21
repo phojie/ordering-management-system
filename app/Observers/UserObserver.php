@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Models\Permission;
 use App\Models\User;
 use App\Traits\Generate;
 
@@ -18,6 +19,16 @@ class UserObserver
 		//set fullname
 		$user->full_name = $this->generateFullname($user);
 	}
+
+  public function created(User $user): void
+  {
+    // set default role
+    try {
+      $user->assignRole('customer');
+    } catch (\Throwable $th) {
+      // throw $th;
+    }
+  }
 
 	public function updating(User $user): void
 	{
