@@ -15,7 +15,11 @@ class RoleSeeder extends Seeder
 		];
 
 		foreach ($roles as $role) {
-			Role::create(['name' => $role]);
+      try {
+        $role = Role::create(['name' => $role]);
+      } catch (\Exception $e) {
+        // Do nothing
+      }
 		}
 	}
 }

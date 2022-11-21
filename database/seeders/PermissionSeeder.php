@@ -12,30 +12,34 @@ class PermissionSeeder extends Seeder
 		// Create permissions
 		$permissions = [
 			[
-        'name' => 'user-create',
-        'color' => 'green',
-        'description' => 'Create user'
-      ],
-      [
-        'name' => 'user-read',
-        'color' => 'blue',
-        'description' => 'Read user'
-      ],
-      [
-        'name' => 'user-update',
-        'color' => 'yellow',
-        'description' => 'Update user'
-      ],
-      [
-        'name' => 'user-delete',
-        'color' => 'red',
-        'description' => 'Delete user'
-      ],
+				'name' => 'user-create',
+				'description' => 'Create user',
+			],
+			[
+				'name' => 'user-read',
+				'description' => 'Read user',
+			],
+			[
+				'name' => 'user-update',
+				'description' => 'Update user',
+			],
+			[
+				'name' => 'user-delete',
+				'description' => 'Delete user',
+			],
 		];
 
 		foreach ($permissions as $permission) {
-			// $permission = Permission::make(['name' => $permission]);
-			// $permission->saveOrFail();
+			try {
+				$permission = Permission::make([
+					'name' => $permission['name'],
+					'color' => $permission['color'],
+					'description' => $permission['description'],
+				]);
+				$permission->saveOrFail();
+			} catch (\Exception $e) {
+				// Do nothing
+			}
 		}
 	}
 }
