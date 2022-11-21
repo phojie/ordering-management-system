@@ -17,7 +17,7 @@ class UserFactory extends Factory
 			'middle_name' => fake()->optional()->firstName(),
 			'last_name' => fake()->lastName(),
 			'email_verified_at' => now(),
-			'password' => bcrypt('password'), // password
+			'password' => bcrypt('password'),
 			'remember_token' => Str::random(10),
 			'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
 		];
