@@ -33,7 +33,11 @@ class UserFactory extends Factory
   public function configure(): static
   {
   	return $this->afterCreating(function (User $user) {
-  		$user->assignRole('customer');
+  		try {
+  			$user->assignRole('customer');
+  		} catch (\Throwable $th) {
+  			//throw $th;
+  		}
   	});
   }
 }
