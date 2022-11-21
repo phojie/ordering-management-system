@@ -49,8 +49,13 @@ export const useUserStore = defineStore('user', () => {
       },
     },
     {
-      text: 'Title',
-      value: 'title',
+      text: 'Username',
+      value: 'username',
+      sortable: true,
+      filterable: true,
+      filterOptions: {
+        type: 'text',
+      },
     },
     {
       text: 'Status',

@@ -21,7 +21,7 @@ class UserController extends Controller
 		// set model
 		$model = User::query()
 		  ->withTrashed()
-		  // ->whereNotIn('id', [auth()->user()->id])
+		  ->whereNotIn('id', [auth()->user()->id])
 		  ->with(['roles'])
 		  ->when($request->search, fn ($q) => $q->search($request->search));
 
@@ -29,10 +29,10 @@ class UserController extends Controller
 		$query = QueryBuilder::for($model)
 			->defaultSort('created_at')
 			->allowedSorts([
-				'full_name', 'status', 'created_at',
+				'username','full_name', 'status', 'created_at',
 				AllowedSort::custom('roles.name', new CustomRoleSort, 'name'),
 			])
-			->allowedFilters(['full_name', 'status', 'roles.name']);
+			->allowedFilters(['username', 'full_name', 'status', 'roles.name']);
 
 		// set pagination
 		$users = $query->paginate($request->rows ?? config('jie.per_page'))->appends($request->all());

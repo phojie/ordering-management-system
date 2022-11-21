@@ -63,12 +63,7 @@ const toggleEdit = (user: User) => {
           </div>
         </td>
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-          <div class="text-gray-900">
-            Front-end Developer
-          </div>
-          <div class="text-gray-500">
-            Optimization
-          </div>
+          {{ item.username }}
         </td>
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
           <JBadge
