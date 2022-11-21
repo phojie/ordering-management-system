@@ -13,6 +13,7 @@ const { formState, getUsers, reload } = useUserStore()
 const processing = toRef(useUserStore(), 'processing')
 
 const search = ref<string>(props.search ?? '')
+const rows = ref<string>('10')
 
 watch(search, _.debounce((value) => {
   getUsers({ search: value })
@@ -59,9 +60,9 @@ const toggleCreate = () => {
     </div>
 
     <!-- Query area -->
-    <div class="grid items-end grid-cols-1 px-4 mb-4 sm:grid-cols-10 sm:px-6 lg:px-8">
+    <div class="grid items-end grid-cols-1 gap-5 px-4 mb-4 sm:grid-cols-12 sm:px-6 lg:px-8">
       <!-- results summary area -->
-      <div class="col-span-7">
+      <div class="order-last col-span-12 sm:col-span-7 sm:order-first">
         <p class="text-sm text-gray-700">
           Showing
           <span class="font-medium">{{ users.meta.from }}</span>
@@ -74,11 +75,21 @@ const toggleCreate = () => {
       </div>
 
       <!-- search area -->
-      <InputSearch
-        v-model="search"
-        :processing="processing"
-        placeholder="Search by name, email or role"
-      />
+      <div
+        class="flex col-span-12 gap-2 sm:col-span-5"
+      >
+        <InputSearch
+          v-model="search"
+          class="flex-1"
+          :processing="processing"
+          placeholder="Search by name, email or role"
+        />
+
+        <InputRow
+          v-model="rows"
+          class="w-20"
+        />
+      </div>
     </div>
 
     <!-- Table -->
