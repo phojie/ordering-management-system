@@ -7,9 +7,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Services\CustomSort\CustomRoleSort;
 use App\Services\FlashNotification;
 use Illuminate\Http\Request;
 use Inertia\Controller;
+use Spatie\QueryBuilder\AllowedSort;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends Controller
@@ -26,7 +28,12 @@ class UserController extends Controller
 		// set query builder
 		$query = QueryBuilder::for($model)
 			->defaultSort('created_at')
-			->allowedSorts(['full_name', 'status', 'created_at', 'roles.name'])
+			->allowedSorts([
+				'full_name',
+				'status',
+				'created_at',
+				AllowedSort::custom('roles.name', new CustomRoleSort, 'name'),
+			])
 			->allowedFilters(['full_name', 'status', 'roles.name']);
 
 		// set pagination
