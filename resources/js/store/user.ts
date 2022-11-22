@@ -175,7 +175,6 @@ export const useUserStore = defineStore('user', () => {
   // create user
   async function createUser() {
     Inertia.post(route('users.store'), form, {
-      only: ['users', 'flash'],
       onBefore: () => {
         processing.value = true
       },
@@ -186,7 +185,7 @@ export const useUserStore = defineStore('user', () => {
         $externalResults.value = error
       },
       onSuccess: () => {
-        resetForm()
+        // resetForm()
       },
     })
   }
@@ -194,7 +193,6 @@ export const useUserStore = defineStore('user', () => {
   // update user
   async function updateUser(id: string) {
     Inertia.put(route('users.update', id), form, {
-      only: ['users', 'flash'],
       onBefore: () => {
         processing.value = true
       },
@@ -214,7 +212,6 @@ export const useUserStore = defineStore('user', () => {
   // delete user
   function deleteUser(id: string) {
     Inertia.delete(route('users.destroy', id), {
-      only: ['users', 'flash'],
       onBefore: () => {
         processing.value = true
       },
@@ -227,7 +224,6 @@ export const useUserStore = defineStore('user', () => {
   // delete multiple users
   function deleteUsers(ids: string[]) {
     Inertia.delete(route('users.destroy-multiple'), {
-      only: ['users', 'flash'],
       data: {
         ids,
       },
@@ -246,7 +242,6 @@ export const useUserStore = defineStore('user', () => {
       {
       },
       {
-        only: ['users', 'flash'],
         onBefore: () => {
           processing.value = true
         },
@@ -263,7 +258,6 @@ export const useUserStore = defineStore('user', () => {
         ids,
       },
       {
-        only: ['users', 'flash'],
         data: {
           ids,
         },
