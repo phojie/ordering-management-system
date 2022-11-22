@@ -11,6 +11,7 @@ const props = defineProps<{
   modelValue: Array<string | number>
   indeterminate: boolean
   links?: Array<PaginationLink>
+  emptyDataText?: string
 }>()
 
 // emits
@@ -245,7 +246,7 @@ onMounted(() => {
                   <img src="/svgs/empty_data.svg" class="w-72 h-72">
 
                   <div class="text-sm text-gray-400">
-                    No data available
+                    {{ emptyDataText ?? 'No data available' }}
                   </div>
                 </div>
               </td>

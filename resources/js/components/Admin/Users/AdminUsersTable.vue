@@ -33,6 +33,7 @@ const toggleEdit = (user: User) => {
   <section class="flex flex-col px-4 space-y-6 sm:px-6 lg:px-8">
     <JTable
       v-model="selected"
+      empty-data-text="No users found."
       :indeterminate="true"
       :items="users?.data ?? []"
       item-key="id"
