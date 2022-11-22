@@ -8,6 +8,9 @@ interface Select {
   placeholder?: string
   label?: string
   itemTitle?: string
+
+  isLoading?: boolean
+  isDisabled?: boolean
 }
 
 const props = withDefaults(defineProps <Select> (), {
@@ -29,6 +32,7 @@ const value = useVModel(props, 'modelValue', emit)
     </ListboxLabel>
     <div class="relative">
       <ListboxButton
+        :disabled="isDisabled"
         class="relative w-full py-2 pl-3 pr-10 text-left bg-white border border-gray-300 rounded-md shadow-sm cursor-pointer focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm"
       >
         <span class="block truncate">{{ props.itemTitle ?? value }}</span>

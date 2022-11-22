@@ -87,6 +87,7 @@ const toggleCreate = () => {
         <InputRow
           v-model="rows"
           class="w-20"
+          :processing="processing"
         />
       </div>
     </div>

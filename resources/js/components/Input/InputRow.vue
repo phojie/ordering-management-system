@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   modelValue?: any
+  processing?: boolean
 }>()
 
 const emit = defineEmits(['update:modelValue'])
@@ -17,5 +18,6 @@ watch(value, (value) => {
   <JSelect
     v-model="value"
     :items="items"
+    :disabled="props.processing"
   />
 </template>
