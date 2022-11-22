@@ -42,7 +42,6 @@ class UserController extends Controller
 
 		return inertia('Admin/Users/Index', [
 			'users' => $query,
-			'search' => $request->search,
 		]);
 	}
 
