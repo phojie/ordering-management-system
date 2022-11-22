@@ -7,32 +7,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use App\Services\CustomSorts\CustomRoleSort;
 use App\Services\FlashNotification;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Inertia\Controller;
-use Spatie\QueryBuilder\AllowedSort;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends Controller
 {
 	public function index(Request $request)
 	{
-		// set model
-		$model = User::query()
-		  ->withTrashed()
-		  ->whereNotIn('id', [auth()->user()->id])
-		  ->with(['roles'])
-		  ->when($request->search, fn ($q) => $q->search($request->search));
-
-		// set query builder
-		$query = QueryBuilder::for($model)
-			->defaultSort('created_at')
-			->allowedSorts([
-				'username', 'full_name', 'status', 'created_at',
-				AllowedSort::custom('roles.name', new CustomRoleSort, 'name'),
-			])
-			->allowedFilters(['username', 'full_name', 'status', 'roles.name']);
+		// set query
+		$query = (new UserService())->get($request);
 
 		// set pagination
 		$users = $query->paginate($request->rows ?? config('jie.per_page'))->appends($request->all());
@@ -47,16 +32,7 @@ class UserController extends Controller
 
 	public function store(UserRequest $userRequest)
 	{
-		$userRequest->validated();
-
-		User::create([
-			'username' => $userRequest->username,
-			'email' => $userRequest->email,
-			'first_name' => $userRequest->firstName,
-			'last_name' => $userRequest->lastName,
-			'image_url' => $userRequest->imageUrl,
-			'password' => bcrypt($userRequest->password),
-		]);
+		(new UserService())->store($userRequest);
 
 		(new FlashNotification)->create($userRequest->username);
 
@@ -70,16 +46,7 @@ class UserController extends Controller
 
   public function update(UserRequest $userRequest, User $user)
   {
-  	$userRequest->validated();
-
-  	$user->update([
-  		'username' => $userRequest->username,
-  		'email' => $userRequest->email,
-  		'first_name' => $userRequest->firstName,
-  		'last_name' => $userRequest->lastName,
-  		'image_url' => $userRequest->imageUrl,
-  		'password' => bcrypt($userRequest->password),
-  	]);
+  	(new UserService())->update($userRequest, $user);
 
   	(new FlashNotification)->update($userRequest->username);
 
@@ -88,13 +55,12 @@ class UserController extends Controller
 
 	public function destroy(User $user)
 	{
-		$user->delete();
+		(new UserService())->destroy($user);
 
 		(new FlashNotification)->destroy($user->username, [
 			[
 				'url' => route('users.restore', $user->id),
 				'method' => 'put',
-
 			],
 		]);
 
@@ -103,9 +69,7 @@ class UserController extends Controller
 
 	public function destroyMultiple(Request $request)
 	{
-		\DB::transaction(function () use ($request) {
-			User::whereIn('id', $request->ids)->get()->each->delete();
-		});
+		(new UserService())->destroyMultiple($request);
 
 		(new FlashNotification)->destroy(count($request->ids).' users', [
 			[
@@ -122,7 +86,7 @@ class UserController extends Controller
 
   public function restore(User $user)
   {
-  	$user->restore();
+  	(new UserService())->restore($user);
 
   	(new FlashNotification)->restore($user->username, [
   		[
@@ -136,10 +100,7 @@ class UserController extends Controller
 
   public function restoreMultiple(Request $request)
   {
-  	// db transaction
-  	\DB::transaction(function () use ($request) {
-  		User::withTrashed()->whereIn('id', $request->ids)->get()->each->restore();
-  	});
+  	(new UserService())->retoreMultiple($request->ids);
 
   	(new FlashNotification)->restore(count($request->ids).' users', [
   		[
