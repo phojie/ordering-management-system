@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PaginationUsers } from '@/types/user'
-const props = defineProps<{
+defineProps<{
   users: PaginationUsers
 }>()
 
@@ -58,7 +58,6 @@ const toggleCreate = () => {
       </div>
     </div>
 
-    <!-- Query area -->
     <div class="grid items-end grid-cols-1 gap-5 px-4 mb-4 sm:grid-cols-12 sm:px-6 lg:px-8">
       <!-- results summary area -->
       <div class="order-last col-span-12 sm:col-span-7 sm:order-first">
@@ -73,7 +72,7 @@ const toggleCreate = () => {
         </p>
       </div>
 
-      <!-- search area -->
+      <!-- Query area -->
       <div
         class="flex col-span-12 gap-2 sm:col-span-5"
       >
