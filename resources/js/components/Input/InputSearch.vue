@@ -25,7 +25,6 @@ watchEffect(() => {
   <JTextField
     id="input-search"
     v-model="value"
-    class="col-span-3"
     input-class="!pr-16"
     :append-inner="true"
     :prepend-inner="HeroiconsMagnifyingGlass20Solid"
