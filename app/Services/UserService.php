@@ -71,7 +71,7 @@ class UserService
   			'image_url' => $userRequest->imageUrl,
   		]);
 
-  		$user->syncRoles($userRequest->roles);
+  		// $user->syncRoles($userRequest->roles);
   	} catch (\Exception $e) {
   		(new FlashNotification())->error($e->getMessage());
   	}
