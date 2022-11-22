@@ -70,6 +70,28 @@ class FlashNotification
   	$this->flash();
   }
 
+  public function warning(string $message, array $actions = []): void
+  {
+  	$this->variant = 'warning';
+  	$this->message = $message;
+  	$this->title = 'Warning';
+  	$this->icon = 'warning';
+  	$this->actions = $actions;
+
+  	$this->flash();
+  }
+
+  public function error(string $message = 'Something went wrong', array $actions = []): void
+  {
+  	$this->variant = 'danger';
+  	$this->message = $message;
+  	$this->title = 'Error';
+  	$this->icon = 'error';
+  	$this->actions = $actions;
+
+  	$this->flash();
+  }
+
 	public function flash(): void
 	{
 		session()->flash('notification', [
