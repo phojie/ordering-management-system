@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
-
 interface Select {
   id?: string
   modelValue?: any

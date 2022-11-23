@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
-
 interface SlideOver {
   state?: boolean
   title: string
