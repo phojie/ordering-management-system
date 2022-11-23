@@ -69,7 +69,7 @@ class UserController extends Controller
 
 	public function destroyMultiple(Request $request)
 	{
-		(new UserService())->destroyMultiple($request);
+		(new UserService())->destroyMultiple($request->ids);
 
 		(new FlashNotification)->destroy(count($request->ids).' users', [
 			[
