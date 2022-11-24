@@ -9,6 +9,7 @@ module.exports = {
     './resources/views/**/*.blade.php',
     './resources/js/**/*.vue',
     './node_modules/floating-vue/dist/style.css',
+    './node_modules/vue-select/dist/vue-select.css',
   ],
 
   safelist: [

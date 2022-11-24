@@ -1,0 +1,50 @@
+@layer components {
+  .vs__actions{
+    /* @apply !hidden; */
+  }
+
+  .j-input-select .vs__dropdown-toggle,
+  .vs__dropdown-menu .vs__dropdown-toggle {
+    @apply !rounded-md px-1 min-h-[38px] ;
+  }
+
+  .input__danger .vs__dropdown-toggle {
+    @apply !ring-danger-500 !border-danger-500 bg-white;
+  }
+
+  .vs--open .vs__dropdown-toggle {
+    @apply ring-1 ring-primary-500 border-primary-500 bg-white;
+  }
+
+  /* ul */
+  .j-input-select .vs__dropdown-menu,
+  .vs__dropdown-menu {
+    @apply !mt-1 !border-0 !rounded-b-md !shadow-sm !bg-gray-50;
+  }
+
+  /* li */
+  .j-input-select .vs__dropdown-option,
+  .vs__dropdown-menu .vs__dropdown-option,
+  .vs__no-options {
+    @apply py-1 text-sm text-gray-900 focus:outline-none;
+  }
+
+  /* li value hover highlight */
+  .j-input-select .vs__dropdown-option--highlight,
+  .vs__dropdown-menu .vs__dropdown-option--highlight {
+    @apply bg-gray-100;
+  }
+
+  /* chips value */
+  .j-input-select .vs__selected {
+    @apply border-0 px-2 rounded-full !tracking-wider text-xs bg-gray-200 text-gray-600;
+  }
+
+  .vs--disabled .vs__clear,
+  .vs--disabled .vs__dropdown-toggle,
+  .vs--disabled .vs__open-indicator,
+  .vs--disabled .vs__search,
+  .vs--disabled .vs__selected {
+    background-color: transparent !important;
+  }
+}

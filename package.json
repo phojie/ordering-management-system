@@ -19,6 +19,7 @@
     "highcharts-vue": "^1.4.0",
     "pinia": "^2.0.23",
     "typescript": "^4.8.4",
+    "vue-select": "^4.0.0-beta.6",
     "ziggy-js": "^1.5.0"
   },
   "devDependencies": {

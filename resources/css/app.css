@@ -2,6 +2,7 @@
 
 /* components extended */
 @import 'floating-vue.css';
+@import 'v-select.css';
 
 @tailwind base;
 @tailwind components;
