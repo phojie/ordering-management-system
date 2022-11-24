@@ -14,7 +14,7 @@ import vSelect from 'vue-select'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m'
 import { Ziggy } from './ziggy'
 import DefaultLayout from '@/layouts/Default.vue'
-import HeroiconsChevronDown20Solid from '~icons/heroicons/chevron-down-20-solid'
+import IcRoundArrowDropDown from '~icons/ic/round-arrow-drop-down'
 import HeroiconsXMark20Solid from '~icons/heroicons/x-mark-20-solid'
 
 import 'floating-vue/dist/style.css'
@@ -23,6 +23,7 @@ import 'vue-select/dist/vue-select.css'
 const pinia = createPinia()
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'RMS'
 
+// set default settings to v-select
 vSelect.props.components.default = () => ({
   Deselect: {
     render: () => h(HeroiconsXMark20Solid, {
@@ -79,6 +80,7 @@ createInertiaApp({
 })
 
 // init area
+
 exportingInit(Highcharts)
 
 InertiaProgress.init({
