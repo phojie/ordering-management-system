@@ -44,6 +44,10 @@ const processing = toRef(useUserStore(), 'processing')
       :is-error="$v.username.$error"
     />
 
+    <InputRoles
+      v-model="form.roles"
+    />
+
     <JTextField
       id="email"
       v-model="form.email"

@@ -26,6 +26,8 @@ export const useUserStore = defineStore('user', () => {
     username: '',
     email: '',
     password: '',
+
+    roles: [],
   })
 
   // form state
@@ -114,7 +116,10 @@ export const useUserStore = defineStore('user', () => {
       minLength: helpers.withMessage('Password must be at least 6 characters', minLength(6)),
       $autoDirty: true,
     },
+    roles: {
+    },
   }
+
   const $externalResults = ref({})
   const $v = useVuelidate(rules as any, form, { $externalResults })
 
@@ -280,6 +285,7 @@ export const useUserStore = defineStore('user', () => {
     form.username = ''
     form.email = ''
     form.password = ''
+    form.roles = []
 
     $v.value.$reset()
   }

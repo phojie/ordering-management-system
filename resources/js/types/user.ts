@@ -1,3 +1,4 @@
+// import type { Role } from './role'
 import type { Pagination } from '@/global'
 
 export interface User {
@@ -15,6 +16,13 @@ export interface User {
   updatedAt?: string
   password?: string
   passwordConfirmation?: string
+
+  // relationships
+  // relationships?: {
+  //   roles?: Array<Role>
+  // } | []
+
+  roles?: []
 }
 
 export interface PaginationUsers extends Pagination {

@@ -19,6 +19,7 @@ const toggleEdit = (user: User) => {
   form.middleName = user.middleName
   form.lastName = user.lastName
   form.username = user.username
+  form.roles = user.roles
   form.email = user.email
   form.password = 'password'
 
@@ -75,7 +76,7 @@ const toggleEdit = (user: User) => {
         <td class="gap-2 px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
           <span class="inline-flex gap-2">
             <JBadge
-              v-for="role in item.relationships.roles"
+              v-for="role in item.roles"
               :key="role.id"
               class="capitalize"
               :label="role.name"

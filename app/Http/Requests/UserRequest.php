@@ -15,7 +15,6 @@ class UserRequest extends FormRequest
    {
    	$rules = [
    		'username' => ['required', 'unique:users'],
-   		// 'roles' => ['required', 'array', 'min:1'],
    		'password' => ['required', 'min:6'],
    		'firstName' => ['required'],
    		'lastName' => ['required'],
