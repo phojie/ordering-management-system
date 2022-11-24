@@ -5,23 +5,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin/users')->middleware('auth')->group(function () {
 	Route::controller(UserController::class)->group(function () {
-    // delete
+		// delete
 		Route::delete('/{user}', 'destroy')->name('users.destroy');
 		Route::delete('/', 'destroyMultiple')->name('users.destroy-multiple');
 
-    // restore
+		// restore
 		Route::put('/{user}/restore', 'restore')->name('users.restore')->withTrashed();
 		Route::put('/restore', 'restoreMultiple')->name('users.restore-multiple');
 
-    // index
+		// index
 		Route::get('/', 'index')->name('users.index');
 
-    // create
+		// create
 		Route::post('/', 'store')->name('users.store');
 
-    // Route::get('/users/{user}', 'show')->name('users.show');
+		// Route::get('/{user}', 'show')->name('users.show');
 
-    // update
+		// update
 		Route::put('/{user}', 'update')->name('users.update');
 	});
 });
