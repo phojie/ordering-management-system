@@ -1,6 +1,6 @@
 @layer components {
   .vs__actions{
-    /* @apply !hidden; */
+    @apply -mr-1;
   }
 
   .j-input-select .vs__dropdown-toggle,

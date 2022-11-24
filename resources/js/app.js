@@ -32,9 +32,9 @@ vSelect.props.components.default = () => ({
     }),
   },
   OpenIndicator: {
-    render: () => h(HeroiconsChevronDown20Solid, {
+    render: () => h(IcRoundArrowDropDown, {
       class: {
-        'text-gray-400 w-5 h-5': true,
+        'text-gray-400 w-7 h-7': true,
       },
     }),
   },
