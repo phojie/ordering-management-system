@@ -17,7 +17,7 @@ export interface User {
   password?: string
   passwordConfirmation?: string
 
-  roles?: Array<Role>
+  roles?: Array<Role | any>
 }
 
 export interface PaginationUsers extends Pagination {
