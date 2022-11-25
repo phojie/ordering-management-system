@@ -19,7 +19,9 @@ class UserService
 			  ->withTrashed()
 			  ->whereNotIn('id', [auth()->user()->id])
 			  ->with(['roles'])
-			  ->when($request->search, fn ($q) => $q->search($request->search));
+		// TODO refactor this one, move when to scope
+			  // ->when($request->search, fn ($q) => $q->search($request->search));
+		->search($request->search);
 
 			// set query builder
 			$query = QueryBuilder::for($model)
@@ -47,7 +49,7 @@ class UserService
   	try {
   		$userRequest->validated();
 
-  		User::create([
+  		$user = User::create([
   			'username' => $userRequest->username,
   			'email' => $userRequest->email,
   			'first_name' => $userRequest->firstName,
@@ -55,6 +57,9 @@ class UserService
   			'image_url' => $userRequest->imageUrl,
   			'password' => bcrypt($userRequest->password),
   		]);
+
+  		$roles = collect($userRequest->roles)->pluck('name');
+  		$user->assignRole($roles);
   	} catch (\Exception $e) {
   		(new FlashNotification())->error($e->getMessage());
   	}
