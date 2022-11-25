@@ -30,14 +30,19 @@ export interface TextArea {
   placeholder?: string
   modelValue?: string
   label?: string
-  appendInnerIcon?: string
+  appendInner?: unknown
+  prependInner?: unknown
+  hints?: string
   errorMessage?: string
+  inputClass?: string
 
   // boolean
+  autofocus?: boolean
   isError?: boolean
   isDisabled?: boolean
   isReadOnly?: boolean
   isLoading?: boolean
+  isClearable?: boolean
 
   // object
 
