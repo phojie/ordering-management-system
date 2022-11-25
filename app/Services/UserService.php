@@ -45,8 +45,6 @@ class UserService
   public function store($userRequest)
   {
   	try {
-  		$userRequest->validated();
-
   		$user = User::create([
   			'username' => $userRequest->username,
   			'email' => $userRequest->email,
