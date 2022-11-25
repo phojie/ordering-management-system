@@ -243,7 +243,7 @@ onMounted(() => {
             >
               <td colspan="100" class="py-4 text-center">
                 <div class="grid place-items-center">
-                  <img src="/svgs/empty_data.svg" class="w-72 h-72">
+                  <img src="/svgs/empty_data.svg" class="w-80 h-80">
 
                   <div class="text-sm text-gray-400">
                     {{ emptyDataText ?? 'No data available' }}
