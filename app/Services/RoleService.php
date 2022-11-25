@@ -38,7 +38,6 @@ class RoleService
    				[
    					'name' => $request->name,
    					'description' => $request->description,
-   					'color' => $request->color,
    					'guard_name' => 'web',
    				]
    			);
@@ -61,7 +60,6 @@ class RoleService
    				$role->update([
    					'name' => $request->name,
    					'description' => $request->description,
-   					'color' => $request->color,
    				]);
 
    				$role->syncPermissions($permissions);

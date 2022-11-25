@@ -20,7 +20,6 @@ export const useRoleStore = defineStore('role', () => {
     id: '',
     name: '',
     description: '',
-    color: '',
 
     permissions: [],
   })
