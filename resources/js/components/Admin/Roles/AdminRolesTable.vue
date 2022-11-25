@@ -17,6 +17,7 @@ const toggleEdit = (role: Role) => {
   form.id = role.id
   form.name = role.name
   form.description = role.description
+  form.permissions = role.permissions
 
   formState.type = 'edit'
   formState.show = true
@@ -49,8 +50,15 @@ const toggleEdit = (role: Role) => {
             {{ item.name }}
           </span>
         </td>
-        <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-          {{ item.description }}
+
+        <td class="w-1/3 px-3 py-4 text-sm text-gray-500 whitespace-normal">
+          <p class="line-clamp-1">
+            {{ item.description }}
+          </p>
+        </td>
+
+        <td class="px-3 py-4 text-sm text-gray-500 whitespace-normal">
+          {{ item.permissionsCount }}
         </td>
 
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">

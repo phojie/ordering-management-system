@@ -13,6 +13,7 @@ class RoleService
 			// set model
 			$model = Role::query()
 			  ->withTrashed()
+				->withCount('permissions')
 			  ->search($request->search);
 
 			// set query builder
@@ -30,12 +31,21 @@ class RoleService
    public function store($request)
    {
    	try {
-   		Role::create([
-   			'name' => $request->name,
-   			'description' => $request->description,
-   			'color' => $request->color,
-   			'guard_name' => 'web',
-   		]);
+   		\DB::transaction(function () use ($request) {
+   			$permissions = collect($request->permissions)->pluck('name');
+
+   			$role = Role::make(
+   				[
+   					'name' => $request->name,
+   					'description' => $request->description,
+   					'color' => $request->color,
+   					'guard_name' => 'web',
+   				]
+   			);
+
+   			$role->givePermissionTo($permissions);
+   			$role->saveOrFail();
+   		});
    	} catch (\Exception $e) {
    		(new FlashNotification())->error($e->getMessage());
    	}
@@ -44,12 +54,19 @@ class RoleService
    public function update($request, $role)
    {
    	try {
-   		$role->update([
-   			'name' => $request->name,
-   			'description' => $request->description,
-   			'color' => $request->color,
-   			'guard_name' => 'web',
-   		]);
+   		\DB::transaction(
+   			function () use ($request, $role) {
+   				$permissions = collect($request->permissions)->pluck('name');
+
+   				$role->update([
+   					'name' => $request->name,
+   					'description' => $request->description,
+   					'color' => $request->color,
+   				]);
+
+   				$role->syncPermissions($permissions);
+   			}
+   		);
    	} catch (\Exception $e) {
    		(new FlashNotification())->error($e->getMessage());
    	}
@@ -57,11 +74,11 @@ class RoleService
 
    public function destroy($role)
    {
-     try {
-       $role->delete();
-     } catch (\Exception $e) {
-       (new FlashNotification())->error($e->getMessage());
-     }
+   	try {
+   		$role->delete();
+   	} catch (\Exception $e) {
+   		(new FlashNotification())->error($e->getMessage());
+   	}
    }
 
   public function destroyMultiple($ids)
@@ -83,7 +100,6 @@ class RoleService
   		(new FlashNotification())->error($e->getMessage());
   	}
   }
-
 
   public function retoreMultiple($ids)
   {
