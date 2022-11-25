@@ -41,38 +41,37 @@ class UserService
   	// get user
   }
 
-  // store
-  public function store($userRequest)
+  public function store($request)
   {
   	try {
   		$user = User::create([
-  			'username' => $userRequest->username,
-  			'email' => $userRequest->email,
-  			'first_name' => $userRequest->firstName,
-  			'last_name' => $userRequest->lastName,
-  			'image_url' => $userRequest->imageUrl,
-  			'password' => bcrypt($userRequest->password),
+  			'username' => $request->username,
+  			'email' => $request->email,
+  			'first_name' => $request->firstName,
+  			'last_name' => $request->lastName,
+  			'image_url' => $request->imageUrl,
+  			'password' => bcrypt($request->password),
   		]);
 
-  		$roles = collect($userRequest->roles)->pluck('name');
+  		$roles = collect($request->roles)->pluck('name');
   		$user->assignRole($roles);
   	} catch (\Exception $e) {
   		(new FlashNotification())->error($e->getMessage());
   	}
   }
 
-  public function update($userRequest, $user)
+  public function update($request, $user)
   {
   	try {
   		$user->update([
-  			'username' => $userRequest->username,
-  			'email' => $userRequest->email,
-  			'first_name' => $userRequest->firstName,
-  			'last_name' => $userRequest->lastName,
-  			'image_url' => $userRequest->imageUrl,
+  			'username' => $request->username,
+  			'email' => $request->email,
+  			'first_name' => $request->firstName,
+  			'last_name' => $request->lastName,
+  			'image_url' => $request->imageUrl,
   		]);
 
-  		$roles = collect($userRequest->roles)->pluck('name');
+  		$roles = collect($request->roles)->pluck('name');
   		$user->syncRoles($roles);
   	} catch (\Exception $e) {
   		(new FlashNotification())->error($e->getMessage());
