@@ -27,13 +27,28 @@ class PermissionSeeder extends Seeder
 				'name' => 'user-delete',
 				'description' => 'Delete user',
 			],
+      [
+        'name' => 'role-create',
+        'description' => 'Create role',
+      ],
+      [
+        'name' => 'role-read',
+        'description' => 'Read role',
+      ],
+      [
+        'name' => 'role-update',
+        'description' => 'Update role',
+      ],
+      [
+        'name' => 'role-delete',
+        'description' => 'Delete role',
+      ]
 		];
 
 		foreach ($permissions as $permission) {
 			try {
 				$permission = Permission::make([
 					'name' => $permission['name'],
-					'color' => $permission['color'],
 					'description' => $permission['description'],
 				]);
 				$permission->saveOrFail();
