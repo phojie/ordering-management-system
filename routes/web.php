@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 require __DIR__.'/admin/user.php';
 require __DIR__.'/admin/role.php';
+require __DIR__.'/admin/index.php';
 
 require __DIR__.'/auth/index.php';
 require __DIR__.'/components/index.php';

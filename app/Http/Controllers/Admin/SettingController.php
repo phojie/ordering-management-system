@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 class SettingController
 {
-    public function __invoke(Request $request)
+    public function index(Request $request)
     {
-        return view('auth.settings');
+      return inertia('Admin/Settings', [
+      ]);
     }
 }
