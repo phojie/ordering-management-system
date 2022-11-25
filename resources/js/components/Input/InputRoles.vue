@@ -8,27 +8,28 @@ const emit = defineEmits(['update:modelValue'])
 
 const value = useVModel(props, 'modelValue', emit)
 
-const roles = ref<Array<Role>>(
-  [
-    {
-      name: 'customer',
-      description: 'customer',
-    },
-    {
-      name: 'super admin',
-      description: 'Super admin',
-    },
-  ],
-)
+const roles = ref<Array<Role>>([])
+
+onMounted(async () => {
+  await useFetch(route('components.roles')).get().json().then(({ data }) => {
+    roles.value = data.value
+  })
+})
 </script>
 
 <template>
-  <JVSelect
-    v-model="value"
-    label="Roles"
-    selected-label="name"
-    multiple
-    :options="roles"
-    :close-on-select="false"
-  />
+  <Suspense>
+    <JVSelect
+      v-model="value"
+      label="Roles"
+      selected-label="name"
+      multiple
+      :options="roles"
+      :close-on-select="false"
+    />
+
+    <template #fallback>
+      Loading...
+    </template>
+  </Suspense>
 </template>
