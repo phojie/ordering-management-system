@@ -70,6 +70,7 @@ declare module '@vue/runtime-core' {
     Icon: typeof import('~icons/ic/on')['default']
     InputError: typeof import('./components/InputError.vue')['default']
     InputLabel: typeof import('./components/InputLabel.vue')['default']
+    InputPermissions: typeof import('./components/Input/InputPermissions.vue')['default']
     InputRoles: typeof import('./components/Input/InputRoles.vue')['default']
     InputRow: typeof import('./components/Input/InputRow.vue')['default']
     InputSearch: typeof import('./components/Input/InputSearch.vue')['default']

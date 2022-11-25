@@ -21,6 +21,8 @@ export const useRoleStore = defineStore('role', () => {
     name: '',
     description: '',
     color: '',
+
+    permissions: [],
   })
 
   // form state
@@ -53,6 +55,10 @@ export const useRoleStore = defineStore('role', () => {
       },
     },
     {
+      text: 'Permissions',
+      value: 'permissions',
+    },
+    {
       text: 'Status',
       value: 'status',
     },
@@ -80,6 +86,7 @@ export const useRoleStore = defineStore('role', () => {
       minLengthValue: maxLength(100),
       $autoDirty: true,
     },
+    permissions: {},
   }
 
   const $externalResults = ref({})
@@ -243,6 +250,7 @@ export const useRoleStore = defineStore('role', () => {
     form.name = ''
     form.description = ''
     form.color = ''
+    form.permissions = []
 
     $v.value.$reset()
   }

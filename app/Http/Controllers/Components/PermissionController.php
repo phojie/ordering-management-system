@@ -6,9 +6,9 @@ use App\Models\Permission;
 
 class PermissionController
 {
-	public function get()
+	public function index()
 	{
-    // TODO implement searchable and pagination
+		// TODO implement searchable and pagination
 		$query = Permission::get();
 
 		return response()->json($query, 200);

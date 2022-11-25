@@ -24,5 +24,9 @@ const processing = toRef(useRoleStore(), 'processing')
       :error-message="$v.description.$errors[0]?.$message"
       :is-error="$v.description.$error"
     />
+
+    <InputPermissions
+      v-model="form.permissions"
+    />
   </div>
 </template>

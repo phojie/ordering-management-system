@@ -24,6 +24,12 @@ const toggleEdit = (role: Role) => {
   formState.title = 'Edit Role'
   formState.description = `Edit the details for ${role.name}`
 }
+
+const getById = async (id: number) => {
+  await useFetch(route('components.roles.show', id)).get().json().then(({ data }) => {
+    toggleEdit(data.value)
+  })
+}
 </script>
 
 <template>
@@ -44,7 +50,7 @@ const toggleEdit = (role: Role) => {
           <span
             :style="`background-color:${item.color}`"
             :class="{ 'bg-gray-400': !item.color }"
-            class="w-2.5 h-2.5 rounded-full "
+            class="w-2 h-2 -mx-1 rounded-full "
           />
           <span class="font-medium" :class="[selected ? 'text-primary-600' : 'text-gray-900']">
             {{ item.name }}
@@ -77,7 +83,7 @@ const toggleEdit = (role: Role) => {
             v-if="item.status === 'active'"
             v-tooltip="'Edit user'"
             type="button"
-            class="text-primary-600 hover:text-primary-900" @click="toggleEdit(item as any)"
+            class="text-primary-600 hover:text-primary-900" @click="getById(item.id)"
           >
             <heroicons-pencil-square-20-solid class="w-5 h-5" />
           </button>
