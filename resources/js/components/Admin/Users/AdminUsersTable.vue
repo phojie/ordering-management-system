@@ -74,14 +74,21 @@ const toggleEdit = (user: User) => {
             :class="item.status === 'active' ? '!font-semibold' : ''"
           />
         </td>
-        <td class="gap-2 px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+        <td class="gap-2 px-3 py-4 text-sm whitespace-nowrap">
           <span class="inline-flex gap-2">
             <JBadge
               v-for="role in item.roles"
               :key="role.id"
-              class="capitalize"
-              :label="role.name"
-            />
+            >
+              <span
+                :style="`background-color:${role.color}`"
+                :class="{ 'bg-gray-400': !role.color }"
+                class="w-2 h-2 mr-2 rounded-full "
+              />
+              <span class="font-medium capitalize">
+                {{ role.name }}
+              </span>
+            </JBadge>
           </span>
         </td>
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
