@@ -19,9 +19,7 @@ class UserService
 			  ->withTrashed()
 			  ->whereNotIn('id', [auth()->user()->id])
 			  ->with(['roles'])
-		// TODO refactor this one, move when to scope
-			  // ->when($request->search, fn ($q) => $q->search($request->search));
-		->search($request->search);
+				->search($request->search);
 
 			// set query builder
 			$query = QueryBuilder::for($model)
