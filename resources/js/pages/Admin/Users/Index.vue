@@ -18,6 +18,10 @@ watch(search, _.debounce((value) => {
   getUsers({ search: value })
 }, 500))
 
+watch(rows, (value) => {
+  useUserStore().getUsers({ rows: value })
+})
+
 const toggleCreate = () => {
   formState.show = true
 }
