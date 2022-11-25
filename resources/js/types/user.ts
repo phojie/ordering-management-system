@@ -17,11 +17,6 @@ export interface User {
   password?: string
   passwordConfirmation?: string
 
-  // relationships
-  // relationships?: {
-  //   roles?: Array<Role>
-  // } | []
-
   roles?: Array<Role>
 }
 
