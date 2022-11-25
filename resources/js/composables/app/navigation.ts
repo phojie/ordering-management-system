@@ -10,7 +10,7 @@ import HeroiconsCog from '~icons/heroicons/cog'
 import HeroiconsDocumentText from '~icons/heroicons/document-text'
 import HeroiconsQuestionMarkCircle from '~icons/heroicons/question-mark-circle'
 import HeroiconsFingerPrint from '~icons/heroicons/finger-print'
-import HeroiconsShieldCheck from '~icons/heroicons/shield-check'
+// import HeroiconsShieldCheck from '~icons/heroicons/shield-check'
 
 interface NavigationItem {
   name: string
@@ -71,11 +71,11 @@ export const useNavigation = () => {
       href: '/admin/roles',
       exact: true,
     },
-    {
-      name: 'Permissions',
-      icon: HeroiconsShieldCheck,
-      href: '/admin/permissions',
-    },
+    // {
+    //   name: 'Permissions',
+    //   icon: HeroiconsShieldCheck,
+    //   href: '/admin/permissions',
+    // },
     {
       name: 'Settings',
       icon: HeroiconsCog,
