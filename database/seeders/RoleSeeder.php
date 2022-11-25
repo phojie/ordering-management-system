@@ -10,16 +10,16 @@ class RoleSeeder extends Seeder
 	public function run()
 	{
 		$roles = [
-			'super admin',
-			'customer',
+			'Super Admin',
+			'Customer',
 		];
 
 		foreach ($roles as $role) {
-      try {
-        $role = Role::create(['name' => $role]);
-      } catch (\Exception $e) {
-        // Do nothing
-      }
+			try {
+				$role = Role::create(['name' => $role]);
+			} catch (\Exception $e) {
+				// Do nothing
+			}
 		}
 	}
 }

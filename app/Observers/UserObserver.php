@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Models\Permission;
 use App\Models\User;
 use App\Traits\Generate;
 
@@ -22,12 +21,12 @@ class UserObserver
 
   public function created(User $user): void
   {
-    // set default role
-    try {
-      $user->assignRole('customer');
-    } catch (\Throwable $th) {
-      // throw $th;
-    }
+  	// set default role
+  	try {
+  		$user->assignRole('Customer');
+  	} catch (\Throwable $th) {
+  		// throw $th;
+  	}
   }
 
 	public function updating(User $user): void
@@ -45,7 +44,7 @@ class UserObserver
 	{
 		$user->status = 'deleted';
 		$user->save();
-  }
+	}
 
 	public function restored(User $user): void
 	{
