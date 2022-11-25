@@ -2,13 +2,6 @@
 import type { TextField } from './types'
 import HeroiconsExclamationCircle20Solid from '~icons/heroicons/exclamation-circle-20-solid'
 
-/**
-  TODO: Add a way to set focus on the input
-  TODO: Add hint prop
-  TODO: Add persistentHint prop
-  }
-*/
-
 // set default props
 const props = withDefaults(defineProps<TextField>(), {
   type: 'text',
