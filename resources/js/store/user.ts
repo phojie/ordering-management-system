@@ -190,7 +190,7 @@ export const useUserStore = defineStore('user', () => {
         $externalResults.value = error
       },
       onSuccess: () => {
-        // resetForm()
+        resetForm()
       },
     })
   }
