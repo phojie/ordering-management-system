@@ -1,4 +1,4 @@
-// import type { Role } from './role'
+import type { Role } from './role'
 import type { Pagination } from '@/global'
 
 export interface User {
@@ -22,7 +22,7 @@ export interface User {
   //   roles?: Array<Role>
   // } | []
 
-  roles?: []
+  roles?: Array<Role>
 }
 
 export interface PaginationUsers extends Pagination {
