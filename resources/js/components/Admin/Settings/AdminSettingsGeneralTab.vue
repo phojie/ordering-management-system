@@ -1,17 +1,37 @@
 <script setup lang=ts>
-const { user } = useAuthStore()
+const user = toRef(useAuthStore(), 'user')
+const { form, formState } = useSettingStore()
 
-const automaticTimezoneEnabled = ref(true)
-const autoUpdateApplicantDataEnabled = ref(false)
+const toggleEdit = (title: string) => {
+  form.firstName = user.value.firstName
+  form.middleName = user.value.middleName
+  form.lastName = user.value.lastName
+  form.username = user.value.username
+  form.imageUrl = user.value.imageUrl
+  form.email = user.value.email
+
+  formState.show = true
+  formState.title = title
+}
 </script>
 
 <template>
   <div class="flex flex-col space-y-10">
-    <div class="divide-y divide-gray-200">
+    <div class="divide-y divide-gray-200 group">
       <div class="space-y-1">
-        <h3 class="text-lg font-medium leading-6 text-gray-900">
-          Profile
-        </h3>
+        <div class="flex items-center justify-between space-x-2">
+          <h3 class="text-lg font-medium leading-6 text-gray-900">
+            Profile
+          </h3>
+          <button
+            type="button"
+            class="invisible group-hover:visible hover:text-primary-500 text-primary-600"
+            @click="toggleEdit('Update profile')"
+          >
+            <heroicons-pencil-square-20-solid class="w-6 h-6 " />
+          </button>
+        </div>
+
         <p class="max-w-2xl text-sm text-gray-500">
           This information will be displayed publicly so be careful what you share.
         </p>
@@ -25,7 +45,13 @@ const autoUpdateApplicantDataEnabled = ref(false)
             <dd class="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <span class="flex-grow">{{ user.fullName }}</span>
               <span class="flex-shrink-0 ml-4">
-                <button type="button" class="font-medium text-purple-600 bg-white rounded-md hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Update</button>
+                <button
+                  type="button"
+                  class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                  @click="toggleEdit('Update name')"
+                >
+                  Update
+                </button>
               </span>
             </dd>
           </div>
@@ -38,9 +64,15 @@ const autoUpdateApplicantDataEnabled = ref(false)
                 <img class="w-8 h-8 rounded-full" :src="user.imageUrl" alt="...">
               </span>
               <span class="flex items-start flex-shrink-0 ml-4 space-x-4">
-                <button type="button" class="font-medium text-purple-600 bg-white rounded-md hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Update</button>
+                <button
+                  type="button"
+                  class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                >Update</button>
                 <span class="text-gray-300" aria-hidden="true">|</span>
-                <button type="button" class="font-medium text-purple-600 bg-white rounded-md hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Remove</button>
+                <button
+                  type="button"
+                  class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                >Remove</button>
               </span>
             </dd>
           </div>
@@ -51,7 +83,11 @@ const autoUpdateApplicantDataEnabled = ref(false)
             <dd class="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <span class="flex-grow">{{ user.email }}</span>
               <span class="flex-shrink-0 ml-4">
-                <button type="button" class="font-medium text-purple-600 bg-white rounded-md hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Update</button>
+                <button
+                  type="button"
+                  class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                  @click="toggleEdit('Update email')"
+                >Update</button>
               </span>
             </dd>
           </div>
@@ -62,7 +98,11 @@ const autoUpdateApplicantDataEnabled = ref(false)
             <dd class="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <span class="flex-grow">{{ user.username }}</span>
               <span class="flex-shrink-0 ml-4">
-                <button type="button" class="font-medium text-purple-600 bg-white rounded-md hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Update</button>
+                <button
+                  type="button"
+                  class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                  @click="toggleEdit('Update username')"
+                >Update</button>
               </span>
             </dd>
           </div>
@@ -88,7 +128,11 @@ const autoUpdateApplicantDataEnabled = ref(false)
             <dd class="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <span class="flex-grow">English</span>
               <span class="flex-shrink-0 ml-4">
-                <button type="button" class="font-medium text-purple-600 bg-white rounded-md hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Update</button>
+                <button
+                  disabled
+                  type="button"
+                  class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                >Update</button>
               </span>
             </dd>
           </div>
@@ -99,9 +143,21 @@ const autoUpdateApplicantDataEnabled = ref(false)
             <dd class="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <span class="flex-grow">DD-MM-YYYY</span>
               <span class="flex items-start flex-shrink-0 ml-4 space-x-4">
-                <button type="button" class="font-medium text-purple-600 bg-white rounded-md hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Update</button>
+                <button
+                  disabled
+                  type="button"
+                  class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                >
+                  Update
+                </button>
                 <span class="text-gray-300" aria-hidden="true">|</span>
-                <button type="button" class="font-medium text-purple-600 bg-white rounded-md hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Remove</button>
+                <button
+                  disabled
+                  type="button"
+                  class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                >
+                  Remove
+                </button>
               </span>
             </dd>
           </div>
@@ -110,19 +166,21 @@ const autoUpdateApplicantDataEnabled = ref(false)
               Automatic timezone
             </SwitchLabel>
             <dd class="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              <Switch v-model="automaticTimezoneEnabled" class="relative inline-flex flex-shrink-0 h-6 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer w-11 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:ml-auto" :class="[automaticTimezoneEnabled ? 'bg-purple-600' : 'bg-gray-200']">
-                <span aria-hidden="true" class="inline-block w-5 h-5 transition duration-200 ease-in-out transform bg-white rounded-full shadow ring-0" :class="[automaticTimezoneEnabled ? 'translate-x-5' : 'translate-x-0']" />
-              </Switch>
+              <JSwitch
+                :model-value="true"
+                disabled
+              />
             </dd>
           </SwitchGroup>
           <SwitchGroup as="div" class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-b sm:border-gray-200 sm:py-5">
             <SwitchLabel as="dt" class="text-sm font-medium text-gray-500" passive>
-              Auto-update applicant data
+              Automatic updates
             </SwitchLabel>
             <dd class="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              <Switch v-model="autoUpdateApplicantDataEnabled" class="relative inline-flex flex-shrink-0 h-6 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer w-11 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:ml-auto" :class="[autoUpdateApplicantDataEnabled ? 'bg-purple-600' : 'bg-gray-200']">
-                <span aria-hidden="true" class="inline-block w-5 h-5 transition duration-200 ease-in-out transform bg-white rounded-full shadow ring-0" :class="[autoUpdateApplicantDataEnabled ? 'translate-x-5' : 'translate-x-0']" />
-              </Switch>
+              <JSwitch
+                :model-value="true"
+                disabled
+              />
             </dd>
           </SwitchGroup>
         </dl>

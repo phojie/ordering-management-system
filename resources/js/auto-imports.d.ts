@@ -218,6 +218,7 @@ declare global {
   const useScroll: typeof import('@vueuse/core')['useScroll']
   const useScrollLock: typeof import('@vueuse/core')['useScrollLock']
   const useSessionStorage: typeof import('@vueuse/core')['useSessionStorage']
+  const useSettingStore: typeof import('./store/setting')['useSettingStore']
   const useShare: typeof import('@vueuse/core')['useShare']
   const useSidebarStore: typeof import('./store/sidebar')['useSidebarStore']
   const useSlideOver: typeof import('./composables/toggle/slideOver')['useSlideOver']
@@ -500,6 +501,7 @@ declare module 'vue' {
     readonly useScroll: UnwrapRef<typeof import('@vueuse/core')['useScroll']>
     readonly useScrollLock: UnwrapRef<typeof import('@vueuse/core')['useScrollLock']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
+    readonly useSettingStore: UnwrapRef<typeof import('./store/setting')['useSettingStore']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
     readonly useSidebarStore: UnwrapRef<typeof import('./store/sidebar')['useSidebarStore']>
     readonly useSlideOver: UnwrapRef<typeof import('./composables/toggle/slideOver')['useSlideOver']>
