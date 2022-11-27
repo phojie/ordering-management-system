@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { Menu, MenuButton } from '@headlessui/vue'
-
 const auth = useAuthStore()
 </script>
 
