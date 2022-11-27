@@ -124,4 +124,16 @@ class UserService
   public function forceDelete($user)
   {
   }
+
+  public function changePassword($newPassword, $id)
+  {
+    $user = User::find($id);
+  	try {
+  		$user->update([
+  			'password' => bcrypt($newPassword),
+  		]);
+  	} catch (\Exception $e) {
+  		(new FlashNotification())->error($e->getMessage());
+  	}
+  }
 }

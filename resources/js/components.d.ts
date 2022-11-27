@@ -40,6 +40,7 @@ declare module '@vue/runtime-core' {
     DropdownLink: typeof import('./components/DropdownLink.vue')['default']
     EmojioneV1Rocket: typeof import('~icons/emojione-v1/rocket')['default']
     FormMenu: typeof import('./components/Form/FormMenu.vue')['default']
+    FormPassword: typeof import('./components/Form/FormPassword.vue')['default']
     FormRole: typeof import('./components/Form/FormRole.vue')['default']
     FormSetting: typeof import('./components/Form/FormSetting.vue')['default']
     FormUser: typeof import('./components/Form/FormUser.vue')['default']

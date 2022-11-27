@@ -14,7 +14,7 @@ class SettingController
 		return inertia('Admin/Settings');
 	}
 
-	public function update(SettingRequest $request)
+	public function updateGeneral(SettingRequest $request)
 	{
     $user = User::find(auth()->id());
 
@@ -24,4 +24,15 @@ class SettingController
 
 		return redirect()->back();
 	}
+
+  public function updatePassword(SettingRequest $request)
+{
+    (new UserService())->changePassword($request->newPassword, auth()->id());
+
+    (new FlashNotification())->update('Your password');
+
+    return redirect()->back();
+  }
+
+
 }

@@ -8,7 +8,7 @@ const closeSlideOver = () => {
 
 <template>
   <JSlideOver
-    :type="formState.type"
+    type="edit"
     :title="formState.title"
     :description="formState.description"
     :is-loading="processing"
@@ -17,7 +17,8 @@ const closeSlideOver = () => {
   >
     <div class="flex flex-col justify-between flex-1">
       <div class="px-4 divide-y divide-gray-200 sm:px-6">
-        <FormSetting />
+        <FormSetting v-if="formState.type === 'edit'" />
+        <FormPassword v-else-if="formState.type === 'editPassword'" />
       </div>
     </div>
   </JSlideOver>

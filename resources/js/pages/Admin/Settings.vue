@@ -4,8 +4,7 @@ defineOptions({
 })
 
 const tabs = [
-  { name: 'General', href: '#', current: true },
-  { name: 'Password', href: '#', current: false },
+  { name: 'General' },
 ]
 
 const { formState } = useSettingStore()
@@ -44,9 +43,6 @@ const { formState } = useSettingStore()
             <TabPanels class="mt-10">
               <TabPanel>
                 <AdminSettingsGeneralTab />
-              </TabPanel>
-              <TabPanel>
-                <AdminSettingsPasswordTab />
               </TabPanel>
             </TabPanels>
           </TabGroup>

@@ -2,7 +2,7 @@
 const user = toRef(useAuthStore(), 'user')
 const { form, formState } = useSettingStore()
 
-const toggleEdit = (title: string) => {
+const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
   form.firstName = user.value.firstName
   form.middleName = user.value.middleName
   form.lastName = user.value.lastName
@@ -12,6 +12,7 @@ const toggleEdit = (title: string) => {
 
   formState.show = true
   formState.title = title
+  formState.type = type ?? 'edit'
 }
 </script>
 
@@ -123,6 +124,23 @@ const toggleEdit = (title: string) => {
         <dl class="divide-y divide-gray-200">
           <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
             <dt class="text-sm font-medium text-gray-500">
+              Password
+            </dt>
+            <dd class="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              <span class="flex-grow">*******</span>
+              <span class="flex-shrink-0 ml-4">
+                <button
+                  type="button"
+                  class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                  @click="toggleEdit('Update password', 'editPassword')"
+                >
+                  Reset
+                </button>
+              </span>
+            </dd>
+          </div>
+          <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+            <dt class="text-sm font-medium text-gray-500">
               Language
             </dt>
             <dd class="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
@@ -132,7 +150,9 @@ const toggleEdit = (title: string) => {
                   disabled
                   type="button"
                   class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-                >Update</button>
+                >
+                  Update
+                </button>
               </span>
             </dd>
           </div>

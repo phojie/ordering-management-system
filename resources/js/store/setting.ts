@@ -1,7 +1,7 @@
-import { email, helpers, required } from '@vuelidate/validators'
-import type { User } from '@/types/user'
+import { email, helpers, minLength, required } from '@vuelidate/validators'
+import type { Password, User } from '@/types/user'
 
-type FormType = 'create' | 'edit'
+type FormType = 'edit' | 'editPassword'
 
 interface FormState {
   type: FormType
@@ -15,13 +15,19 @@ export const useSettingStore = defineStore('setting', () => {
   const processing = ref<boolean>(false)
 
   // data form state
-  const form = reactive<User>({
+  const form = reactive<User> ({
     firstName: '',
     middleName: '',
     lastName: '',
     email: '',
     username: '',
     imageUrl: '',
+  })
+
+  const formPassword = reactive<Password>({
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: '',
   })
 
   // form state
@@ -56,20 +62,66 @@ export const useSettingStore = defineStore('setting', () => {
     },
   }
 
+  const rulesPassword = {
+    currentPassword: {
+      required: helpers.withMessage('Current password is required', required),
+      $autoDirty: true,
+    },
+    newPassword: {
+      required: helpers.withMessage('New password is required', required),
+      minLength: helpers.withMessage('Password must be at least 6 characters', minLength(6)),
+      $autoDirty: true,
+    },
+    confirmPassword: {
+      required: helpers.withMessage('Confirm password is required', required),
+      $autoDirty: true,
+    },
+  }
+
   const $externalResults = ref({})
   const $v = useVuelidate(rules as any, form, { $externalResults })
+  const $vFormPassword = useVuelidate(rulesPassword as any, formPassword, { $externalResults })
 
   // submit form
   async function submitForm() {
-    if (!await $v.value.$validate())
-      return
+    // if formState.type is edit
+    if (formState.type === 'edit') {
+      if (!await $v.value.$validate())
+        return
 
-    updateProfile()
+      updateGeneral()
+    }
+
+    // if formState.type is changePassword
+    if (formState.type === 'editPassword') {
+      if (!await $vFormPassword.value.$validate())
+        return
+
+      updatePassword()
+    }
   }
 
   // update profile
-  async function updateProfile() {
-    Inertia.put(route('settings.update'), form, {
+  async function updateGeneral() {
+    Inertia.put(route('settings.update.general'), form, {
+      onBefore: () => {
+        processing.value = true
+      },
+      onFinish: () => {
+        processing.value = false
+      },
+      onError: (error) => {
+        $externalResults.value = error
+      },
+      onSuccess: () => {
+        resetForm()
+        resetFormState()
+      },
+    })
+  }
+
+  async function updatePassword() {
+    Inertia.put(route('settings.update.password'), formPassword, {
       onBefore: () => {
         processing.value = true
       },
@@ -103,8 +155,10 @@ export const useSettingStore = defineStore('setting', () => {
   return {
     processing,
     $v,
+    $vFormPassword,
     form,
     formState,
+    formPassword,
 
     submitForm,
     resetForm,
