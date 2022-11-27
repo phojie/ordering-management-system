@@ -140,7 +140,18 @@ export const useSettingStore = defineStore('setting', () => {
 
   // reset form
   function resetForm() {
-    form.id = ''
+    form.firstName = ''
+    form.middleName = ''
+    form.lastName = ''
+    form.email = ''
+    form.username = ''
+    form.imageUrl = ''
+
+    formPassword.newPassword = ''
+    formPassword.currentPassword = ''
+    formPassword.confirmPassword = ''
+
+    $vFormPassword.value.$reset()
     $v.value.$reset()
   }
 
