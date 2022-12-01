@@ -68,6 +68,7 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
                 <button
                   type="button"
                   class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                  @click="toggleEdit('Update photo')"
                 >Update</button>
                 <span class="text-gray-300" aria-hidden="true">|</span>
                 <button

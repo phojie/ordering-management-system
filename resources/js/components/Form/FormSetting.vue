@@ -5,6 +5,11 @@ const processing = toRef(useSettingStore(), 'processing')
 
 <template>
   <div class="pt-6 pb-5 space-y-6">
+    <JFileInput
+      v-if="formState.title === 'Update photo' || formState.title === 'Update profile'"
+      label="Photo"
+    />
+
     <JTextField
       v-if="formState.title === 'Update name' || formState.title === 'Update profile'"
       id="firstName"
