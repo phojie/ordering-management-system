@@ -3,6 +3,8 @@
 /* components extended */
 @import 'floating-vue.css';
 @import 'v-select.css';
+@import 'v-filepond.css';
+
 
 @tailwind base;
 @tailwind components;

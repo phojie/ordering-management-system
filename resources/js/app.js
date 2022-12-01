@@ -11,14 +11,42 @@ import Highcharts from 'highcharts'
 import exportingInit from 'highcharts/modules/exporting'
 import FloatingVue from 'floating-vue'
 import vSelect from 'vue-select'
+import VueFilePond from 'vue-filepond'
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type'
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
+import FilePondPluginFilePoster from 'filepond-plugin-file-poster'
+import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size'
+import FilePondPluginImageResize from 'filepond-plugin-image-resize'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m'
 import { Ziggy } from './ziggy'
-import DefaultLayout from '@/layouts/Default.vue'
-import IcRoundArrowDropDown from '~icons/ic/round-arrow-drop-down'
 import HeroiconsXMark20Solid from '~icons/heroicons/x-mark-20-solid'
+import IcRoundArrowDropDown from '~icons/ic/round-arrow-drop-down'
+import DefaultLayout from '@/layouts/Default.vue'
 
+// floating vue
+import 'floating-vue/dist/style.css'
+
+// v-select
+import 'vue-select/dist/vue-select.css'
+
+// file pond
+import 'filepond/dist/filepond.min.css'
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css'
+import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css'
 import 'floating-vue/dist/style.css'
 import 'vue-select/dist/vue-select.css'
+
+//  to be study ...
+// import FilePondPluginImageCrop from 'filepond-plugin-image-crop'
+// import FilePondPluginImageTransform from 'filepond-plugin-image-transform'
+
+const FilePond = VueFilePond(
+  FilePondPluginFileValidateType,
+  FilePondPluginImagePreview,
+  FilePondPluginFilePoster,
+  FilePondPluginFileValidateSize,
+  FilePondPluginImageResize,
+)
 
 const pinia = createPinia()
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'RMS'
@@ -71,6 +99,7 @@ createInertiaApp({
         },
       })
 
+      .component('FilePond', FilePond)
       .component('Link', Link)
       .component('Head', Head)
       .component('VSelect', vSelect)

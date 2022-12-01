@@ -10,6 +10,7 @@ module.exports = {
     './resources/js/**/*.vue',
     './node_modules/floating-vue/dist/style.css',
     './node_modules/vue-select/dist/vue-select.css',
+    './node_modules/filepond/dist/filepond.min.css',
   ],
 
   safelist: [
