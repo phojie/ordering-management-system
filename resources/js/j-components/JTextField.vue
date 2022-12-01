@@ -132,7 +132,7 @@ onMounted(() => {
       v-if="hasDetails"
       :id="`${id}-details`"
       :class="[isError ? 'text-danger-600' : 'text-gray-500']"
-      class="mt-3 text-sm"
+      class="mt-1 text-sm"
     >
       {{ details }}
     </p>
