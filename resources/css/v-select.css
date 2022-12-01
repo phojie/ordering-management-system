@@ -19,7 +19,7 @@
   /* ul */
   .j-input-select .vs__dropdown-menu,
   .vs__dropdown-menu {
-    @apply !mt-1 !border-0 !rounded-b-md !shadow-sm !bg-gray-50;
+    @apply !mt-1 !border-2 !rounded-b-md !border-gray-100 !shadow-sm !bg-gray-50;
   }
 
   /* li */
