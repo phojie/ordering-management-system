@@ -13,7 +13,6 @@ interface FileInput {
 
 const props = withDefaults(defineProps<FileInput>(), {
   // defaults
-  // allowMultiple: true,
 })
 
 // set emits
@@ -23,24 +22,44 @@ const emit = defineEmits(['update:modelValue'])
 const pond = ref<any>(null)
 const files = ref<any>(props.modelValue)
 
-const allowFilePoster = computed(() => {
-  return props.modelValue !== null || props.modelValue !== undefined || props.modelValue !== ''
+const emptyFiles = computed(() => {
+  return props.modelValue === ''
 })
 
 function handleFilePondInit() {
-  setOptions({
-    allowFilePoster: !allowFilePoster.value,
-    server: {
-      process: {
-        url: route('components.upload.store'),
-        method: 'POST',
-        headers: {
-          'X-CSRF-TOKEN': usePage().props.value?.csrfToken,
+  if (emptyFiles.value) {
+    setOptions({
+      allowFilePoster: false,
+      files: [],
+      server: {
+        process: {
+          url: route('components.upload.store'),
+          method: 'POST',
+          headers: {
+            'X-CSRF-TOKEN': usePage().props.value?.csrfToken,
+          },
         },
       },
-    },
-    files: !allowFilePoster.value ? [props.modelValue] : [],
-  })
+
+    })
+  }
+  else {
+    setOptions({
+      allowFilePoster: true,
+      files: [
+        {
+          source: props.modelValue,
+          options: {
+            type: 'local',
+            metadata: {
+              poster: props.modelValue,
+            },
+          },
+        },
+      ],
+      server: {},
+    })
+  }
 }
 
 function handleProcessFile() {
@@ -50,6 +69,9 @@ function handleProcessFile() {
 
 function handleRemoveFile() {
   emit('update:modelValue', '')
+  nextTick(() => {
+    handleFilePondInit()
+  })
 }
 </script>
 
@@ -75,7 +97,7 @@ function handleRemoveFile() {
       :files="files"
       @processfile="handleProcessFile"
       @removefile="handleRemoveFile"
-      @init="handleFilePondInit"
+      @init="handleFilePondInit()"
     />
   </div>
 </template>
