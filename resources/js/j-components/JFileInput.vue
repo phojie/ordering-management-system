@@ -55,6 +55,7 @@ function handleRemoveFile() {
 
 <template>
   <div>
+    <!-- label -->
     <label
       v-if="props.label"
       :for="id"
@@ -63,6 +64,7 @@ function handleRemoveFile() {
       {{ label }}
     </label>
 
+    <!-- input wrapper -->
     <FilePond
       ref="pond"
       name="filepond"
