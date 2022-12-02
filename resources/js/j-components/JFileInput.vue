@@ -79,7 +79,6 @@ function handleRemoveFile() {
     <!-- label -->
     <label
       v-if="props.label"
-      :for="id"
       class="block mb-1 text-sm font-medium text-gray-900"
     >
       {{ label }}
