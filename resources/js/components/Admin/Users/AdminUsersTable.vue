@@ -21,6 +21,7 @@ const toggleEdit = (user: User) => {
   form.username = user.username
   form.roles = user.roles
   form.email = user.email
+  form.avatar = user.avatar
   form.password = 'password'
 
   formState.type = 'edit'
