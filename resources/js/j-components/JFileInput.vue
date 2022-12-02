@@ -27,6 +27,7 @@ const emptyFiles = computed(() => {
 
 function handleFilePondInit() {
   if (emptyFiles.value) {
+    console.log('triggred1')
     setOptions({
       allowFilePoster: false,
       files: [],
@@ -39,7 +40,6 @@ function handleFilePondInit() {
           },
         },
       },
-
     })
   }
   else {
@@ -56,7 +56,27 @@ function handleFilePondInit() {
           },
         },
       ],
-      server: {},
+      server: {
+        fetch: (url: any, load: any, error: any) => {
+          const request = new XMLHttpRequest()
+          request.open('GET', url, true)
+          request.responseType = 'blob'
+          request.onload = () => {
+            if (request.status >= 200 && request.status < 300)
+              load(request.response)
+
+            else
+              error('oh no')
+          }
+          request.send()
+
+          return {
+            abort: () => {
+              request.abort()
+            },
+          }
+        },
+      },
     })
   }
 }
@@ -91,8 +111,8 @@ function handleRemoveFile() {
       class="rounded-lg group"
       label-idle="Drop image here or <span class='group-hover:underline'> Browse </span>"
       :allow-multiple="allowMultiple"
-      :accepted-file-types="acceptedFileTypes"
       :files="files"
+      :accepted-file-types="acceptedFileTypes"
       @processfile="handleProcessFile"
       @removefile="handleRemoveFile"
       @init="handleFilePondInit()"
