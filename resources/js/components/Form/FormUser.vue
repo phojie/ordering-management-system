@@ -5,6 +5,12 @@ const processing = toRef(useUserStore(), 'processing')
 
 <template>
   <div class="pt-6 pb-5 space-y-6">
+    <JFileInput
+      v-model="form.avatar"
+      accepted-file-types="image/*"
+      label="Photo"
+    />
+
     <JTextField
       id="firstName"
       v-model="form.firstName"
