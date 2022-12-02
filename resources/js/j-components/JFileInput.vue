@@ -6,7 +6,6 @@ import { setOptions } from 'vue-filepond'
 interface FileInput {
   modelValue: any
   label?: string
-  id?: string
   acceptedFileTypes?: 'image/*' | 'application/pdf' | 'application/*'
   allowMultiple?: boolean
 }
