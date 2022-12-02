@@ -21,7 +21,7 @@ export const useSettingStore = defineStore('setting', () => {
     lastName: '',
     email: '',
     username: '',
-    imageUrl: '',
+    avatar: '',
   })
 
   const formPassword = reactive<Password>({
@@ -50,7 +50,7 @@ export const useSettingStore = defineStore('setting', () => {
       required: helpers.withMessage('Last name is required', required),
       $autoDirty: true,
     },
-    imageUrl: {},
+    avatar: {},
     username: {
       required: helpers.withMessage('Username is required', required),
       $autoDirty: true,
@@ -145,7 +145,7 @@ export const useSettingStore = defineStore('setting', () => {
     form.lastName = ''
     form.email = ''
     form.username = ''
-    form.imageUrl = ''
+    form.avatar = ''
 
     formPassword.newPassword = ''
     formPassword.currentPassword = ''

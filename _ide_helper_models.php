@@ -82,6 +82,27 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\TemporaryFile
+ *
+ * @property string $id
+ * @property string $folder
+ * @property string $filename
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile whereFilename($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile whereFolder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile whereUpdatedAt($value)
+ */
+	class TemporaryFile extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property string $id
@@ -99,6 +120,9 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read string $avatar
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Permission[] $permissions
@@ -133,6 +157,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Query\Builder|User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  */
-	class User extends \Eloquent {}
+	class User extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
 

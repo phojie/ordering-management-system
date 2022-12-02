@@ -10,7 +10,7 @@ export interface User {
   id?: string
   fullName?: string
   middleName?: string
-  imageUrl?: string
+  avatar?: string
   emailVerifiedAt?: string
   createdAt?: string
   updatedAt?: string

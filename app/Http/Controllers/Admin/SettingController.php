@@ -16,7 +16,7 @@ class SettingController
 
 	public function updateGeneral(SettingRequest $request)
 	{
-    $user = User::find(auth()->id());
+		$user = User::find(auth()->id());
 
 		(new UserService())->update($request, $user);
 
@@ -26,13 +26,11 @@ class SettingController
 	}
 
   public function updatePassword(SettingRequest $request)
-{
-    (new UserService())->changePassword($request->newPassword, auth()->id());
+  {
+  	(new UserService())->changePassword($request->newPassword, auth()->id());
 
-    (new FlashNotification())->update('Your password');
+  	(new FlashNotification())->update('Your password');
 
-    return redirect()->back();
+  	return redirect()->back();
   }
-
-
 }

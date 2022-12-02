@@ -16,11 +16,10 @@
   }
 
   [data-filepond-item-state='processing-complete'] .filepond--item-panel {
-    @apply bg-primary-500;
+    @apply !bg-primary-500;
   }
 
   .filepond--image-preview-overlay-success {
-    @apply text-primary-500;
+    @apply !text-primary-500;
   }
-
 }

@@ -7,7 +7,7 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
   form.middleName = user.value.middleName
   form.lastName = user.value.lastName
   form.username = user.value.username
-  form.imageUrl = user.value.imageUrl
+  form.avatar = user.value.avatar
   form.email = user.value.email
 
   formState.show = true
@@ -62,7 +62,7 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
             </dt>
             <dd class="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <span class="flex-grow">
-                <img class="w-8 h-8 rounded-full" :src="user.imageUrl" alt="...">
+                <img class="w-8 h-8 rounded-full" :src="user.avatar" alt="...">
               </span>
               <span class="flex items-start flex-shrink-0 ml-4 space-x-4">
                 <button

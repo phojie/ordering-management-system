@@ -53,8 +53,16 @@ class UserService
   			'password' => bcrypt($request->password),
   		]);
 
-  		$roles = collect($request->roles)->pluck('name');
-  		$user->assignRole($roles);
+  		// if has request roles
+  		if ($request->roles) {
+  			$roles = collect($request->roles)->pluck('name');
+  			$user->assignRole($roles);
+  		}
+
+  		// if has request avatar
+  		if ($request->avatar) {
+  			(new FileUploaderService())->uploadUserAvatarToMedia($user->id, $request->avatar);
+  		}
   	} catch (\Exception $e) {
   		(new FlashNotification())->error($e->getMessage());
   	}
@@ -68,13 +76,17 @@ class UserService
   			'email' => $request->email,
   			'first_name' => $request->firstName,
   			'last_name' => $request->lastName,
-  			'image_url' => $request->imageUrl,
   		]);
 
   		// if has request roles
   		if ($request->roles) {
   			$roles = collect($request->roles)->pluck('name');
   			$user->syncRoles($roles);
+  		}
+
+  		// if has request avatar
+  		if ($request->avatar) {
+  			(new FileUploaderService())->uploadUserAvatarToMedia($user->id, $request->avatar);
   		}
   	} catch (\Exception $e) {
   		(new FlashNotification())->error($e->getMessage());
@@ -127,7 +139,7 @@ class UserService
 
   public function changePassword($newPassword, $id)
   {
-    $user = User::find($id);
+  	$user = User::find($id);
   	try {
   		$user->update([
   			'password' => bcrypt($newPassword),

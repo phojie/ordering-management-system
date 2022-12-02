@@ -11,6 +11,7 @@ module.exports = {
     './node_modules/floating-vue/dist/style.css',
     './node_modules/vue-select/dist/vue-select.css',
     './node_modules/filepond/dist/filepond.min.css',
+    './node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css',
   ],
 
   safelist: [

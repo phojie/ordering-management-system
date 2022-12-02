@@ -5,8 +5,11 @@ const processing = toRef(useSettingStore(), 'processing')
 
 <template>
   <div class="pt-6 pb-5 space-y-6">
+    {{ form.avatar }}
     <JFileInput
       v-if="formState.title === 'Update photo' || formState.title === 'Update profile'"
+      v-model="form.avatar"
+      accepted-file-types="image/*"
       label="Photo"
     />
 
