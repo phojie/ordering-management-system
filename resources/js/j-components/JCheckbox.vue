@@ -27,7 +27,9 @@ const value = useVModel(props, 'modelValue', emit)
       type="checkbox"
     >
     <label :for="id" class="block ml-2 text-sm text-gray-900">
-      {{ label }}
+      <slot name="label">
+        {{ label }}
+      </slot>
     </label>
   </div>
 </template>

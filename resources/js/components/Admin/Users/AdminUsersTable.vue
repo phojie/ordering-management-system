@@ -49,7 +49,7 @@ const toggleEdit = (user: User) => {
             <div class="flex-shrink-0 w-10 h-10">
               <img
                 class="w-10 h-10 rounded-full"
-                :src="item.imageUrl"
+                :src="item.avatar"
                 loading="lazy"
                 alt="…"
               >

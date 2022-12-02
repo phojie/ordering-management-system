@@ -16,7 +16,7 @@ defineOptions({
         <div class="flex-1 min-w-0">
           <div class="flex space-x-5">
             <div class="flex-shrink-0">
-              <img class="w-20 h-20 rounded-full" :src="auth.user?.imageUrl" alt="profile">
+              <img class="w-20 h-20 rounded-full" :src="auth.user?.avatar" alt="profile">
             </div>
             <div class="pt-1 text-left">
               <p class="text-sm font-medium text-gray-600">

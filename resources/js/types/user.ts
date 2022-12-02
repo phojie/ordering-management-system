@@ -10,14 +10,19 @@ export interface User {
   id?: string
   fullName?: string
   middleName?: string
-  imageUrl?: string
+  avatar?: string
   emailVerifiedAt?: string
   createdAt?: string
   updatedAt?: string
   password?: string
-  passwordConfirmation?: string
 
   roles?: Array<Role | any>
+}
+
+export interface Password {
+  currentPassword: string
+  newPassword: string
+  confirmPassword: string
 }
 
 export interface PaginationUsers extends Pagination {

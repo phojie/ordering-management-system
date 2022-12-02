@@ -1,0 +1,25 @@
+@layer components {
+  .filepond--root .filepond--panel-root {
+    @apply bg-gray-100 border-2 border-gray-300 border-dashed;
+  }
+
+  .filepond--root {
+    @apply !cursor-pointer;
+  }
+
+  .filepond--root .filepond--credits {
+    @apply !opacity-0;
+  }
+
+  .filepond--drop-label label {
+    @apply !text-sm !text-gray-700 !cursor-pointer;
+  }
+
+  [data-filepond-item-state='processing-complete'] .filepond--item-panel {
+    @apply !bg-primary-500;
+  }
+
+  .filepond--image-preview-overlay-success {
+    @apply !text-primary-500;
+  }
+}

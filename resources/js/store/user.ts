@@ -21,7 +21,7 @@ export const useUserStore = defineStore('user', () => {
     firstName: '',
     middleName: '',
     lastName: '',
-    imageUrl: '',
+    avatar: '',
 
     username: '',
     email: '',
@@ -101,7 +101,7 @@ export const useUserStore = defineStore('user', () => {
       required: helpers.withMessage('Last name is required', required),
       $autoDirty: true,
     },
-    imageUrl: {},
+    avatar: {},
     username: {
       required: helpers.withMessage('Username is required', required),
       $autoDirty: true,
@@ -281,7 +281,7 @@ export const useUserStore = defineStore('user', () => {
     form.firstName = ''
     form.middleName = ''
     form.lastName = ''
-    form.imageUrl = ''
+    form.avatar = ''
     form.username = ''
     form.email = ''
     form.password = ''

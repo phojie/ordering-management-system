@@ -1,9 +1,8 @@
 export const useRoute = () => {
-  const currentRoute = route().current() as string
-  const currentUrl = usePage().url.value
+  const currentRoute = route().current() as string // ('admin.index')
+  const currentUrl = usePage().url.value // ('/admin/')
 
   function isActive(href: string, exact = false) {
-    // const currentUrl = usePage().url.value
     if (exact)
       return _.startsWith(currentUrl, href)
 

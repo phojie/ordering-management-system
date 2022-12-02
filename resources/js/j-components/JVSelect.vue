@@ -18,11 +18,19 @@ interface VSelect {
 }
 
 const props = withDefaults(defineProps<VSelect>(), {
-
+  deselectFromDropdown: true,
 })
 
 const emit = defineEmits(['update:modelValue'])
 const value = useVModel(props, 'modelValue', emit)
+
+const isChecked = (name: string) => {
+  const namesList = _.map(props.modelValue, 'name')
+  if (namesList.includes(name))
+    return true
+
+  return false
+}
 </script>
 
 <template>
@@ -46,7 +54,20 @@ const value = useVModel(props, 'modelValue', emit)
         :options="options"
         :close-on-select="closeOnSelect"
         :deselect-from-dropdown="deselectFromDropdown"
-      />
+      >
+        <template #option="option">
+          <div class="py-2">
+            <JCheckbox
+              :id="option.name"
+              :model-value="isChecked(option.name)"
+            >
+              <template #label>
+                {{ option.name }}
+              </template>
+            </JCheckbox>
+          </div>
+        </template>
+      </VSelect>
     </div>
   </div>
 </template>
