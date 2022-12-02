@@ -3,6 +3,7 @@
 use App\Http\Controllers\Components\PermissionController;
 use App\Http\Controllers\Components\RoleController;
 use App\Http\Controllers\Components\UploadController;
+use App\Http\Controllers\Components\UserController;
 
 Route::prefix('components')->middleware('auth')->group(function () {
 	// roles
@@ -14,4 +15,7 @@ Route::prefix('components')->middleware('auth')->group(function () {
 
 	// upload
 	Route::post('upload', [UploadController::class, 'store'])->name('components.upload.store');
+
+  // useres
+  Route::get('users/{id}', [UserController::class, 'show'])->name('components.users.show');
 });

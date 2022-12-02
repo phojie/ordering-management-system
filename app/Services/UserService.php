@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\CustomSorts\CustomRoleSort;
 use Spatie\QueryBuilder\AllowedSort;
@@ -36,9 +37,23 @@ class UserService
 		}
 	}
 
-  public function show(User $user)
+  public function show($id)
   {
-  	// get user
+    try {
+      // set query
+      $query = User::query()
+        ->withTrashed()
+        ->whereId ($id)
+        ->with(['roles'])
+        ->first();
+
+      // set resource
+      $user = new UserResource($query);
+
+      return $user;
+    } catch (\Exception $e) {
+      (new FlashNotification())->error($e->getMessage());
+    }
   }
 
   public function store($request)

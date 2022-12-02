@@ -29,6 +29,12 @@ const toggleEdit = (user: User) => {
   formState.title = 'Edit User'
   formState.description = `Edit the details for ${user.fullName}`
 }
+
+const getById = async (id: number) => {
+  await useFetch(route('components.users.show', id)).get().json().then(({ data }) => {
+    toggleEdit(data.value)
+  })
+}
 </script>
 
 <template>
@@ -100,7 +106,7 @@ const toggleEdit = (user: User) => {
             v-if="item.status === 'active'"
             v-tooltip="'Edit user'"
             type="button"
-            class="text-primary-600 hover:text-primary-900" @click="toggleEdit(item as any)"
+            class="text-primary-600 hover:text-primary-900" @click="getById(item.id)"
           >
             <heroicons-pencil-square-20-solid class="w-5 h-5" />
           </button>
