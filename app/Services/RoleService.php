@@ -7,7 +7,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class RoleService
 {
-	public function get(object $request)
+	public function get(object $request): object
 	{
 		try {
 			// set model
