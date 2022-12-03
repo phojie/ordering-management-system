@@ -28,11 +28,13 @@ class TemporaryFileService
 		}
 	}
 
-	public function destroy(object $temporaryFile): void
+	public function destroy(string $folder): void
 	{
 		try {
-			\Log::info('destroying temporary file', $temporaryFile);
-			rmdir(storage_path('app/public/tmp/'.$temporaryFile->folder));
+			$temporaryFile = TemporaryFile::whereFolder($folder)->first();
+
+			\Storage::deleteDirectory('/public/tmp/'.$folder);
+
 			$temporaryFile->delete();
 		} catch (\Exception $e) {
 			(new FlashNotification())->error($e->getMessage());

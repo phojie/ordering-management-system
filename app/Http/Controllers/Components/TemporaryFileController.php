@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Components;
 
-use App\Models\TemporaryFile;
 use App\Services\TemporaryFileService;
 use Illuminate\Http\Request;
 
@@ -17,9 +16,7 @@ class TemporaryFileController
 
   public function destroy($folder)
   {
-  	$temporaryFile = TemporaryFile::whereFolder($folder)->first();
-
-  	(new TemporaryFileService())->destroy($temporaryFile);
+  	(new TemporaryFileService())->destroy($folder);
 
   	return response()->json('Deleted Successfully', 200);
   }
