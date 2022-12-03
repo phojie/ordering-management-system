@@ -27,9 +27,11 @@ class UserTest extends TestCase
 
 	public function test_admin_users_can_render_page()
 	{
-		$this->response = $this->get('/admin/users');
+		$response = $this->response;
 
-		$this->response->assertStatus(200);
+		$response = $this->get('/admin/users');
+
+		$response->assertStatus(200);
 	}
 
 	public function test_admin_users_can_store_user()
@@ -45,13 +47,13 @@ class UserTest extends TestCase
 			'password' => 'password',
 		]);
 
-		\Log::info($response->getContent());
-
-		$response->assertStatus(200);
+		$response->assertStatus(302);
 	}
 
 	public function test_admin_users_can_update_user()
 	{
+		$response = $this->response;
+
 		$user = $this->user;
 
 		// post user
@@ -68,6 +70,7 @@ class UserTest extends TestCase
 
 	public function test_admin_users_can_delete_user()
 	{
+		$response = $this->response;
 		$user = $this->user;
 		// post user
 		$response = $this->delete("/admin/users/$user->id");
@@ -77,6 +80,7 @@ class UserTest extends TestCase
 
 	public function test_admin_users_can_restore_user()
 	{
+		$response = $this->response;
 		$user = $this->user;
 		// post user
 		$response = $this->put("/admin/users/$user->id/restore");
@@ -86,7 +90,10 @@ class UserTest extends TestCase
 
 	public function test_admin_users_can_delete_multiple_users()
 	{
+		$response = $this->response;
+
 		$user = $this->user;
+
 		$users = User::factory()->count(3)->create()->pluck('id')->toArray();
 
 		$response = $this->actingAs($user);
@@ -100,6 +107,8 @@ class UserTest extends TestCase
 
 	public function test_admin_users_can_restore_multiple_users()
 	{
+		$response = $this->response;
+
 		$users = User::factory()->count(3)->create()->pluck('id')->toArray();
 
 		$response = $this->delete('/admin/users', [
