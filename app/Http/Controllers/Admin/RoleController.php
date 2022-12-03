@@ -13,6 +13,8 @@ class RoleController
 {
 	public function index(Request $request)
 	{
+		\Gate::authorize('read-role');
+
 		// set query
 		$query = (new RoleService())->get($request);
 
@@ -29,6 +31,8 @@ class RoleController
 
 	public function store(RoleRequest $request)
 	{
+		\Gate::authorize('create-role');
+
 		(new RoleService())->store($request);
 
 		(new FlashNotification())->create($request->name);
@@ -42,6 +46,8 @@ class RoleController
 
 	public function update(RoleRequest $request, Role $role)
 	{
+		\Gate::authorize('update-role');
+
 		(new RoleService())->update($request, $role->id);
 
 		(new FlashNotification)->update($request->name);
@@ -51,6 +57,8 @@ class RoleController
 
 	public function destroy(Role $role)
 	{
+		\Gate::authorize('delete-role');
+
 		(new RoleService())->delete($role->id);
 
 		(new FlashNotification)->destroy($role->name, [
@@ -65,6 +73,8 @@ class RoleController
 
   public function destroyMultiple(Request $request)
   {
+  	\Gate::authorize('delete-role');
+
   	(new RoleService())->deleteMultiple($request->ids);
 
   	(new FlashNotification)->destroy(count($request->ids).' roles', [
@@ -82,6 +92,8 @@ class RoleController
 
   public function restore(Role $role)
   {
+  	\Gate::authorize('delete-role');
+
   	(new RoleService())->restore($role->id);
 
   	(new FlashNotification)->restore($role->name, [
@@ -96,6 +108,8 @@ class RoleController
 
   public function restoreMultiple(Request $request)
   {
+  	\Gate::authorize('delete-role');
+
   	(new RoleService())->retoreMultiple($request->ids);
 
   	(new FlashNotification)->restore(count($request->ids).' roles', [
