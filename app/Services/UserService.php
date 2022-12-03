@@ -110,7 +110,7 @@ class UserService
   	}
   }
 
-  public function destroy(string $id): void
+  public function delete(string $id): void
   {
   	try {
   		User::findOrFail($id)->delete();
@@ -119,7 +119,7 @@ class UserService
   	}
   }
 
-  public function destroyMultiple(array $ids): void
+  public function deleteMultiple(array $ids): void
   {
   	try {
   		\DB::transaction(function () use ($ids) {
