@@ -16,7 +16,7 @@ class UserController extends Controller
 {
 	public function index(Request $request)
 	{
-		\Gate::authorize('read-user');
+    abort_unless(\Gate::allows('user-list'), 404);
 
 		// set query
 		$query = (new UserService())->get($request);
@@ -34,7 +34,7 @@ class UserController extends Controller
 
 	public function store(UserRequest $userRequest)
 	{
-		\Gate::authorize('create-user');
+		\Gate::authorize('user-create');
 
 		(new UserService())->store($userRequest);
 
@@ -50,7 +50,7 @@ class UserController extends Controller
 
   public function update(UserRequest $userRequest, User $user)
   {
-  	\Gate::authorize('update-user');
+  	\Gate::authorize('user-update');
 
   	(new UserService())->update($userRequest, $user->id);
 
@@ -61,7 +61,7 @@ class UserController extends Controller
 
 	public function destroy(User $user)
 	{
-		\Gate::authorize('delete-user');
+		\Gate::authorize('user-delete');
 
 		(new UserService())->delete($user->id);
 
@@ -77,7 +77,7 @@ class UserController extends Controller
 
 	public function destroyMultiple(Request $request)
 	{
-		\Gate::authorize('delete-user');
+		\Gate::authorize('user-delete');
 
 		(new UserService())->deleteMultiple($request->ids);
 
@@ -96,7 +96,7 @@ class UserController extends Controller
 
   public function restore(User $user)
   {
-  	\Gate::authorize('delete-user');
+  	\Gate::authorize('user-delete');
 
   	(new UserService())->restore($user->id);
 
@@ -112,7 +112,7 @@ class UserController extends Controller
 
   public function restoreMultiple(Request $request)
   {
-  	\Gate::authorize('delete-user');
+  	\Gate::authorize('user-delete');
 
   	(new UserService())->retoreMultiple($request->ids);
 

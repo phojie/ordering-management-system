@@ -17,6 +17,7 @@ interface NavigationItem {
   href: string
   icon: any
   exact?: boolean
+  permission?: string
 }
 
 export const useNavigation = () => {
@@ -25,6 +26,7 @@ export const useNavigation = () => {
       name: 'Home',
       href: '/admin',
       icon: HeroiconsHome,
+
     },
     {
       name: 'Menus',
@@ -63,12 +65,14 @@ export const useNavigation = () => {
       name: 'Users',
       icon: HeroiconsUserGroup,
       href: '/admin/users',
+      permission: 'user-list',
       exact: true,
     },
     {
       name: 'Roles',
       icon: HeroiconsFingerPrint,
       href: '/admin/roles',
+      permission: 'role-list',
       exact: true,
     },
     // {
@@ -91,11 +95,28 @@ export const useNavigation = () => {
       icon: HeroiconsQuestionMarkCircle,
       href: '/admin/help',
     },
-
   ]
 
+  const adminItemsGuarded = computed(() => {
+    return adminItems.filter((item) => {
+      if (item.permission)
+        return useGate().can(item.permission)
+
+      return true
+    })
+  })
+
+  const miscItemsGuarded = computed(() => {
+    return miscItems.filter((item) => {
+      if (item.permission)
+        return useGate().can(item.permission)
+
+      return true
+    })
+  })
+
   return {
-    adminItems,
-    miscItems,
+    adminItemsGuarded,
+    miscItemsGuarded,
   }
 }

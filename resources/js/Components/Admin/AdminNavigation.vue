@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { adminItems, miscItems } = useNavigation()
+const { adminItemsGuarded: adminItems, miscItemsGuarded: miscItems } = useNavigation()
 </script>
 
 <template>
