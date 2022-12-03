@@ -9,16 +9,17 @@ use App\Models\User;
 
 class FileUploaderService
 {
-	public function uploadUserAvatarToMedia($id, $avatar)
+	public function uploadUserAvatarToMedia(string $id, string $avatar): void
 	{
-		$temporaryFile = TemporaryFile::where('folder', $avatar)->first();
-
-		if ($temporaryFile) {
+		try {
+			$temporaryFile = TemporaryFile::where('folder', $avatar)->firstOrFail();
 			$user = User::findOrFail($id);
 			$user->addMedia(storage_path('app/public/tmp/'.$avatar.'/'.$temporaryFile->filename))
-				->toMediaCollection('avatar');
+					->toMediaCollection('avatar');
 
-			(new TemporaryFileService())->destroy($temporaryFile);
+			(new TemporaryFileService())->delete($temporaryFile->folder);
+		} catch (\Exception $e) {
+			(new FlashNotification())->error($e->getMessage());
 		}
 	}
 }
