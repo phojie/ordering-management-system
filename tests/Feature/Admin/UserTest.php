@@ -84,7 +84,7 @@ class UserTest extends TestCase
   public function test_admin_users_can_delete_multiple_users()
   {
   	$user = User::factory()->create();
-  	$users = User::factory()->count(3)->create()->pluck('id');
+  	$users = User::factory()->count(3)->create()->pluck('id')->toArray();
 
   	$response = $this->actingAs($user);
 
@@ -98,7 +98,7 @@ class UserTest extends TestCase
   public function test_admin_users_can_restore_multiple_users()
   {
   	$user = User::factory()->create();
-  	$users = User::factory()->count(3)->create()->pluck('id');
+  	$users = User::factory()->count(3)->create()->pluck('id')->toArray();
 
   	$response = $this->actingAs($user);
 
