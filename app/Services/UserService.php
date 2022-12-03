@@ -12,7 +12,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class UserService
 {
-	public function get($request)
+	public function get(object $request): QueryBuilder
 	{
 		try {
 			// set model
@@ -37,26 +37,25 @@ class UserService
 		}
 	}
 
-  public function show($id)
+  public function show(string $id): UserResource
   {
-    try {
-      // set query
-      $query = User::query()
-        ->withTrashed()
-        ->whereId ($id)
-        ->with(['roles'])
-        ->first();
+  	try {
+  		// set query
+  		$query = User::query()
+  		->withTrashed()
+  		->with(['roles'])
+  		->findOrFail($id);
 
-      // set resource
-      $user = new UserResource($query);
+  		// set resource
+  		$user = new UserResource($query);
 
-      return $user;
-    } catch (\Exception $e) {
-      (new FlashNotification())->error($e->getMessage());
-    }
+  		return $user;
+  	} catch (\Exception $e) {
+  		(new FlashNotification())->error($e->getMessage());
+  	}
   }
 
-  public function store($request)
+  public function store(object $request): void
   {
   	try {
   		$user = User::create([
@@ -83,41 +82,44 @@ class UserService
   	}
   }
 
-  public function update($request, $user)
+  public function update(object $request, string $id): void
   {
   	try {
-  		$user->update([
-  			'username' => $request->username,
-  			'email' => $request->email,
-  			'first_name' => $request->firstName,
-  			'last_name' => $request->lastName,
-  		]);
+  		$user = User::findOrFail($id);
+  		\DB::transaction(function () use ($request, $user) {
+  			$user->update([
+  				'username' => $request->username,
+  				'email' => $request->email,
+  				'first_name' => $request->firstName,
+  				'last_name' => $request->lastName,
+  			]);
 
-  		// if has request roles
-  		if ($request->roles) {
-  			$roles = collect($request->roles)->pluck('name');
-  			$user->syncRoles($roles);
-  		}
+  			// if has request roles
+  			if ($request->roles) {
+  				$roles = collect($request->roles)->pluck('name');
+  				$user->syncRoles($roles);
+  			}
 
-  		// if has request avatar
-  		if ($request->avatar) {
-  			(new FileUploaderService())->uploadUserAvatarToMedia($user->id, $request->avatar);
-  		}
+  			// if has request avatar
+  			if ($request->avatar) {
+  				(new FileUploaderService())->uploadUserAvatarToMedia($user->id, $request->avatar);
+  			}
+  		});
   	} catch (\Exception $e) {
   		(new FlashNotification())->error($e->getMessage());
   	}
   }
 
-  public function destroy($user)
+  public function destroy(string $id): void
   {
   	try {
-  		$user->delete();
+  		User::findOrFail($id)->delete();
   	} catch (\Exception $e) {
   		(new FlashNotification())->error($e->getMessage());
   	}
   }
 
-  public function destroyMultiple($ids)
+  public function destroyMultiple(array $ids): void
   {
   	try {
   		\DB::transaction(function () use ($ids) {
@@ -128,16 +130,16 @@ class UserService
   	}
   }
 
-  public function restore($user)
+  public function restore(string $id): void
   {
   	try {
-  		$user->restore();
+  		User::onlyTrashed()->findOrFail($id)->restore();
   	} catch (\Exception $e) {
   		(new FlashNotification())->error($e->getMessage());
   	}
   }
 
-  public function retoreMultiple($ids)
+  public function retoreMultiple(array $ids): void
   {
   	try {
   		\DB::transaction(function () use ($ids) {
@@ -148,14 +150,10 @@ class UserService
   	}
   }
 
-  public function forceDelete($user)
+  public function changePassword(string $newPassword, string $id): void
   {
-  }
-
-  public function changePassword($newPassword, $id)
-  {
-  	$user = User::find($id);
   	try {
+  		$user = User::findOrFail($id);
   		$user->update([
   			'password' => bcrypt($newPassword),
   		]);

@@ -46,7 +46,7 @@ class UserController extends Controller
 
   public function update(UserRequest $userRequest, User $user)
   {
-  	(new UserService())->update($userRequest, $user);
+  	(new UserService())->update($userRequest, $user->id);
 
   	(new FlashNotification)->update($userRequest->username);
 
@@ -55,7 +55,7 @@ class UserController extends Controller
 
 	public function destroy(User $user)
 	{
-		(new UserService())->destroy($user);
+		(new UserService())->destroy($user->id);
 
 		(new FlashNotification)->destroy($user->username, [
 			[
@@ -86,7 +86,7 @@ class UserController extends Controller
 
   public function restore(User $user)
   {
-  	(new UserService())->restore($user);
+  	(new UserService())->restore($user->id);
 
   	(new FlashNotification)->restore($user->username, [
   		[
