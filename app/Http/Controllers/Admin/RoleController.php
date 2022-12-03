@@ -42,7 +42,7 @@ class RoleController
 
 	public function update(RoleRequest $request, Role $role)
 	{
-		(new RoleService())->update( $request, $role);
+		(new RoleService())->update($request, $role);
 
 		(new FlashNotification)->update($request->name);
 
@@ -51,7 +51,7 @@ class RoleController
 
 	public function destroy(Role $role)
 	{
-		(new RoleService())->destroy($role);
+		(new RoleService())->delete($role->id);
 
 		(new FlashNotification)->destroy($role->name, [
 			[
@@ -65,7 +65,7 @@ class RoleController
 
   public function destroyMultiple(Request $request)
   {
-  	(new RoleService())->destroyMultiple($request->ids);
+  	(new RoleService())->deleteMultiple($request->ids);
 
   	(new FlashNotification)->destroy(count($request->ids).' roles', [
   		[
@@ -82,7 +82,7 @@ class RoleController
 
   public function restore(Role $role)
   {
-  	(new RoleService())->restore($role);
+  	(new RoleService())->restore($role->id);
 
   	(new FlashNotification)->restore($role->name, [
   		[

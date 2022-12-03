@@ -28,7 +28,7 @@ class RoleService
 		}
 	}
 
-   public function store($request)
+   public function store($request): void
    {
    	try {
    		\DB::transaction(function () use ($request) {
@@ -70,16 +70,16 @@ class RoleService
    	}
    }
 
-   public function destroy($role)
+   public function delete(string $id): void
    {
    	try {
-   		$role->delete();
+      Role::find($id)->delete();
    	} catch (\Exception $e) {
    		(new FlashNotification())->error($e->getMessage());
    	}
    }
 
-  public function destroyMultiple($ids)
+  public function deleteMultiple(array $ids): void
   {
   	try {
   		\DB::transaction(function () use ($ids) {
@@ -90,16 +90,16 @@ class RoleService
   	}
   }
 
-  public function restore($role)
+  public function restore(string $id): void
   {
   	try {
-  		$role->restore();
+      Role::onlyTrashed()->find($id)->restore();
   	} catch (\Exception $e) {
   		(new FlashNotification())->error($e->getMessage());
   	}
   }
 
-  public function retoreMultiple($ids)
+  public function retoreMultiple(array $ids): void
   {
   	try {
   		\DB::transaction(function () use ($ids) {
