@@ -13,10 +13,10 @@ interface FormState {
 
 export const useRoleStore = defineStore('role', () => {
   // processing state
-  const processing = ref<boolean>(false)
+  let processing = $ref<boolean>(false)
 
   // data form state
-  const form = reactive<Role>({
+  const form = $ref<Role>({
     id: '',
     name: '',
     description: '',
@@ -25,7 +25,7 @@ export const useRoleStore = defineStore('role', () => {
   })
 
   // form state
-  const formState = reactive<FormState>({
+  const formState = $ref<FormState>({
     type: 'create',
     show: false,
     title: 'New Role',
@@ -33,7 +33,7 @@ export const useRoleStore = defineStore('role', () => {
   })
 
   // table headers
-  const headers = ref<TableHeader[]>([
+  const headers = $ref<TableHeader[]>([
     {
       text: 'Name',
       value: 'name',
@@ -109,10 +109,10 @@ export const useRoleStore = defineStore('role', () => {
       {
         only: ['roles'],
         onBefore: () => {
-          processing.value = true
+          processing = true
         },
         onFinish: () => {
-          processing.value = false
+          processing = false
         },
         onSuccess: () => {
           useNotificationStore().add({
@@ -136,10 +136,10 @@ export const useRoleStore = defineStore('role', () => {
         replace: true,
         only: ['roles'],
         onBefore: () => {
-          processing.value = true
+          processing = true
         },
         onFinish: () => {
-          processing.value = false
+          processing = false
         },
       },
     )
@@ -149,10 +149,10 @@ export const useRoleStore = defineStore('role', () => {
   async function createRole() {
     Inertia.post(route('roles.store'), form, {
       onBefore: () => {
-        processing.value = true
+        processing = true
       },
       onFinish: () => {
-        processing.value = false
+        processing = false
       },
       onError: (error) => {
         $externalResults.value = error
@@ -167,10 +167,10 @@ export const useRoleStore = defineStore('role', () => {
   async function updateRole(id: string) {
     Inertia.put(route('roles.update', id), form, {
       onBefore: () => {
-        processing.value = true
+        processing = true
       },
       onFinish: () => {
-        processing.value = false
+        processing = false
       },
       onError: (error) => {
         $externalResults.value = error
@@ -186,10 +186,10 @@ export const useRoleStore = defineStore('role', () => {
   function deleteRole(id: string) {
     Inertia.delete(route('roles.destroy', id), {
       onBefore: () => {
-        processing.value = true
+        processing = true
       },
       onFinish: () => {
-        processing.value = false
+        processing = false
       },
     })
   }
@@ -201,10 +201,10 @@ export const useRoleStore = defineStore('role', () => {
         ids,
       },
       onBefore: () => {
-        processing.value = true
+        processing = true
       },
       onFinish: () => {
-        processing.value = false
+        processing = false
       },
     })
   }
@@ -216,10 +216,10 @@ export const useRoleStore = defineStore('role', () => {
       },
       {
         onBefore: () => {
-          processing.value = true
+          processing = true
         },
         onFinish: () => {
-          processing.value = false
+          processing = false
         },
       })
   }
@@ -235,10 +235,10 @@ export const useRoleStore = defineStore('role', () => {
           ids,
         },
         onBefore: () => {
-          processing.value = true
+          processing = true
         },
         onFinish: () => {
-          processing.value = false
+          processing = false
         },
       })
   }
@@ -262,7 +262,7 @@ export const useRoleStore = defineStore('role', () => {
     formState.description = 'Create a new role'
   }
 
-  return {
+  return $$({
     processing,
     headers,
     $v,
@@ -278,7 +278,7 @@ export const useRoleStore = defineStore('role', () => {
     restoreRole,
     restoreRoles,
     resetFormState,
-  }
+  })
 })
 
 // make sure to pass the right store definition, `useRole` in this case.
