@@ -8,7 +8,7 @@ use App\Models\TemporaryFile;
 
 class TemporaryFileService
 {
-	public function store($request)
+	public function store($request): string
 	{
 		try {
 			$file = $request->file('filepond');
@@ -28,9 +28,10 @@ class TemporaryFileService
 		}
 	}
 
-	public function destroy($temporaryFile)
+	public function destroy(object $temporaryFile): void
 	{
 		try {
+			\Log::info('destroying temporary file', $temporaryFile);
 			rmdir(storage_path('app/public/tmp/'.$temporaryFile->folder));
 			$temporaryFile->delete();
 		} catch (\Exception $e) {
