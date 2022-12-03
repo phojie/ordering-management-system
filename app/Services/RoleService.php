@@ -7,7 +7,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class RoleService
 {
-	public function get($request)
+	public function get(object $request)
 	{
 		try {
 			// set model
@@ -28,7 +28,7 @@ class RoleService
 		}
 	}
 
-   public function store($request): void
+   public function store(object $request): void
    {
    	try {
    		\DB::transaction(function () use ($request) {
@@ -50,9 +50,10 @@ class RoleService
    	}
    }
 
-   public function update(object $request, Role $role): void
+   public function update(object $request, string $id): void
    {
    	try {
+      $role = Role::findOrFail($id);
    		\DB::transaction(
    			function () use ($request, $role) {
    				$permissions = collect($request->permissions)->pluck('name');
@@ -73,7 +74,7 @@ class RoleService
    public function delete(string $id): void
    {
    	try {
-      Role::find($id)->delete();
+      Role::findOrFail($id)->delete();
    	} catch (\Exception $e) {
    		(new FlashNotification())->error($e->getMessage());
    	}
@@ -93,7 +94,7 @@ class RoleService
   public function restore(string $id): void
   {
   	try {
-      Role::onlyTrashed()->find($id)->restore();
+      Role::onlyTrashed()->findOrFail($id)->restore();
   	} catch (\Exception $e) {
   		(new FlashNotification())->error($e->getMessage());
   	}

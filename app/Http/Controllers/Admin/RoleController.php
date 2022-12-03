@@ -42,7 +42,7 @@ class RoleController
 
 	public function update(RoleRequest $request, Role $role)
 	{
-		(new RoleService())->update($request, $role);
+		(new RoleService())->update($request, $role->id);
 
 		(new FlashNotification)->update($request->name);
 
