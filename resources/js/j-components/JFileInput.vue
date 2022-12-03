@@ -110,7 +110,7 @@ function setServerProcess() {
 }
 
 function handleProcessFile() {
-  emit('update:modelValue', serverId)
+  emit('update:modelValue', serverId())
 }
 
 function handleRemoveFile() {
