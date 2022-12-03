@@ -1,6 +1,14 @@
 <script setup lang="ts">
 const auth = useAuthStore()
 
+const roleDisplay = computed(() => {
+  const roles = auth.roles
+  if (_.includes(roles, 'Super Admin'))
+    return 'Super Admin'
+
+  return roles.map(r => r.charAt(0).toUpperCase() + r.slice(1)).join(', ')
+})
+
 defineOptions({
   layout: AdminLayout,
 })
@@ -27,7 +35,7 @@ defineOptions({
               </p>
               <p class="flex items-center text-sm font-medium text-gray-600 capitalize">
                 <heroicons-shield-check-solid class="mr-1 text-success-600" size="18" />
-                Super Admin
+                {{ roleDisplay }}
               </p>
             </div>
           </div>
