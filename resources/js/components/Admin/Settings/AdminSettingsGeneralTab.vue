@@ -1,4 +1,4 @@
-<script setup lang=ts>
+<script setup lang="ts">
 const user = toRef(useAuthStore(), 'user')
 const { form, formState } = useSettingStore()
 
@@ -170,14 +170,6 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
                   class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                 >
                   Update
-                </button>
-                <span class="text-gray-300" aria-hidden="true">|</span>
-                <button
-                  disabled
-                  type="button"
-                  class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-                >
-                  Remove
                 </button>
               </span>
             </dd>

@@ -10,24 +10,24 @@ const auth = useAuthStore()
   >
     <div class="py-1">
       <MenuItem v-slot="{ active }">
-        <AppProfileMenuItem to="#" :is-active="active">
+        <AppProfileMenuItem :is-active="active" href="#">
           View Profile
         </AppProfileMenuItem>
       </MenuItem>
       <MenuItem v-slot="{ active }">
-        <AppProfileMenuItem :is-active="active" to="#">
+        <AppProfileMenuItem :is-active="active" :href="route('settings.index')">
           Settings
         </AppProfileMenuItem>
       </MenuItem>
     </div>
     <div class="py-1">
       <MenuItem v-slot="{ active }">
-        <AppProfileMenuItem :is-active="active" to="#">
+        <AppProfileMenuItem :is-active="active" href="#">
           Get Desktop App
         </AppProfileMenuItem>
       </MenuItem>
       <MenuItem v-slot="{ active }">
-        <AppProfileMenuItem :is-active="active" to="#">
+        <AppProfileMenuItem :is-active="active" href="#">
           Information
         </AppProfileMenuItem>
       </MenuItem>

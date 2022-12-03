@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { form, $v, formState } = useSettingStore()
-const processing = toRef(useSettingStore(), 'processing')
+const processing = $computed(() => useSettingStore().processing)
 </script>
 
 <template>

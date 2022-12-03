@@ -1,11 +1,11 @@
 import type { User } from '@/types/user'
 
 export const useAuthStore = defineStore('auth', () => {
-  const pageProps = computed<any>(() => usePage().props.value)
-  const user = computed<User>(() => pageProps.value.auth?.user)
-  const roles = computed<string[]>(() => pageProps.value.auth?.roles)
-  const permissions = computed<string[]>(() => pageProps.value.auth?.permissions)
-  const signedIn = computed(() => pageProps.value.auth?.signedIn)
+  const auth = $computed<any>(() => usePage().props.value.auth)
+  const user = $computed<User>(() => auth?.user)
+  const roles = $computed<string[]>(() => auth?.roles)
+  const permissions = $computed<string[]>(() => auth?.permissions)
+  const signedIn = $computed(() => auth?.signedIn)
 
   const form = useForm({
     email: '',
@@ -42,7 +42,7 @@ export const useAuthStore = defineStore('auth', () => {
     })
   }
 
-  return {
+  return $$({
     // states
     form,
     user,
@@ -53,7 +53,7 @@ export const useAuthStore = defineStore('auth', () => {
     // actions
     signOut,
     signIn,
-  }
+  })
 })
 
 // make sure to pass the right store definition, `useAuth` in this case.

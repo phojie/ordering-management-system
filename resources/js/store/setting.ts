@@ -12,10 +12,10 @@ interface FormState {
 
 export const useSettingStore = defineStore('setting', () => {
   // processing state
-  const processing = ref<boolean>(false)
+  let processing = $ref<boolean>(false)
 
   // data form state
-  const form = reactive<User> ({
+  const form = $ref<User> ({
     firstName: '',
     middleName: '',
     lastName: '',
@@ -24,14 +24,14 @@ export const useSettingStore = defineStore('setting', () => {
     avatar: '',
   })
 
-  const formPassword = reactive<Password>({
+  const formPassword = $ref<Password>({
     currentPassword: '',
     newPassword: '',
     confirmPassword: '',
   })
 
   // form state
-  const formState = reactive<FormState>({
+  const formState = $ref<FormState>({
     type: 'edit',
     show: false,
     title: 'Update profile',
@@ -105,10 +105,10 @@ export const useSettingStore = defineStore('setting', () => {
   async function updateGeneral() {
     Inertia.put(route('settings.update.general'), form, {
       onBefore: () => {
-        processing.value = true
+        processing = true
       },
       onFinish: () => {
-        processing.value = false
+        processing = false
       },
       onError: (error) => {
         $externalResults.value = error
@@ -123,10 +123,10 @@ export const useSettingStore = defineStore('setting', () => {
   async function updatePassword() {
     Inertia.put(route('settings.update.password'), formPassword, {
       onBefore: () => {
-        processing.value = true
+        processing = true
       },
       onFinish: () => {
-        processing.value = false
+        processing = false
       },
       onError: (error) => {
         $externalResults.value = error
@@ -163,7 +163,7 @@ export const useSettingStore = defineStore('setting', () => {
     formState.description = 'Update your profile information'
   }
 
-  return {
+  return $$({
     processing,
     $v,
     $vFormPassword,
@@ -174,7 +174,7 @@ export const useSettingStore = defineStore('setting', () => {
     submitForm,
     resetForm,
     resetFormState,
-  }
+  })
 })
 
 if (import.meta.hot)
