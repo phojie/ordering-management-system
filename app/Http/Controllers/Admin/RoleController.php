@@ -13,7 +13,7 @@ class RoleController
 {
 	public function index(Request $request)
 	{
-    abort_unless(\Gate::allows('list-role'), 404);
+    abort_unless(\Gate::allows('role-list'), 404);
 
 		// set query
 		$query = (new RoleService())->get($request);
@@ -31,7 +31,7 @@ class RoleController
 
 	public function store(RoleRequest $request)
 	{
-		\Gate::authorize('create-role');
+		\Gate::authorize('role-create');
 
 		(new RoleService())->store($request);
 
@@ -46,7 +46,7 @@ class RoleController
 
 	public function update(RoleRequest $request, Role $role)
 	{
-		\Gate::authorize('update-role');
+		\Gate::authorize('role-update');
 
 		(new RoleService())->update($request, $role->id);
 
@@ -57,7 +57,7 @@ class RoleController
 
 	public function destroy(Role $role)
 	{
-		\Gate::authorize('delete-role');
+		\Gate::authorize('role-delete');
 
 		(new RoleService())->delete($role->id);
 
@@ -73,7 +73,7 @@ class RoleController
 
   public function destroyMultiple(Request $request)
   {
-  	\Gate::authorize('delete-role');
+  	\Gate::authorize('role-delete');
 
   	(new RoleService())->deleteMultiple($request->ids);
 
@@ -92,7 +92,7 @@ class RoleController
 
   public function restore(Role $role)
   {
-  	\Gate::authorize('delete-role');
+  	\Gate::authorize('role-delete');
 
   	(new RoleService())->restore($role->id);
 
@@ -108,7 +108,7 @@ class RoleController
 
   public function restoreMultiple(Request $request)
   {
-  	\Gate::authorize('delete-role');
+  	\Gate::authorize('role-delete');
 
   	(new RoleService())->retoreMultiple($request->ids);
 

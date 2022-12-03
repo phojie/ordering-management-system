@@ -32,6 +32,10 @@ class PermissionSeeder extends Seeder
 				'description' => 'Delete user',
 			],
       [
+        'name' => 'role-list',
+        'description' => 'List all roles',
+      ],
+      [
         'name' => 'role-create',
         'description' => 'Create role',
       ],
