@@ -12,10 +12,11 @@ class Role extends ModelsRole
 	use HasUuids;
   use SoftDeletes;
 
-	public const Validation_Rules = [
-		'name' => ['required', 'unique:roles'],
-		'description' => 'required',
-	];
+  protected $fillable = [
+    'name',
+    'description',
+    'guard_name',
+  ];
 
 	protected $hidden = [
 		'pivot',

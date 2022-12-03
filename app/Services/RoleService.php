@@ -50,7 +50,7 @@ class RoleService
    	}
    }
 
-   public function update($request, $role)
+   public function update(object $request, Role $role): void
    {
    	try {
    		\DB::transaction(

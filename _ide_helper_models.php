@@ -112,7 +112,6 @@ namespace App\Models{
  * @property string|null $middle_name
  * @property string $last_name
  * @property string $full_name
- * @property string|null $image_url
  * @property string $password
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $email_verified_at
@@ -146,7 +145,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereFirstName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereFullName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereImageUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereMiddleName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
