@@ -16,7 +16,7 @@
     "types": [
       "lodash",
       "vite/client",
-      // "vue/ref-macros",
+      "vue/ref-macros",
       "unplugin-vue-define-options",
       "unplugin-icons/types/vue",
       "unplugin-vue-macros/macros-global"

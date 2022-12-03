@@ -13,10 +13,10 @@ interface FormState {
 
 export const useUserStore = defineStore('user', () => {
   // processing state
-  const processing = ref<boolean>(false)
+  let processing = $ref<boolean>(false)
 
   // data form state
-  const form = reactive<User>({
+  const form = $ref<User>({
     id: '',
     firstName: '',
     middleName: '',
@@ -31,7 +31,7 @@ export const useUserStore = defineStore('user', () => {
   })
 
   // form state
-  const formState = reactive<FormState>({
+  const formState = $ref<FormState>({
     type: 'create',
     show: false,
     title: 'New User',
@@ -39,7 +39,7 @@ export const useUserStore = defineStore('user', () => {
   })
 
   // table headers
-  const headers = ref<TableHeader[]>([
+  const headers = $ref<TableHeader[]>([
     {
       text: 'Name',
       value: 'full_name',
@@ -141,10 +141,10 @@ export const useUserStore = defineStore('user', () => {
       {
         only: ['users'],
         onBefore: () => {
-          processing.value = true
+          processing = true
         },
         onFinish: () => {
-          processing.value = false
+          processing = false
         },
         onSuccess: () => {
           useNotificationStore().add({
@@ -168,10 +168,10 @@ export const useUserStore = defineStore('user', () => {
         replace: true,
         only: ['users'],
         onBefore: () => {
-          processing.value = true
+          processing = true
         },
         onFinish: () => {
-          processing.value = false
+          processing = false
         },
       },
     )
@@ -181,10 +181,10 @@ export const useUserStore = defineStore('user', () => {
   async function createUser() {
     Inertia.post(route('users.store'), form, {
       onBefore: () => {
-        processing.value = true
+        processing = true
       },
       onFinish: () => {
-        processing.value = false
+        processing = false
       },
       onError: (error) => {
         $externalResults.value = error
@@ -199,10 +199,10 @@ export const useUserStore = defineStore('user', () => {
   async function updateUser(id: string) {
     Inertia.put(route('users.update', id), form, {
       onBefore: () => {
-        processing.value = true
+        processing = true
       },
       onFinish: () => {
-        processing.value = false
+        processing = false
       },
       onError: (error) => {
         $externalResults.value = error
@@ -218,10 +218,10 @@ export const useUserStore = defineStore('user', () => {
   function deleteUser(id: string) {
     Inertia.delete(route('users.destroy', id), {
       onBefore: () => {
-        processing.value = true
+        processing = true
       },
       onFinish: () => {
-        processing.value = false
+        processing = false
       },
     })
   }
@@ -233,10 +233,10 @@ export const useUserStore = defineStore('user', () => {
         ids,
       },
       onBefore: () => {
-        processing.value = true
+        processing = true
       },
       onFinish: () => {
-        processing.value = false
+        processing = false
       },
     })
   }
@@ -248,10 +248,10 @@ export const useUserStore = defineStore('user', () => {
       },
       {
         onBefore: () => {
-          processing.value = true
+          processing = true
         },
         onFinish: () => {
-          processing.value = false
+          processing = false
         },
       })
   }
@@ -267,10 +267,10 @@ export const useUserStore = defineStore('user', () => {
           ids,
         },
         onBefore: () => {
-          processing.value = true
+          processing = true
         },
         onFinish: () => {
-          processing.value = false
+          processing = false
         },
       })
   }
@@ -298,7 +298,7 @@ export const useUserStore = defineStore('user', () => {
     formState.description = 'Create a new user'
   }
 
-  return {
+  return $$({
     processing,
     headers,
     $v,
@@ -314,7 +314,7 @@ export const useUserStore = defineStore('user', () => {
     restoreUser,
     restoreUsers,
     resetFormState,
-  }
+  })
 })
 
 // make sure to pass the right store definition, `useUser` in this case.

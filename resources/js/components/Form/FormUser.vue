@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { form, formState, $v } = useUserStore()
-const processing = toRef(useUserStore(), 'processing')
+const processing = computed(() => useUserStore().processing)
 </script>
 
 <template>
@@ -10,7 +10,6 @@ const processing = toRef(useUserStore(), 'processing')
       accepted-file-types="image/*"
       label="Photo"
     />
-
     <JTextField
       id="firstName"
       v-model="form.firstName"
