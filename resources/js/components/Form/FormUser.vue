@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { form, formState, $v } = useUserStore()
-const processing = computed(() => useUserStore().processing)
+const processing = $computed(() => useUserStore().processing)
 </script>
 
 <template>
