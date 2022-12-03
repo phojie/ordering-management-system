@@ -4,7 +4,7 @@ namespace App\Services;
 
 class MiscServices
 {
-	public function RandomColor()
+	public function getRandomColor(): string
 	{
 		$colors = [
 			'#d44000', '#ff7a00',

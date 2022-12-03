@@ -48,7 +48,7 @@ class Role extends ModelsRole
 	{
 		parent::boot();
 		self::creating(function ($model) {
-			$model->color = (new MiscServices())->RandomColor();
+			$model->color = (new MiscServices())->getRandomColor();
 		});
 	}
 }
