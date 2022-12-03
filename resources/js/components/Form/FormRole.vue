@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { form, $v } = useRoleStore()
-const processing = toRef(useRoleStore(), 'processing')
+const processing = $computed(() => useRoleStore().processing)
 </script>
 
 <template>
