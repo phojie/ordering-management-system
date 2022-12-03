@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\TemporaryFile;
+use App\Services\Interfaces\TemporaryFileServiceInterface;
 
-class TemporaryFileService
+class TemporaryFileService implements TemporaryFileServiceInterface
 {
 	public function store($request): string
 	{
