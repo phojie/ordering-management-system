@@ -7,10 +7,11 @@ namespace App\Services;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\CustomSortsService\CustomRoleSort;
+use App\Services\Interfaces\UserServiceInterface;
 use Spatie\QueryBuilder\AllowedSort;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class UserService
+class UserService implements UserServiceInterface
 {
 	public function get(object $request): QueryBuilder
 	{

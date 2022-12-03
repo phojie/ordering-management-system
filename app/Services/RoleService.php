@@ -3,9 +3,10 @@
 namespace App\Services;
 
 use App\Models\Role;
+use App\Services\Interfaces\RoleServiceInterface;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class RoleService
+class RoleService implements RoleServiceInterface
 {
 	public function get(object $request): QueryBuilder
 	{
@@ -53,7 +54,7 @@ class RoleService
    public function update(object $request, string $id): void
    {
    	try {
-      $role = Role::findOrFail($id);
+   		$role = Role::findOrFail($id);
    		\DB::transaction(
    			function () use ($request, $role) {
    				$permissions = collect($request->permissions)->pluck('name');
@@ -74,7 +75,7 @@ class RoleService
    public function delete(string $id): void
    {
    	try {
-      Role::findOrFail($id)->delete();
+   		Role::findOrFail($id)->delete();
    	} catch (\Exception $e) {
    		(new FlashNotification())->error($e->getMessage());
    	}
@@ -94,7 +95,7 @@ class RoleService
   public function restore(string $id): void
   {
   	try {
-      Role::onlyTrashed()->findOrFail($id)->restore();
+  		Role::onlyTrashed()->findOrFail($id)->restore();
   	} catch (\Exception $e) {
   		(new FlashNotification())->error($e->getMessage());
   	}
