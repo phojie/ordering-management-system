@@ -40,17 +40,17 @@ class HandleInertiaRequests extends Middleware
 
 		return array_merge(parent::share($request), [
 			'auth' => [
-				'signedIn' =>$isAuth,
-				'user' => $isAuth
-					? new UserResource(Auth::user())
-					: null,
+				'signedIn' => $isAuth,
+				'user' => $isAuth ? new UserResource(Auth::user()) : null,
+				'permissions' => $isAuth ? Auth::user()->getAllPermissions()->pluck('name') : null,
+				'roles' => $isAuth ? Auth::user()->getRoleNames() : null,
 			],
 			'flash' => [
 				'notification' => session('notification'),
 			],
-			// csrf token
 			'csrfToken' => csrf_token(),
-			// 'ziggy' => function () use ($request) {
+
+			// 'ziggy' => function () use ($request) {1
 			//     return array_merge((new Ziggy)->toArray(), [
 			//         'location' => $request->url(),
 			//     ]);

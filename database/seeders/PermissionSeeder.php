@@ -11,6 +11,10 @@ class PermissionSeeder extends Seeder
 	{
 		// Create permissions
 		$permissions = [
+      [
+        'name' => 'user-list',
+        'description' => 'List all users',
+      ],
 			[
 				'name' => 'user-create',
 				'description' => 'Create user',

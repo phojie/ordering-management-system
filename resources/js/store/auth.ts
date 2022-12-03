@@ -3,6 +3,8 @@ import type { User } from '@/types/user'
 export const useAuthStore = defineStore('auth', () => {
   const pageProps = computed<any>(() => usePage().props.value)
   const user = computed<User>(() => pageProps.value.auth?.user)
+  const roles = computed<string[]>(() => pageProps.value.auth?.roles)
+  const permissions = computed<string[]>(() => pageProps.value.auth?.permissions)
   const signedIn = computed(() => pageProps.value.auth?.signedIn)
 
   const form = useForm({
@@ -44,6 +46,8 @@ export const useAuthStore = defineStore('auth', () => {
     // states
     form,
     user,
+    roles,
+    permissions,
     signedIn,
 
     // actions

@@ -13,7 +13,7 @@ class RoleController
 {
 	public function index(Request $request)
 	{
-		\Gate::authorize('read-role');
+    abort_unless($request->user()->can('role-list'), 404);
 
 		// set query
 		$query = (new RoleService())->get($request);

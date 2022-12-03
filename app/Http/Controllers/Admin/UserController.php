@@ -16,7 +16,7 @@ class UserController extends Controller
 {
 	public function index(Request $request)
 	{
-		\Gate::authorize('read-user');
+    abort_unless($request->user()->can('user-list'), 404);
 
 		// set query
 		$query = (new UserService())->get($request);
@@ -45,6 +45,7 @@ class UserController extends Controller
 
 	public function show(User $user)
 	{
+    \Gate::authorize('read-user');
 		// get user
 	}
 
