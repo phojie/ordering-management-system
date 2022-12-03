@@ -16,6 +16,8 @@ class UserController extends Controller
 {
 	public function index(Request $request)
 	{
+		\Gate::authorize('read-user');
+
 		// set query
 		$query = (new UserService())->get($request);
 
@@ -32,6 +34,8 @@ class UserController extends Controller
 
 	public function store(UserRequest $userRequest)
 	{
+		\Gate::authorize('create-user');
+
 		(new UserService())->store($userRequest);
 
 		(new FlashNotification)->create($userRequest->username);
@@ -46,6 +50,8 @@ class UserController extends Controller
 
   public function update(UserRequest $userRequest, User $user)
   {
+  	\Gate::authorize('update-user');
+
   	(new UserService())->update($userRequest, $user->id);
 
   	(new FlashNotification)->update($userRequest->username);
@@ -55,6 +61,8 @@ class UserController extends Controller
 
 	public function destroy(User $user)
 	{
+		\Gate::authorize('delete-user');
+
 		(new UserService())->delete($user->id);
 
 		(new FlashNotification)->destroy($user->username, [
@@ -69,6 +77,8 @@ class UserController extends Controller
 
 	public function destroyMultiple(Request $request)
 	{
+		\Gate::authorize('delete-user');
+
 		(new UserService())->deleteMultiple($request->ids);
 
 		(new FlashNotification)->destroy(count($request->ids).' users', [
@@ -86,6 +96,8 @@ class UserController extends Controller
 
   public function restore(User $user)
   {
+  	\Gate::authorize('delete-user');
+
   	(new UserService())->restore($user->id);
 
   	(new FlashNotification)->restore($user->username, [
@@ -100,6 +112,8 @@ class UserController extends Controller
 
   public function restoreMultiple(Request $request)
   {
+  	\Gate::authorize('delete-user');
+
   	(new UserService())->retoreMultiple($request->ids);
 
   	(new FlashNotification)->restore(count($request->ids).' users', [
