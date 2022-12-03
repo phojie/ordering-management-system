@@ -88,12 +88,12 @@ export const useNavigation = () => {
     {
       name: 'Information',
       icon: HeroiconsDocumentText,
-      href: '/admin/pages',
+      href: '#',
     },
     {
       name: 'Help',
       icon: HeroiconsQuestionMarkCircle,
-      href: '/admin/help',
+      href: '#',
     },
   ]
 
