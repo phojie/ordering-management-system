@@ -16,7 +16,7 @@ class TemporaryFileController
 
   public function destroy($folder)
   {
-  	(new TemporaryFileService())->destroy($folder);
+  	(new TemporaryFileService())->delete($folder);
 
   	return response()->json('Deleted Successfully', 200);
   }

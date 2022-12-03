@@ -28,7 +28,7 @@ class TemporaryFileService
 		}
 	}
 
-	public function destroy(string $folder): void
+	public function delete(string $folder): void
 	{
 		try {
 			$temporaryFile = TemporaryFile::whereFolder($folder)->first();
