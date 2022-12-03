@@ -1,4 +1,4 @@
-<script setup lang=ts>
+<script setup lang="ts">
 const user = toRef(useAuthStore(), 'user')
 const { form, formState } = useSettingStore()
 
