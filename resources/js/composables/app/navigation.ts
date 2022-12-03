@@ -72,6 +72,7 @@ export const useNavigation = () => {
       name: 'Roles',
       icon: HeroiconsFingerPrint,
       href: '/admin/roles',
+      permission: 'role-list',
       exact: true,
     },
     // {
