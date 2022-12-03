@@ -6,7 +6,7 @@ namespace App\Services;
 
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use App\Services\CustomSorts\CustomRoleSort;
+use App\Services\CustomSortsService\CustomRoleSort;
 use Spatie\QueryBuilder\AllowedSort;
 use Spatie\QueryBuilder\QueryBuilder;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\CustomSorts;
+namespace App\Services\CustomSortsService;
 
 use Illuminate\Database\Eloquent\Builder;
 
