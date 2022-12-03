@@ -14,8 +14,8 @@ Route::prefix('components')->middleware('auth')->group(function () {
 	Route::get('permissions', [PermissionController::class, 'index'])->name('components.permissions');
 
 	// temporary-files
-	Route::post('temporary_file', [TemporaryFileController::class, 'store'])->name('components.temporary-file.store');
-	Route::delete('temporary_file/{folder}', [TemporaryFileController::class, 'destroy'])->name('components.temporary-file.destroy');
+	Route::post('temporary-file', [TemporaryFileController::class, 'store'])->name('components.temporary-file.store');
+	Route::delete('temporary-file/{folder}', [TemporaryFileController::class, 'destroy'])->name('components.temporary-file.destroy');
 
 	// users
 	Route::get('users/{id}', [UserController::class, 'show'])->name('components.users.show');
