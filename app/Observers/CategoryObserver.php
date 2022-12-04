@@ -8,7 +8,6 @@ class CategoryObserver
 {
   public function creating(Category $category): void
 	{
-    // set slug
     $category->slug = \Str::slug($category->name);
 	}
 }
