@@ -9,10 +9,6 @@ class Permission extends ModelsPermission
 {
 	use HasUuids;
 
-	public const Validation_Rules = [
-		'name' => ['required', 'unique:permissions'],
-	];
-
 	protected $casts = [
 		'model_id' => 'string',
 	];
