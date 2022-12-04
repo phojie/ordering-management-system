@@ -19,7 +19,7 @@ class RoleService implements RoleServiceInterface
 
 			// set query builder
 			$query = QueryBuilder::for($model)
-			  ->defaultSort('created_at')
+			  ->defaultSort('-created_at')
 			  ->allowedSorts(['name', 'description', 'created_at'])
 			  ->allowedFilters(['name', 'description']);
 

@@ -25,7 +25,7 @@ class UserService implements UserServiceInterface
 
 			// set query builder
 			$query = QueryBuilder::for($model)
-				->defaultSort('created_at')
+				->defaultSort('-created_at')
 				->allowedSorts([
 					'username', 'full_name', 'status', 'created_at',
 					AllowedSort::custom('roles.name', new CustomRoleSort, 'name'),
