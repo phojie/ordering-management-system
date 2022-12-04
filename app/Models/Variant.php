@@ -24,27 +24,6 @@ class Variant extends Model implements HasMedia
 		'item_id',
 	];
 
-	protected $appends = [
-		'image',
-	];
-
-	public function getImageAttribute(): string
-	{
-		return $this->getFirstMediaUrl('image', 'thumb') ?: 'https://robohash.org/'.$this->id.'?set=set1&bgset=bg2&size=400x400';
-	}
-
-  public function registerMediaCollections(): void
-  {
-  	$this->addMediaCollection('image')
-  		  ->singleFile();
-  }
-
-  public function registerMediaConversions(Media $media = null): void
-  {
-  	$this->addMediaConversion('image')
-  		  ->width(400)
-  		  ->height(400);
-  }
 
 	public static function boot(): void
 	{

@@ -17,6 +17,7 @@ const toggleEdit = (item: Item) => {
   form.id = item.id
   form.name = item.name
   form.description = item.description
+  form.variants = item.variants
 
   formState.type = 'edit'
   formState.show = true
@@ -50,7 +51,7 @@ const getById = async (id: number) => {
             <div class="flex-shrink-0 w-10 h-10">
               <img
                 class="w-10 h-10 rounded-full"
-                :src="item.variants?.[0]?.image ?? 'https://via.placeholder.com/150'"
+                :src="item.image"
                 loading="lazy"
                 alt="…"
               >
