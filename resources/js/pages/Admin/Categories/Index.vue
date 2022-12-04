@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import type { PaginationRoles } from '@/types/role'
+import type { PaginationCategories } from '@/types/category'
 defineProps<{
-  roles: PaginationRoles
+  categories: PaginationCategories
 }>()
 
 defineOptions({
   layout: AdminLayout,
 })
 
-const { formState, getRoles, reload } = useRoleStore()
-const processing = toRef(useRoleStore(), 'processing')
+const { formState, getCategories, reload } = useCategoryStore()
+const processing = toRef(useCategoryStore(), 'processing')
 
 const search = ref<string>(useRoute().defaultSearch)
 const rows = ref<string>(useRoute().defaultRows)
 
 watch(search, _.debounce((value) => {
-  getRoles({ search: value })
+  getCategories({ search: value })
 }, 500))
 
 watch(rows, (value) => {
-  getRoles({ rows: value })
+  getCategories({ rows: value })
 })
 
 const toggleCreate = () => {
@@ -29,17 +29,17 @@ const toggleCreate = () => {
 
 <template>
   <main class="flex-1 ">
-    <Head title="Roles | Admin" />
+    <Head title="Categories | Admin" />
 
     <!-- Page title & actions -->
     <div class="px-4 py-6 border-gray-200 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
       <div class="flex-1 min-w-0">
         <div class="sm:flex-auto">
           <h1 class="text-xl font-semibold text-gray-900">
-            Roles
+            Categories
           </h1>
           <p class="mt-2 text-sm text-gray-700">
-            A list of all the roles in the system including their name and description.
+            A list of all the categories in the system including their name and description.
           </p>
         </div>
       </div>
@@ -57,7 +57,7 @@ const toggleCreate = () => {
           class="inline-flex items-center order-first px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm sm:order-last bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
           @click="toggleCreate"
         >
-          Add role
+          Add categories
         </button>
       </div>
     </div>
@@ -67,12 +67,12 @@ const toggleCreate = () => {
       <div class="order-last col-span-12 sm:col-span-7 sm:order-first">
         <p class="text-sm text-gray-700">
           Showing
-          <span class="font-medium">{{ roles.meta.from }}</span>
+          <span class="font-medium">{{ categories.meta.from }}</span>
           to
-          <span class="font-medium">{{ roles.meta.to }}</span>
+          <span class="font-medium">{{ categories.meta.to }}</span>
           of
-          <span class="font-medium">{{ roles.meta.total }}</span>
-          {{ roles.meta.total > 0 ? 'results' : 'result' }}
+          <span class="font-medium">{{ categories.meta.total }}</span>
+          {{ categories.meta.total > 0 ? 'results' : 'result' }}
         </p>
       </div>
 
@@ -96,9 +96,9 @@ const toggleCreate = () => {
     </div>
 
     <!-- Table -->
-    <AdminRolesTable :roles="roles" />
+    <AdminCategoriesTable :categories="categories" />
 
     <!-- Slide over -->
-    <AdminRolesSlideOver :state="formState.show" />
+    <AdminCategoriesSlideOver :state="formState.show" />
   </main>
 </template>

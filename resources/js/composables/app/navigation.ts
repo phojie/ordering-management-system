@@ -10,6 +10,7 @@ import HeroiconsCog from '~icons/heroicons/cog'
 import HeroiconsDocumentText from '~icons/heroicons/document-text'
 import HeroiconsQuestionMarkCircle from '~icons/heroicons/question-mark-circle'
 import HeroiconsFingerPrint from '~icons/heroicons/finger-print'
+import HeroiconsQueueList from '~icons/heroicons/queue-list'
 // import HeroiconsShieldCheck from '~icons/heroicons/shield-check'
 
 interface NavigationItem {
@@ -27,6 +28,12 @@ export const useNavigation = () => {
       href: '/admin',
       icon: HeroiconsHome,
 
+    },
+    {
+      name: 'Categories',
+      href: '/admin/categories',
+      icon: HeroiconsQueueList,
+      exact: true,
     },
     {
       name: 'Menus',

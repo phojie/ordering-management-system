@@ -7,6 +7,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AdminCategoriesSlideOver: typeof import('./components/Admin/Categories/AdminCategoriesSlideOver.vue')['default']
+    AdminCategoriesTable: typeof import('./components/Admin/Categories/AdminCategoriesTable.vue')['default']
     AdminHeader: typeof import('./components/Admin/AdminHeader.vue')['default']
     AdminIndexCharts: typeof import('./components/Admin/Index/AdminIndexCharts.vue')['default']
     AdminIndexStats: typeof import('./components/Admin/Index/AdminIndexStats.vue')['default']
@@ -38,6 +40,7 @@ declare module '@vue/runtime-core' {
     Dropdown: typeof import('./components/Dropdown.vue')['default']
     DropdownLink: typeof import('./components/DropdownLink.vue')['default']
     EmojioneV1Rocket: typeof import('~icons/emojione-v1/rocket')['default']
+    FormCategory: typeof import('./components/Form/FormCategory.vue')['default']
     FormMenu: typeof import('./components/Form/FormMenu.vue')['default']
     FormPassword: typeof import('./components/Form/FormPassword.vue')['default']
     FormRole: typeof import('./components/Form/FormRole.vue')['default']
@@ -54,9 +57,11 @@ declare module '@vue/runtime-core' {
     HeroiconsCheck: typeof import('~icons/heroicons/check')['default']
     HeroiconsChevronDown20Solid: typeof import('~icons/heroicons/chevron-down20-solid')['default']
     HeroiconsChevronUpDown: typeof import('~icons/heroicons/chevron-up-down')['default']
+    HeroiconsLink20Solid: typeof import('~icons/heroicons/link20-solid')['default']
     HeroiconsMagnifyingGlass20Solid: typeof import('~icons/heroicons/magnifying-glass20-solid')['default']
     HeroiconsOutlineBars3CenterLeft: typeof import('~icons/heroicons-outline/bars3-center-left')['default']
     HeroiconsPencilSquare20Solid: typeof import('~icons/heroicons/pencil-square20-solid')['default']
+    HeroiconsQuestionMarkCircle20Solid: typeof import('~icons/heroicons/question-mark-circle20-solid')['default']
     HeroiconsShieldCheckSolid: typeof import('~icons/heroicons/shield-check-solid')['default']
     HeroiconsXCircle20Solid: typeof import('~icons/heroicons/x-circle20-solid')['default']
     HeroiconsXMark: typeof import('~icons/heroicons/x-mark')['default']
