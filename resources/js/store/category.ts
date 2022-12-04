@@ -240,6 +240,8 @@ export const useCategoryStore = defineStore('category', () => {
   // reset form
   function resetForm() {
     form.id = ''
+    form.name = ''
+    form.description = ''
 
     $v.value.$reset()
   }
