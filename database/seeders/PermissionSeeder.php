@@ -76,6 +76,28 @@ class PermissionSeeder extends Seeder
         'name' => 'category-delete',
         'description' => 'Delete category',
       ],
+
+      // item
+      [
+        'name' => 'item-list',
+        'description' => 'List all items',
+      ],
+      [
+        'name' => 'item-create',
+        'description' => 'Create item',
+      ],
+      [
+        'name' => 'item-read',
+        'description' => 'Read item',
+      ],
+      [
+        'name' => 'item-update',
+        'description' => 'Update item',
+      ],
+      [
+        'name' => 'item-delete',
+        'description' => 'Delete item',
+      ],
 		];
 
 		foreach ($permissions as $permission) {
