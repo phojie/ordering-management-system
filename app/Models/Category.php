@@ -14,16 +14,16 @@ class Category extends Model
 	use HasUuids;
 	use SoftDeletes;
 
-  protected $fillable = [
-    'name',
-    'description',
-  ];
+	protected $fillable = [
+		'name',
+		'description',
+	];
 
-  protected $appends = [
+	protected $appends = [
 		'status',
 	];
 
-  public function getStatusAttribute()
+	public function getStatusAttribute()
 	{
 		return $this->deleted_at ? 'deleted' : 'active';
 	}
