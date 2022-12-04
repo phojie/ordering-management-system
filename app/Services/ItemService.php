@@ -14,6 +14,7 @@ class ItemService implements ItemServiceInterface
 			// set model
 			$model = Item::query()
 			  ->withTrashed()
+        ->with(['variants'])
 			  ->search($request->search);
 
 			// set query builder
