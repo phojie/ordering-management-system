@@ -11,6 +11,7 @@ class PermissionSeeder extends Seeder
 	{
 		// Create permissions
 		$permissions = [
+      // user
       [
         'name' => 'user-list',
         'description' => 'List all users',
@@ -31,6 +32,8 @@ class PermissionSeeder extends Seeder
 				'name' => 'user-delete',
 				'description' => 'Delete user',
 			],
+
+      // role
       [
         'name' => 'role-list',
         'description' => 'List all roles',
@@ -50,7 +53,29 @@ class PermissionSeeder extends Seeder
       [
         'name' => 'role-delete',
         'description' => 'Delete role',
-      ]
+      ],
+
+      // category
+      [
+        'name' => 'category-list',
+        'description' => 'List all categories',
+      ],
+      [
+        'name' => 'category-create',
+        'description' => 'Create category',
+      ],
+      [
+        'name' => 'category-read',
+        'description' => 'Read category',
+      ],
+      [
+        'name' => 'category-update',
+        'description' => 'Update category',
+      ],
+      [
+        'name' => 'category-delete',
+        'description' => 'Delete category',
+      ],
 		];
 
 		foreach ($permissions as $permission) {
