@@ -77,7 +77,7 @@ const getById = async (id: number) => {
             </JBadge>
           </div>
         </td>
-        2
+
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
           <JBadge
             :label="item.status === 'deleted' ? 'Archived' : item.status"
