@@ -15,6 +15,7 @@ interface Btn {
   isLoading?: boolean
   isExpanded?: boolean
   isIcon?: boolean
+  isBorderless?: boolean
 }
 
 withDefaults(defineProps<Btn>(), {
@@ -27,12 +28,13 @@ withDefaults(defineProps<Btn>(), {
 type BtnVariant = keyof typeof variantsLookup
 type BtnSize = keyof typeof sizesLookup
 
-const baseClass = 'border rounded-md focus:outline-none font-medium flex justify-center items-center'
+const baseClass = 'rounded-md focus:outline-none font-medium flex justify-center items-center'
 
 const variantsLookup = {
   text: 'focus:ring-primary-500 bg-white hover:bg-gray-50 text-gray-700 shadow-sm border-gray-300',
   primary: 'focus:ring-primary-500 bg-primary-600 hover:bg-primary-700 text-white shadow-sm border-transparent',
   warning: 'focus:ring-warning-500 bg-warning-600 hover:bg-warning-700 text-white shadow-sm border-transparent',
+  danger: 'focus:ring-danger-500 bg-danger-600 hover:bg-danger-700 text-white shadow-sm border-transparent',
 }
 
 const sizesLookup = {
@@ -52,6 +54,7 @@ const sizesLookup = {
       ${variantsLookup[variant]}
       ${isExpanded ? 'w-full' : ''}
       ${isIcon ? 'p-0 focus:ring-2 focus:ring-offset-2' : sizesLookup[size]}
+      ${isBorderless ? 'border-0' : 'border'}
     `"
   >
     <span v-if="!isLoading">
