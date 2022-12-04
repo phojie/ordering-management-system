@@ -82,6 +82,7 @@ declare module '@vue/runtime-core' {
     JBtn: typeof import('./j-components/JBtn.vue')['default']
     JCheckbox: typeof import('./j-components/JCheckbox.vue')['default']
     JFileInput: typeof import('./j-components/JFileInput.vue')['default']
+    JImageGallery: typeof import('./j-components/JImageGallery.vue')['default']
     JLink: typeof import('./j-components/JLink.vue')['default']
     JNotification: typeof import('./j-components/JNotification.vue')['default']
     JPagination: typeof import('./j-components/JPagination.vue')['default']
