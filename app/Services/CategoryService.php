@@ -31,14 +31,12 @@ class CategoryService implements CategoryServiceInterface
    public function store(object $request): void
    {
    	try {
-   		\DB::transaction(function () use ($request) {
-   			Category::create(
-   				[
-   					'name' => $request->name,
-   					'description' => $request->description,
-   				]
-   			);
-   		});
+   		Category::create(
+   			[
+   				'name' => $request->name,
+   				'description' => $request->description,
+   			]
+   		);
    	} catch (\Exception $e) {
    		(new FlashNotification())->error($e->getMessage());
    	}
@@ -48,14 +46,10 @@ class CategoryService implements CategoryServiceInterface
    {
    	try {
    		$category = Category::findOrFail($id);
-   		\DB::transaction(
-   			function () use ($request, $category) {
-   				$category->update([
-   					'name' => $request->name,
-   					'description' => $request->description,
-   				]);
-   			}
-   		);
+   		$category->update([
+   			'name' => $request->name,
+   			'description' => $request->description,
+   		]);
    	} catch (\Exception $e) {
    		(new FlashNotification())->error($e->getMessage());
    	}
