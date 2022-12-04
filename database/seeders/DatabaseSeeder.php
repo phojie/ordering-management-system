@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
 
       // generate admin user
       AdminSeeder::class,
+
+      // generate categories
+      CategorySeeder::class,
 		]);
 	}
 }
