@@ -18,9 +18,9 @@ class ItemService implements ItemServiceInterface
 
 			// set query builder
 			$query = QueryBuilder::for($model)
-			  ->defaultSort('created_at')
+			  ->defaultSort('-created_at')
 			  ->allowedSorts(['name', 'status', 'description', 'created_at'])
-			  ->allowedFilters(['name','status', 'description']);
+			  ->allowedFilters(['name', 'status', 'description']);
 
 			return $query;
 		} catch (\Exception $e) {
