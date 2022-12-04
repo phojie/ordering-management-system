@@ -19,6 +19,7 @@ class CategoryFactory extends Factory
           'name' => $name = $this->faker->unique()->words(3, true),
           'slug' => Str::slug($name),
           'description' => $this->faker->sentence,
+          'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }
