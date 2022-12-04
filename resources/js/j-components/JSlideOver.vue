@@ -31,7 +31,7 @@ const bgColorsLookup = {
         <div class="absolute inset-0 overflow-hidden">
           <div class="fixed inset-y-0 right-0 flex max-w-full pl-10 pointer-events-none sm:pl-16">
             <TransitionChild as="template" enter="transform transition ease-in-out duration-500 sm:duration-700" enter-from="translate-x-full" enter-to="translate-x-0" leave="transform transition ease-in-out duration-500 sm:duration-700" leave-from="translate-x-0" leave-to="translate-x-full">
-              <DialogPanel class="w-screen max-w-md pointer-events-auto">
+              <DialogPanel class="w-screen max-w-sm pointer-events-auto">
                 <form class="flex flex-col h-full bg-white divide-y divide-gray-200 shadow-xl" @submit.prevent="emit('submit')">
                   <div class="flex-1 h-0 overflow-y-auto">
                     <div
