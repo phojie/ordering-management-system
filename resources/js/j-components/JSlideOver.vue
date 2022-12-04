@@ -5,10 +5,12 @@ interface SlideOver {
   description?: string
   type: 'create' | 'edit'
   isLoading?: boolean
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 
 const props = withDefaults(defineProps<SlideOver>(), {
   type: 'create',
+  size: 'sm',
 })
 
 const emit = defineEmits<{
@@ -19,6 +21,14 @@ const emit = defineEmits<{
 const bgColorsLookup = {
   create: 'bg-primary-700',
   edit: 'bg-warning-700',
+}
+
+const sizeLookup = {
+  xs: 'max-w-xs',
+  sm: 'max-w-sm',
+  md: 'max-w-md',
+  lg: 'max-w-lg',
+  xl: 'max-w-xl',
 }
 </script>
 
@@ -31,7 +41,7 @@ const bgColorsLookup = {
         <div class="absolute inset-0 overflow-hidden">
           <div class="fixed inset-y-0 right-0 flex max-w-full pl-10 pointer-events-none sm:pl-16">
             <TransitionChild as="template" enter="transform transition ease-in-out duration-500 sm:duration-700" enter-from="translate-x-full" enter-to="translate-x-0" leave="transform transition ease-in-out duration-500 sm:duration-700" leave-from="translate-x-0" leave-to="translate-x-full">
-              <DialogPanel class="w-screen max-w-sm pointer-events-auto">
+              <DialogPanel :class="sizeLookup[props.size]" class="w-screen pointer-events-auto">
                 <form class="flex flex-col h-full bg-white divide-y divide-gray-200 shadow-xl" @submit.prevent="emit('submit')">
                   <div class="flex-1 h-0 overflow-y-auto">
                     <div
