@@ -2,17 +2,25 @@
 import type { PaginationLink, TableHeader, TableItems } from './types'
 
 // TODO transfer this type to the types file
-const props = defineProps<{
+interface JTableProps {
   items: Array<TableItems>
   itemKey: string
   headers: Array<TableHeader>
   isLoading?: boolean
   loadingDebounce?: number
   modelValue: Array<string | number>
-  indeterminate: boolean
+  indeterminate?: boolean
   links?: Array<PaginationLink>
   emptyDataText?: string
-}>()
+  isPagination?: boolean
+  isSelect?: boolean
+}
+
+// set default props
+const props = withDefaults(defineProps<JTableProps>(), {
+  isSelect: true,
+  isPagination: true,
+})
 
 // emits
 const emit = defineEmits<{
@@ -106,7 +114,7 @@ onMounted(() => {
         <table class="min-w-full divide-y divide-gray-300 table-fixed">
           <thead class="bg-gray-50">
             <tr>
-              <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
+              <th v-if="props.isSelect" scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
                 <input
                   type="checkbox"
                   :checked="indeterminate || modelValue.length === items?.length" :indeterminate="indeterminate"
@@ -217,7 +225,7 @@ onMounted(() => {
               v-for="item in items" :key="item[props.itemKey]"
               :class="[modelValue.includes(item[props.itemKey]) && 'bg-gray-50']"
             >
-              <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+              <td v-if="props.isSelect" class="relative w-12 px-6 sm:w-16 sm:px-8">
                 <div
                   v-if="modelValue.includes(item[props.itemKey])"
                   class="absolute inset-y-0 left-0 w-0.5 bg-primary-600"
@@ -256,5 +264,5 @@ onMounted(() => {
       </div>
     </div>
   </div>
-  <JPagination :links="links ?? []" />
+  <JPagination v-if="props.isPagination" :links="links ?? []" />
 </template>
