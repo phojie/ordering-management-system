@@ -64,8 +64,8 @@ const getById = async (id: number) => {
 
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
           <JBadge
-            :label="item.status === 'deleted' ? 'Suspended' : item.status"
-            :variant="item.status === 'active' ? 'success' : 'danger'"
+            :label="item.status === 'deleted' ? 'Archived' : item.status"
+            :variant="item.status === 'active' ? 'success' : 'warning'"
             :class="item.status === 'active' ? '!font-semibold' : ''"
           />
         </td>
@@ -77,7 +77,7 @@ const getById = async (id: number) => {
         <td class="relative py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
           <button
             v-if="item.status === 'active'"
-            v-tooltip="'Edit user'"
+            v-tooltip="'Edit category'"
             type="button"
             class="text-primary-600 hover:text-primary-900"
             @click="getById(item.id)"
@@ -87,7 +87,7 @@ const getById = async (id: number) => {
 
           <button
             v-else-if="item.status === 'deleted'"
-            v-tooltip="'Restore user'"
+            v-tooltip="'Restore category'"
             type="button"
             class="text-warning-600 hover:text-warning-900"
             @click="restoreCategory(item.id)"
