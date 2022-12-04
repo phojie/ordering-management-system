@@ -34,6 +34,11 @@
 	- [ ] Summary (last 30 days)
 	- [ ] Overview charts
 	- [ ] Recent activity table
+- [x] Categories
+	- [x] Create
+	- [x] Read
+	- [x] Update
+	- [x] Delete
 - [ ] Menus
 	- [ ] Create
 	- [ ] Read
@@ -47,17 +52,16 @@
 - Non-veg, other, veg
 - [ ] others
 - Combo meals (packages)
-- [ ] users
-- [ ] roles
-	- [ ] Create
-	- [ ] Read
-	- [ ] Update
-	- [ ] Delete
-- [ ] permissions
-	- [ ] Create
-	- [ ] Read
-	- [ ] Update
-	- [ ] Delete
+- [x] users
+	- [x] Create
+	- [x] Read
+	- [x] Update
+	- [x] Delete
+- [x] roles
+	- [x] Create
+	- [x] Read
+	- [x] Update
+	- [x] Delete
 - [ ] customers profile list 
 - [ ] orders (status)
 - New orders
@@ -77,7 +81,7 @@
 
 ## 🛠️ Settings
 
-- [ ] Profile
+- [x] Profile
 - [ ] Addresses
 - [ ] Logout
 
