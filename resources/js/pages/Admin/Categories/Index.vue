@@ -18,6 +18,10 @@ watch(search, _.debounce((value) => {
   getCategories({ search: value })
 }, 500))
 
+watch(rows, (value) => {
+  getCategories({ rows: value })
+})
+
 const toggleCreate = () => {
   formState.show = true
 }

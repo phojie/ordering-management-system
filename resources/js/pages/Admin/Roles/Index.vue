@@ -18,6 +18,10 @@ watch(search, _.debounce((value) => {
   getRoles({ search: value })
 }, 500))
 
+watch(rows, (value) => {
+  getRoles({ rows: value })
+})
+
 const toggleCreate = () => {
   formState.show = true
 }

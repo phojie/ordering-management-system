@@ -19,7 +19,7 @@ watch(search, _.debounce((value) => {
 }, 500))
 
 watch(rows, (value) => {
-  useUserStore().getUsers({ rows: value })
+  getUsers({ rows: value })
 })
 
 const toggleCreate = () => {
