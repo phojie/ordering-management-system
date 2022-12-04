@@ -19,14 +19,14 @@ class Item extends Model
 		'description',
 	];
 
-  public function variants(): HasMany
-  {
-    return $this->hasMany(Variant::class);
-  }
+	public function variants(): HasMany
+	{
+		return $this->hasMany(Variant::class);
+	}
 
 	public function scopeSearch($query, $search): object
 	{
 		return $query->when($search, fn ($q) => $q->where('name', 'ilike', "%{$search}%")
-        ->orWhere('description', 'ilike', "%{$search}%"));
+		->orWhere('description', 'ilike', "%{$search}%"));
 	}
 }
