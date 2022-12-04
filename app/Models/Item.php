@@ -27,6 +27,6 @@ class Item extends Model
 	public function scopeSearch($query, $search): object
 	{
 		return $query->when($search, fn ($q) => $q->where('name', 'ilike', "%{$search}%")
-		->orWhere('description', 'ilike', "%{$search}%"));
+        ->orWhere('description', 'ilike', "%{$search}%"));
 	}
 }
