@@ -63,6 +63,22 @@ const getById = async (id: number) => {
         </td>
 
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+          <div class="inline-flex space-x-0.5">
+            <JBadge
+              v-for="variant in item.variants"
+              :key="variant.id"
+            >
+              <span
+                :style="`background-color:${variant.color}`"
+                :class="{ 'bg-gray-400': !variant.color }"
+                class="w-2 h-2 mr-2 rounded-full"
+              />
+              <span>{{ variant.name }}</span>
+            </JBadge>
+          </div>
+        </td>
+        2
+        <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
           <JBadge
             :label="item.status === 'deleted' ? 'Archived' : item.status"
             :variant="item.status === 'active' ? 'success' : 'warning'"
