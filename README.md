@@ -34,17 +34,21 @@
 	- [ ] Summary (last 30 days)
 	- [ ] Overview charts
 	- [ ] Recent activity table
-- [x] Categories
+- [x] Categories ✅
 	- [x] Create
 	- [x] Read
 	- [x] Update
 	- [x] Delete
-- [ ] Menus
+- [x] Items ✅
+	- [x] Create
+	- [x] Read
+	- [x] Update
+	- [x] Delete
+- [ ] Menus 
 	- [ ] Create
 	- [ ] Read
 	- [ ] Update
 	- [ ] Delete
-- [ ] Items
 - [ ] Add-ons
 - [ ] Options
 - Large, 500ml, extra large
@@ -52,12 +56,12 @@
 - Non-veg, other, veg
 - [ ] others
 - Combo meals (packages)
-- [x] users
+- [x] users ✅
 	- [x] Create
 	- [x] Read
 	- [x] Update
 	- [x] Delete
-- [x] roles
+- [x] roles ✅
 	- [x] Create
 	- [x] Read
 	- [x] Update
