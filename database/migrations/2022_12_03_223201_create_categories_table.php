@@ -6,11 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->uuid('id')->primary();
+
             $table->string('name')->unique();
+            $table->string('color')->nullable();
             $table->string('description')->nullable();
             $table->string('slug')->unique();
 
