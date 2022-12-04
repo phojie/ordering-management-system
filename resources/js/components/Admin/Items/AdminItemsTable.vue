@@ -100,7 +100,7 @@ const getById = async (id: number) => {
               <span>{{ variant.stock }}</span>
             </JBadge>
           </div>
-          <div v-else class="text-xs italic text-danger-400">
+          <div v-else class="text-xs italic font-semibold text-danger-400">
             Not available
           </div>
         </td>
