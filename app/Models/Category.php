@@ -34,7 +34,7 @@ class Category extends Model
 		  ->orWhere('description', 'ilike', "%{$search}%"));
 	}
 
-  public static function boot()
+	public static function boot()
 	{
 		parent::boot();
 		self::creating(function ($model) {
