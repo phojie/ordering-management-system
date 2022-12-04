@@ -55,6 +55,9 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $image
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Variant[] $variants
  * @property-read int|null $variants_count
  * @method static \Database\Factories\ItemFactory factory(...$parameters)
@@ -74,7 +77,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Query\Builder|Item withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Item withoutTrashed()
  */
-	class Item extends \Eloquent {}
+	class Item extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
 
 namespace App\Models{
@@ -238,7 +241,6 @@ namespace App\Models{
  * @property string $item_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read string $image
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
  * @property-read int|null $media_count
  * @method static \Database\Factories\VariantFactory factory(...$parameters)
