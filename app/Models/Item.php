@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Item extends Model
@@ -17,6 +18,11 @@ class Item extends Model
 		'name',
 		'description',
 	];
+
+  public function variants(): HasMany
+  {
+    return $this->hasMany(Variant::class);
+  }
 
 	public function scopeSearch($query, $search): object
 	{
