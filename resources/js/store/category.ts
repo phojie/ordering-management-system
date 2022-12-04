@@ -79,7 +79,6 @@ export const useCategoryStore = defineStore('category', () => {
       minLengthValue: maxLength(100),
       $autoDirty: true,
     },
-    permissions: {},
   }
 
   const $externalResults = ref({})

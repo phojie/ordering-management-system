@@ -83,7 +83,6 @@ export const useItemStore = defineStore('item', () => {
       minLengthValue: maxLength(100),
       $autoDirty: true,
     },
-    permissions: {},
   }
 
   const $externalResults = ref({})
