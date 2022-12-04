@@ -87,7 +87,7 @@ const getById = async (id: number) => {
         </td>
 
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-          <div class="inline-flex space-x-2">
+          <div v-if="(item.variants.length > 0)" class="inline-flex space-x-2">
             <JBadge
               v-for="variant in item.variants"
               :key="variant.id"
@@ -99,6 +99,9 @@ const getById = async (id: number) => {
               />
               <span>{{ variant.stock }}</span>
             </JBadge>
+          </div>
+          <div v-else class="text-xs italic text-danger-400">
+            Not available
           </div>
         </td>
 
