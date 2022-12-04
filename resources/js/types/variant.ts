@@ -1,10 +1,10 @@
 export interface Variant {
-  id: number
+  id: string
   name: string
   color: string
   image?: string
   price: number
   stock: number
-  item_id: number
+  item_id: string
 }
 
