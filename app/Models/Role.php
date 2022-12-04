@@ -33,7 +33,7 @@ class Role extends ModelsRole
 		'status',
 	];
 
-	public function getStatusAttribute()
+	public function getStatusAttribute(): string
 	{
 		return $this->deleted_at ? 'deleted' : 'active';
 	}
@@ -44,7 +44,7 @@ class Role extends ModelsRole
 		  ->orWhere('description', 'ilike', "%{$search}%"));
 	}
 
-	public static function boot()
+	public static function boot(): void
 	{
 		parent::boot();
 		self::creating(function ($model) {

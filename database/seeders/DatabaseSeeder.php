@@ -27,6 +27,9 @@ class DatabaseSeeder extends Seeder
 
       // generate categories
       CategorySeeder::class,
+
+      // generate items
+      ItemSeeder::class,
 		]);
 	}
 }

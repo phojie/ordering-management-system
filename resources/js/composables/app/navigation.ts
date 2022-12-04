@@ -36,6 +36,12 @@ export const useNavigation = () => {
       exact: true,
     },
     {
+      name: 'Items',
+      icon: HeroiconsBars3,
+      href: '/admin/items',
+      exact: true,
+    },
+    {
       name: 'Menus',
       icon: HeroiconsDocumentDuplicate,
       href: '/admin/menus',
@@ -44,11 +50,6 @@ export const useNavigation = () => {
       name: 'Orders',
       icon: HeroiconsShoppingCart,
       href: '/admin/orders',
-    },
-    {
-      name: 'Items',
-      icon: HeroiconsBars3,
-      href: '/admin/items',
     },
     {
       name: 'Add-ons',
