@@ -32,18 +32,12 @@ class CategoryService implements CategoryServiceInterface
    {
    	try {
    		\DB::transaction(function () use ($request) {
-   			$permissions = collect($request->permissions)->pluck('name');
-
-   			$category = Category::make(
+   			Category::create(
    				[
    					'name' => $request->name,
    					'description' => $request->description,
-   					'guard_name' => 'web',
    				]
    			);
-
-   			$category->givePermissionTo($permissions);
-   			$category->saveOrFail();
    		});
    	} catch (\Exception $e) {
    		(new FlashNotification())->error($e->getMessage());
@@ -56,14 +50,10 @@ class CategoryService implements CategoryServiceInterface
    		$category = Category::findOrFail($id);
    		\DB::transaction(
    			function () use ($request, $category) {
-   				$permissions = collect($request->permissions)->pluck('name');
-
    				$category->update([
    					'name' => $request->name,
    					'description' => $request->description,
    				]);
-
-   				$category->syncPermissions($permissions);
    			}
    		);
    	} catch (\Exception $e) {

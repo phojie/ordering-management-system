@@ -14,12 +14,10 @@ class Category extends Model
 	use HasUuids;
 	use SoftDeletes;
 
-	public $guarded = [
-		'id',
-		'created_at',
-		'updated_at',
-		'deleted_at',
-	];
+  protected $fillable = [
+    'name',
+    'description',
+  ];
 
   protected $appends = [
 		'status',
