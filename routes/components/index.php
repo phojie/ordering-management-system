@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Components\CategoryController;
 use App\Http\Controllers\Components\PermissionController;
 use App\Http\Controllers\Components\RoleController;
 use App\Http\Controllers\Components\TemporaryFileController;
@@ -19,4 +20,7 @@ Route::prefix('components')->middleware('auth')->group(function () {
 
 	// users
 	Route::get('users/{id}', [UserController::class, 'show'])->name('components.users.show');
+
+  // categories
+	Route::get('categories/{id}', [CategoryController::class, 'show'])->name('components.categories.show');
 });
