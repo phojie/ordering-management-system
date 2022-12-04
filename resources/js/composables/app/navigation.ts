@@ -33,6 +33,7 @@ export const useNavigation = () => {
       name: 'Categories',
       href: '/admin/categories',
       icon: HeroiconsQueueList,
+      exact: true,
     },
     {
       name: 'Menus',
