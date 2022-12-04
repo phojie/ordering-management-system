@@ -15,6 +15,9 @@ class ItemResource extends JsonResource
 			'status' => $this->status,
 			'createdAt' => $this->created_at,
 			'updatedAt' => $this->updated_at,
+
+			// relationships
+			'variants' => VariantResource::collection($this->whenLoaded('variants')),
 		];
 	}
 }
