@@ -37,3 +37,4 @@ require __DIR__.'/auth/index.php';
 require __DIR__.'/components/index.php';
 
 require __DIR__.'/admin/category.php';
+require __DIR__.'/admin/item.php';
