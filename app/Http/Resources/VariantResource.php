@@ -14,6 +14,7 @@ class VariantResource extends JsonResource
 			'status' => $this->status,
 			'stock' => $this->stock,
 			'price' => $this->price,
+      'image' => $this->image,
       'color' => $this->color,
 			'createdAt' => $this->created_at,
 			'updatedAt' => $this->updated_at,
