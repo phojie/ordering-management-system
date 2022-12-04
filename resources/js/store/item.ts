@@ -43,15 +43,6 @@ export const useItemStore = defineStore('item', () => {
       },
     },
     {
-      text: 'Description',
-      value: 'description',
-      sortable: true,
-      filterable: true,
-      filterOptions: {
-        type: 'text',
-      },
-    },
-    {
       text: 'Variants',
       value: 'variants',
     },
