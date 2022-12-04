@@ -56,6 +56,10 @@ export const useItemStore = defineStore('item', () => {
       value: 'variants',
     },
     {
+      text: 'Availability',
+      value: 'stocks',
+    },
+    {
       text: 'Status',
       value: 'status',
       sortable: true,

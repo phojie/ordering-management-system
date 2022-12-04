@@ -63,7 +63,27 @@ const getById = async (id: number) => {
         </td>
 
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-          <div class="inline-flex space-x-0.5">
+          <div class="inline-flex space-x-5">
+            <JBadge
+              v-for="variant in item.variants"
+              :key="variant.id"
+              class="cursor-pointer group !text-gray-500"
+            >
+              <!-- <span
+                :style="`background-color:${variant.color}`"
+                :class="{ 'bg-gray-400': !variant.color }"
+                class="w-2 h-2 mr-1 rounded-full"
+              /> -->
+              <span
+                class="mr-1 text-gray-900 group-hover:underline underline-offset-4"
+              > {{ variant.name }} </span>
+              <span class="group-hover:text-primary-600">-₱ {{ variant.price }}</span>
+            </JBadge>
+          </div>
+        </td>
+
+        <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+          <div class="inline-flex space-x-2">
             <JBadge
               v-for="variant in item.variants"
               :key="variant.id"
@@ -73,7 +93,7 @@ const getById = async (id: number) => {
                 :class="{ 'bg-gray-400': !variant.color }"
                 class="w-2 h-2 mr-2 rounded-full"
               />
-              <span>{{ variant.name }}</span>
+              <span>{{ variant.stock }}</span>
             </JBadge>
           </div>
         </td>
