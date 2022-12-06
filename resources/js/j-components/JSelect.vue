@@ -6,6 +6,7 @@ interface Select {
   placeholder?: string
   label?: string
   itemTitle?: string
+  defaultValue?: any
 
   isLoading?: boolean
   isDisabled?: boolean
@@ -21,7 +22,7 @@ const value = useVModel(props, 'modelValue', emit)
 </script>
 
 <template>
-  <Listbox v-model="value" as="div">
+  <Listbox v-model="value" as="div" :default-value="defaultValue">
     <ListboxLabel
       v-if="props.label"
       class="block mb-1 text-sm font-medium text-gray-700"
