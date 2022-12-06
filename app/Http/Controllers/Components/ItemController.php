@@ -10,6 +10,7 @@ class ItemController
 	public function show($id)
 	{
 		$query = Item::query()
+        ->with(['variants'])
 				->find($id);
 		$item = new ItemResource($query);
 
