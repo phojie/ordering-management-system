@@ -1,3 +1,4 @@
+import type { Variant } from './variant'
 import type { Pagination } from '@/global'
 
 export interface Item {
@@ -8,6 +9,9 @@ export interface Item {
   slug?: string
   createdAt?: string
   updatedAt?: string
+
+  // relationships
+  variants?: Array<Variant>
 }
 
 export interface PaginationItems extends Pagination {

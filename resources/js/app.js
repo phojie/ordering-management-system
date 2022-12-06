@@ -11,12 +11,13 @@ import Highcharts from 'highcharts'
 import exportingInit from 'highcharts/modules/exporting'
 import FloatingVue from 'floating-vue'
 import vSelect from 'vue-select'
-import VueFilePond, { setOptions } from 'vue-filepond'
+import VueFilePond from 'vue-filepond'
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type'
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
 import FilePondPluginFilePoster from 'filepond-plugin-file-poster'
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size'
 import FilePondPluginImageResize from 'filepond-plugin-image-resize'
+import { MotionPlugin } from '@vueuse/motion'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m'
 import { Ziggy } from './ziggy'
 import HeroiconsXMark20Solid from '~icons/heroicons/x-mark-20-solid'
@@ -98,6 +99,7 @@ createInertiaApp({
           },
         },
       })
+      .use(MotionPlugin)
 
       .component('FilePond', FilePond)
       .component('Link', Link)

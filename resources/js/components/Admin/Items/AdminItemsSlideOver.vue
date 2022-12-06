@@ -13,6 +13,7 @@ const closeSlideOver = () => {
     :title="formState.title"
     :description="formState.description"
     :is-loading="role.processing"
+    size="xl"
     @submit="useItemStore().submitForm()"
     @hide="closeSlideOver()"
   >

@@ -30,6 +30,9 @@ class DatabaseSeeder extends Seeder
 
       // generate items
       ItemSeeder::class,
+
+      // generate variants
+      VariantSeeder::class,
 		]);
 	}
 }

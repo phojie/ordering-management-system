@@ -13,8 +13,9 @@ class ItemService implements ItemServiceInterface
 		try {
 			// set model
 			$model = Item::query()
-			  ->withTrashed()
-			  ->search($request->search);
+				->withTrashed()
+				->with(['variants'])
+				->search($request->search);
 
 			// set query builder
 			$query = QueryBuilder::for($model)
@@ -31,12 +32,19 @@ class ItemService implements ItemServiceInterface
    public function store(object $request): void
    {
    	try {
-   		Item::create(
-   			[
-   				'name' => $request->name,
-   				'description' => $request->description,
-   			]
-   		);
+   		\DB::transaction(function () use ($request) {
+   			$item = Item::create(
+   				[
+   					'name' => $request->name,
+   					'description' => $request->description,
+   				]
+   			);
+
+   			// if has request variants
+   			if ($request->variants) {
+          (new VariantService())->storeMultiple($request, $item);
+   			}
+   		});
    	} catch (\Exception $e) {
    		(new FlashNotification())->error($e->getMessage());
    	}

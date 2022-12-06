@@ -30,7 +30,7 @@ defineOptions({
               <p class="text-sm font-medium text-gray-600">
                 Welcome back,
               </p>
-              <p class="text-2xl font-bold text-gray-900">
+              <p v-motion-fade class="text-2xl font-bold text-gray-900">
                 {{ auth.user?.fullName }}
               </p>
               <p class="flex items-center text-sm font-medium text-gray-600 capitalize">

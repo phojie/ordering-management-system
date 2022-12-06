@@ -20,6 +20,8 @@ export const useItemStore = defineStore('item', () => {
     id: '',
     name: '',
     description: '',
+
+    variants: [],
   })
 
   // form state
@@ -43,13 +45,12 @@ export const useItemStore = defineStore('item', () => {
       },
     },
     {
-      text: 'Description',
-      value: 'description',
-      sortable: true,
-      filterable: true,
-      filterOptions: {
-        type: 'text',
-      },
+      text: 'Variants',
+      value: 'variants',
+    },
+    {
+      text: 'Availability',
+      value: 'stocks',
     },
     {
       text: 'Status',
@@ -84,7 +85,7 @@ export const useItemStore = defineStore('item', () => {
       minLengthValue: maxLength(100),
       $autoDirty: true,
     },
-    permissions: {},
+    variants: {},
   }
 
   const $externalResults = ref({})
@@ -146,7 +147,7 @@ export const useItemStore = defineStore('item', () => {
 
   // create item
   async function createItem() {
-    Inertia.post(route('items.store'), form, {
+    Inertia.post(route('items.store'), form as any, {
       onBefore: () => {
         processing = true
       },
@@ -164,7 +165,7 @@ export const useItemStore = defineStore('item', () => {
 
   // update item
   async function updateItem(id: string) {
-    Inertia.put(route('items.update', id), form, {
+    Inertia.put(route('items.update', id), form as any, {
       onBefore: () => {
         processing = true
       },
@@ -247,6 +248,7 @@ export const useItemStore = defineStore('item', () => {
     form.id = ''
     form.name = ''
     form.description = ''
+    form.variants = []
 
     $v.value.$reset()
   }

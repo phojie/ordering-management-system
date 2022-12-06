@@ -55,6 +55,11 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $image
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Variant[] $variants
+ * @property-read int|null $variants_count
  * @method static \Database\Factories\ItemFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Item newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Item newQuery()
@@ -72,7 +77,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Query\Builder|Item withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Item withoutTrashed()
  */
-	class Item extends \Eloquent {}
+	class Item extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
 
 namespace App\Models{
@@ -221,5 +226,35 @@ namespace App\Models{
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  */
 	class User extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Variant
+ *
+ * @property string $id
+ * @property string $name
+ * @property string|null $color
+ * @property string $status
+ * @property int $stock
+ * @property float $price
+ * @property string $item_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\VariantFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Variant newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Variant newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Variant query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Variant whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Variant whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Variant whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Variant whereItemId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Variant whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Variant wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Variant whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Variant whereStock($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Variant whereUpdatedAt($value)
+ */
+	class Variant extends \Eloquent {}
 }
 

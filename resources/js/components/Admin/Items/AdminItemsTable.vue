@@ -17,6 +17,7 @@ const toggleEdit = (item: Item) => {
   form.id = item.id
   form.name = item.name
   form.description = item.description
+  form.variants = item.variants
 
   formState.type = 'edit'
   formState.show = true
@@ -45,21 +46,64 @@ const getById = async (id: number) => {
       @deleteAll="deleteAll()"
     >
       <template #table-data="{ item, selected }">
-        <td class="flex items-center py-4 pr-3 space-x-3 text-sm whitespace-nowrap">
-          <span
-            :style="`background-color:${item.color}`"
-            :class="{ 'bg-gray-400': !item.color }"
-            class="w-2 h-2 -mx-1 rounded-full "
-          />
-          <span class="font-medium" :class="[selected ? 'text-primary-600' : 'text-gray-900']">
-            {{ item.name }}
-          </span>
+        <td class="py-4 pr-3 text-sm whitespace-nowrap">
+          <div class="flex items-center">
+            <div class="flex-shrink-0 w-10 h-10">
+              <img
+                class="w-10 h-10 rounded-md"
+                :src="item.image"
+                loading="lazy"
+                alt="…"
+              >
+            </div>
+            <div class="ml-4">
+              <div class="font-medium" :class="[selected ? 'text-primary-600' : 'text-gray-900']">
+                {{ item.name }}
+              </div>
+              <div class="text-gray-500">
+                {{ item.description }}
+              </div>
+            </div>
+          </div>
         </td>
 
-        <td class="w-1/3 px-3 py-4 text-sm text-gray-500 whitespace-normal">
-          <p class="line-clamp-1">
-            {{ item.description }}
-          </p>
+        <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+          <div class="inline-flex space-x-5">
+            <JBadge
+              v-for="variant in item.variants"
+              :key="variant.id"
+              class="cursor-pointer group !text-gray-500"
+            >
+              <span
+                :style="`background-color:${variant.color}`"
+                :class="{ 'bg-gray-400': !variant.color }"
+                class="w-2 h-2 mr-1 rounded-full"
+              />
+              <span
+                class="mr-1 text-gray-900 group-hover:underline underline-offset-4"
+              > {{ variant.name }} </span>
+              <span class="group-hover:text-primary-600">-₱ {{ variant.price }}</span>
+            </JBadge>
+          </div>
+        </td>
+
+        <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+          <div v-if="(item.variants.length > 0)" class="inline-flex space-x-2">
+            <JBadge
+              v-for="variant in item.variants"
+              :key="variant.id"
+            >
+              <span
+                :style="`background-color:${variant.color}`"
+                :class="{ 'bg-gray-400': !variant.color }"
+                class="w-2 h-2 mr-2 rounded-full"
+              />
+              <span>{{ variant.stock }}</span>
+            </JBadge>
+          </div>
+          <div v-else class="text-xs italic font-semibold text-danger-400">
+            Not available
+          </div>
         </td>
 
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
