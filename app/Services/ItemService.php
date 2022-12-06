@@ -42,7 +42,7 @@ class ItemService implements ItemServiceInterface
 
    			// if has request variants
    			if ($request->variants) {
-          (new VariantService())->storeMultiple($request, $item);
+   				(new VariantService())->storeMultiple($request, $item);
    			}
    		});
    	} catch (\Exception $e) {
@@ -54,12 +54,19 @@ class ItemService implements ItemServiceInterface
    {
    	try {
    		$item = Item::findOrFail($id);
+   		\DB::transaction(function () use ($request, $item) {
    		$item->update([
    			'name' => $request->name,
    			'description' => $request->description,
    		]);
+
+   		// if has request variants
+   		if ($request->variants) {
+   			(new VariantService())->updateMultiple($request, $item);
+   		}
+   		});
    	} catch (\Exception $e) {
-   		(new FlashNotification())->error($e->getMessage());
+   		abort(500, $e->getMessage());
    	}
    }
 
