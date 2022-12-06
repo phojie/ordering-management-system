@@ -14,8 +14,8 @@ class CategoryService implements CategoryServiceInterface
 			// set model
 			$model = Category::query()
 			  ->withTrashed()
-		->with(['items'])
-		->withCount('items')
+            ->with(['items'])
+            ->withCount('items')
 			  ->search($request->search);
 
 			// set query builder
