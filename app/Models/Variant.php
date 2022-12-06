@@ -6,17 +6,13 @@ use App\Services\MiscServices;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Variant extends Model implements HasMedia
+class Variant extends Model
 {
 	use HasFactory;
 	use HasUuids;
-	use InteractsWithMedia;
 
-	public $fillable = [
+	protected $fillable = [
 		'name',
 		'status',
 		'stock',
@@ -24,6 +20,10 @@ class Variant extends Model implements HasMedia
 		'item_id',
 	];
 
+	protected $casts = [
+		'stock' => 'integer',
+		'price' => 'float',
+	];
 
 	public static function boot(): void
 	{
