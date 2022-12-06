@@ -65,7 +65,9 @@ const getById = async (id: number) => {
         </td>
 
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-normal ">
-          {{ item.itemsCount }}
+          <JBadge class="!rounded-md" variant="primary">
+            {{ item.itemsCount }}
+          </JBadge>
         </td>
 
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
