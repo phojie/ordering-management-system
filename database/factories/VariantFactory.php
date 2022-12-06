@@ -17,7 +17,6 @@ class VariantFactory extends Factory
 	{
 		return [
 			'name' => $this->faker->word(),
-			'status' => $this->faker->randomElement(['active', 'inactive']),
 			'stock' => $this->faker->randomNumber(),
 			'price' => $this->faker->randomFloat(2, 0, 100),
 			'item_id' => Item::inRandomOrder()->first()->id,
