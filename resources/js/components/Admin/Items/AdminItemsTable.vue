@@ -19,6 +19,7 @@ const toggleEdit = (item: Item) => {
   form.status = item.status
   form.description = item.description
   form.variants = item.variants
+  form.image = item.image
 
   formState.type = 'edit'
   formState.show = true

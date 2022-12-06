@@ -5,6 +5,12 @@ const processing = $computed(() => useItemStore().processing)
 
 <template>
   <div class="pt-6 pb-5 space-y-6">
+    <JFileInput
+      v-model="form.image"
+      accepted-file-types="image/*"
+      label="Cover Image"
+    />
+
     <JSelect
       v-model="form.status"
       label="Status"

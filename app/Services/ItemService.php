@@ -45,6 +45,11 @@ class ItemService implements ItemServiceInterface
    			if ($request->variants) {
    				(new VariantService())->storeMultiple($request, $item);
    			}
+
+   			// if has request image
+   			if ($request->image) {
+   				(new FileUploaderService())->uploadItemImageToMedia($item->id, $request->image);
+   			}
    		});
    	} catch (\Exception $e) {
    		abort(500, $e->getMessage());
@@ -55,7 +60,7 @@ class ItemService implements ItemServiceInterface
    {
    	try {
    		$item = Item::findOrFail($id);
-   		// \DB::transaction(function () use ($request, $item) {
+   		\DB::transaction(function () use ($request, $item) {
    			$item->update([
    				'name' => $request->name,
    				'description' => $request->description,
@@ -66,7 +71,12 @@ class ItemService implements ItemServiceInterface
    			if ($request->variants) {
    				(new VariantService())->updateMultiple($request, $item);
    			}
-   		// });
+
+        // if has request image
+   			if ($request->image) {
+          (new FileUploaderService())->uploadItemImageToMedia($item->id, $request->image);
+        }
+   		});
    	} catch (\Exception $e) {
    		abort(500, $e->getMessage());
    	}

@@ -7,6 +7,7 @@ export interface Item {
   description: string
   status?: string
   slug?: string
+  image?: string
   createdAt?: string
   updatedAt?: string
 

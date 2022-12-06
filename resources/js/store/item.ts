@@ -21,6 +21,7 @@ export const useItemStore = defineStore('item', () => {
     status: '',
     name: '',
     description: '',
+    image: '',
 
     variants: [],
   })
@@ -86,7 +87,6 @@ export const useItemStore = defineStore('item', () => {
       minLengthValue: maxLength(100),
       $autoDirty: true,
     },
-    variants: {},
   }
 
   const $externalResults = ref({})
