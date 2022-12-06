@@ -14,6 +14,6 @@ const items = ['10', '20', '30', '50']
   <JSelect
     v-model="value"
     :items="items"
-    :disabled="props.processing"
+    :is-disabled="props.processing"
   />
 </template>
