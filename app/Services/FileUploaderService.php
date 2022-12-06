@@ -25,16 +25,36 @@ class FileUploaderService
 	}
 
   public function uploadItemImageToMedia(string $id, string $image): void
-	{
-		try {
-			$temporaryFile = TemporaryFile::where('folder', $image)->firstOrFail();
-			$item = Item::findOrFail($id);
-			$item->addMedia(storage_path('app/public/tmp/'.$image.'/'.$temporaryFile->filename))
-					->toMediaCollection('image');
+  {
+  	try {
+  		$temporaryFile = TemporaryFile::where('folder', $image)->firstOrFail();
+  		$item = Item::findOrFail($id);
+  		$item->addMedia(storage_path('app/public/tmp/'.$image.'/'.$temporaryFile->filename))
+  				->toMediaCollection('image');
 
-			(new TemporaryFileService())->delete($temporaryFile->folder);
-		} catch (\Exception $e) {
-			abort(500, $e->getMessage());
-		}
-	}
+  		(new TemporaryFileService())->delete($temporaryFile->folder);
+  	} catch (\Exception $e) {
+  		abort(500, $e->getMessage());
+  	}
+  }
+
+  public function deleteUserAvatarFromMedia(string $id): void
+  {
+  	try {
+  		$user = User::findOrFail($id);
+  		$user->clearMediaCollection('avatar');
+  	} catch (\Exception $e) {
+  		abort(500, $e->getMessage());
+  	}
+  }
+
+  public function deleteItemImageFromMedia(string $id): void
+  {
+  	try {
+  		$item = Item::findOrFail($id);
+  		$item->clearMediaCollection('image');
+  	} catch (\Exception $e) {
+  		abort(500, $e->getMessage());
+  	}
+  }
 }
