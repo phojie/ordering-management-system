@@ -99,7 +99,7 @@ const getById = async (id: number) => {
                 :class="{ 'bg-gray-400': !variant.color }"
                 class="w-2 h-2 mr-2 rounded-full"
               />
-              <span>{{ variant.stock }}</span>
+              <span>{{ variant.stock }}</span> <span v-if="variant.stock === 0" class="ml-1 italic normal-case text-danger-400"> - Out of stock</span>
             </JBadge>
           </div>
           <div v-else class="text-xs italic font-semibold text-danger-400">
@@ -110,7 +110,7 @@ const getById = async (id: number) => {
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
           <JBadge
             :label="item.status === 'deleted' ? 'Archived' : item.status"
-            :variant="item.status === 'active' ? 'success' : 'warning'"
+            :variant="item.status === 'active' ? 'success' : item.status === 'inactive' ? 'danger' : 'warning'"
             :class="item.status === 'active' ? '!font-semibold' : ''"
           />
         </td>
