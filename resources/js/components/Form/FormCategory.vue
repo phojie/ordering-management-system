@@ -24,5 +24,7 @@ const processing = $computed(() => useCategoryStore().processing)
       :error-message="$v.description.$errors[0]?.$message"
       :is-error="$v.description.$error"
     />
+
+    <InputItems v-model="form.items" />
   </div>
 </template>

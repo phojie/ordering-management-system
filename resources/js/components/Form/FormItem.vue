@@ -19,6 +19,8 @@ const processing = $computed(() => useItemStore().processing)
       default-value="active"
     />
 
+    <InputCategories v-model="form.categories" />
+
     <JTextField
       id="name"
       v-model="form.name"

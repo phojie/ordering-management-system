@@ -7,6 +7,12 @@ use App\Models\Item;
 
 class ItemController
 {
+  public function index() {
+    $query = Item::get();
+
+    return response()->json($query, 200);
+  }
+
 	public function show($id)
 	{
 		$query = Item::query()

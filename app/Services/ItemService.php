@@ -14,7 +14,7 @@ class ItemService implements ItemServiceInterface
 			// set model
 			$model = Item::query()
 				->withTrashed()
-				->with(['variants'])
+				->with(['variants', 'categories'])
 				->search($request->search);
 
 			// set query builder
@@ -41,6 +41,9 @@ class ItemService implements ItemServiceInterface
    				]
    			);
 
+   			$categoriesIds = collect($request->categories)->pluck('id')->toArray();
+   			$item->categories()->attach($categoriesIds);
+
    			// if has request variants
    			if ($request->variants) {
    				(new VariantService())->storeMultiple($request, $item);
@@ -60,6 +63,7 @@ class ItemService implements ItemServiceInterface
    {
    	try {
    		$item = Item::findOrFail($id);
+
    		\DB::transaction(function () use ($request, $item) {
    			$item->update([
    				'name' => $request->name,
@@ -67,20 +71,23 @@ class ItemService implements ItemServiceInterface
    				'status' => $request->status,
    			]);
 
+   			$categoriesIds = collect($request->categories)->pluck('id')->toArray();
+   			$item->categories()->sync($categoriesIds);
+
    			// if has request variants
    			if ($request->variants) {
    				(new VariantService())->updateMultiple($request, $item);
    			}
 
-        // if has request image
+   			// if has request image
    			if ($request->image) {
-          (new FileUploaderService())->uploadItemImageToMedia($item->id, $request->image);
-        } else {
-          (new FileUploaderService())->deleteItemImageFromMedia($item->id);
-        }
+   				(new FileUploaderService())->uploadItemImageToMedia($item->id, $request->image);
+   			} else {
+   				(new FileUploaderService())->deleteItemImageFromMedia($item->id);
+   			}
    		});
    	} catch (\Exception $e) {
-      throw $e;
+   		throw $e;
    	}
    }
 

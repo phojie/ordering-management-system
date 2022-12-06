@@ -24,6 +24,7 @@ export const useItemStore = defineStore('item', () => {
     image: '',
 
     variants: [],
+    categories: [],
   })
 
   // form state
@@ -45,6 +46,10 @@ export const useItemStore = defineStore('item', () => {
       filterOptions: {
         type: 'text',
       },
+    },
+    {
+      text: 'Categories',
+      value: 'categories',
     },
     {
       text: 'Variants',
@@ -250,8 +255,9 @@ export const useItemStore = defineStore('item', () => {
     form.status = 'active'
     form.name = ''
     form.description = ''
-    form.variants = []
     form.image = ''
+    form.variants = []
+    form.categories = []
 
     $v.value.$reset()
   }

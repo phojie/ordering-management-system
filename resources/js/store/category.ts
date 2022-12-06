@@ -20,6 +20,8 @@ export const useCategoryStore = defineStore('category', () => {
     id: '',
     name: '',
     description: '',
+
+    items: [],
   })
 
   // form state
@@ -50,6 +52,10 @@ export const useCategoryStore = defineStore('category', () => {
       filterOptions: {
         type: 'text',
       },
+    },
+    {
+      text: 'Items',
+      value: 'items',
     },
     {
       text: 'Status',
@@ -140,7 +146,7 @@ export const useCategoryStore = defineStore('category', () => {
 
   // create category
   async function createCategory() {
-    Inertia.post(route('categories.store'), form, {
+    Inertia.post(route('categories.store'), form as any, {
       onBefore: () => {
         processing = true
       },
@@ -158,7 +164,7 @@ export const useCategoryStore = defineStore('category', () => {
 
   // update category
   async function updateCategory(id: string) {
-    Inertia.put(route('categories.update', id), form, {
+    Inertia.put(route('categories.update', id), form as any, {
       onBefore: () => {
         processing = true
       },
@@ -241,6 +247,8 @@ export const useCategoryStore = defineStore('category', () => {
     form.id = ''
     form.name = ''
     form.description = ''
+    form.status = 'active'
+    form.items = []
 
     $v.value.$reset()
   }

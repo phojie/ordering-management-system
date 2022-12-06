@@ -18,6 +18,8 @@ const toggleEdit = (category: Category) => {
   form.name = category.name
   form.description = category.description
 
+  form.items = category.items
+
   formState.type = 'edit'
   formState.show = true
   formState.title = 'Edit Category'
@@ -60,6 +62,10 @@ const getById = async (id: number) => {
           <p class="line-clamp-1">
             {{ item.description }}
           </p>
+        </td>
+
+        <td class="px-3 py-4 text-sm text-gray-500 whitespace-normal ">
+          {{ item.itemsCount }}
         </td>
 
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">

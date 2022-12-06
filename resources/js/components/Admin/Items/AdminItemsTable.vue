@@ -68,6 +68,24 @@ const getById = async (id: number) => {
             </div>
           </div>
         </td>
+        <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+          <div class="inline-flex space-x-5">
+            <JBadge
+              v-for="category in item.categories"
+              :key="category.id"
+              class="cursor-pointer group !text-gray-500"
+            >
+              <span
+                :style="`background-color:${category.color}`"
+                :class="{ 'bg-gray-400': !category.color }"
+                class="w-2 h-2 mr-1 rounded-full"
+              />
+              <span
+                class="mr-1 text-gray-900 group-hover:underline underline-offset-4"
+              > {{ category.name }} </span>
+            </JBadge>
+          </div>
+        </td>
 
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
           <div class="inline-flex space-x-5">

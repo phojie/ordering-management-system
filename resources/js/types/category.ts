@@ -1,3 +1,4 @@
+import type { Item } from './item'
 import type { Pagination } from '@/global'
 
 export interface Category {
@@ -8,6 +9,9 @@ export interface Category {
   slug?: string
   createdAt?: string
   updatedAt?: string
+
+  items?: Array<Item>
+  itemsCount?: number
 }
 
 export interface PaginationCategories extends Pagination {

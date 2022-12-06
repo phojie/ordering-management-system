@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
@@ -21,7 +22,7 @@ class Item extends Model implements HasMedia
 	public $fillable = [
 		'name',
 		'description',
-    'status'
+		'status',
 	];
 
 	protected $appends = [
@@ -50,6 +51,11 @@ class Item extends Model implements HasMedia
 	{
 		return $this->hasMany(Variant::class);
 	}
+
+  public function categories(): BelongsToMany
+  {
+  	return $this->belongsToMany(Category::class);
+  }
 
 	public function scopeSearch($query, $search): object
 	{

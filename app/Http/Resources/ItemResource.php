@@ -19,6 +19,7 @@ class ItemResource extends JsonResource
 
 			// relationships
 			'variants' => VariantResource::collection($this->whenLoaded('variants')),
+      'categories' => CategoryResource::collection($this->whenLoaded('categories')),
 		];
 	}
 }

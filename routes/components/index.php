@@ -23,8 +23,10 @@ Route::prefix('components')->middleware('auth')->group(function () {
 	Route::get('users/{id}', [UserController::class, 'show'])->name('components.users.show');
 
 	// categories
+  Route::get('categories', [CategoryController::class, 'index'])->name('components.categories');
 	Route::get('categories/{id}', [CategoryController::class, 'show'])->name('components.categories.show');
 
 	// items
+  Route::get('items', [ItemController::class, 'index'])->name('components.items');
 	Route::get('items/{id}', [ItemController::class, 'show'])->name('components.items.show');
 });

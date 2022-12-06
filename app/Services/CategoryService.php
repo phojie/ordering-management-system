@@ -14,11 +14,13 @@ class CategoryService implements CategoryServiceInterface
 			// set model
 			$model = Category::query()
 			  ->withTrashed()
+		->with(['items'])
+		->withCount('items')
 			  ->search($request->search);
 
 			// set query builder
 			$query = QueryBuilder::for($model)
-			  ->defaultSort('created_at')
+			  ->defaultSort('-created_at')
 			  ->allowedSorts(['name', 'description', 'created_at'])
 			  ->allowedFilters(['name', 'description']);
 
@@ -31,12 +33,17 @@ class CategoryService implements CategoryServiceInterface
    public function store(object $request): void
    {
    	try {
-   		Category::create(
-   			[
-   				'name' => $request->name,
-   				'description' => $request->description,
-   			]
-   		);
+   		\DB::transaction(function () use ($request) {
+   			$category = Category::create(
+   				[
+   					'name' => $request->name,
+   					'description' => $request->description,
+   				]
+   			);
+
+   			$itemsIds = collect($request->items)->pluck('id')->toArray();
+   			$category->items()->attach($itemsIds);
+   		});
    	} catch (\Exception $e) {
    		throw $e;
    	}
@@ -46,10 +53,15 @@ class CategoryService implements CategoryServiceInterface
    {
    	try {
    		$category = Category::findOrFail($id);
-   		$category->update([
-   			'name' => $request->name,
-   			'description' => $request->description,
-   		]);
+   		\DB::transaction(function () use ($request, $category) {
+   			$category->update([
+   				'name' => $request->name,
+   				'description' => $request->description,
+   			]);
+
+   			$itemsIds = collect($request->items)->pluck('id')->toArray();
+   			$category->items()->sync($itemsIds);
+   		});
    	} catch (\Exception $e) {
    		throw $e;
    	}

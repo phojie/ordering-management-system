@@ -1,3 +1,4 @@
+import type { Category } from './category'
 import type { Variant } from './variant'
 import type { Pagination } from '@/global'
 
@@ -13,6 +14,7 @@ export interface Item {
 
   // relationships
   variants?: Array<Variant>
+  categories?: Array<Category>
 }
 
 export interface PaginationItems extends Pagination {
