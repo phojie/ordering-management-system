@@ -50,7 +50,7 @@ const getById = async (id: number) => {
           <div class="flex items-center">
             <div class="flex-shrink-0 w-10 h-10">
               <img
-                class="w-10 h-10 rounded-full"
+                class="w-10 h-10 rounded-md"
                 :src="item.image"
                 loading="lazy"
                 alt="…"
