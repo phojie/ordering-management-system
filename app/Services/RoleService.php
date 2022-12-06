@@ -25,7 +25,7 @@ class RoleService implements RoleServiceInterface
 
 			return $query;
 		} catch (\Exception $e) {
-			abort(500, $e->getMessage());
+			throw $e;
 		}
 	}
 
@@ -47,7 +47,7 @@ class RoleService implements RoleServiceInterface
    			$role->saveOrFail();
    		});
    	} catch (\Exception $e) {
-   		abort(500, $e->getMessage());
+   		throw $e;
    	}
    }
 
@@ -68,7 +68,7 @@ class RoleService implements RoleServiceInterface
    			}
    		);
    	} catch (\Exception $e) {
-   		abort(500, $e->getMessage());
+   		throw $e;
    	}
    }
 
@@ -77,7 +77,7 @@ class RoleService implements RoleServiceInterface
    	try {
    		Role::findOrFail($id)->delete();
    	} catch (\Exception $e) {
-   		abort(500, $e->getMessage());
+   		throw $e;
    	}
    }
 
@@ -88,7 +88,7 @@ class RoleService implements RoleServiceInterface
   			Role::whereIn('id', $ids)->get()->each->delete();
   		});
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 
@@ -97,7 +97,7 @@ class RoleService implements RoleServiceInterface
   	try {
   		Role::onlyTrashed()->findOrFail($id)->restore();
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 
@@ -108,7 +108,7 @@ class RoleService implements RoleServiceInterface
   			Role::onlyTrashed()->whereIn('id', $ids)->get()->each->restore();
   		});
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 }

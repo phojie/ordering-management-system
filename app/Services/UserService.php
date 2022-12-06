@@ -34,7 +34,7 @@ class UserService implements UserServiceInterface
 
 			return $query;
 		} catch (\Exception $e) {
-			abort(500, $e->getMessage());
+			throw $e;
 		}
 	}
 
@@ -52,7 +52,7 @@ class UserService implements UserServiceInterface
 
   		return $user;
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 
@@ -79,7 +79,7 @@ class UserService implements UserServiceInterface
   			(new FileUploaderService())->uploadUserAvatarToMedia($user->id, $request->avatar);
   		}
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 
@@ -109,7 +109,7 @@ class UserService implements UserServiceInterface
         }
   		});
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 
@@ -118,7 +118,7 @@ class UserService implements UserServiceInterface
   	try {
   		User::findOrFail($id)->delete();
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 
@@ -129,7 +129,7 @@ class UserService implements UserServiceInterface
   			User::whereIn('id', $ids)->get()->each->delete();
   		});
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 
@@ -138,7 +138,7 @@ class UserService implements UserServiceInterface
   	try {
   		User::onlyTrashed()->findOrFail($id)->restore();
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 
@@ -149,7 +149,7 @@ class UserService implements UserServiceInterface
   			User::onlyTrashed()->whereIn('id', $ids)->get()->each->restore();
   		});
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 
@@ -161,7 +161,7 @@ class UserService implements UserServiceInterface
   			'password' => bcrypt($newPassword),
   		]);
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 }

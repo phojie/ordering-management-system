@@ -25,7 +25,7 @@ class TemporaryFileService implements TemporaryFileServiceInterface
 
 			return $folder;
 		} catch (\Exception $e) {
-			abort(500, $e->getMessage());
+			throw $e;
 		}
 	}
 
@@ -38,7 +38,7 @@ class TemporaryFileService implements TemporaryFileServiceInterface
 
 			$temporaryFile->delete();
 		} catch (\Exception $e) {
-			abort(500, $e->getMessage());
+			throw $e;
 		}
 	}
 }

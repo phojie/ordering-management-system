@@ -24,7 +24,7 @@ class CategoryService implements CategoryServiceInterface
 
 			return $query;
 		} catch (\Exception $e) {
-			abort(500, $e->getMessage());
+			throw $e;
 		}
 	}
 
@@ -38,7 +38,7 @@ class CategoryService implements CategoryServiceInterface
    			]
    		);
    	} catch (\Exception $e) {
-   		abort(500, $e->getMessage());
+   		throw $e;
    	}
    }
 
@@ -51,7 +51,7 @@ class CategoryService implements CategoryServiceInterface
    			'description' => $request->description,
    		]);
    	} catch (\Exception $e) {
-   		abort(500, $e->getMessage());
+   		throw $e;
    	}
    }
 
@@ -60,7 +60,7 @@ class CategoryService implements CategoryServiceInterface
    	try {
    		Category::findOrFail($id)->delete();
    	} catch (\Exception $e) {
-   		abort(500, $e->getMessage());
+   		throw $e;
    	}
    }
 
@@ -71,7 +71,7 @@ class CategoryService implements CategoryServiceInterface
   			Category::whereIn('id', $ids)->get()->each->delete();
   		});
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 
@@ -80,7 +80,7 @@ class CategoryService implements CategoryServiceInterface
   	try {
   		Category::onlyTrashed()->findOrFail($id)->restore();
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 
@@ -91,7 +91,7 @@ class CategoryService implements CategoryServiceInterface
   			Category::onlyTrashed()->whereIn('id', $ids)->get()->each->restore();
   		});
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 }

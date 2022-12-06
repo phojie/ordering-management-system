@@ -24,7 +24,7 @@ class VariantService implements VariantServiceInterface
 					->toArray();
 			$item->variants()->createMany($variants);
 		} catch (\Exception $e) {
-			abort(500, $e->getMessage());
+			throw $e;
 		}
 	}
 
@@ -51,7 +51,7 @@ class VariantService implements VariantServiceInterface
 
   		$item->variants()->whereNotIn('id', collect($variants)->pluck('id'))->delete();
   	} catch (\Exception $e) {
-  		abort(500, $e->getMessage());
+  		throw $e;
   	}
   }
 }
