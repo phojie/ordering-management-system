@@ -10,13 +10,18 @@ class VariantService implements VariantServiceInterface
 	public function storeMultiple(object $request, Item $item): void
 	{
 		try {
-			$variants = collect($request->variants)->map(function ($variant) {
-				return [
-					'name' => $variant['name'],
-					'price' => $variant['price'],
-					'stock' => $variant['stock'],
-				];
-			})->toArray();
+			$variants = collect($request->variants)
+          ->filter(function ($variant) {
+            return $variant['name'] && $variant['price'] && $variant['stock'];
+          })
+				  ->map(function ($variant) {
+				  	return [
+				  		'name' => $variant['name'],
+				  		'price' => $variant['price'],
+				  		'stock' => $variant['stock'],
+				  	];
+				  })
+				  ->toArray();
 			$item->variants()->createMany($variants);
 		} catch (\Exception $e) {
 			(new FlashNotification())->error($e->getMessage());
@@ -27,6 +32,9 @@ class VariantService implements VariantServiceInterface
   {
   	try {
   		$variants = collect($request->variants)
+  		  ->filter(function ($variant) {
+  		  	return $variant['name'] && $variant['price'] && $variant['stock'];
+  		  })
   			  ->map(function ($variant) use ($item) {
   			  	return [
   			  		'id' => \Str::of($variant['id'])->isUuid() ? $variant['id'] : \Str::uuid(),
