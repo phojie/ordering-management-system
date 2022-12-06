@@ -251,7 +251,7 @@ export const useItemStore = defineStore('item', () => {
     form.name = ''
     form.description = ''
     form.variants = []
-    firm.image = ''
+    form.image = ''
 
     $v.value.$reset()
   }
