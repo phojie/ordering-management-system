@@ -23,6 +23,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $status
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Item[] $items
+ * @property-read int|null $items_count
  * @method static \Database\Factories\CategoryFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
@@ -55,6 +57,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $categories
+ * @property-read int|null $categories_count
  * @property-read string $image
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
  * @property-read int|null $media_count
@@ -235,7 +239,6 @@ namespace App\Models{
  * @property string $id
  * @property string $name
  * @property string|null $color
- * @property string $status
  * @property int $stock
  * @property float $price
  * @property string $item_id
@@ -251,7 +254,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Variant whereItemId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Variant whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Variant wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Variant whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Variant whereStock($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Variant whereUpdatedAt($value)
  */
