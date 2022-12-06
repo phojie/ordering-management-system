@@ -19,7 +19,7 @@ class FileUploaderService
 
 			(new TemporaryFileService())->delete($temporaryFile->folder);
 		} catch (\Exception $e) {
-			(new FlashNotification())->error($e->getMessage());
+			abort(500, $e->getMessage());
 		}
 	}
 }

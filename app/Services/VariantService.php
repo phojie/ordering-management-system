@@ -24,7 +24,7 @@ class VariantService implements VariantServiceInterface
 					->toArray();
 			$item->variants()->createMany($variants);
 		} catch (\Exception $e) {
-			(new FlashNotification())->error($e->getMessage());
+			abort(500, $e->getMessage());
 		}
 	}
 
@@ -41,7 +41,7 @@ class VariantService implements VariantServiceInterface
   		  		'item_id' => $item->id,
   		  		'name' => $variant['name'],
   		  		'price' => $variant['price'],
-  		  		'stock' => $variant['stock'],
+  		  		'stock' => $variant['stock']
   		  	];
   		  })
         // $item->variants()->upsert($variants, ['id'], ['name', 'price', 'stock']);

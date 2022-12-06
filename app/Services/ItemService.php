@@ -25,7 +25,7 @@ class ItemService implements ItemServiceInterface
 
 			return $query;
 		} catch (\Exception $e) {
-			(new FlashNotification())->error($e->getMessage());
+			abort(500, $e->getMessage());
 		}
 	}
 
@@ -47,7 +47,7 @@ class ItemService implements ItemServiceInterface
    			}
    		});
    	} catch (\Exception $e) {
-   		(new FlashNotification())->error($e->getMessage());
+   		abort(500, $e->getMessage());
    	}
    }
 
@@ -77,7 +77,7 @@ class ItemService implements ItemServiceInterface
    	try {
    		Item::findOrFail($id)->delete();
    	} catch (\Exception $e) {
-   		(new FlashNotification())->error($e->getMessage());
+   		abort(500, $e->getMessage());
    	}
    }
 
@@ -88,7 +88,7 @@ class ItemService implements ItemServiceInterface
   			Item::whereIn('id', $ids)->get()->each->delete();
   		});
   	} catch (\Exception $e) {
-  		(new FlashNotification())->error($e->getMessage());
+  		abort(500, $e->getMessage());
   	}
   }
 
@@ -97,7 +97,7 @@ class ItemService implements ItemServiceInterface
   	try {
   		Item::onlyTrashed()->findOrFail($id)->restore();
   	} catch (\Exception $e) {
-  		(new FlashNotification())->error($e->getMessage());
+  		abort(500, $e->getMessage());
   	}
   }
 
@@ -108,7 +108,7 @@ class ItemService implements ItemServiceInterface
   			Item::onlyTrashed()->whereIn('id', $ids)->get()->each->restore();
   		});
   	} catch (\Exception $e) {
-  		(new FlashNotification())->error($e->getMessage());
+  		abort(500, $e->getMessage());
   	}
   }
 }
