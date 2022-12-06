@@ -75,6 +75,8 @@ class ItemService implements ItemServiceInterface
         // if has request image
    			if ($request->image) {
           (new FileUploaderService())->uploadItemImageToMedia($item->id, $request->image);
+        } else {
+          (new FileUploaderService())->deleteItemImageFromMedia($item->id);
         }
    		});
    	} catch (\Exception $e) {
