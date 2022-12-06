@@ -7,6 +7,10 @@
     @apply !cursor-pointer;
   }
 
+  .filepond--file-action-button  {
+    @apply !cursor-pointer;
+  }
+
   .filepond--root .filepond--credits {
     @apply !opacity-0;
   }
