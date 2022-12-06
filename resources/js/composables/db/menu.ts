@@ -5,7 +5,7 @@ import type { Menu } from '@/types/menu'
 import { MenuStatus } from '@/types/menu'
 
 export const useMenuStore = defineStore('menu', () => {
-  const menuForm = reactive<Menu>({
+  const menuForm = $ref<Menu>({
     name: '',
     description: '',
     image_url: '',
@@ -54,7 +54,7 @@ export const useMenuStore = defineStore('menu', () => {
     vuelidate.value.$reset()
   }
 
-  return {
+  return $$({
     // states
     menuForm,
     vuelidate,
@@ -63,5 +63,5 @@ export const useMenuStore = defineStore('menu', () => {
     fetchMenus,
     submitForm,
     resetForm,
-  }
+  })
 })

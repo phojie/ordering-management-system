@@ -15,7 +15,7 @@ export const useNotificationStore = defineStore('notification', () => {
     }
   })
 
-  const notifications = reactive<Array<Notification>>([
+  const notifications = $ref<Array<Notification>>([
     // {
     //   id: 1,
     //   variant: 'danger',
@@ -49,11 +49,11 @@ export const useNotificationStore = defineStore('notification', () => {
     notifications.splice(index, 1)
   }
 
-  return {
+  return $$({
     notifications,
     add,
     remove,
-  }
+  })
 })
 
 if (import.meta.hot)
