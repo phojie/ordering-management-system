@@ -69,7 +69,7 @@ const getById = async (id: number) => {
 
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
           <JBadge
-            :label="item.status === 'deleted' ? 'Suspended' : item.status"
+            :label="item.status === 'deleted' ? 'Deleted' : item.status"
             :variant="item.status === 'active' ? 'success' : 'danger'"
             :class="item.status === 'active' ? '!font-semibold' : ''"
           />
