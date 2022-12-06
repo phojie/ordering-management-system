@@ -42,29 +42,9 @@ export const useNavigation = () => {
       exact: true,
     },
     {
-      name: 'Menus',
-      icon: HeroiconsDocumentDuplicate,
-      href: '/admin/menus',
-    },
-    {
       name: 'Orders',
       icon: HeroiconsShoppingCart,
       href: '/admin/orders',
-    },
-    {
-      name: 'Add-ons',
-      icon: HeroiconsBeaker,
-      href: '/admin/add_ons',
-    },
-    {
-      name: 'Item Types',
-      icon: HeroiconsBookmark,
-      href: '/admin/item_types',
-    },
-    {
-      name: 'Offers',
-      icon: HeroiconsClipboard,
-      href: '/admin/offers',
     },
   ]
 
