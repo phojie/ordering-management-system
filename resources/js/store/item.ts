@@ -18,7 +18,7 @@ export const useItemStore = defineStore('item', () => {
   // data form state
   const form = $ref<Item>({
     id: '',
-    status: '',
+    status: 'active',
     name: '',
     description: '',
     image: '',
@@ -247,10 +247,11 @@ export const useItemStore = defineStore('item', () => {
   // reset form
   function resetForm() {
     form.id = ''
-    form.status = ''
+    form.status = 'active'
     form.name = ''
     form.description = ''
     form.variants = []
+    firm.image = ''
 
     $v.value.$reset()
   }
