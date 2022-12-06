@@ -104,7 +104,9 @@ class UserService implements UserServiceInterface
   			// if has request avatar
   			if ($request->avatar) {
   				(new FileUploaderService())->uploadUserAvatarToMedia($user->id, $request->avatar);
-  			}
+  			} else {
+          (new FileUploaderService())->deleteUserAvatarFromMedia($user->id);
+        }
   		});
   	} catch (\Exception $e) {
   		abort(500, $e->getMessage());
