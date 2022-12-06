@@ -11,7 +11,7 @@ export interface Item {
   updatedAt?: string
 
   // relationships
-  variants?: Array<Variant | any>
+  variants?: Array<Variant>
 }
 
 export interface PaginationItems extends Pagination {

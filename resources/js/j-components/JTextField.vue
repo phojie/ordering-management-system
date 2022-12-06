@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<TextField>(), {
 })
 
 // set emits
-const emit = defineEmits(['update:modelValue', 'blur', 'input'])
+const emit = defineEmits(['update:modelValue', 'blur'])
 const value = useVModel(props, 'modelValue', emit)
 
 // set computed

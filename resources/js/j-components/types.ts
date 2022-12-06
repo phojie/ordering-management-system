@@ -2,9 +2,9 @@ export interface TextField {
   // string
   id: string
   name?: string
-  type?: string
+  type?: 'text' | 'number' | 'password' | 'tel' | 'url'
   placeholder?: string
-  modelValue?: string
+  modelValue?: any
   label?: string
   appendInner?: unknown
   prependInner?: unknown
