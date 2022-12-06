@@ -37,7 +37,7 @@ class ItemService implements ItemServiceInterface
    				[
    					'name' => $request->name,
    					'description' => $request->description,
-            'status' => $request->status,
+   					'status' => $request->status,
    				]
    			);
 
@@ -55,18 +55,18 @@ class ItemService implements ItemServiceInterface
    {
    	try {
    		$item = Item::findOrFail($id);
-   		\DB::transaction(function () use ($request, $item) {
-   		$item->update([
-   			'name' => $request->name,
-   			'description' => $request->description,
-         'status' => $request->status,
-   		]);
+   		// \DB::transaction(function () use ($request, $item) {
+   			$item->update([
+   				'name' => $request->name,
+   				'description' => $request->description,
+   				'status' => $request->status,
+   			]);
 
-   		// if has request variants
-   		if ($request->variants) {
-   			(new VariantService())->updateMultiple($request, $item);
-   		}
-   		});
+   			// if has request variants
+   			if ($request->variants) {
+   				(new VariantService())->updateMultiple($request, $item);
+   			}
+   		// });
    	} catch (\Exception $e) {
    		abort(500, $e->getMessage());
    	}
