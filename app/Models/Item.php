@@ -21,6 +21,7 @@ class Item extends Model implements HasMedia
 	public $fillable = [
 		'name',
 		'description',
+    'status'
 	];
 
 	protected $appends = [

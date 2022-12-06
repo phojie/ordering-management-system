@@ -5,6 +5,14 @@ const processing = $computed(() => useItemStore().processing)
 
 <template>
   <div class="pt-6 pb-5 space-y-6">
+    <JSelect
+      v-model="form.status"
+      label="Status"
+      :items="['active', 'inactive']"
+      :is-disabled="processing"
+      default-value="active"
+    />
+
     <JTextField
       id="name"
       v-model="form.name"

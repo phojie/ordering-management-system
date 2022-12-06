@@ -37,6 +37,7 @@ class ItemService implements ItemServiceInterface
    				[
    					'name' => $request->name,
    					'description' => $request->description,
+            'status' => $request->status,
    				]
    			);
 
@@ -58,6 +59,7 @@ class ItemService implements ItemServiceInterface
    		$item->update([
    			'name' => $request->name,
    			'description' => $request->description,
+         'status' => $request->status,
    		]);
 
    		// if has request variants
