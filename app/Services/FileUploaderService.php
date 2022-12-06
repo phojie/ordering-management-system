@@ -14,11 +14,14 @@ class FileUploaderService
 	{
 		try {
 			$temporaryFile = TemporaryFile::where('folder', $avatar)->first();
+      if($temporaryFile) {
 			$user = User::findOrFail($id);
 			$user->addMedia(storage_path('app/public/tmp/'.$avatar.'/'.$temporaryFile->filename))
 					->toMediaCollection('avatar');
 
 			(new TemporaryFileService())->delete($temporaryFile->folder);
+    }
+
 		} catch (\Exception $e) {
 			throw $e;
 		}
@@ -28,11 +31,14 @@ class FileUploaderService
   {
   	try {
   		$temporaryFile = TemporaryFile::where('folder', $image)->first();
+      if($temporaryFile) {
   		$item = Item::findOrFail($id);
   		$item->addMedia(storage_path('app/public/tmp/'.$image.'/'.$temporaryFile->filename))
   				->toMediaCollection('image');
 
   		(new TemporaryFileService())->delete($temporaryFile->folder);
+    }
+
   	} catch (\Exception $e) {
   		throw $e;
   	}
