@@ -13,10 +13,10 @@ class CategoryService implements CategoryServiceInterface
 		try {
 			// set model
 			$model = Category::query()
-			  ->withTrashed()
-            ->with(['items'])
-            ->withCount('items')
-			  ->search($request->search);
+			->withTrashed()
+			->with(['items'])
+			->withCount('items')
+			->search($request->search);
 
 			// set query builder
 			$query = QueryBuilder::for($model)
