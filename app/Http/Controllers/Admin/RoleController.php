@@ -13,7 +13,7 @@ class RoleController
 {
 	public function index(Request $request)
 	{
-    abort_unless(\Gate::allows('role-list'), 404);
+		abort_unless(\Gate::allows('role-list'), 404);
 
 		// set query
 		$query = (new RoleService())->get($request);
@@ -48,7 +48,7 @@ class RoleController
 	{
 		\Gate::authorize('role-update');
 
-		(new RoleService())->update($request, $role->id);
+		(new RoleService())->update($request, $role);
 
 		(new FlashNotification)->update($request->name);
 

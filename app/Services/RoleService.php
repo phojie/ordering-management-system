@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\RoleRequest;
 use App\Models\Role;
 use App\Services\Interfaces\RoleServiceInterface;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -29,7 +30,7 @@ class RoleService implements RoleServiceInterface
 		}
 	}
 
-   public function store(object $request): void
+   public function store(RoleRequest $request): void
    {
    	try {
    		\DB::transaction(function () use ($request) {
@@ -51,10 +52,9 @@ class RoleService implements RoleServiceInterface
    	}
    }
 
-   public function update(object $request, string $id): void
+   public function update(RoleRequest $request, Role $role): void
    {
    	try {
-   		$role = Role::findOrFail($id);
    		\DB::transaction(
    			function () use ($request, $role) {
    				$permissions = collect($request->permissions)->pluck('name');
