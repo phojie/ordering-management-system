@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
-use App\Services\FlashNotification;
 use App\Services\CategoryService;
+use App\Services\FlashNotification;
 use Illuminate\Http\Request;
 
 class CategoryController
 {
 	public function index(Request $request)
 	{
-    abort_unless(\Gate::allows('category-list'), 404);
+		abort_unless(\Gate::allows('category-list'), 404);
 
 		// set query
 		$query = (new CategoryService())->get($request);
@@ -48,7 +48,7 @@ class CategoryController
 	{
 		\Gate::authorize('category-update');
 
-		(new CategoryService())->update($request, $category->id);
+		(new CategoryService())->update($request, $category);
 
 		(new FlashNotification)->update($request->name);
 

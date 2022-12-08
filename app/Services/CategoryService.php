@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Services\Interfaces\CategoryServiceInterface;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -30,7 +31,7 @@ class CategoryService implements CategoryServiceInterface
 		}
 	}
 
-   public function store(object $request): void
+   public function store(CategoryRequest $request): void
    {
    	try {
    		\DB::transaction(function () use ($request) {
@@ -49,10 +50,9 @@ class CategoryService implements CategoryServiceInterface
    	}
    }
 
-   public function update(object $request, string $id): void
+   public function update(CategoryRequest $request, Category $category): void
    {
    	try {
-   		$category = Category::findOrFail($id);
    		\DB::transaction(function () use ($request, $category) {
    			$category->update([
    				'name' => $request->name,
