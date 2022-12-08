@@ -2,15 +2,18 @@
 
 namespace App\Services\Interfaces;
 
+use App\Http\Requests\UserRequest;
+use App\Models\User;
+
 interface UserServiceInterface
 {
 	public function get(object $request): object;
 
 	public function show(string $id): object;
 
-	public function store(object $request): void;
+	public function store(UserRequest $request): void;
 
-	public function update(object $request, string $id): void;
+	public function update(UserRequest $request, User $user): void;
 
 	public function delete(string $id): void;
 
@@ -20,5 +23,5 @@ interface UserServiceInterface
 
 	public function retoreMultiple(array $ids): void;
 
-	public function changePassword(string $newPassword, string $id): void;
+	public function changePassword(string $newPassword, User $user): void;
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\CustomSortsService\CustomRoleSort;
@@ -83,10 +84,9 @@ class UserService implements UserServiceInterface
   	}
   }
 
-  public function update(object $request, string $id): void
+  public function update(UserRequest $request, User $user): void
   {
   	try {
-  		$user = User::findOrFail($id);
   		\DB::transaction(function () use ($request, $user) {
   			$user->update([
   				'username' => $request->username,
@@ -105,8 +105,8 @@ class UserService implements UserServiceInterface
   			if ($request->avatar) {
   				(new FileUploaderService())->uploadUserAvatarToMedia($user->id, $request->avatar);
   			} else {
-          (new FileUploaderService())->deleteUserAvatarFromMedia($user->id);
-        }
+  				(new FileUploaderService())->deleteUserAvatarFromMedia($user->id);
+  			}
   		});
   	} catch (\Exception $e) {
   		throw $e;
@@ -153,10 +153,9 @@ class UserService implements UserServiceInterface
   	}
   }
 
-  public function changePassword(string $newPassword, string $id): void
+  public function changePassword(string $newPassword, User $user): void
   {
   	try {
-  		$user = User::findOrFail($id);
   		$user->update([
   			'password' => bcrypt($newPassword),
   		]);

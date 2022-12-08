@@ -16,7 +16,7 @@ class UserController extends Controller
 {
 	public function index(Request $request)
 	{
-    abort_unless(\Gate::allows('user-list'), 404);
+		abort_unless(\Gate::allows('user-list'), 404);
 
 		// set query
 		$query = (new UserService())->get($request);
@@ -32,13 +32,13 @@ class UserController extends Controller
 		]);
 	}
 
-	public function store(UserRequest $userRequest)
+	public function store(UserRequest $request)
 	{
 		\Gate::authorize('user-create');
 
-		(new UserService())->store($userRequest);
+		(new UserService())->store($request);
 
-		(new FlashNotification)->create($userRequest->username);
+		(new FlashNotification)->create($request->username);
 
 		return redirect()->back();
 	}
@@ -48,13 +48,13 @@ class UserController extends Controller
 		// get user
 	}
 
-  public function update(UserRequest $userRequest, User $user)
+  public function update(UserRequest $request, User $user)
   {
   	\Gate::authorize('user-update');
 
-  	(new UserService())->update($userRequest, $user->id);
+  	(new UserService())->update($request, $user);
 
-  	(new FlashNotification)->update($userRequest->username);
+  	(new FlashNotification)->update($request->username);
 
   	return redirect()->back();
   }

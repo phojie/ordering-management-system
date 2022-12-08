@@ -21,10 +21,19 @@ class UserRequest extends FormRequest
    		'email' => ['required', 'email', 'unique:users'],
    	];
 
-   	if ($this->getMethod() == 'PUT') {
-   		$rules['username'][1] = 'unique:users,username,'.request()->id;
+   	if ($this->route()->getActionMethod() === 'store') {
    		$rules['password'] = [];
+   		$rules['username'][1] = 'unique:users,username,'.request()->id;
    		$rules['email'] = 'unique:users,email,'.request()->id;
+   	} elseif ($this->route()->getActionMethod() === 'updateGeneral') {
+   		$rules['password'] = [];
+   		$rules['username'] = ['required', 'unique:users,username,'.auth()->id()];
+   		$rules['email'] = ['required', 'email', 'unique:users,email,'.auth()->id()];
+   	} elseif ($this->route()->getActionMethod() === 'updatePassword') {
+   		$rules = [];
+   		$rules['currentPassword'] = ['required', 'current_password'];
+   		$rules['newPassword'] = ['required', 'min:6'];
+   		$rules['confirmPassword'] = ['required', 'same:newPassword'];
    	}
 
    	return $rules;
