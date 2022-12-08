@@ -38,4 +38,12 @@ class UserRequest extends FormRequest
 
    	return $rules;
    }
+
+   public function filters(): array
+   {
+       return [
+           'email' => 'trim|lowercase',
+           'name' => 'trim|capitalize|escape'
+       ];
+   }
 }
