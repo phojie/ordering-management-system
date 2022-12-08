@@ -13,7 +13,7 @@ class ItemController
 {
 	public function index(Request $request)
 	{
-    abort_unless(\Gate::allows('item-list'), 404);
+		abort_unless(\Gate::allows('item-list'), 404);
 
 		// set query
 		$query = (new ItemService())->get($request);
@@ -48,7 +48,7 @@ class ItemController
 	{
 		\Gate::authorize('item-update');
 
-		(new ItemService())->update($request, $item->id);
+		(new ItemService())->update($request, $item);
 
 		(new FlashNotification)->update($request->name);
 

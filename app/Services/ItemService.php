@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\ItemRequest;
 use App\Models\Item;
 use App\Services\Interfaces\ItemServiceInterface;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -29,7 +30,7 @@ class ItemService implements ItemServiceInterface
 		}
 	}
 
-   public function store(object $request): void
+   public function store(ItemRequest $request): void
    {
    	try {
    		\DB::transaction(function () use ($request) {
@@ -59,11 +60,9 @@ class ItemService implements ItemServiceInterface
    	}
    }
 
-   public function update(object $request, string $id): void
+   public function update(ItemRequest $request, Item $item): void
    {
    	try {
-   		$item = Item::findOrFail($id);
-
    		\DB::transaction(function () use ($request, $item) {
    			$item->update([
    				'name' => $request->name,
