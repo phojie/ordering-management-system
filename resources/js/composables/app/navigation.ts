@@ -2,9 +2,9 @@ import HeroiconsHome from '~icons/heroicons/home'
 import HeroiconsDocumentDuplicate from '~icons/heroicons/document-duplicate'
 import HeroiconsShoppingCart from '~icons/heroicons/shopping-cart'
 import HeroiconsBars3 from '~icons/heroicons/bars-3'
-import HeroiconsBeaker from '~icons/heroicons/beaker'
-import HeroiconsBookmark from '~icons/heroicons/bookmark'
-import HeroiconsClipboard from '~icons/heroicons/clipboard'
+// import HeroiconsBeaker from '~icons/heroicons/beaker'
+// import HeroiconsBookmark from '~icons/heroicons/bookmark'
+// import HeroiconsClipboard from '~icons/heroicons/clipboard'
 import HeroiconsUserGroup from '~icons/heroicons/user-group'
 import HeroiconsCog from '~icons/heroicons/cog'
 import HeroiconsDocumentText from '~icons/heroicons/document-text'
@@ -50,21 +50,21 @@ export const useNavigation = () => {
       icon: HeroiconsShoppingCart,
       href: '#',
     },
-    {
-      name: 'Add-ons',
-      icon: HeroiconsBeaker,
-      href: '#',
-    },
-    {
-      name: 'Item Types',
-      icon: HeroiconsBookmark,
-      href: '#',
-    },
-    {
-      name: 'Offers',
-      icon: HeroiconsClipboard,
-      href: '#',
-    },
+    // {
+    //   name: 'Add-ons',
+    //   icon: HeroiconsBeaker,
+    //   href: '#',
+    // },
+    // {
+    //   name: 'Item Types',
+    //   icon: HeroiconsBookmark,
+    //   href: '#',
+    // },
+    // {
+    //   name: 'Offers',
+    //   icon: HeroiconsClipboard,
+    //   href: '#',
+    // },
   ]
 
   const miscItems: NavigationItem[] = [
