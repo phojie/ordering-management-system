@@ -72,7 +72,7 @@ class UserTest extends TestCase
 	{
 		$response = $this->response;
 		$user = $this->user;
-		// post user
+		// delete user
 		$response = $this->delete("/admin/users/$user->id");
 
 		$response->assertStatus(302);
@@ -82,7 +82,10 @@ class UserTest extends TestCase
 	{
 		$response = $this->response;
 		$user = $this->user;
-		// post user
+		// delete user
+		$response = $this->delete("/admin/users/$user->id");
+
+		// restore user
 		$response = $this->put("/admin/users/$user->id/restore");
 
 		$response->assertStatus(302);
