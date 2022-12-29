@@ -74,7 +74,6 @@ class UserService implements UserServiceInterface
   			$roles = collect($request->roles)->pluck('name');
   			$user->assignRole($roles);
   		}
-
   		// if has request avatar
   		if ($request->avatar) {
   			(new FileUploaderService())->uploadUserAvatarToMedia($user->id, $request->avatar);
