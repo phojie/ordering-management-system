@@ -13,13 +13,13 @@ Route::get('/', function () {
 	]);
 });
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'customer']], function () {
 	Route::get('/dashboard', function () {
 		return Inertia::render('Dashboard');
 	})->name('dashboard');
 });
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 	require __DIR__.'/admin/user.php';
 	require __DIR__.'/admin/role.php';
 	require __DIR__.'/admin/index.php';

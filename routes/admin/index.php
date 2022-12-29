@@ -6,7 +6,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
 	return Inertia::render('Admin/Index');
-});
+})->name('admin.index');
 
 Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
 
