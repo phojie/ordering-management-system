@@ -4,7 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::domain(config('app.url'))->group(function () {
+// SET main domain to the route group below
+// Route::domain(config('app.url'))->group(function () {
 	Route::get('/', function () {
 		return Inertia::render('Welcome', [
 			'canLogin' => Route::has('login'),
@@ -21,10 +22,20 @@ Route::domain(config('app.url'))->group(function () {
 	});
 
 	require __DIR__.'/auth/index.php';
-});
+// });
 
 // SET subdomain admin to the route group below
-Route::domain('admin.'.config('app.url'))->middleware(['auth'])->group(function () {
+// Route::domain('admin.'.config('app.url'))->middleware(['auth'])->group(function () {
+// 	require __DIR__.'/admin/user.php';
+// 	require __DIR__.'/admin/role.php';
+// 	require __DIR__.'/admin/index.php';
+
+// 	require __DIR__.'/admin/category.php';
+// 	require __DIR__.'/admin/item.php';
+// });
+
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
 	require __DIR__.'/admin/user.php';
 	require __DIR__.'/admin/role.php';
 	require __DIR__.'/admin/index.php';
@@ -34,3 +45,4 @@ Route::domain('admin.'.config('app.url'))->middleware(['auth'])->group(function 
 });
 
 require __DIR__.'/components/index.php';
+
