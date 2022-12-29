@@ -67,7 +67,7 @@ class UserController extends Controller
 
 		(new FlashNotification)->destroy($user->username, [
 			[
-				'url' => route('users.restore', $user->id),
+				'url' => route('admin.users.restore', $user->id),
 				'method' => 'put',
 			],
 		]);
@@ -83,7 +83,7 @@ class UserController extends Controller
 
 		(new FlashNotification)->destroy(count($request->ids).' users', [
 			[
-				'url' => route('users.restore-multiple'),
+				'url' => route('admin.users.restore-multiple'),
 				'method' => 'put',
 				'data' => [
 					'ids' => $request->ids,
@@ -102,7 +102,7 @@ class UserController extends Controller
 
   	(new FlashNotification)->restore($user->username, [
   		[
-  			'url' => route('users.destroy', $user->id),
+  			'url' => route('admin.users.destroy', $user->id),
   			'method' => 'delete',
   		],
   	]);
@@ -118,7 +118,7 @@ class UserController extends Controller
 
   	(new FlashNotification)->restore(count($request->ids).' users', [
   		[
-  			'url' => route('users.destroy-multiple'),
+  			'url' => route('admin.users.destroy-multiple'),
   			'method' => 'delete',
   			'data' => [
   				'ids' => $request->ids,

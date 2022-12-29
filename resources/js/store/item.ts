@@ -132,7 +132,7 @@ export const useItemStore = defineStore('item', () => {
 
   // get items
   function getItems(reqestData: any) {
-    Inertia.get(route('items.index'),
+    Inertia.get(route('admin.items.index'),
       {
         ...route().params,
         ...reqestData,
@@ -153,7 +153,7 @@ export const useItemStore = defineStore('item', () => {
 
   // create item
   async function createItem() {
-    Inertia.post(route('items.store'), form as any, {
+    Inertia.post(route('admin.items.store'), form as any, {
       onBefore: () => {
         processing = true
       },
@@ -171,7 +171,7 @@ export const useItemStore = defineStore('item', () => {
 
   // update item
   async function updateItem(id: string) {
-    Inertia.put(route('items.update', id), form as any, {
+    Inertia.put(route('admin.items.update', id), form as any, {
       onBefore: () => {
         processing = true
       },
@@ -190,7 +190,7 @@ export const useItemStore = defineStore('item', () => {
 
   // delete item
   function deleteItem(id: string) {
-    Inertia.delete(route('items.destroy', id), {
+    Inertia.delete(route('admin.items.destroy', id), {
       onBefore: () => {
         processing = true
       },
@@ -202,7 +202,7 @@ export const useItemStore = defineStore('item', () => {
 
   // delete multiple items
   function deleteItems(ids: string[]) {
-    Inertia.delete(route('items.destroy-multiple'), {
+    Inertia.delete(route('admin.items.destroy-multiple'), {
       data: {
         ids,
       },
@@ -217,7 +217,7 @@ export const useItemStore = defineStore('item', () => {
 
   // restore item
   function restoreItem(id: string) {
-    Inertia.put(route('items.restore', id),
+    Inertia.put(route('admin.items.restore', id),
       {
       },
       {
@@ -232,7 +232,7 @@ export const useItemStore = defineStore('item', () => {
 
   // restore items
   function restoreItems(ids: string[]) {
-    Inertia.put(route('items.restore-multiple'),
+    Inertia.put(route('admin.items.restore-multiple'),
       {
         ids,
       },

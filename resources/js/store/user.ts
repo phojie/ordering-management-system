@@ -158,7 +158,7 @@ export const useUserStore = defineStore('user', () => {
 
   // get users
   function getUsers(reqestData: any) {
-    Inertia.get(route('users.index'),
+    Inertia.get(route('admin.users.index'),
       {
         ...route().params,
         ...reqestData,
@@ -179,7 +179,7 @@ export const useUserStore = defineStore('user', () => {
 
   // create user
   async function createUser() {
-    Inertia.post(route('users.store'), form, {
+    Inertia.post(route('admin.users.store'), form, {
       onBefore: () => {
         processing = true
       },
@@ -197,7 +197,7 @@ export const useUserStore = defineStore('user', () => {
 
   // update user
   async function updateUser(id: string) {
-    Inertia.put(route('users.update', id), form, {
+    Inertia.put(route('admin.users.update', id), form, {
       onBefore: () => {
         processing = true
       },
@@ -216,7 +216,7 @@ export const useUserStore = defineStore('user', () => {
 
   // delete user
   function deleteUser(id: string) {
-    Inertia.delete(route('users.destroy', id), {
+    Inertia.delete(route('admin.users.destroy', id), {
       onBefore: () => {
         processing = true
       },
@@ -228,7 +228,7 @@ export const useUserStore = defineStore('user', () => {
 
   // delete multiple users
   function deleteUsers(ids: string[]) {
-    Inertia.delete(route('users.destroy-multiple'), {
+    Inertia.delete(route('admin.users.destroy-multiple'), {
       data: {
         ids,
       },
@@ -243,7 +243,7 @@ export const useUserStore = defineStore('user', () => {
 
   // restore user
   function restoreUser(id: string) {
-    Inertia.put(route('users.restore', id),
+    Inertia.put(route('admin.users.restore', id),
       {
       },
       {
@@ -258,7 +258,7 @@ export const useUserStore = defineStore('user', () => {
 
   // restore users
   function restoreUsers(ids: string[]) {
-    Inertia.put(route('users.restore-multiple'),
+    Inertia.put(route('admin.users.restore-multiple'),
       {
         ids,
       },

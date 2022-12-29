@@ -63,7 +63,7 @@ class RoleController
 
 		(new FlashNotification)->destroy($role->name, [
 			[
-				'url' => route('roles.restore', $role->id),
+				'url' => route('admin.roles.restore', $role->id),
 				'method' => 'put',
 			],
 		]);
@@ -79,7 +79,7 @@ class RoleController
 
   	(new FlashNotification)->destroy(count($request->ids).' roles', [
   		[
-  			'url' => route('roles.restore-multiple'),
+  			'url' => route('admin.roles.restore-multiple'),
   			'method' => 'put',
   			'data' => [
   				'ids' => $request->ids,
@@ -98,7 +98,7 @@ class RoleController
 
   	(new FlashNotification)->restore($role->name, [
   		[
-  			'url' => route('roles.destroy', $role->id),
+  			'url' => route('admin.roles.destroy', $role->id),
   			'method' => 'delete',
   		],
   	]);
@@ -114,7 +114,7 @@ class RoleController
 
   	(new FlashNotification)->restore(count($request->ids).' roles', [
   		[
-  			'url' => route('roles.destroy-multiple'),
+  			'url' => route('admin.roles.destroy-multiple'),
   			'method' => 'delete',
   			'data' => [
   				'ids' => $request->ids,

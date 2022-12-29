@@ -125,7 +125,7 @@ export const useCategoryStore = defineStore('category', () => {
 
   // get categories
   function getCategories(reqestData: any) {
-    Inertia.get(route('categories.index'),
+    Inertia.get(route('admin.categories.index'),
       {
         ...route().params,
         ...reqestData,
@@ -146,7 +146,7 @@ export const useCategoryStore = defineStore('category', () => {
 
   // create category
   async function createCategory() {
-    Inertia.post(route('categories.store'), form as any, {
+    Inertia.post(route('admin.categories.store'), form as any, {
       onBefore: () => {
         processing = true
       },
@@ -164,7 +164,7 @@ export const useCategoryStore = defineStore('category', () => {
 
   // update category
   async function updateCategory(id: string) {
-    Inertia.put(route('categories.update', id), form as any, {
+    Inertia.put(route('admin.categories.update', id), form as any, {
       onBefore: () => {
         processing = true
       },
@@ -183,7 +183,7 @@ export const useCategoryStore = defineStore('category', () => {
 
   // delete category
   function deleteCategory(id: string) {
-    Inertia.delete(route('categories.destroy', id), {
+    Inertia.delete(route('admin.categories.destroy', id), {
       onBefore: () => {
         processing = true
       },
@@ -195,7 +195,7 @@ export const useCategoryStore = defineStore('category', () => {
 
   // delete multiple categories
   function deleteCategories(ids: string[]) {
-    Inertia.delete(route('categories.destroy-multiple'), {
+    Inertia.delete(route('admin.categories.destroy-multiple'), {
       data: {
         ids,
       },
@@ -210,7 +210,7 @@ export const useCategoryStore = defineStore('category', () => {
 
   // restore category
   function restoreCategory(id: string) {
-    Inertia.put(route('categories.restore', id),
+    Inertia.put(route('admin.categories.restore', id),
       {
       },
       {
@@ -225,7 +225,7 @@ export const useCategoryStore = defineStore('category', () => {
 
   // restore categories
   function restoreCategories(ids: string[]) {
-    Inertia.put(route('categories.restore-multiple'),
+    Inertia.put(route('admin.categories.restore-multiple'),
       {
         ids,
       },

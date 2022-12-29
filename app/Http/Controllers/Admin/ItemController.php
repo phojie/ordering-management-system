@@ -63,7 +63,7 @@ class ItemController
 
 		(new FlashNotification)->destroy($item->name, [
 			[
-				'url' => route('items.restore', $item->id),
+				'url' => route('admin.items.restore', $item->id),
 				'method' => 'put',
 			],
 		]);
@@ -79,7 +79,7 @@ class ItemController
 
   	(new FlashNotification)->destroy(count($request->ids).' items', [
   		[
-  			'url' => route('items.restore-multiple'),
+  			'url' => route('admin.items.restore-multiple'),
   			'method' => 'put',
   			'data' => [
   				'ids' => $request->ids,
@@ -98,7 +98,7 @@ class ItemController
 
   	(new FlashNotification)->restore($item->name, [
   		[
-  			'url' => route('items.destroy', $item->id),
+  			'url' => route('admin.items.destroy', $item->id),
   			'method' => 'delete',
   		],
   	]);
@@ -114,7 +114,7 @@ class ItemController
 
   	(new FlashNotification)->restore(count($request->ids).' items', [
   		[
-  			'url' => route('items.destroy-multiple'),
+  			'url' => route('admin.items.destroy-multiple'),
   			'method' => 'delete',
   			'data' => [
   				'ids' => $request->ids,

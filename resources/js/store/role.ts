@@ -126,7 +126,7 @@ export const useRoleStore = defineStore('role', () => {
 
   // get roles
   function getRoles(reqestData: any) {
-    Inertia.get(route('roles.index'),
+    Inertia.get(route('admin.roles.index'),
       {
         ...route().params,
         ...reqestData,
@@ -147,7 +147,7 @@ export const useRoleStore = defineStore('role', () => {
 
   // create role
   async function createRole() {
-    Inertia.post(route('roles.store'), form, {
+    Inertia.post(route('admin.roles.store'), form, {
       onBefore: () => {
         processing = true
       },
@@ -165,7 +165,7 @@ export const useRoleStore = defineStore('role', () => {
 
   // update role
   async function updateRole(id: string) {
-    Inertia.put(route('roles.update', id), form, {
+    Inertia.put(route('admin.roles.update', id), form, {
       onBefore: () => {
         processing = true
       },
@@ -184,7 +184,7 @@ export const useRoleStore = defineStore('role', () => {
 
   // delete role
   function deleteRole(id: string) {
-    Inertia.delete(route('roles.destroy', id), {
+    Inertia.delete(route('admin.roles.destroy', id), {
       onBefore: () => {
         processing = true
       },
@@ -196,7 +196,7 @@ export const useRoleStore = defineStore('role', () => {
 
   // delete multiple roles
   function deleteRoles(ids: string[]) {
-    Inertia.delete(route('roles.destroy-multiple'), {
+    Inertia.delete(route('admin.roles.destroy-multiple'), {
       data: {
         ids,
       },
@@ -211,7 +211,7 @@ export const useRoleStore = defineStore('role', () => {
 
   // restore role
   function restoreRole(id: string) {
-    Inertia.put(route('roles.restore', id),
+    Inertia.put(route('admin.roles.restore', id),
       {
       },
       {
@@ -226,7 +226,7 @@ export const useRoleStore = defineStore('role', () => {
 
   // restore roles
   function restoreRoles(ids: string[]) {
-    Inertia.put(route('roles.restore-multiple'),
+    Inertia.put(route('admin.roles.restore-multiple'),
       {
         ids,
       },

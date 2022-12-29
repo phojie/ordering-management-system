@@ -15,7 +15,7 @@ const auth = useAuthStore()
         </AppProfileMenuItem>
       </MenuItem>
       <MenuItem v-slot="{ active }">
-        <AppProfileMenuItem :is-active="active" :href="route('settings.index')">
+        <AppProfileMenuItem :is-active="active" :href="route('admin.settings.index')">
           Settings
         </AppProfileMenuItem>
       </MenuItem>

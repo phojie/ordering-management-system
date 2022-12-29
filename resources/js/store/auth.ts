@@ -6,6 +6,7 @@ export const useAuthStore = defineStore('auth', () => {
   const roles = $computed<string[]>(() => auth?.roles)
   const permissions = $computed<string[]>(() => auth?.permissions)
   const signedIn = $computed(() => auth?.signedIn)
+  const csrfToken = $computed(() => usePage().props.value.csrfToken)
 
   const form = useForm({
     email: '',
@@ -27,12 +28,14 @@ export const useAuthStore = defineStore('auth', () => {
 
   // signout
   function signOut() {
-    Inertia.post('/logout')
+    Inertia.post(route('logout'), {
+      _token: csrfToken as string,
+    })
   }
 
   // signIn
   function signIn() {
-    form.post('/login', {
+    form.post(route('login'), {
       onSuccess: () => {
         form.reset()
       },

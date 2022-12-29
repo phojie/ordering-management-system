@@ -103,7 +103,7 @@ export const useSettingStore = defineStore('setting', () => {
 
   // update profile
   async function updateGeneral() {
-    Inertia.put(route('settings.update.general'), form, {
+    Inertia.put(route('admin.settings.update.general'), form, {
       onBefore: () => {
         processing = true
       },
@@ -121,7 +121,7 @@ export const useSettingStore = defineStore('setting', () => {
   }
 
   async function updatePassword() {
-    Inertia.put(route('settings.update.password'), formPassword, {
+    Inertia.put(route('admin.settings.update.password'), formPassword, {
       onBefore: () => {
         processing = true
       },

@@ -63,7 +63,7 @@ class CategoryController
 
 		(new FlashNotification)->destroy($category->name, [
 			[
-				'url' => route('categories.restore', $category->id),
+				'url' => route('admin.categories.restore', $category->id),
 				'method' => 'put',
 			],
 		]);
@@ -79,7 +79,7 @@ class CategoryController
 
   	(new FlashNotification)->destroy(count($request->ids).' categories', [
   		[
-  			'url' => route('categories.restore-multiple'),
+  			'url' => route('admin.categories.restore-multiple'),
   			'method' => 'put',
   			'data' => [
   				'ids' => $request->ids,
@@ -98,7 +98,7 @@ class CategoryController
 
   	(new FlashNotification)->restore($category->name, [
   		[
-  			'url' => route('categories.destroy', $category->id),
+  			'url' => route('admin.categories.destroy', $category->id),
   			'method' => 'delete',
   		],
   	]);
@@ -114,7 +114,7 @@ class CategoryController
 
   	(new FlashNotification)->restore(count($request->ids).' categories', [
   		[
-  			'url' => route('categories.destroy-multiple'),
+  			'url' => route('admin.categories.destroy-multiple'),
   			'method' => 'delete',
   			'data' => [
   				'ids' => $request->ids,

@@ -2,11 +2,12 @@ export const useRoute = () => {
   const currentRoute = route().current() as string // ('admin.index')
   const currentUrl = usePage().url.value // ('/admin/')
 
-  function isActive(href: string, exact = false) {
+  function isActive(href: string, exact = false): boolean {
     if (exact)
-      return _.startsWith(currentUrl, href)
+      // TODO: Fix this, return false if has query params
+      return currentRoute === href
 
-    return _.trim(href, '/') === _.trim(currentUrl, '/')
+    return currentRoute === href
   }
 
   const defaultSearch = _.get(route().params, 'search', '') as string

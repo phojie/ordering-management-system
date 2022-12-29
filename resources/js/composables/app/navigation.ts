@@ -25,26 +25,45 @@ export const useNavigation = () => {
   const adminItems: NavigationItem[] = [
     {
       name: 'Home',
-      href: '/admin',
+      href: 'admin.index',
       icon: HeroiconsHome,
-
     },
     {
       name: 'Categories',
-      href: '/admin/categories',
+      href: 'admin.categories.index',
       icon: HeroiconsQueueList,
       exact: true,
     },
     {
       name: 'Items',
       icon: HeroiconsBars3,
-      href: '/admin/items',
+      href: 'admin.items.index',
       exact: true,
+    },
+    {
+      name: 'Menus',
+      icon: HeroiconsDocumentDuplicate,
+      href: '#',
     },
     {
       name: 'Orders',
       icon: HeroiconsShoppingCart,
-      href: '/admin/orders',
+      href: '#',
+    },
+    {
+      name: 'Add-ons',
+      icon: HeroiconsBeaker,
+      href: '#',
+    },
+    {
+      name: 'Item Types',
+      icon: HeroiconsBookmark,
+      href: '#',
+    },
+    {
+      name: 'Offers',
+      icon: HeroiconsClipboard,
+      href: '#',
     },
   ]
 
@@ -52,26 +71,26 @@ export const useNavigation = () => {
     {
       name: 'Users',
       icon: HeroiconsUserGroup,
-      href: '/admin/users',
+      href: 'admin.users.index',
       permission: 'user-list',
       exact: true,
     },
     {
       name: 'Roles',
       icon: HeroiconsFingerPrint,
-      href: '/admin/roles',
+      href: 'admin.roles.index',
       permission: 'role-list',
       exact: true,
     },
     // {
     //   name: 'Permissions',
     //   icon: HeroiconsShieldCheck,
-    //   href: '/admin/permissions',
+    //   href: '/permissions',
     // },
     {
       name: 'Settings',
       icon: HeroiconsCog,
-      href: '/admin/settings',
+      href: 'admin.settings.index',
     },
     {
       name: 'Information',

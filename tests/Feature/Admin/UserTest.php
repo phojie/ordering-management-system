@@ -29,7 +29,7 @@ class UserTest extends TestCase
 	{
 		$response = $this->response;
 
-		$response = $this->get('/admin/users');
+		$response = $this->get(route('admin.users.index'));
 
 		$response->assertStatus(200);
 	}
@@ -39,7 +39,7 @@ class UserTest extends TestCase
 		$response = $this->response;
 
 		// post user
-		$response = $this->post('/admin/users', [
+		$response = $this->post(route('admin.users.store'), [
 			'username' => 'test',
 			'email' => 'test@y.com',
 			'firstName' => 'test',
@@ -57,7 +57,7 @@ class UserTest extends TestCase
 		$user = $this->user;
 
 		// post user
-		$response = $this->put("/admin/users/$user->id", [
+		$response = $this->put(route('admin.users.update', $user->id),  [
 			'username' => 'test2',
 			'email' => 'test@y.com',
 			'firstName' => 'test',
@@ -73,7 +73,7 @@ class UserTest extends TestCase
 		$response = $this->response;
 		$user = $this->user;
 		// delete user
-		$response = $this->delete("/admin/users/$user->id");
+		$response = $this->delete(route('admin.users.destroy', $user->id));
 
 		$response->assertStatus(302);
 	}
@@ -83,10 +83,10 @@ class UserTest extends TestCase
 		$response = $this->response;
 		$user = $this->user;
 		// delete user
-		$response = $this->delete("/admin/users/$user->id");
+		$response = $this->delete(route('admin.users.destroy', $user->id));
 
 		// restore user
-		$response = $this->put("/admin/users/$user->id/restore");
+		$response = $this->put(route('admin.users.restore', $user->id));
 
 		$response->assertStatus(302);
 	}
@@ -101,9 +101,9 @@ class UserTest extends TestCase
 
 		$response = $this->actingAs($user);
 
-		$response = $this->delete('/admin/users', [
-			'ids' => $users,
-		]);
+		$response = $this->delete(route('admin.users.destroy-multiple',[
+      'ids' => $users,
+    ]));
 
 		$response->assertStatus(302);
 	}
@@ -114,13 +114,13 @@ class UserTest extends TestCase
 
 		$users = User::factory()->count(3)->create()->pluck('id')->toArray();
 
-		$response = $this->delete('/admin/users', [
-			'ids' => $users,
-		]);
+		$response = $this->delete(route('admin.users.destroy-multiple',[
+      'ids' => $users,
+    ]));
 
-		$response = $this->put('/admin/users/restore', [
-			'ids' => $users,
-		]);
+		$response = $this->put(route('admin.users.restore-multiple', [
+      'ids' => $users,
+    ]));
 
 		$response->assertStatus(302);
 	}

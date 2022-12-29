@@ -8,11 +8,11 @@ Route::get('/', function () {
 	return Inertia::render('Admin/Index');
 })->name('admin.index');
 
-Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+Route::get('/settings', [SettingController::class, 'index'])->name('admin.settings.index');
 
-Route::put('/settings/general', [SettingController::class, 'updateGeneral'])->name('settings.update.general');
+Route::put('/settings/general', [SettingController::class, 'updateGeneral'])->name('admin.settings.update.general');
 
-Route::put('/settings/password', [SettingController::class, 'updatePassword'])->name('settings.update.password');
+Route::put('/settings/password', [SettingController::class, 'updatePassword'])->name('admin.settings.update.password');
 
 Route::get('/admin/menus', function () {
 	return Inertia::render('Admin/Menus', [
