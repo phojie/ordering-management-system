@@ -53,6 +53,7 @@ const toggleCreate = () => {
         </button>
 
         <button
+          v-if="useGate().can('user-create')"
           type="button"
           class="inline-flex items-center order-first px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm sm:order-last bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
           @click="toggleCreate"

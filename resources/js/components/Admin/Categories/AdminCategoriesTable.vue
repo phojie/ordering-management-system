@@ -84,7 +84,7 @@ const getById = async (id: number) => {
 
         <td class="relative py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
           <button
-            v-if="item.status === 'active'"
+            v-if="item.status === 'active' && useGate().can('category-update')"
             v-tooltip="'Edit category'"
             type="button"
             class="text-primary-600 hover:text-primary-900"
@@ -94,7 +94,7 @@ const getById = async (id: number) => {
           </button>
 
           <button
-            v-else-if="item.status === 'deleted'"
+            v-else-if="item.status === 'deleted' && useGate().can('category-delete')"
             v-tooltip="'Restore category'"
             type="button"
             class="text-warning-600 hover:text-warning-900"

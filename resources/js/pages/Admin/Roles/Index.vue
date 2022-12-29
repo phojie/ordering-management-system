@@ -45,6 +45,7 @@ const toggleCreate = () => {
       </div>
       <div class="flex justify-between gap-4 mt-4 sm:justify-start sm:mt-0 sm:ml-4">
         <button
+          v-if="useGate().can('role-create')"
           type="button" :disabled="processing"
           class="inline-flex items-center p-2 text-sm font-medium text-gray-600 bg-transparent border border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 "
           @click="reload()"

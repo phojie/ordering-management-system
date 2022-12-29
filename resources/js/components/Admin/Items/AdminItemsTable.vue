@@ -142,22 +142,22 @@ const getById = async (id: number) => {
 
         <td class="relative py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
           <button
-            v-if="item.status === 'deleted'"
-            v-tooltip="'Restore item'"
-            type="button"
-            class="text-warning-600 hover:text-warning-900"
-            @click="restoreItem(item.id)"
-          >
-            <heroicons-arrow-path-rounded-square-20-solid class="w-5 h-5" />
-          </button>
-          <button
-            v-else
+            v-if="item.status === 'active' && useGate().can('item-update')"
             v-tooltip="'Edit item'"
             type="button"
             class="text-primary-600 hover:text-primary-900"
             @click="getById(item.id)"
           >
             <heroicons-pencil-square-20-solid class="w-5 h-5" />
+          </button>
+          <button
+            v-else-if="item.status === 'deleted' && useGate().can('item-delete')"
+            v-tooltip="'Restore item'"
+            type="button"
+            class="text-warning-600 hover:text-warning-900"
+            @click="restoreItem(item.id)"
+          >
+            <heroicons-arrow-path-rounded-square-20-solid class="w-5 h-5" />
           </button>
         </td>
       </template>
