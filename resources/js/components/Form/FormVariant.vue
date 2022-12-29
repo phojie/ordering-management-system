@@ -60,6 +60,7 @@ onMounted(() => {
           :items="form.variants ?? []"
           item-key="id"
           :is-select="false"
+          :is-filter="false"
           :is-pagination="false"
           empty-data-text="No variants added yet."
           :headers="variantHeaders"

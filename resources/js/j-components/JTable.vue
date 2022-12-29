@@ -14,12 +14,14 @@ interface JTableProps {
   emptyDataText?: string
   isPagination?: boolean
   isSelect?: boolean
+  isFilter?: boolean
 }
 
 // set default props
 const props = withDefaults(defineProps<JTableProps>(), {
   isSelect: true,
   isPagination: true,
+  isFilter: true,
 })
 
 // emits
@@ -74,17 +76,20 @@ const debounceFilter = useDebounceFn(() => {
 watch(
   () => filters.value,
   (value, oldValue) => {
-    if (Object.keys(value).length !== Object.keys(oldValue).length)
-      useJTable().filterFetch(value)
+    if (props.isFilter) {
+      if (Object.keys(value).length !== Object.keys(oldValue).length)
+        useJTable().filterFetch(value)
 
-    else
-      debounceFilter()
+      else
+        debounceFilter()
+    }
   },
   { deep: true },
 )
 
 onMounted(() => {
-  filters.value = route().params?.filter ?? {}
+  if (props.isFilter)
+    filters.value = route().params?.filter ?? {}
 })
 </script>
 
@@ -181,7 +186,7 @@ onMounted(() => {
               </td>
             </tr>
             <tr
-              v-if="route().params.filter"
+              v-if="route().params.filter && props.isFilter"
               class="bg-gray-50"
             >
               <td />
