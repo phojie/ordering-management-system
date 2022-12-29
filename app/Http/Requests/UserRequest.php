@@ -21,7 +21,7 @@ class UserRequest extends FormRequest
    		'email' => ['required', 'email', 'unique:users'],
    	];
 
-   	if ($this->route()->getActionMethod() === 'store') {
+   	if ($this->route()->getActionMethod() === 'update') {
    		$rules['password'] = [];
    		$rules['username'][1] = 'unique:users,username,'.request()->id;
    		$rules['email'] = 'unique:users,email,'.request()->id;
@@ -41,9 +41,9 @@ class UserRequest extends FormRequest
 
    public function filters(): array
    {
-       return [
-           'email' => 'trim|lowercase',
-           'name' => 'trim|capitalize|escape'
-       ];
+   	return [
+   		'email' => 'trim|lowercase',
+   		'name' => 'trim|capitalize|escape',
+   	];
    }
 }
