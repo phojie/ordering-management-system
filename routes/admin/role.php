@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin/roles')->middleware('auth')->group(function () {
+Route::prefix('roles')->group(function () {
 	Route::controller(RoleController::class)->group(function () {
 		// delete
 		Route::delete('/{role}', 'destroy')->name('roles.destroy');

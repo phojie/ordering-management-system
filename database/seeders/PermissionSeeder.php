@@ -11,11 +11,11 @@ class PermissionSeeder extends Seeder
 	{
 		// Create permissions
 		$permissions = [
-      // user
-      [
-        'name' => 'user-list',
-        'description' => 'List all users',
-      ],
+			// user
+			[
+				'name' => 'user-list',
+				'description' => 'List all users',
+			],
 			[
 				'name' => 'user-create',
 				'description' => 'Create user',
@@ -33,71 +33,71 @@ class PermissionSeeder extends Seeder
 				'description' => 'Delete user',
 			],
 
-      // role
-      [
-        'name' => 'role-list',
-        'description' => 'List all roles',
-      ],
-      [
-        'name' => 'role-create',
-        'description' => 'Create role',
-      ],
-      [
-        'name' => 'role-read',
-        'description' => 'Read role',
-      ],
-      [
-        'name' => 'role-update',
-        'description' => 'Update role',
-      ],
-      [
-        'name' => 'role-delete',
-        'description' => 'Delete role',
-      ],
+			// role
+			[
+				'name' => 'role-list',
+				'description' => 'List all roles',
+			],
+			[
+				'name' => 'role-create',
+				'description' => 'Create role',
+			],
+			[
+				'name' => 'role-read',
+				'description' => 'Read role',
+			],
+			[
+				'name' => 'role-update',
+				'description' => 'Update role',
+			],
+			[
+				'name' => 'role-delete',
+				'description' => 'Delete role',
+			],
 
-      // category
-      [
-        'name' => 'category-list',
-        'description' => 'List all categories',
-      ],
-      [
-        'name' => 'category-create',
-        'description' => 'Create category',
-      ],
-      [
-        'name' => 'category-read',
-        'description' => 'Read category',
-      ],
-      [
-        'name' => 'category-update',
-        'description' => 'Update category',
-      ],
-      [
-        'name' => 'category-delete',
-        'description' => 'Delete category',
-      ],
+			// category
+			[
+				'name' => 'category-list',
+				'description' => 'List all categories',
+			],
+			[
+				'name' => 'category-create',
+				'description' => 'Create category',
+			],
+			[
+				'name' => 'category-read',
+				'description' => 'Read category',
+			],
+			[
+				'name' => 'category-update',
+				'description' => 'Update category',
+			],
+			[
+				'name' => 'category-delete',
+				'description' => 'Delete category',
+			],
 
-      // item
-      [
-        'name' => 'item-list',
-        'description' => 'List all items',
-      ],
-      [
-        'name' => 'item-create',
-        'description' => 'Create item',
-      ],
-      [
-        'name' => 'item-read',
-        'description' => 'Read item',
-      ],
-      [
-        'name' => 'item-update',
-        'description' => 'Update item',
-      ],
-      [
-        'name' => 'item-delete',
-        'description' => 'Delete item',
-      ],
+			// item
+			[
+				'name' => 'item-list',
+				'description' => 'List all items',
+			],
+			[
+				'name' => 'item-create',
+				'description' => 'Create item',
+			],
+			[
+				'name' => 'item-read',
+				'description' => 'Read item',
+			],
+			[
+				'name' => 'item-update',
+				'description' => 'Update item',
+			],
+			[
+				'name' => 'item-delete',
+				'description' => 'Delete item',
+			],
 		];
 
 		foreach ($permissions as $permission) {

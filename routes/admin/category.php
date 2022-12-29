@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin/categories')->middleware('auth')->group(function () {
+Route::prefix('categories')->group(function () {
 	Route::controller(CategoryController::class)->group(function () {
 		// delete
 		Route::delete('/{category}', 'destroy')->name('categories.destroy');

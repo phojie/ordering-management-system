@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\ItemController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin/items')->middleware('auth')->group(function () {
+Route::prefix('items')->group(function () {
 	Route::controller(ItemController::class)->group(function () {
 		// delete
 		Route::delete('/{item}', 'destroy')->name('items.destroy');

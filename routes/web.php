@@ -17,24 +17,16 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/dashboard', function () {
 		return Inertia::render('Dashboard');
 	})->name('dashboard');
-
-	Route::get('/admin', function () {
-		return Inertia::render('Admin/Index');
-	});
-
-	Route::get('/admin/menus', function () {
-		return Inertia::render('Admin/Menus', [
-			'menus' => [],
-		]);
-	});
 });
 
-require __DIR__.'/admin/user.php';
-require __DIR__.'/admin/role.php';
-require __DIR__.'/admin/index.php';
+Route::prefix('admin')->middleware('auth')->group(function () {
+	require __DIR__.'/admin/user.php';
+	require __DIR__.'/admin/role.php';
+	require __DIR__.'/admin/index.php';
+
+	require __DIR__.'/admin/category.php';
+	require __DIR__.'/admin/item.php';
+});
 
 require __DIR__.'/auth/index.php';
 require __DIR__.'/components/index.php';
-
-require __DIR__.'/admin/category.php';
-require __DIR__.'/admin/item.php';
