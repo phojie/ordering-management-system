@@ -91,6 +91,7 @@ class UserService implements UserServiceInterface
   				'username' => $request->username,
   				'email' => $request->email,
   				'first_name' => $request->firstName,
+          'middle_name' => $request->middleName,
   				'last_name' => $request->lastName,
   			]);
 
