@@ -15,12 +15,6 @@ use Inertia\Inertia;
 		]);
 	})->name('index');
 
-	Route::group(['middleware' => ['auth']], function () {
-		Route::get('/dashboard', function () {
-			return Inertia::render('Dashboard');
-		})->name('dashboard');
-	});
-
 	require __DIR__.'/auth/index.php';
 // });
 
@@ -33,6 +27,10 @@ use Inertia\Inertia;
 // 	require __DIR__.'/admin/category.php';
 // 	require __DIR__.'/admin/item.php';
 // });
+
+Route::middleware(['auth', 'customer'])->group(function () {
+  require __DIR__.'/customer/index.php';
+});
 
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
