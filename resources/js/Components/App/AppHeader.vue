@@ -4,23 +4,20 @@ const auth = useAuthStore()
 
 <template>
   <div class="flex items-center justify-center p-4 space-x-10">
-    <!-- <NavLink v-if="!user" to="/login">
-      Login form
-    </NavLink>
-    <NavLink to="/">
+    <JLink to="/">
       Home
-    </NavLink>
-    <NavLink to="/random/">
+    </JLink>
+    <JLink to="/random/">
       404
-    </NavLink>
+    </JLink>
 
-    <NavLink to="/cart/">
+    <JLink to="/cart/">
       Cart
-    </NavLink>
+    </JLink>
 
-    <NavLink v-if="user" to="/admin/">
+    <JLink v-if="auth.signedIn && useGate().can('Admin')" :to="route('admin.index')">
       Admin
-    </NavLink> -->
+    </JLink>
 
     <button v-if="auth.signedIn" type="button" @click="auth.signOut">
       Logout
