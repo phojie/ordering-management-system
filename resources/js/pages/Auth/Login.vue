@@ -11,7 +11,7 @@ const processing = computed(() => form.processing)
 
 <template>
   <Head title="Login" />
-  <div class="flex flex-col justify-center min-h-full py-12 sm:px-6 lg:px-8">
+  <main class="flex flex-col justify-center py-12 overflow-auto sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <AppIcon class="w-auto mx-auto h-44" dark />
       <h2 class="mt-6 text-3xl font-bold tracking-tight text-center text-gray-900">
@@ -119,5 +119,5 @@ const processing = computed(() => form.processing)
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>

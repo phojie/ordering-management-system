@@ -11,3 +11,11 @@ Route::get('/', function () {
 		'phpVersion' => PHP_VERSION,
 	]);
 })->name('index');
+
+Route::get('/about', function () {
+	return Inertia::render('About');
+})->name('about');
+
+Route::get('/contact-us', function () {
+	return Inertia::render('ContactUs');
+})->name('contact-us');

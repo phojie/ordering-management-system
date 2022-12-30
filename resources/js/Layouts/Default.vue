@@ -2,7 +2,11 @@
 </script>
 
 <template>
-  <div>
+  <div class="h-screen bg-white">
+    <AppHeader />
+
     <slot />
+
+    <AppFooter />
   </div>
 </template>
