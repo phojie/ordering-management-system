@@ -60,7 +60,7 @@ const open = ref(false)
 
 <template>
   <div class="bg-white">
-    <PublicHeader />
+    <AppHeader />
 
     <main>
       <!-- Hero section -->
@@ -197,6 +197,6 @@ const open = ref(false)
       </section>
     </main>
 
-    <PublicFooter />
+    <AppFooter />
   </div>
 </template>

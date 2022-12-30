@@ -1,107 +1,323 @@
-<script setup lang="ts">
-const auth = useAuthStore()
+<script  setup lang="ts">
+const currencies = ['PHP']
+
+const navigation = {
+  categories: [
+    {
+      name: 'Women',
+      featured: [
+        {
+          name: 'New Arrivals',
+          href: '#',
+          imageSrc:
+            'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
+          imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
+        },
+        {
+          name: 'Basic Tees',
+          href: '#',
+          imageSrc:
+            'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
+          imageAlt:
+            'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
+        },
+        {
+          name: 'Accessories',
+          href: '#',
+          imageSrc:
+            'https://tailwindui.com/img/ecommerce-images/mega-menu-category-03.jpg',
+          imageAlt:
+            'Model wearing minimalist watch with black wristband and white watch face.',
+        },
+        {
+          name: 'Carry',
+          href: '#',
+          imageSrc:
+            'https://tailwindui.com/img/ecommerce-images/mega-menu-category-04.jpg',
+          imageAlt:
+            'Model opening tan leather long wallet with credit card pockets and cash pouch.',
+        },
+      ],
+    },
+    {
+      name: 'Men',
+      featured: [
+        {
+          name: 'New Arrivals',
+          href: '#',
+          imageSrc:
+            'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-01.jpg',
+          imageAlt:
+            'Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.',
+        },
+        {
+          name: 'Basic Tees',
+          href: '#',
+          imageSrc:
+            'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-02.jpg',
+          imageAlt: 'Model wearing light heather gray t-shirt.',
+        },
+        {
+          name: 'Accessories',
+          href: '#',
+          imageSrc:
+            'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-03.jpg',
+          imageAlt:
+            'Grey 6-panel baseball hat with black brim, black mountain graphic on front, and light heather gray body.',
+        },
+        {
+          name: 'Carry',
+          href: '#',
+          imageSrc:
+            'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-04.jpg',
+          imageAlt:
+            'Model putting folded cash into slim card holder olive leather wallet with hand stitching.',
+        },
+      ],
+    },
+  ],
+  pages: [
+    { name: 'Company', href: '#' },
+    { name: 'Stores', href: '#' },
+  ],
+}
 </script>
 
 <template>
-  <div class="flex items-center justify-center p-4 space-x-10">
-    <JLink to="/">
-      Home
-    </JLink>
-    <JLink to="/random/">
-      404
-    </JLink>
-
-    <JLink to="/cart/">
-      Cart
-    </JLink>
-
-    <JLink v-if="auth.signedIn && useGate().can('Admin')" :to="route('admin.index')">
-      Admin
-    </JLink>
-
-    <button v-if="auth.signedIn" type="button" @click="auth.signOut">
-      Logout
-    </button>
-
-    <div>
-      {{ auth.user?.email || 'No user signIn' }}
-    </div>
-  </div>
-
-  <div class="border-b border-gray-200 dark:border-gray-700">
-    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-      <li class="mr-2">
-        <a
-          href="#"
-          class="inline-flex p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
+  <header class="relative">
+    <nav aria-label="Top">
+      <!-- Top navigation -->
+      <div class="bg-gray-900">
+        <div
+          class="flex items-center justify-between h-10 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8"
         >
-          <svg
-            aria-hidden="true"
-            class="w-5 h-5 mr-2 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300"
-            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-              clip-rule="evenodd"
-            />
-          </svg>Profile
-        </a>
-      </li>
-      <li class="mr-2">
-        <a
-          href="#"
-          class="inline-flex p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500 group"
-          aria-current="page"
-        >
-          <svg
-            aria-hidden="true" class="w-5 h-5 mr-2 text-blue-600 dark:text-blue-500" fill="currentColor"
-            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-            />
-          </svg>Dashboard
-        </a>
-      </li>
-      <li class="mr-2">
-        <a
-          href="#"
-          class="inline-flex p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
-        >
-          <svg
-            aria-hidden="true"
-            class="w-5 h-5 mr-2 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300"
-            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"
-            />
-          </svg>Settings
-        </a>
-      </li>
-      <li class="mr-2">
-        <a
-          href="#"
-          class="inline-flex p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
-        >
-          <svg
-            aria-hidden="true"
-            class="w-5 h-5 mr-2 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300"
-            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-            <path
-              fill-rule="evenodd"
-              d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
-              clip-rule="evenodd"
-            />
-          </svg>Contacts
-        </a>
-      </li>
-      <li>
-        <a class="inline-block p-4 text-gray-400 rounded-t-lg cursor-not-allowed dark:text-gray-500">Disabled</a>
-      </li>
-    </ul>
-  </div>
+          <!-- Currency selector -->
+          <form>
+            <div>
+              <label for="desktop-currency" class="sr-only">Currency</label>
+              <div
+                class="relative -ml-2 bg-gray-900 border-transparent rounded-md group focus-within:ring-2 focus-within:ring-white"
+              >
+                <select
+                  id="desktop-currency"
+                  name="currency"
+                  class="flex items-center rounded-md border-transparent bg-gray-900 bg-none py-0.5 pl-2 pr-5 text-sm font-medium text-white focus:border-transparent focus:outline-none focus:ring-0 group-hover:text-gray-100"
+                >
+                  <option v-for="currency in currencies" :key="currency">
+                    {{ currency }}
+                  </option>
+                </select>
+                <div
+                  class="absolute inset-y-0 right-0 flex items-center pointer-events-none"
+                >
+                  <heroicons-chevron-down
+                    class="w-5 h-5 text-gray-300"
+                    aria-hidden="true"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div v-if="!useAuthStore().signedIn" class="flex items-center space-x-6">
+            <JLink
+              :to="route('login')"
+              class="text-sm font-medium text-white hover:text-gray-100"
+            >
+              Sign in
+            </JLink>
+            <JLink
+              :to="route('register')"
+              class="text-sm font-medium text-white hover:text-gray-100"
+            >
+              Create an account
+            </JLink>
+          </div>
+          <div v-else class="flex items-center space-x-6">
+            <JLink
+              v-if="useGate().can('Customer')"
+              :to="route('dashboard')"
+              class="text-sm font-medium text-white hover:text-gray-100"
+            >
+              My Account
+            </JLink>
+            <JLink
+              v-if="useGate().can('Admin')"
+              :to="route('admin.index')"
+              class="text-sm font-medium text-white hover:text-gray-100"
+            >
+              Administrator
+            </JLink>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary navigation -->
+      <div class="bg-white">
+        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <!-- Logo (lg+) -->
+            <div class="hidden lg:flex lg:flex-1 lg:items-center">
+              <JLink :to="route('index')">
+                <AppIcon class="w-auto h-16" dark alt="" />
+              </JLink>
+            </div>
+
+            <div class="hidden h-full lg:flex">
+              <!-- Flyout menus -->
+              <PopoverGroup class="inset-x-0 bottom-0 px-4">
+                <div class="flex justify-center h-full space-x-8">
+                  <Popover
+                    v-for="category in navigation.categories"
+                    :key="category.name"
+                    v-slot="{ open }"
+                    class="flex"
+                  >
+                    <div class="relative flex">
+                      <PopoverButton
+                        class="relative flex items-center justify-center text-sm font-medium transition-colors duration-200 ease-out"
+                        :class="[
+                          open ? 'text-primary-600' : 'text-gray-700 hover:text-gray-800',
+                        ]"
+                      >
+                        {{ category.name }}
+                        <span
+                          class="absolute inset-x-0 -bottom-px z-20 h-0.5 transition duration-200 ease-out"
+                          :class="[open ? 'bg-primary-600' : '']"
+                          aria-hidden="true"
+                        />
+                      </PopoverButton>
+                    </div>
+
+                    <transition
+                      enter-active-class="transition duration-200 ease-out"
+                      enter-from-class="opacity-0"
+                      enter-to-class="opacity-100"
+                      leave-active-class="transition duration-150 ease-in"
+                      leave-from-class="opacity-100"
+                      leave-to-class="opacity-0"
+                    >
+                      <PopoverPanel
+                        class="absolute inset-x-0 z-10 text-sm text-gray-500 bg-white top-full"
+                      >
+                        <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
+                        <div
+                          class="absolute inset-0 bg-white shadow top-1/2"
+                          aria-hidden="true"
+                        />
+                        <!-- Fake border when menu is open -->
+                        <div
+                          class="absolute inset-0 top-0 h-px px-8 mx-auto max-w-7xl"
+                          aria-hidden="true"
+                        >
+                          <div
+                            class="w-full h-px transition-colors duration-200 ease-out"
+                            :class="[open ? 'bg-gray-200' : 'bg-transparent']"
+                          />
+                        </div>
+
+                        <div class="relative">
+                          <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                            <div class="grid grid-cols-4 py-16 gap-y-10 gap-x-8">
+                              <div
+                                v-for="item in category.featured"
+                                :key="item.name"
+                                class="relative group"
+                              >
+                                <div
+                                  class="overflow-hidden bg-gray-100 rounded-md aspect-w-1 aspect-h-1 group-hover:opacity-75"
+                                >
+                                  <img
+                                    :src="item.imageSrc"
+                                    :alt="item.imageAlt"
+                                    class="object-cover object-center"
+                                  >
+                                </div>
+                                <a
+                                  :href="item.href"
+                                  class="block mt-4 font-medium text-gray-900"
+                                >
+                                  <span
+                                    class="absolute inset-0 z-10"
+                                    aria-hidden="true"
+                                  />
+                                  {{ item.name }}
+                                </a>
+                                <p aria-hidden="true" class="mt-1">
+                                  Shop now
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </PopoverPanel>
+                    </transition>
+                  </Popover>
+
+                  <a
+                    v-for="page in navigation.pages"
+                    :key="page.name"
+                    :href="page.href"
+                    class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                  >{{ page.name }}</a>
+                </div>
+              </PopoverGroup>
+            </div>
+
+            <!-- Mobile menu and search (lg-) -->
+            <div class="flex items-center flex-1 lg:hidden">
+              <!-- <button type="button" class="p-2 -ml-2 text-gray-400 bg-white rounded-md" @click="open = true">
+                  <span class="sr-only">Open menu</span>
+                  <heroicons-bars-3 class="w-6 h-6" aria-hidden="true" />
+                </button> -->
+
+              <!-- Search -->
+              <a href="#" class="p-2 -ml-2 text-gray-400 hover:text-gray-500">
+                <span class="sr-only">Search</span>
+                <heroicons-magnifying-glass class="w-6 h-6" aria-hidden="true" />
+              </a>
+            </div>
+
+            <!-- Logo (lg-) -->
+            <JLink :to="route('index')" class="lg:hidden">
+              <AppIcon class="w-auto h-16" dark alt="" />
+            </JLink>
+
+            <div class="flex items-center justify-end flex-1">
+              <a
+                href="#"
+                class="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block"
+              >Search</a>
+
+              <div class="flex items-center lg:ml-8">
+                <!-- Help -->
+                <a href="#" class="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
+                  <span class="sr-only">Help</span>
+                  <heroicons-question-mark-circle class="w-6 h-6" aria-hidden="true" />
+                </a>
+                <a
+                  href="#"
+                  class="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block"
+                >Help</a>
+
+                <!-- Cart -->
+                <div class="flow-root ml-4 lg:ml-8">
+                  <a href="#" class="flex items-center p-2 -m-2 group">
+                    <heroicons-shopping-bag
+                      class="flex-shrink-0 w-6 h-6 text-gray-400 group-hover:text-gray-500"
+                      aria-hidden="true"
+                    />
+                    <span
+                      class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
+                    >0</span>
+                    <span class="sr-only">items in cart, view bag</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
 </template>
