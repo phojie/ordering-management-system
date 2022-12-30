@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const role = useItemStore()
+const role = useProductStore()
 const formState = role.formState
 const closeSlideOver = () => {
   role.resetForm()
@@ -14,12 +14,12 @@ const closeSlideOver = () => {
     :description="formState.description"
     :is-loading="role.processing"
     size="xl"
-    @submit="useItemStore().submitForm()"
+    @submit="useProductStore().submitForm()"
     @hide="closeSlideOver()"
   >
     <div class="flex flex-col justify-between flex-1">
       <div class="px-4 divide-y divide-gray-200 sm:px-6">
-        <FormItem />
+        <FormProduct />
       </div>
     </div>
   </JSlideOver>

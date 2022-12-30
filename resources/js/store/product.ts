@@ -1,6 +1,6 @@
 import { helpers, maxLength, required } from '@vuelidate/validators'
 import type { TableHeader } from './../j-components/types'
-import type { Item } from '@/types/item'
+import type { Product } from '@/types/product'
 
 type FormType = 'create' | 'edit'
 
@@ -11,12 +11,12 @@ interface FormState {
   description: string
 }
 
-export const useItemStore = defineStore('item', () => {
+export const useProductStore = defineStore('product', () => {
   // processing state
   let processing = $ref<boolean>(false)
 
   // data form state
-  const form = $ref<Item>({
+  const form = $ref<Product>({
     id: '',
     status: 'active',
     name: '',
@@ -31,8 +31,8 @@ export const useItemStore = defineStore('item', () => {
   const formState = $ref<FormState>({
     type: 'create',
     show: false,
-    title: 'New Item',
-    description: 'Create a new item',
+    title: 'New Product',
+    description: 'Create a new product',
   })
 
   // table headers
@@ -84,11 +84,11 @@ export const useItemStore = defineStore('item', () => {
   const rules = {
     id: {},
     name: {
-      required: helpers.withMessage('Item name is required', required),
+      required: helpers.withMessage('Product name is required', required),
       $autoDirty: true,
     },
     description: {
-      required: helpers.withMessage('Item description is required', required),
+      required: helpers.withMessage('Product description is required', required),
       minLengthValue: maxLength(100),
       $autoDirty: true,
     },
@@ -103,17 +103,17 @@ export const useItemStore = defineStore('item', () => {
       return
 
     if (formState.type === 'create')
-      createItem()
+      createProduct()
 
     else
-      updateItem(form.id as string)
+      updateProduct(form.id as string)
   }
 
-  // reload items
+  // reload products
   function reload() {
     Inertia.reload(
       {
-        only: ['items'],
+        only: ['products'],
         onBefore: () => {
           processing = true
         },
@@ -123,16 +123,16 @@ export const useItemStore = defineStore('item', () => {
         onSuccess: () => {
           useNotificationStore().add({
             id: parseInt(_.uniqueId()),
-            title: 'Items is successfully reloaded',
+            title: 'Products is successfully reloaded',
           })
         },
       },
     )
   }
 
-  // get items
-  function getItems(reqestData: any) {
-    Inertia.get(route('admin.items.index'),
+  // get products
+  function getProducts(reqestData: any) {
+    Inertia.get(route('admin.products.index'),
       {
         ...route().params,
         ...reqestData,
@@ -140,7 +140,7 @@ export const useItemStore = defineStore('item', () => {
       {
         preserveState: true,
         replace: true,
-        only: ['items'],
+        only: ['products'],
         onBefore: () => {
           processing = true
         },
@@ -151,9 +151,9 @@ export const useItemStore = defineStore('item', () => {
     )
   }
 
-  // create item
-  async function createItem() {
-    Inertia.post(route('admin.items.store'), form as any, {
+  // create product
+  async function createProduct() {
+    Inertia.post(route('admin.products.store'), form as any, {
       onBefore: () => {
         processing = true
       },
@@ -169,9 +169,9 @@ export const useItemStore = defineStore('item', () => {
     })
   }
 
-  // update item
-  async function updateItem(id: string) {
-    Inertia.put(route('admin.items.update', id), form as any, {
+  // update product
+  async function updateProduct(id: string) {
+    Inertia.put(route('admin.products.update', id), form as any, {
       onBefore: () => {
         processing = true
       },
@@ -188,9 +188,9 @@ export const useItemStore = defineStore('item', () => {
     })
   }
 
-  // delete item
-  function deleteItem(id: string) {
-    Inertia.delete(route('admin.items.destroy', id), {
+  // delete product
+  function deleteProduct(id: string) {
+    Inertia.delete(route('admin.products.destroy', id), {
       onBefore: () => {
         processing = true
       },
@@ -200,9 +200,9 @@ export const useItemStore = defineStore('item', () => {
     })
   }
 
-  // delete multiple items
-  function deleteItems(ids: string[]) {
-    Inertia.delete(route('admin.items.destroy-multiple'), {
+  // delete multiple products
+  function deleteProducts(ids: string[]) {
+    Inertia.delete(route('admin.products.destroy-multiple'), {
       data: {
         ids,
       },
@@ -215,9 +215,9 @@ export const useItemStore = defineStore('item', () => {
     })
   }
 
-  // restore item
-  function restoreItem(id: string) {
-    Inertia.put(route('admin.items.restore', id),
+  // restore product
+  function restoreProduct(id: string) {
+    Inertia.put(route('admin.products.restore', id),
       {
       },
       {
@@ -230,9 +230,9 @@ export const useItemStore = defineStore('item', () => {
       })
   }
 
-  // restore items
-  function restoreItems(ids: string[]) {
-    Inertia.put(route('admin.items.restore-multiple'),
+  // restore products
+  function restoreProducts(ids: string[]) {
+    Inertia.put(route('admin.products.restore-multiple'),
       {
         ids,
       },
@@ -266,8 +266,8 @@ export const useItemStore = defineStore('item', () => {
   function resetFormState() {
     formState.type = 'create'
     formState.show = false
-    formState.title = 'New Item'
-    formState.description = 'Create a new item'
+    formState.title = 'New Product'
+    formState.description = 'Create a new product'
   }
 
   return $$({
@@ -278,18 +278,18 @@ export const useItemStore = defineStore('item', () => {
     formState,
 
     reload,
-    getItems,
+    getProducts,
     submitForm,
     resetForm,
-    deleteItem,
-    deleteItems,
-    restoreItem,
-    restoreItems,
+    deleteProduct,
+    deleteProducts,
+    restoreProduct,
+    restoreProducts,
     resetFormState,
   })
 })
 
-// make sure to pass the right store definition, `useItem` in this case.
+// make sure to pass the right store definition, `useProduct` in this case.
 if (import.meta.hot)
-  import.meta.hot.accept(acceptHMRUpdate(useItemStore, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useProductStore, import.meta.hot))
 

@@ -23,7 +23,7 @@ const $v = useMenuStore().vuelidate
 
     <div>
       <h3 class="text-sm font-medium text-gray-900">
-        Menu Items
+        Menu Products
       </h3>
       <div class="mt-2" />
     </div>

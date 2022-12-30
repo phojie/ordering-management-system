@@ -18,7 +18,7 @@ const toggleEdit = (category: Category) => {
   form.name = category.name
   form.description = category.description
 
-  form.items = category.items
+  form.products = category.products
 
   formState.type = 'edit'
   formState.show = true
@@ -66,7 +66,7 @@ const getById = async (id: number) => {
 
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-normal ">
           <JBadge class="!rounded-md" variant="primary">
-            {{ item.itemsCount }}
+            {{ item.productsCount }}
           </JBadge>
         </td>
 

@@ -21,7 +21,7 @@ export const useCategoryStore = defineStore('category', () => {
     name: '',
     description: '',
 
-    items: [],
+    products: [],
   })
 
   // form state
@@ -54,8 +54,8 @@ export const useCategoryStore = defineStore('category', () => {
       },
     },
     {
-      text: 'Items',
-      value: 'items',
+      text: 'Products',
+      value: 'products',
     },
     {
       text: 'Status',
@@ -248,7 +248,7 @@ export const useCategoryStore = defineStore('category', () => {
     form.name = ''
     form.description = ''
     form.status = 'active'
-    form.items = []
+    form.products = []
 
     $v.value.$reset()
   }

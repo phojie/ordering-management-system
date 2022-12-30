@@ -1,4 +1,4 @@
-import type { Item } from './item'
+import type { Product } from './product'
 import type { Pagination } from '@/global'
 
 export interface Category {
@@ -10,8 +10,8 @@ export interface Category {
   createdAt?: string
   updatedAt?: string
 
-  items?: Array<Item>
-  itemsCount?: number
+  products?: Array<Product>
+  productsCount?: number
 }
 
 export interface PaginationCategories extends Pagination {

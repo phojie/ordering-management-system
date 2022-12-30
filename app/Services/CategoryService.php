@@ -15,8 +15,8 @@ class CategoryService implements CategoryServiceInterface
 			// set model
 			$model = Category::query()
 			->withTrashed()
-			->with(['items'])
-			->withCount('items')
+			->with(['products'])
+			->withCount('products')
 			->search($request->search);
 
 			// set query builder
@@ -42,8 +42,8 @@ class CategoryService implements CategoryServiceInterface
    				]
    			);
 
-   			$itemsIds = collect($request->items)->pluck('id')->toArray();
-   			$category->items()->attach($itemsIds);
+   			$productsIds = collect($request->products)->pluck('id')->toArray();
+   			$category->products()->attach($productsIds);
    		});
    	} catch (\Exception $e) {
    		throw $e;
@@ -59,8 +59,8 @@ class CategoryService implements CategoryServiceInterface
    				'description' => $request->description,
    			]);
 
-   			$itemsIds = collect($request->items)->pluck('id')->toArray();
-   			$category->items()->sync($itemsIds);
+   			$productsIds = collect($request->products)->pluck('id')->toArray();
+   			$category->products()->sync($productsIds);
    		});
    	} catch (\Exception $e) {
    		throw $e;

@@ -2,16 +2,16 @@
 
 namespace App\Services\Interfaces;
 
-use App\Http\Requests\ItemRequest;
-use App\Models\Item;
+use App\Http\Requests\ProductRequest;
+use App\Models\Product;
 
-interface ItemServiceInterface
+interface ProductServiceInterface
 {
 	public function get(object $request): object;
 
-	public function store(ItemRequest $request): void;
+	public function store(ProductRequest $request): void;
 
-	public function update(ItemRequest $request, Item $item): void;
+	public function update(ProductRequest $request, Product $product): void;
 
 	public function delete(string $id): void;
 

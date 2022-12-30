@@ -17,7 +17,7 @@ class CategoryController
 	public function show($id)
 	{
 		$query = Category::query()
-        ->with(['items'])
+        ->with(['products'])
 				->find($id);
 		$category = new CategoryResource($query);
 

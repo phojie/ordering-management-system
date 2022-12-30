@@ -3,7 +3,7 @@
 const data = ref({
   categories: [],
   series: [],
-  title: 'Orders per item',
+  title: 'Orders per product',
   subtitle: 'Realtime data',
 })
 
@@ -22,7 +22,7 @@ const chartOptions = reactive({
   yAxis: {
     min: 0,
     title: {
-      text: 'Items',
+      text: 'Products',
     },
     gridLineDashStyle: 'shortdot',
   },

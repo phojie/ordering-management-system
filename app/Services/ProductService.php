@@ -2,18 +2,18 @@
 
 namespace App\Services;
 
-use App\Http\Requests\ItemRequest;
-use App\Models\Item;
-use App\Services\Interfaces\ItemServiceInterface;
+use App\Http\Requests\ProductRequest;
+use App\Models\Product;
+use App\Services\Interfaces\ProductServiceInterface;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class ItemService implements ItemServiceInterface
+class ProductService implements ProductServiceInterface
 {
 	public function get(object $request): QueryBuilder
 	{
 		try {
 			// set model
-			$model = Item::query()
+			$model = Product::query()
 				->withTrashed()
 				->with(['variants', 'categories'])
 				->search($request->search);
@@ -30,11 +30,11 @@ class ItemService implements ItemServiceInterface
 		}
 	}
 
-   public function store(ItemRequest $request): void
+   public function store(ProductRequest $request): void
    {
    	try {
    		\DB::transaction(function () use ($request) {
-   			$item = Item::create(
+   			$product = Product::create(
    				[
    					'name' => $request->name,
    					'description' => $request->description,
@@ -43,16 +43,16 @@ class ItemService implements ItemServiceInterface
    			);
 
    			$categoriesIds = collect($request->categories)->pluck('id')->toArray();
-   			$item->categories()->attach($categoriesIds);
+   			$product->categories()->attach($categoriesIds);
 
    			// if has request variants
    			if ($request->variants) {
-   				(new VariantService())->storeMultiple($request, $item);
+   				(new VariantService())->storeMultiple($request, $product);
    			}
 
    			// if has request image
    			if ($request->image) {
-   				(new FileUploaderService())->uploadItemImageToMedia($item->id, $request->image);
+   				(new FileUploaderService())->uploadProductImageToMedia($product->id, $request->image);
    			}
    		});
    	} catch (\Exception $e) {
@@ -60,29 +60,29 @@ class ItemService implements ItemServiceInterface
    	}
    }
 
-   public function update(ItemRequest $request, Item $item): void
+   public function update(ProductRequest $request, Product $product): void
    {
    	try {
-   		\DB::transaction(function () use ($request, $item) {
-   			$item->update([
+   		\DB::transaction(function () use ($request, $product) {
+   			$product->update([
    				'name' => $request->name,
    				'description' => $request->description,
    				'status' => $request->status,
    			]);
 
    			$categoriesIds = collect($request->categories)->pluck('id')->toArray();
-   			$item->categories()->sync($categoriesIds);
+   			$product->categories()->sync($categoriesIds);
 
    			// if has request variants
    			if ($request->variants) {
-   				(new VariantService())->updateMultiple($request, $item);
+   				(new VariantService())->updateMultiple($request, $product);
    			}
 
    			// if has request image
    			if ($request->image) {
-   				(new FileUploaderService())->uploadItemImageToMedia($item->id, $request->image);
+   				(new FileUploaderService())->uploadProductImageToMedia($product->id, $request->image);
    			} else {
-   				(new FileUploaderService())->deleteItemImageFromMedia($item->id);
+   				(new FileUploaderService())->deleteProductImageFromMedia($product->id);
    			}
    		});
    	} catch (\Exception $e) {
@@ -93,7 +93,7 @@ class ItemService implements ItemServiceInterface
    public function delete(string $id): void
    {
    	try {
-   		Item::findOrFail($id)->delete();
+   		Product::findOrFail($id)->delete();
    	} catch (\Exception $e) {
    		throw $e;
    	}
@@ -103,7 +103,7 @@ class ItemService implements ItemServiceInterface
   {
   	try {
   		\DB::transaction(function () use ($ids) {
-  			Item::whereIn('id', $ids)->get()->each->delete();
+  			Product::whereIn('id', $ids)->get()->each->delete();
   		});
   	} catch (\Exception $e) {
   		throw $e;
@@ -113,7 +113,7 @@ class ItemService implements ItemServiceInterface
   public function restore(string $id): void
   {
   	try {
-  		Item::onlyTrashed()->findOrFail($id)->restore();
+  		Product::onlyTrashed()->findOrFail($id)->restore();
   	} catch (\Exception $e) {
   		throw $e;
   	}
@@ -123,7 +123,7 @@ class ItemService implements ItemServiceInterface
   {
   	try {
   		\DB::transaction(function () use ($ids) {
-  			Item::onlyTrashed()->whereIn('id', $ids)->get()->each->restore();
+  			Product::onlyTrashed()->whereIn('id', $ids)->get()->each->restore();
   		});
   	} catch (\Exception $e) {
   		throw $e;

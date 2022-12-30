@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
 	public function up()
 	{
-		Schema::create('category_item', function (Blueprint $table) {
+		Schema::create('category_product', function (Blueprint $table) {
 			$table->foreignUuid('category_id')
 			->constrained('categories')
 			->onDelete('cascade');
 
-			$table->foreignUuid('item_id')
-			->constrained('items')
+			$table->foreignUuid('product_id')
+			->constrained('products')
 			->onDelete('cascade');
 
 			$table->timestamps();

@@ -2,7 +2,7 @@ import type { Category } from './category'
 import type { Variant } from './variant'
 import type { Pagination } from '@/global'
 
-export interface Item {
+export interface Product {
   id?: string
   name: string
   description: string
@@ -17,7 +17,7 @@ export interface Item {
   categories?: Array<Category>
 }
 
-export interface PaginationItems extends Pagination {
-  data: Array<Item>
+export interface PaginationProducts extends Pagination {
+  data: Array<Product>
 }
 

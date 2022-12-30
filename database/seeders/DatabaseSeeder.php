@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
       // generate categories
       CategorySeeder::class,
 
-      // generate items
-      ItemSeeder::class,
+      // generate products
+      ProductSeeder::class,
 
       // generate variants
       VariantSeeder::class,

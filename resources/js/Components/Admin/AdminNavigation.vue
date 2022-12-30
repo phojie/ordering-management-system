@@ -7,28 +7,28 @@ const { adminItemsGuarded: adminItems, miscItemsGuarded: miscItems } = useNaviga
     <div class="flex flex-col divide-y divide-primary-800">
       <div class="px-2 py-6 space-y-1">
         <JLink
-          v-for="item in adminItems" :key="item.name"
-          :to="item.href === '#' ? item.href : route(item.href)"
-          :active="useRoute().isActive(item.href, item.exact)"
+          v-for="product in adminItems" :key="product.name"
+          :to="product.href === '#' ? product.href : route(product.href)"
+          :active="useRoute().isActive(product.href, product.exact)"
           active-class="text-white bg-primary-800 hover:bg-primary-800"
           class="flex items-center px-2 py-2 text-sm font-medium leading-6 rounded-md group text-primary-100 hover:text-white hover:bg-primary-600"
         >
-          <component :is="item.icon" size="24" class="flex-shrink-0 mr-4 text-primary-200" aria-hidden="true" />
-          {{ item.name }}
+          <component :is="product.icon" size="24" class="flex-shrink-0 mr-4 text-primary-200" aria-hidden="true" />
+          {{ product.name }}
         </JLink>
       </div>
 
       <div class="px-2 py-6 space-y-1">
         <JLink
-          v-for="item in miscItems"
-          :key="item.name"
-          :to="item.href === '#' ? item.href : route(item.href)"
-          :active="useRoute().isActive(item.href, item.exact)"
+          v-for="product in miscItems"
+          :key="product.name"
+          :to="product.href === '#' ? product.href : route(product.href)"
+          :active="useRoute().isActive(product.href, product.exact)"
           active-class="text-white bg-primary-800"
           class="flex items-center px-2 py-2 text-sm font-medium leading-6 rounded-md group text-primary-100 hover:text-white hover:bg-primary-600"
         >
-          <component :is="item.icon" size="24" class="flex-shrink-0 mr-4 text-primary-200" aria-hidden="true" />
-          {{ item.name }}
+          <component :is="product.icon" size="24" class="flex-shrink-0 mr-4 text-primary-200" aria-hidden="true" />
+          {{ product.name }}
         </JLink>
       </div>
     </div>

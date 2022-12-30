@@ -20,7 +20,10 @@ class UserTest extends TestCase
 
 		$this->seed();
 
-		$this->user = User::where('email', 'j@y.com')->first();
+		// get admin user from roles tabless
+		$this->user = User::withTrashed()->role('Super Admin')->first();
+
+		// login as admin user
 
 		$this->response = $this->actingAs($this->user);
 	}
@@ -57,7 +60,7 @@ class UserTest extends TestCase
 		$user = $this->user;
 
 		// post user
-		$response = $this->put(route('admin.users.update', $user->id),  [
+		$response = $this->put(route('admin.users.update', $user->id), [
 			'username' => 'test2',
 			'email' => 'test@y.com',
 			'firstName' => 'test',
@@ -82,6 +85,7 @@ class UserTest extends TestCase
 	{
 		$response = $this->response;
 		$user = $this->user;
+
 		// delete user
 		$response = $this->delete(route('admin.users.destroy', $user->id));
 
@@ -101,9 +105,9 @@ class UserTest extends TestCase
 
 		$response = $this->actingAs($user);
 
-		$response = $this->delete(route('admin.users.destroy-multiple',[
-      'ids' => $users,
-    ]));
+		$response = $this->delete(route('admin.users.destroy-multiple', [
+			'ids' => $users,
+		]));
 
 		$response->assertStatus(302);
 	}
@@ -114,13 +118,13 @@ class UserTest extends TestCase
 
 		$users = User::factory()->count(3)->create()->pluck('id')->toArray();
 
-		$response = $this->delete(route('admin.users.destroy-multiple',[
-      'ids' => $users,
-    ]));
+		$response = $this->delete(route('admin.users.destroy-multiple', [
+			'ids' => $users,
+		]));
 
 		$response = $this->put(route('admin.users.restore-multiple', [
-      'ids' => $users,
-    ]));
+			'ids' => $users,
+		]));
 
 		$response->assertStatus(302);
 	}

@@ -35,8 +35,8 @@ class Category extends Model
 		  ->orWhere('description', 'ilike', "%{$search}%"));
 	}
 
-  public function items(): BelongsToMany {
-    return $this->belongsToMany(Item::class);
+  public function products(): BelongsToMany {
+    return $this->belongsToMany(Product::class);
   }
 
 	public static function boot(): void

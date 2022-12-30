@@ -17,8 +17,8 @@ class CategoryResource extends JsonResource
 			'updatedAt' => $this->updated_at,
 
       // relationships
-      'items' => ItemResource::collection($this->whenLoaded('items')),
-      'itemsCount' => $this->whenNotNull($this->items_count),
+      'products' => ProductResource::collection($this->whenLoaded('products')),
+      'productsCount' => $this->whenNotNull($this->products_count),
 		];
 	}
 }

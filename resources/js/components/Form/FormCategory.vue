@@ -25,6 +25,6 @@ const processing = $computed(() => useCategoryStore().processing)
       :is-error="$v.description.$error"
     />
 
-    <InputItems v-model="form.items" />
+    <InputProducts v-model="form.products" />
   </div>
 </template>

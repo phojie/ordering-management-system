@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Item;
+use App\Models\Product;
 use App\Models\Variant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +19,7 @@ class VariantFactory extends Factory
 			'name' => $this->faker->word(),
 			'stock' => $this->faker->randomNumber(),
 			'price' => $this->faker->randomFloat(2, 0, 100),
-			'item_id' => Item::inRandomOrder()->first()->id,
+			'product_id' => Product::inRandomOrder()->first()->id,
 		];
 	}
 }

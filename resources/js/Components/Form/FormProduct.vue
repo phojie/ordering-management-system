@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const { form, $v } = useItemStore()
-const processing = $computed(() => useItemStore().processing)
+const { form, $v } = useProductStore()
+const processing = $computed(() => useProductStore().processing)
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const processing = $computed(() => useItemStore().processing)
     <JSelect
       v-model="form.status"
       label="Status"
-      :items="['active', 'inactive']"
+      :products="['active', 'inactive']"
       :is-disabled="processing"
       default-value="active"
     />

@@ -1,36 +1,36 @@
 <script setup lang="ts">
-import type { Item, PaginationItems } from '@/types/item'
+import type { PaginationProducts, Product } from '@/types/product'
 defineProps<{
-  items: PaginationItems
+  products: PaginationProducts
 }>()
 
-const { formState, form, headers, deleteItems, restoreItem } = useItemStore()
-const processing = toRef(useItemStore(), 'processing')
+const { formState, form, headers, deleteProducts, restoreProduct } = useProductStore()
+const processing = toRef(useProductStore(), 'processing')
 const selected = ref<any>([])
 
 const deleteAll = () => {
-  deleteItems(selected.value)
+  deleteProducts(selected.value)
   selected.value = []
 }
 
-const toggleEdit = (item: Item) => {
-  form.id = item.id
-  form.name = item.name
-  form.status = item.status
-  form.description = item.description
-  form.image = item.image
+const toggleEdit = (product: Product) => {
+  form.id = product.id
+  form.name = product.name
+  form.status = product.status
+  form.description = product.description
+  form.image = product.image
 
-  form.variants = item.variants
-  form.categories = item.categories
+  form.variants = product.variants
+  form.categories = product.categories
 
   formState.type = 'edit'
   formState.show = true
-  formState.title = 'Edit Item'
-  formState.description = `Edit the details for ${item.name}`
+  formState.title = 'Edit Product'
+  formState.description = `Edit the details for ${product.name}`
 }
 
 const getById = async (id: number) => {
-  await useFetch(route('components.items.show', id)).get().json().then(({ data }) => {
+  await useFetch(route('components.products.show', id)).get().json().then(({ data }) => {
     toggleEdit(data.value)
   })
 }
@@ -40,13 +40,13 @@ const getById = async (id: number) => {
   <section class="flex flex-col px-4 space-y-6 sm:px-6 lg:px-8">
     <JTable
       v-model="selected"
-      empty-data-text="No items found."
+      empty-data-text="No products found."
       :indeterminate="true"
-      :items="items?.data ?? []"
+      :items="products?.data ?? []"
       item-key="id"
       :headers="headers"
       :is-loading="processing"
-      :links="items?.meta?.links ?? []"
+      :links="products?.meta?.links ?? []"
       @deleteAll="deleteAll()"
     >
       <template #table-data="{ item, selected }">
@@ -142,8 +142,8 @@ const getById = async (id: number) => {
 
         <td class="relative py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
           <button
-            v-if="item.status === 'active' && useGate().can('item-update')"
-            v-tooltip="'Edit item'"
+            v-if="item.status === 'active' && useGate().can('product-update')"
+            v-tooltip="'Edit product'"
             type="button"
             class="text-primary-600 hover:text-primary-900"
             @click="getById(item.id)"
@@ -151,11 +151,11 @@ const getById = async (id: number) => {
             <heroicons-pencil-square-20-solid class="w-5 h-5" />
           </button>
           <button
-            v-else-if="item.status === 'deleted' && useGate().can('item-delete')"
-            v-tooltip="'Restore item'"
+            v-else-if="item.status === 'deleted' && useGate().can('product-delete')"
+            v-tooltip="'Restore product'"
             type="button"
             class="text-warning-600 hover:text-warning-900"
-            @click="restoreItem(item.id)"
+            @click="restoreProduct(item.id)"
           >
             <heroicons-arrow-path-rounded-square-20-solid class="w-5 h-5" />
           </button>

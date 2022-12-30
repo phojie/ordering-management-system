@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
 	public function up(): void
 	{
-		Schema::create('items', function (Blueprint $table) {
+		Schema::create('products', function (Blueprint $table) {
 			$table->uuid('id')->primary();
 
 			$table->string('name');

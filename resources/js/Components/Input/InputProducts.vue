@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import type { Item } from '@/types/item'
+import type { Product } from '@/types/product'
 const props = defineProps<{
-  modelValue?: Array<Item>
+  modelValue?: Array<Product>
 }>()
 
 const emit = defineEmits(['update:modelValue'])
 
 const value = useVModel(props, 'modelValue', emit)
 
-const items = ref<Array<Item>>([])
+const products = ref<Array<Product>>([])
 
 onMounted(async () => {
-  await useFetch(route('components.items')).get().json().then(({ data }) => {
-    items.value = data.value
+  await useFetch(route('components.products')).get().json().then(({ data }) => {
+    products.value = data.value
   })
 })
 </script>
@@ -21,10 +21,10 @@ onMounted(async () => {
   <Suspense>
     <JVSelect
       v-model="value"
-      label="Items"
+      label="Products"
       selected-label="name"
       multiple
-      :options="items"
+      :options="products"
       :close-on-select="false"
     />
 

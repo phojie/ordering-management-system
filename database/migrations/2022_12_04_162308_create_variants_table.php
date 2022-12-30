@@ -17,7 +17,7 @@ return new class extends Migration {
 
 			$table->float('price')->default(0);
 
-			$table->foreignUuid('item_id')->constrained('items')->cascadeOnDelete();
+			$table->foreignUuid('product_id')->constrained('products')->cascadeOnDelete();
 
 			$table->timestamps();
 		});

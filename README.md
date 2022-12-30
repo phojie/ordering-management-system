@@ -39,7 +39,7 @@
 	- [x] Read
 	- [x] Update
 	- [x] Delete
-- [x] Items ✅
+- [x] Products ✅
 	- [x] Create
 	- [x] Read
 	- [x] Update

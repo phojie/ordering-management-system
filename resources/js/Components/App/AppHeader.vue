@@ -40,7 +40,7 @@ const navigation = {
       ],
     },
     {
-      name: 'Items',
+      name: 'Products',
       featured: [
         {
           name: 'New Arrivals',
@@ -227,28 +227,28 @@ const navigation = {
                           <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                             <div class="grid grid-cols-4 py-16 gap-y-10 gap-x-8">
                               <div
-                                v-for="item in category.featured"
-                                :key="item.name"
+                                v-for="product in category.featured"
+                                :key="product.name"
                                 class="relative group"
                               >
                                 <div
                                   class="overflow-hidden bg-gray-100 rounded-md aspect-w-1 aspect-h-1 group-hover:opacity-75"
                                 >
                                   <img
-                                    :src="item.imageSrc"
-                                    :alt="item.imageAlt"
+                                    :src="product.imageSrc"
+                                    :alt="product.imageAlt"
                                     class="object-cover object-center"
                                   >
                                 </div>
                                 <a
-                                  :href="item.href"
+                                  :href="product.href"
                                   class="block mt-4 font-medium text-gray-900"
                                 >
                                   <span
                                     class="absolute inset-0 z-10"
                                     aria-hidden="true"
                                   />
-                                  {{ item.name }}
+                                  {{ product.name }}
                                 </a>
                                 <p aria-hidden="true" class="mt-1">
                                   Shop now
@@ -319,7 +319,7 @@ const navigation = {
                     <span
                       class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
                     >0</span>
-                    <span class="sr-only">items in cart, view bag</span>
+                    <span class="sr-only">products in cart, view bag</span>
                   </a>
                 </div>
               </div>

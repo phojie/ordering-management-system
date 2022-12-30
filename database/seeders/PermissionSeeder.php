@@ -77,26 +77,26 @@ class PermissionSeeder extends Seeder
 				'description' => 'Delete category',
 			],
 
-			// item
+			// product
 			[
-				'name' => 'item-list',
-				'description' => 'List all items',
+				'name' => 'product-list',
+				'description' => 'List all products',
 			],
 			[
-				'name' => 'item-create',
-				'description' => 'Create item',
+				'name' => 'product-create',
+				'description' => 'Create product',
 			],
 			[
-				'name' => 'item-read',
-				'description' => 'Read item',
+				'name' => 'product-read',
+				'description' => 'Read product',
 			],
 			[
-				'name' => 'item-update',
-				'description' => 'Update item',
+				'name' => 'product-update',
+				'description' => 'Update product',
 			],
 			[
-				'name' => 'item-delete',
-				'description' => 'Delete item',
+				'name' => 'product-delete',
+				'description' => 'Delete product',
 			],
 		];
 

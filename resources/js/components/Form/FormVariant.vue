@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const { form } = useItemStore()
-const processing = $computed(() => useItemStore().processing)
+const { form } = useProductStore()
+const processing = $computed(() => useProductStore().processing)
 
 const addVariant = () => {
   form.variants?.push({
@@ -8,7 +8,7 @@ const addVariant = () => {
     name: '',
     stock: 0,
     price: 0,
-    item_id: form.id,
+    product_id: form.id,
   })
 }
 

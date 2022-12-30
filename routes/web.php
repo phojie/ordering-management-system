@@ -20,7 +20,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 	require __DIR__.'/admin/index.php';
 
 	require __DIR__.'/admin/category.php';
-	require __DIR__.'/admin/item.php';
+	require __DIR__.'/admin/product.php';
 });
 
 // components routes

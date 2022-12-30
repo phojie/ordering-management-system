@@ -35,9 +35,9 @@ export const useNavigation = () => {
       exact: true,
     },
     {
-      name: 'Items',
+      name: 'Products',
       icon: HeroiconsBars3,
-      href: 'admin.items.index',
+      href: 'admin.products.index',
       exact: true,
     },
     {
@@ -105,18 +105,18 @@ export const useNavigation = () => {
   ]
 
   const adminItemsGuarded = computed(() => {
-    return adminItems.filter((item) => {
-      if (item.permission)
-        return useGate().can(item.permission)
+    return adminItems.filter((product) => {
+      if (product.permission)
+        return useGate().can(product.permission)
 
       return true
     })
   })
 
   const miscItemsGuarded = computed(() => {
-    return miscItems.filter((item) => {
-      if (item.permission)
-        return useGate().can(item.permission)
+    return miscItems.filter((product) => {
+      if (product.permission)
+        return useGate().can(product.permission)
 
       return true
     })

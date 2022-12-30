@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Models\Item;
+use App\Models\Product;
 use App\Models\TemporaryFile;
 use App\Models\User;
 
@@ -27,13 +27,13 @@ class FileUploaderService
 		}
 	}
 
-  public function uploadItemImageToMedia(string $id, string $image): void
+  public function uploadProductImageToMedia(string $id, string $image): void
   {
   	try {
   		$temporaryFile = TemporaryFile::where('folder', $image)->first();
       if($temporaryFile) {
-  		$item = Item::findOrFail($id);
-  		$item->addMedia(storage_path('app/public/tmp/'.$image.'/'.$temporaryFile->filename))
+  		$product = Product::findOrFail($id);
+  		$product->addMedia(storage_path('app/public/tmp/'.$image.'/'.$temporaryFile->filename))
   				->toMediaCollection('image');
 
   		(new TemporaryFileService())->delete($temporaryFile->folder);
@@ -54,11 +54,11 @@ class FileUploaderService
   	}
   }
 
-  public function deleteItemImageFromMedia(string $id): void
+  public function deleteProductImageFromMedia(string $id): void
   {
   	try {
-  		$item = Item::findOrFail($id);
-  		$item->clearMediaCollection('image');
+  		$product = Product::findOrFail($id);
+  		$product->clearMediaCollection('image');
   	} catch (\Exception $e) {
   		throw $e;
   	}
