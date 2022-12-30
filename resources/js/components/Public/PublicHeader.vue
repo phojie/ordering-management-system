@@ -95,9 +95,13 @@ const open = ref(false)
               </div>
             </form>
 
-            <div class="flex items-center space-x-6">
-              <a href="#" class="text-sm font-medium text-white hover:text-gray-100">Sign in</a>
-              <a href="#" class="text-sm font-medium text-white hover:text-gray-100">Create an account</a>
+            <div class="flex items-center space-x-6" v-if="!useAuthStore().signedIn">
+              <JLink :to="route('login')" class="text-sm font-medium text-white hover:text-gray-100">Sign in</JLink>
+              <JLink  :to="route('register')" class="text-sm font-medium text-white hover:text-gray-100">Create an account</JLink>
+            </div>
+            <div class="flex items-center space-x-6" v-else>
+              <JLink :to="route('dashboard')" v-if="useGate().can('Customer')" class="text-sm font-medium text-white hover:text-gray-100">My Account</JLink>
+              <JLink  :to="route('admin.index')" v-if="useGate().can('Admin')" class="text-sm font-medium text-white hover:text-gray-100">Administrator</JLink>
             </div>
           </div>
         </div>
