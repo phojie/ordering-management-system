@@ -43,7 +43,9 @@ const sidebar = useSidebarStore()
             </TransitionChild>
 
             <div class="flex items-center flex-shrink-0 px-4">
-              <AppIcon class="w-auto h-24" />
+              <JLink :to="route('index')">
+                <AppIcon class="w-auto h-24" />
+              </JLink>
             </div>
 
             <div class="flex flex-1 h-0 overflow-y-auto">
@@ -64,7 +66,9 @@ const sidebar = useSidebarStore()
     class="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col lg:border-r border-primary-800 bg-gradient-to-b from-primary-700 via-primary-700 to-primary-900 lg:pt-5 lg:pb-16"
   >
     <div class="flex items-center flex-shrink-0 px-4">
-      <AppIcon class="w-auto h-20" />
+      <JLink :to="route('index')">
+        <AppIcon class="w-auto h-20" />
+      </JLink>
     </div>
 
     <div class="flex flex-col flex-1 h-0 overflow-y-auto">
