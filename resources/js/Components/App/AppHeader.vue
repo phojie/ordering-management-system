@@ -4,7 +4,7 @@ const currencies = ['PHP']
 const navigation = {
   categories: [
     {
-      name: 'Women',
+      name: 'Menu',
       featured: [
         {
           name: 'New Arrivals',
@@ -40,7 +40,7 @@ const navigation = {
       ],
     },
     {
-      name: 'Men',
+      name: 'Items',
       featured: [
         {
           name: 'New Arrivals',
@@ -77,8 +77,8 @@ const navigation = {
     },
   ],
   pages: [
-    { name: 'Company', href: '#' },
-    { name: 'Stores', href: '#' },
+    { name: 'Contact us', href: 'contact-us' },
+    { name: 'About', href: 'about' },
   ],
 }
 </script>
@@ -159,7 +159,7 @@ const navigation = {
             <!-- Logo (lg+) -->
             <div class="hidden lg:flex lg:flex-1 lg:items-center">
               <JLink :to="route('index')">
-                <AppIcon class="w-auto p-1 border border-dashed rounded h-14 border-primary-800" dark alt="" />
+                <AppIcon class="w-auto p-1 border border-dotted rounded h-14 border-primary-800" dark alt="" />
               </JLink>
             </div>
 
@@ -167,6 +167,13 @@ const navigation = {
               <!-- Flyout menus -->
               <PopoverGroup class="inset-x-0 bottom-0 px-4">
                 <div class="flex justify-center h-full space-x-8">
+                  <JLink
+                    :to="route('index')"
+                    class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                  >
+                    Home
+                  </JLink>
+
                   <Popover
                     v-for="category in navigation.categories"
                     :key="category.name"
@@ -175,7 +182,7 @@ const navigation = {
                   >
                     <div class="relative flex">
                       <PopoverButton
-                        class="relative flex items-center justify-center text-sm font-medium transition-colors duration-200 ease-out"
+                        class="relative flex items-center justify-center text-sm font-medium transition-colors duration-200 ease-out outline-none"
                         :class="[
                           open ? 'text-primary-600' : 'text-gray-700 hover:text-gray-800',
                         ]"
@@ -254,12 +261,14 @@ const navigation = {
                     </transition>
                   </Popover>
 
-                  <a
+                  <JLink
                     v-for="page in navigation.pages"
                     :key="page.name"
-                    :href="page.href"
+                    :to="route(page.href)"
                     class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >{{ page.name }}</a>
+                  >
+                    {{ page.name }}
+                  </JLink>
                 </div>
               </PopoverGroup>
             </div>
@@ -279,8 +288,8 @@ const navigation = {
             </div>
 
             <!-- Logo (lg-) -->
-            <JLink :to="route('index')" class="lg:hidden">
-              <AppIcon class="w-auto h-16" dark alt="" />
+            <JLink v-if="useRoute().currentRoute !== 'login'" :to="route('index')" class="lg:hidden">
+              <AppIcon class="w-auto h-14" dark alt="" />
             </JLink>
 
             <div class="flex items-center justify-end flex-1">
