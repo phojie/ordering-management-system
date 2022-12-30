@@ -7,6 +7,7 @@ export interface Category {
   description: string
   status?: string
   slug?: string
+  image?: string
   createdAt?: string
   updatedAt?: string
 

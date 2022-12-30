@@ -20,6 +20,7 @@ export const useCategoryStore = defineStore('category', () => {
     id: '',
     name: '',
     description: '',
+    image: '',
 
     products: [],
   })
@@ -247,6 +248,7 @@ export const useCategoryStore = defineStore('category', () => {
     form.id = ''
     form.name = ''
     form.description = ''
+    form.image = ''
     form.status = 'active'
     form.products = []
 

@@ -44,6 +44,11 @@ class CategoryService implements CategoryServiceInterface
 
    			$productsIds = collect($request->products)->pluck('id')->toArray();
    			$category->products()->attach($productsIds);
+
+   			// if has request image
+   			if ($request->image) {
+   				(new FileUploaderService())->uploadCategoryImageToMedia($category->id, $request->image);
+   			}
    		});
    	} catch (\Exception $e) {
    		throw $e;
@@ -61,6 +66,13 @@ class CategoryService implements CategoryServiceInterface
 
    			$productsIds = collect($request->products)->pluck('id')->toArray();
    			$category->products()->sync($productsIds);
+
+   			// if has request image
+   			if ($request->image) {
+   				(new FileUploaderService())->uploadCategoryImageToMedia($category->id, $request->image);
+   			} else {
+   				(new FileUploaderService())->deleteCategoryImageFromMedia($category->id);
+   			}
    		});
    	} catch (\Exception $e) {
    		throw $e;

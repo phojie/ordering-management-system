@@ -8,7 +8,7 @@ const processing = $computed(() => useProductStore().processing)
     <JFileInput
       v-model="form.image"
       accepted-file-types="image/*"
-      label="Cover Image"
+      label="Product Image"
     />
 
     <JSelect
