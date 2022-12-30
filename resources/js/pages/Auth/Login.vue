@@ -18,9 +18,8 @@ const processing = computed(() => form.processing)
         Sign in to your account
       </h2>
       <p class="mt-2 text-sm text-center text-gray-600">
-        Or
         {{ ' ' }}
-        <a href="#" class="font-medium text-primary-600 hover:text-primary-500">start your 14-day free trial</a>
+        <a href="#" class="font-medium text-primary-600 hover:text-primary-500">It's free, forever!</a>
       </p>
     </div>
 
