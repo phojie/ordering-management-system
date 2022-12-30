@@ -1,8 +1,8 @@
 import HeroiconsHome from '~icons/heroicons/home'
 import HeroiconsDocumentDuplicate from '~icons/heroicons/document-duplicate'
 import HeroiconsShoppingCart from '~icons/heroicons/shopping-cart'
-import HeroiconsBars3 from '~icons/heroicons/bars-3'
-// import HeroiconsBeaker from '~icons/heroicons/beaker'
+import HeroiconsBeaker from '~icons/heroicons/beaker'
+// import HeroiconsBars3 from '~icons/heroicons/bars-3'
 // import HeroiconsBookmark from '~icons/heroicons/bookmark'
 // import HeroiconsClipboard from '~icons/heroicons/clipboard'
 import HeroiconsUserGroup from '~icons/heroicons/user-group'
@@ -36,7 +36,7 @@ export const useNavigation = () => {
     },
     {
       name: 'Products',
-      icon: HeroiconsBars3,
+      icon: HeroiconsBeaker,
       href: 'admin.products.index',
       exact: true,
     },
@@ -52,7 +52,7 @@ export const useNavigation = () => {
     },
     // {
     //   name: 'Add-ons',
-    //   icon: HeroiconsBeaker,
+    //   icon: HeroiconsBars3,
     //   href: '#',
     // },
     // {
