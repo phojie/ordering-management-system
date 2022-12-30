@@ -159,7 +159,7 @@ const navigation = {
             <!-- Logo (lg+) -->
             <div class="hidden lg:flex lg:flex-1 lg:items-center">
               <JLink :to="route('index')">
-                <AppIcon class="w-auto h-16" dark alt="" />
+                <AppIcon class="w-auto p-1 border border-dashed rounded h-14 border-primary-800" dark alt="" />
               </JLink>
             </div>
 
