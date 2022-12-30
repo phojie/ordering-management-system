@@ -31,7 +31,7 @@ class Product extends Model implements HasMedia
 
 	public function getImageAttribute(): string
 	{
-		return $this->getFirstMediaUrl('image', 'thumb') ?: 'https://robohash.org/'.$this->id.'?set=set1&bgset=bg2&size=400x400';
+		return $this->getFirstMediaUrl('image', 'thumb') ?: 'https://robohash.org/'.$this->id.'?set=set1&bgset=bg2&size=600x600';
 	}
 
   public function registerMediaCollections(): void
@@ -43,8 +43,8 @@ class Product extends Model implements HasMedia
   public function registerMediaConversions(Media $media = null): void
   {
   	$this->addMediaConversion('image')
-  		  ->width(400)
-  		  ->height(400);
+  		  ->width(600)
+  		  ->height(600);
   }
 
 	public function variants(): HasMany

@@ -4,15 +4,15 @@ use Illuminate\Foundation\Application;
 use Inertia\Inertia;
 
 Route::get('/', function () {
+  $randomCategories = \App\Models\Category::inRandomOrder()->limit(3)->get();
+
 	return Inertia::render('Index', [
-		'canLogin' => Route::has('login'),
-		'canRegister' => Route::has('register'),
-		'laravelVersion' => Application::VERSION,
-		'phpVersion' => PHP_VERSION,
+    'categories' => $randomCategories,
 	]);
 })->name('index');
 
 Route::get('/about', function () {
+
 	return Inertia::render('About');
 })->name('about');
 

@@ -15,6 +15,7 @@ class CategoryResource extends JsonResource
 			'status' => $this->status,
 			'createdAt' => $this->created_at,
 			'updatedAt' => $this->updated_at,
+      'image' => $this->image,
 
       // relationships
       'products' => ProductResource::collection($this->whenLoaded('products')),

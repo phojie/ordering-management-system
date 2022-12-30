@@ -1,4 +1,10 @@
-<script setup>
+<script setup lang="ts">
+import type { Category } from '@/types/categories'
+
+const props = defineProps<{
+  categories: Array<Category>
+}>()
+
 const collections = [
   {
     name: 'Women\'s',
@@ -94,28 +100,28 @@ const open = ref(false)
         </div>
       </div>
 
-      <section aria-labelledby="collection-heading" class="relative -mt-96 sm:mt-0">
-        <h2 id="collection-heading" class="sr-only">
-          Collections
+      <section aria-labelledby="category-heading" class="relative -mt-96 sm:mt-0">
+        <h2 id="category-heading" class="sr-only">
+          Categories
         </h2>
         <div class="grid max-w-md grid-cols-1 px-4 mx-auto gap-y-6 sm:max-w-7xl sm:grid-cols-3 sm:gap-y-0 sm:gap-x-6 sm:px-6 lg:gap-x-8 lg:px-8">
-          <div v-for="collection in collections" :key="collection.name" class="relative bg-white rounded-lg shadow-xl group h-96 sm:aspect-w-4 sm:aspect-h-5 sm:h-auto">
+          <div v-for="category in categories" :key="category.name" class="relative bg-white rounded-lg shadow-xl group h-96 sm:aspect-w-4 sm:aspect-h-5 sm:h-auto">
             <div>
               <div aria-hidden="true" class="absolute inset-0 overflow-hidden rounded-lg">
                 <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                  <img :src="collection.imageSrc" :alt="collection.imageAlt" class="object-cover object-center w-full h-full">
+                  <img :src="category.image" :alt="category.name" class="object-cover object-center w-full h-full">
                 </div>
                 <div class="absolute inset-0 opacity-50 bg-gradient-to-b from-transparent to-black" />
               </div>
               <div class="absolute inset-0 flex items-end p-6 rounded-lg">
                 <div>
                   <p aria-hidden="true" class="text-sm text-white">
-                    Shop the collection
+                    Shop the category
                   </p>
                   <h3 class="mt-1 font-semibold text-white">
-                    <a :href="collection.href">
+                    <a :href="category.href">
                       <span class="absolute inset-0" />
-                      {{ collection.name }}
+                      {{ category.name }}
                     </a>
                   </h3>
                 </div>
@@ -133,7 +139,7 @@ const open = ref(false)
             Trending Products
           </h2>
           <a href="#" class="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">
-            Shop the collection
+            Shop the category
             <span aria-hidden="true"> &rarr;</span>
           </a>
         </div>
@@ -160,7 +166,7 @@ const open = ref(false)
 
         <div class="mt-8 text-sm md:hidden">
           <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
-            Shop the collection
+            Shop the category
             <span aria-hidden="true"> &rarr;</span>
           </a>
         </div>
