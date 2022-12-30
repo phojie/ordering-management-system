@@ -47,22 +47,32 @@ const getById = async (id: number) => {
       @deleteAll="deleteAll()"
     >
       <template #table-data="{ item, selected }">
-        <td class="flex items-center py-4 pr-3 space-x-3 text-sm whitespace-nowrap">
-          <span
-            :style="`background-color:${item.color}`"
-            :class="{ 'bg-gray-400': !item.color }"
-            class="w-2 h-2 -mx-1 rounded-full "
-          />
-          <span class="font-medium" :class="[selected ? 'text-primary-600' : 'text-gray-900']">
-            {{ item.name }}
-          </span>
+        <td class="py-4 pr-3 text-sm whitespace-nowrap">
+          <div class="flex items-center">
+            <div class="flex-shrink-0 w-10 h-10">
+              <img
+                class="w-10 h-10 rounded-md"
+                :src="item.image"
+                loading="lazy"
+                alt="…"
+              >
+            </div>
+            <div class="ml-4">
+              <div class="font-medium" :class="[selected ? 'text-primary-600' : 'text-gray-900']">
+                {{ item.name }}
+              </div>
+              <div class="text-gray-500">
+                {{ item.description }}
+              </div>
+            </div>
+          </div>
         </td>
 
-        <td class="w-1/3 px-3 py-4 text-sm text-gray-500 whitespace-normal">
+        <!-- <td class="w-1/3 px-3 py-4 text-sm text-gray-500 whitespace-normal">
           <p class="line-clamp-1">
             {{ item.description }}
           </p>
-        </td>
+        </td> -->
 
         <td class="px-3 py-4 text-sm text-gray-500 whitespace-normal ">
           <JBadge class="!rounded-md" variant="primary">

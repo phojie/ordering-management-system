@@ -44,15 +44,15 @@ export const useCategoryStore = defineStore('category', () => {
         type: 'text',
       },
     },
-    {
-      text: 'Description',
-      value: 'description',
-      sortable: true,
-      filterable: true,
-      filterOptions: {
-        type: 'text',
-      },
-    },
+    // {
+    //   text: 'Description',
+    //   value: 'description',
+    //   sortable: true,
+    //   filterable: true,
+    //   filterOptions: {
+    //     type: 'text',
+    //   },
+    // },
     {
       text: 'Products',
       value: 'products',
