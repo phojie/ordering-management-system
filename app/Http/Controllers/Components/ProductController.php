@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Components;
 
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductController
 {
@@ -24,4 +25,16 @@ class ProductController
 
 		return response()->json($product, 200);
 	}
+
+  public function random(Request $request)
+  {
+  	$limit = $request->limit ?? 3;
+
+  	$query = Product::query()
+  	  ->inRandomOrder()
+  	  ->limit($limit)
+  	  ->get();
+
+  	return response()->json($query, 200);
+  }
 }
