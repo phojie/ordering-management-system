@@ -17,6 +17,7 @@ const toggleEdit = (category: Category) => {
   form.id = category.id
   form.name = category.name
   form.description = category.description
+  form.image = category.image
 
   form.products = category.products
 

@@ -18,7 +18,9 @@ class ProductFactory extends Factory
 			'description' => $this->faker->sentence,
 			'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
 		];
+
 	}
+
 
   public function generateRandomProduct(): string
   {
