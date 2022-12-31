@@ -72,7 +72,7 @@ const open = ref(false)
       <div aria-hidden="true" class="absolute inset-0 hidden sm:flex sm:flex-col">
         <div class="relative flex-1 w-full bg-gray-800">
           <div class="absolute inset-0 overflow-hidden">
-            <img src="https://tailwindui.com/img/ecommerce-images/home-page-04-hero-full-width.jpg" alt="" class="object-cover object-center w-full h-full">
+            <img src="/images/cover-photo.webp" alt="" class="object-cover object-center w-full h-full">
           </div>
           <div class="absolute inset-0 bg-gray-900 opacity-50" />
         </div>
@@ -95,7 +95,7 @@ const open = ref(false)
             Mid-Season Sale
           </h1>
           <div class="mt-4 sm:mt-6">
-            <a href="#" class="inline-block px-8 py-3 font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700">Shop Collection</a>
+            <a href="#" class="inline-block px-8 py-3 font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700">Shop Category</a>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@ const open = ref(false)
           Categories
         </h2>
         <div class="grid max-w-md grid-cols-1 px-4 mx-auto gap-y-6 sm:max-w-7xl sm:grid-cols-3 sm:gap-y-0 sm:gap-x-6 sm:px-6 lg:gap-x-8 lg:px-8">
-          <div v-for="category in categories" :key="category.name" class="relative bg-white rounded-lg shadow-xl group h-96 sm:aspect-w-4 sm:aspect-h-5 sm:h-auto">
+          <div v-for="category in categories" :key="category.name" class="relative bg-white rounded-lg shadow-xl cursor-pointer group h-96 sm:aspect-w-4 sm:aspect-h-5 sm:h-auto">
             <div>
               <div aria-hidden="true" class="absolute inset-0 overflow-hidden rounded-lg">
                 <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
