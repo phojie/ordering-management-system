@@ -92,10 +92,10 @@ const open = ref(false)
         </div>
         <div class="relative py-32">
           <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-            Mid-Season Sale
+            Biggest Sale of the Year
           </h1>
           <div class="mt-4 sm:mt-6">
-            <a href="#" class="inline-block px-8 py-3 font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700">Shop Category</a>
+            <a href="#" class="inline-block px-8 py-3 font-medium text-white border border-transparent rounded-md bg-primary-600 hover:bg-primary-700">Shop Category</a>
           </div>
         </div>
       </div>
@@ -138,7 +138,7 @@ const open = ref(false)
           <h2 id="favorites-heading" class="text-2xl font-bold tracking-tight text-gray-900">
             Trending Products
           </h2>
-          <a href="#" class="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">
+          <a href="#" class="hidden text-sm font-medium text-primary-600 hover:text-primary-500 md:block">
             Shop the category
             <span aria-hidden="true"> &rarr;</span>
           </a>
@@ -165,7 +165,7 @@ const open = ref(false)
         </div>
 
         <div class="mt-8 text-sm md:hidden">
-          <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+          <a href="#" class="font-medium text-primary-600 hover:text-primary-500">
             Shop the category
             <span aria-hidden="true"> &rarr;</span>
           </a>
