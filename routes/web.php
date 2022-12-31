@@ -7,12 +7,12 @@ require __DIR__.'/auth/index.php';
 
 // public routes
 require __DIR__.'/public/index.php';
+require __DIR__.'/public/category.php';
+require __DIR__.'/public/product.php';
 
 // customer routes
 Route::middleware(['auth', 'customer'])->group(function () {
 	require __DIR__.'/customer/index.php';
-  require __DIR__.'/public/category.php';
-  require __DIR__.'/public/product.php';
 });
 
 // admin routes

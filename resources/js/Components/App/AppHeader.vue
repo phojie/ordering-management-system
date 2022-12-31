@@ -6,10 +6,12 @@ const navigation = {
     {
       name: 'Category',
       featured: [],
+      exploreHref: 'categories.index',
     },
     {
       name: 'Products',
       featured: [],
+      exploreHref: 'products.index',
     },
   ],
   pages: [
@@ -206,8 +208,8 @@ onMounted(async () => {
                                     class="object-cover object-center"
                                   >
                                 </div>
-                                <a
-                                  :href="product.href"
+                                <JLink
+                                  :to="product.href"
                                   class="block mt-4 font-medium text-gray-900"
                                 >
                                   <span
@@ -215,7 +217,7 @@ onMounted(async () => {
                                     aria-hidden="true"
                                   />
                                   {{ product.name }}
-                                </a>
+                                </JLink>
                                 <p aria-hidden="true" class="mt-1">
                                   Shop now
                                 </p>
@@ -229,8 +231,8 @@ onMounted(async () => {
                                     alt="Explore more"
                                     class="bg-blend-darken"
                                   >
-                                  <a
-                                    href="#"
+                                  <JLink
+                                    :to="route(category.exploreHref)"
                                     class="block mt-4 font-medium text-gray-900 group-hover:text-primary-500"
                                   >
                                     <span
@@ -238,7 +240,7 @@ onMounted(async () => {
                                       aria-hidden="true"
                                     />
                                     Explore more
-                                  </a>
+                                  </JLink>
                                 </div>
                               </div>
                             </div>
