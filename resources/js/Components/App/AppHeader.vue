@@ -125,7 +125,7 @@ onMounted(async () => {
             <!-- Logo (lg+) -->
             <div class="hidden lg:flex lg:flex-1 lg:items-center">
               <JLink :to="route('index')">
-                <AppIcon class="w-auto p-1 border border-dotted rounded h-14 border-primary-800" dark alt="" />
+                <AppIcon class="p-1 rounded w-14 h-14" dark alt="" />
               </JLink>
             </div>
 
