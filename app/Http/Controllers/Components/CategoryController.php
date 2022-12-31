@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Components;
 
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoryController
 {
@@ -23,4 +24,16 @@ class CategoryController
 
 		return response()->json($category, 200);
 	}
+
+  public function random(Request $request) {
+    $limit = $request->limit ?? 3;
+
+    $query = Category::query()
+      ->inRandomOrder()
+      ->limit($limit)
+      ->get();
+
+    return response()->json($query, 200);
+
+  }
 }

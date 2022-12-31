@@ -4,7 +4,7 @@ const currencies = ['PHP']
 const navigation = {
   categories: [
     {
-      name: 'Menu',
+      name: 'Category',
       featured: [
         {
           name: 'New Arrivals',
@@ -81,6 +81,22 @@ const navigation = {
     { name: 'About', href: 'about' },
   ],
 }
+
+onMounted(async () => {
+  await useFetch(route('components.categories.random')).get().json().then(({ data }) => {
+    // map data
+    navigation.categories[0].featured = _.map(data.value, (category) => {
+      return {
+        name: category.name,
+        href: route('categories.show', {
+          slug: category.slug,
+        }),
+        imageSrc: category.image,
+        imageAlt: category.name,
+      }
+    })
+  })
+})
 </script>
 
 <template>
@@ -253,6 +269,27 @@ const navigation = {
                                 <p aria-hidden="true" class="mt-1">
                                   Shop now
                                 </p>
+                              </div>
+                              <div
+                                class="relative grid overflow-hidden bg-gray-100 rounded-md place-items-center group group-hover:opacity-75"
+                              >
+                                <div class="flex flex-col space-y-10">
+                                  <img
+                                    src="/svgs/explore-arrow.svg"
+                                    alt="Explore more"
+                                    class="bg-blend-darken"
+                                  >
+                                  <a
+                                    href="#"
+                                    class="block mt-4 font-medium text-gray-900 group-hover:text-primary-500"
+                                  >
+                                    <span
+                                      class="absolute inset-0 z-10"
+                                      aria-hidden="true"
+                                    />
+                                    Explore more
+                                  </a>
+                                </div>
                               </div>
                             </div>
                           </div>

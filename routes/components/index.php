@@ -7,6 +7,11 @@ use App\Http\Controllers\Components\RoleController;
 use App\Http\Controllers\Components\TemporaryFileController;
 use App\Http\Controllers\Components\UserController;
 
+
+// unauthorized
+Route::get('components/categories/random', [CategoryController::class, 'random'])->name('components.categories.random');
+
+// authorized
 Route::prefix('components')->middleware('auth')->group(function () {
 	// roles
 	Route::get('roles', [RoleController::class, 'index'])->name('components.roles');

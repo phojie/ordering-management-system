@@ -9,7 +9,6 @@ Route::controller(PublicController::class)->group(function () {
   Route::get('/', 'index')->name('index');
 });
 
-
 Route::get('/about', function () {
 
 	return Inertia::render('About');
