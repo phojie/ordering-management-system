@@ -119,6 +119,12 @@ function handleRemoveFile() {
     emit('update:modelValue', '')
   })
 }
+
+// watch
+watch(() => props.modelValue, (value) => {
+  if (value === '')
+    handleRemoveFile()
+})
 </script>
 
 <template>
