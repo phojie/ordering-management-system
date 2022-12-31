@@ -9,25 +9,24 @@ const props = defineProps<{
 
 const perks = [
   {
-    name: 'Free returns',
-    imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-returns-light.svg',
-    description: 'Not what you expected? Place it back in the parcel and attach the pre-paid postage stamp.',
+    name: 'Free Shipping',
+    description: 'It\'s not actually free we just price it into the products. Someone\'s paying for it, and it\'s not us.',
+    imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-delivery-light.svg',
   },
   {
-    name: 'Same day delivery',
-    imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-calendar-light.svg',
-    description:
-      'We offer a delivery service that has never been done before. Checkout today and receive your products within hours.',
+    name: '24/7 Customer Support',
+    description: 'Our AI chat widget is powered by a naive series of if/else statements. Guaranteed to irritate.',
+    imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-chat-light.svg',
   },
   {
-    name: 'All year discount',
-    imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-gift-card-light.svg',
-    description: 'Looking for a deal? You can use the code "ALLYEAR" at checkout and get money off all year round.',
+    name: 'Fast Shopping Cart',
+    description: 'Look how fast that cart is going. What does this mean for the actual experience? I don\'t know.',
+    imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-fast-checkout-light.svg',
   },
   {
-    name: 'For the planet',
-    imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-planet-light.svg',
-    description: 'We’ve pledged 1% of sales to the preservation and restoration of the natural environment.',
+    name: 'Gift Cards',
+    description: 'Buy them for your friends, especially if they don\'t like our store. Free money for us, it\'s great.',
+    imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-gift-card-light.svg',
   },
 ]
 
@@ -112,7 +111,7 @@ const productVariantPrices = (product: Product) => {
       <div class="px-4 py-24 mx-auto max-w-7xl sm:px-6 sm:py-32 lg:px-8 lg:pt-32">
         <div class="md:flex md:items-center md:justify-between">
           <h2 id="favorites-heading" class="text-2xl font-bold tracking-tight text-gray-900">
-            Trending Products
+            Our Favorites
           </h2>
           <a href="#" class="hidden text-sm font-medium text-primary-600 hover:text-primary-500 md:block">
             Shop the category
@@ -159,7 +158,7 @@ const productVariantPrices = (product: Product) => {
           <div v-for="perk in perks" :key="perk.name" class="text-center md:flex md:items-start md:text-left lg:block lg:text-center">
             <div class="md:flex-shrink-0">
               <div class="flow-root">
-                <img class="w-auto h-24 mx-auto -my-1" :src="perk.imageUrl" alt="">
+                <img class="w-auto h-24 mx-auto -my-1" :src="perk.imageSrc" alt="">
               </div>
             </div>
             <div class="mt-6 md:mt-0 md:ml-4 lg:mt-6 lg:ml-0">
