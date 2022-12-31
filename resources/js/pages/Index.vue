@@ -1,42 +1,12 @@
 <script setup lang="ts">
 import type { Category } from '@/types/categories'
+import type { Product } from '@/types/products'
 
 const props = defineProps<{
   categories: Array<Category>
+  products: Array<Product>
 }>()
 
-const collections = [
-  {
-    name: 'Women\'s',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-04-collection-01.jpg',
-    imageAlt: 'Woman wearing a comfortable cotton t-shirt.',
-  },
-  {
-    name: 'Men\'s',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-04-collection-02.jpg',
-    imageAlt: 'Man wearing a comfortable and casual cotton t-shirt.',
-  },
-  {
-    name: 'Desk Accessories',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-04-collection-03.jpg',
-    imageAlt: 'Person sitting at a wooden desk with paper note organizer, pencil and tablet.',
-  },
-]
-const trendingProducts = [
-  {
-    id: 1,
-    name: 'Leather Long Wallet',
-    color: 'Natural',
-    price: '$75',
-    href: '#',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-04-trending-product-02.jpg',
-    imageAlt: 'Hand stitched, orange leather long wallet.',
-  },
-  // More products...
-]
 const perks = [
   {
     name: 'Free returns',
@@ -61,7 +31,13 @@ const perks = [
   },
 ]
 
-const open = ref(false)
+const productVariantNames = (product: Product) => {
+  return product.variants?.map(variant => variant.name).join(', ')
+}
+
+const productVariantPrices = (product: Product) => {
+  return `₱${product.variants?.map(variant => variant.price).join(' / ₱')}`
+}
 </script>
 
 <template>
@@ -145,21 +121,21 @@ const open = ref(false)
         </div>
 
         <div class="grid grid-cols-2 mt-6 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
-          <div v-for="product in trendingProducts" :key="product.id" class="relative group">
+          <div v-for="product in products" :key="product.id" class="relative group">
             <div class="w-full h-56 overflow-hidden rounded-md group-hover:opacity-75 lg:h-72 xl:h-80">
-              <img :src="product.imageSrc" :alt="product.imageAlt" class="object-cover object-center w-full h-full">
+              <img :src="product.image" :alt="product.name" class="object-cover object-center w-full h-full">
             </div>
             <h3 class="mt-4 text-sm text-gray-700">
-              <a :href="product.href">
+              <a :href="product.slug">
                 <span class="absolute inset-0" />
                 {{ product.name }}
               </a>
             </h3>
             <p class="mt-1 text-sm text-gray-500">
-              {{ product.color }}
+              {{ productVariantNames(product) }}
             </p>
             <p class="mt-1 text-sm font-medium text-gray-900">
-              {{ product.price }}
+              {{ productVariantPrices(product) }}
             </p>
           </div>
         </div>

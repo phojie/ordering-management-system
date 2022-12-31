@@ -1,15 +1,14 @@
 <?php
 
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\PublicController;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-  $randomCategories = \App\Models\Category::inRandomOrder()->limit(3)->get();
 
-	return Inertia::render('Index', [
-    'categories' => $randomCategories,
-	]);
-})->name('index');
+Route::controller(PublicController::class)->group(function () {
+  // index
+  Route::get('/', 'index')->name('index');
+});
+
 
 Route::get('/about', function () {
 
