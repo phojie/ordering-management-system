@@ -37,10 +37,10 @@ const footerNavigation = {
         <div class="grid grid-cols-1 md:grid-flow-col md:auto-rows-min md:grid-cols-12 md:gap-x-8 md:gap-y-16">
           <!-- Image section -->
           <div class="col-span-1 md:col-span-2 lg:col-start-1 lg:row-start-1">
-            <img src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" class="w-auto h-8">
+            <AppIcon class="w-auto h-24" dark />
           </div>
 
-          <!-- Sproductap sections -->
+          <!-- Product sections -->
           <div
             class="grid grid-cols-2 col-span-6 gap-8 mt-10 sm:grid-cols-3 md:col-span-8 md:col-start-3 md:row-start-1 md:mt-0 lg:col-span-6 lg:col-start-2"
           >
@@ -92,12 +92,12 @@ const footerNavigation = {
               <label for="email-address" class="sr-only">Email address</label>
               <input
                 id="email-address" type="text" autocomplete="email"
-                class="w-full min-w-0 px-4 py-2 text-base text-gray-900 placeholder-gray-500 bg-white border border-gray-300 rounded-md shadow-sm appearance-none focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                class="w-full min-w-0 px-4 py-2 text-base text-gray-900 placeholder-gray-500 bg-white border border-gray-300 rounded-md shadow-sm appearance-none focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
               >
               <div class="flex-shrink-0 ml-4">
                 <button
                   type="submit"
-                  class="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  class="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                 >
                   Sign up
                 </button>
@@ -109,7 +109,7 @@ const footerNavigation = {
 
       <div class="py-10 text-center border-t border-gray-100">
         <p class="text-sm text-gray-500">
-          &copy; 2021 Your Company, Inc. All rights reserved.
+          &copy;  {{ useDateFormat(new Date(), 'YYYY').value }} Ronalds Catering, Inc. All rights reserved.
         </p>
       </div>
     </div>
