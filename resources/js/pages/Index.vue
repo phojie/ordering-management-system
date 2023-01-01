@@ -94,10 +94,14 @@ const productVariantPrices = (product: Product) => {
                     Shop the category
                   </p>
                   <h3 class="mt-1 font-semibold text-white">
-                    <a :href="category.href">
+                    <JLink
+                      :to="route('categories.show', {
+                        slug: category.slug,
+                      })"
+                    >
                       <span class="absolute inset-0" />
                       {{ category.name }}
-                    </a>
+                    </JLink>
                   </h3>
                 </div>
               </div>
@@ -125,10 +129,14 @@ const productVariantPrices = (product: Product) => {
               <img :src="product.image" :alt="product.name" class="object-cover object-center w-full h-full">
             </div>
             <h3 class="mt-4 text-sm text-gray-700">
-              <a :href="product.slug">
+              <JLink
+                :to="route('products.show', {
+                  slug: product.slug,
+                })"
+              >
                 <span class="absolute inset-0" />
                 {{ product.name }}
-              </a>
+              </JLink>
             </h3>
             <p class="mt-1 text-sm text-gray-500">
               {{ productVariantNames(product) }}
