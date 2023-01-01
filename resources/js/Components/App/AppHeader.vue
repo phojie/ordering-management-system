@@ -127,7 +127,7 @@ onMounted(async () => {
             <!-- Logo (lg+) -->
             <div class="hidden lg:flex lg:flex-1 lg:items-center">
               <JLink :to="route('index')">
-                <AppIcon class="p-1 rounded w-14 h-14" dark alt="" />
+                <AppIcon class="p-1 rounded w-14 h-14" alt="." />
               </JLink>
             </div>
 
@@ -278,7 +278,7 @@ onMounted(async () => {
 
             <!-- Logo (lg-) -->
             <JLink v-if="useRoute().currentRoute !== 'login'" :to="route('index')" class="lg:hidden">
-              <AppIcon class="w-auto h-14" dark alt="" />
+              <AppIcon class="w-auto h-14" alt="." />
             </JLink>
 
             <div class="flex items-center justify-end flex-1">
