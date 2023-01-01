@@ -10,6 +10,7 @@ class ProductController
 {
   public function index()
   {
+    // TODO: Add pagination
     $products = Product::get();
 
     return Inertia::render('Customer/Product/Index', [
