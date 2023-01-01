@@ -18,7 +18,7 @@ class UserTest extends TestCase
 	{
 		parent::setUp();
 
-		$this->seed();
+		$this->seed(['PermissionSeeder', 'RoleSeeder', 'UserSeeder', 'AdminSeeder']);
 
 		// get admin user from roles tabless
 		$this->user = User::withTrashed()->role('Super Admin')->first();
