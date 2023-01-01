@@ -4,16 +4,18 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class CategoryController
 {
-	public function index()
+	public function index(Request $request)
 	{
 		// TODO: Add pagination
 		$categories = Category::query()
 			->withCount(['products'])
-			->get();
+				->search($request->search)
+				->get();
 
 		return Inertia::render('Customer/Categories/Index', [
 			'categories' => CategoryResource::collection($categories),
