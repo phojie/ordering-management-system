@@ -13,7 +13,7 @@ class CategoryController
     $categories = Category::get();
 
     return Inertia::render('Customer/Categories/Index', [
-      'products' => CategoryResource::collection($categories),
+      'categories' => CategoryResource::collection($categories),
     ]);
   }
 
@@ -23,7 +23,7 @@ class CategoryController
 
 		// return new CategoryResource($category);
     return Inertia::render('Customer/Categories/Show', [
-      'product' => new CategoryResource($category),
+      'categories' => new CategoryResource($category),
     ]);
 	}
 }
