@@ -13,18 +13,18 @@ class ProductController
     // TODO: Add pagination
     $products = Product::get();
 
-    return Inertia::render('Customer/Product/Index', [
+    return Inertia::render('Customer/Products/Index', [
       'products' => ProductResource::collection($products),
     ]);
   }
 
 	public function show(string $slug)
 	{
-		$category = Product::where('slug', $slug)->firstOrFail();
+		$product = Product::where('slug', $slug)->firstOrFail();
 
 		// return new ProductResource($category);
-    return Inertia::render('Customer/Product/Show', [
-      'product' => new ProductResource($category),
+    return Inertia::render('Customer/Products/Show', [
+      'product' => new ProductResource($product),
     ]);
 	}
 }

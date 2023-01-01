@@ -12,15 +12,18 @@ class CategoryController
     // TODO: Add pagination
     $categories = Category::get();
 
-    return Inertia::render('Customer/Category/Index', [
+    return Inertia::render('Customer/Categories/Index', [
       'products' => CategoryResource::collection($categories),
     ]);
   }
 
 	public function show(string $slug)
 	{
-		$category = Category::where('slug', $slug)->firstOrFail();
+    $category = Category::where('slug', $slug)->firstOrFail();
 
-		return new CategoryResource($category);
+		// return new CategoryResource($category);
+    return Inertia::render('Customer/Categories/Show', [
+      'product' => new CategoryResource($category),
+    ]);
 	}
 }
