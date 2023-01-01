@@ -9,7 +9,7 @@ const $v = useMenuStore().vuelidate
       id="name"
       v-model="menuForm.name"
       placeholder="Name"
-      :error-message="$v.name.$errors[0]?.$message"
+      :error-message="$v.name.$errors[0]?.$message as string"
       :is-dirty="$v.name.$error"
       label="Name"
     />
