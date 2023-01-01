@@ -1,41 +1,9 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import type { Category } from '@/types/category'
 
 const props = defineProps<{
   categories: Array<Category>
 }>()
-
-// const categories = [
-//   {
-//     id: 1,
-//     name: 'Nomad Pouch',
-//     href: '#',
-//     price: '$50',
-//     availability: 'White and Black',
-//     imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-07-category-01.jpg',
-//     imageAlt: 'White fabric pouch with white zipper, black zipper pull, and black elastic loop.',
-//   },
-//   {
-//     id: 2,
-//     name: 'Zip Tote Basket',
-//     href: '#',
-//     price: '$140',
-//     availability: 'Washed Black',
-//     imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-07-category-02.jpg',
-//     imageAlt: 'Front of tote bag with washed black canvas body, black straps, and tan leather handles and accents.',
-//   },
-//   {
-//     id: 3,
-//     name: 'Medium Stuff Satchel',
-//     href: '#',
-//     price: '$220',
-//     availability: 'Blue',
-//     imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-07-category-03.jpg',
-//     imageAlt:
-//       'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
-//   },
-// More categories...
-// ]
 </script>
 
 <template>
@@ -43,9 +11,9 @@ const props = defineProps<{
     <div class="px-4 py-16 mx-auto overflow-hidden max-w-7xl sm:py-24 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
         <JLink
-          v-for="category in categories" :key="category.id"
+          v-for="category in categories " :key="category.id"
           :to="route('categories.show', {
-            slug: category.slug,
+            slug: category.slug as string,
           })"
           class="text-sm group"
         >
@@ -56,10 +24,10 @@ const props = defineProps<{
             {{ category.name }}
           </h3>
           <p class="italic text-gray-500">
-            {{ category.availability }}
+            {{ category.description }}
           </p>
           <p class="mt-2 font-medium text-gray-900">
-            {{ category.price }}
+            {{ category.productsCount }} {{ category.productsCount as number > 1 ? 'products' : 'product' }}
           </p>
         </JLink>
       </div>

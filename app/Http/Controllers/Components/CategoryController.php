@@ -18,22 +18,22 @@ class CategoryController
 	public function show($id)
 	{
 		$query = Category::query()
-        ->with(['products'])
+		->with(['products'])
 				->find($id);
 		$category = new CategoryResource($query);
 
 		return response()->json($category, 200);
 	}
 
-  public function random(Request $request) {
-    $limit = $request->limit ?? 3;
+  public function random(Request $request)
+  {
+  	$limit = $request->limit ?? 3;
 
-    $query = Category::query()
-      ->inRandomOrder()
-      ->limit($limit)
-      ->get();
+  	$query = Category::query()
+  	  ->inRandomOrder()
+  	  ->limit($limit)
+  	  ->get();
 
-    return response()->json($query, 200);
-
+  	return response()->json($query, 200);
   }
 }
