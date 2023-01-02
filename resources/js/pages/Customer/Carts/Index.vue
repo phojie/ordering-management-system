@@ -167,7 +167,7 @@ const orderTotal: number = $computed(() => {
             <JBtn
               size="lg"
               is-expanded
-              label="Chekout"
+              label="Checkout"
             />
           </JLink>
         </div>
