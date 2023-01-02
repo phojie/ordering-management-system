@@ -319,7 +319,7 @@ onMounted(async () => {
                       class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
                     >0</span>
                     <span class="sr-only">products in cart, view bag</span>
-                  </a>
+                  </JLink>
                 </div>
               </div>
             </div>
