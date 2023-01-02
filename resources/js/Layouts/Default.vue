@@ -8,5 +8,7 @@
     <slot />
 
     <AppFooter />
+
+    <AppNotification />
   </div>
 </template>
