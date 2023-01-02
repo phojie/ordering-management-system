@@ -180,6 +180,7 @@ onMounted(async () => {
                       leave-to-class="opacity-0"
                     >
                       <PopoverPanel
+                        v-slot="{ close }"
                         class="absolute inset-x-0 z-10 text-sm text-gray-500 bg-white top-full"
                       >
                         <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
@@ -205,6 +206,7 @@ onMounted(async () => {
                                 v-for="product in category.featured"
                                 :key="product.name"
                                 class="relative group"
+                                @click="close"
                               >
                                 <div
                                   class="overflow-hidden bg-gray-100 rounded-md aspect-w-1 aspect-h-1 group-hover:opacity-75"
@@ -231,6 +233,7 @@ onMounted(async () => {
                               </div>
                               <div
                                 class="relative grid overflow-hidden bg-gray-100 rounded-md place-items-center group group-hover:opacity-75"
+                                @click="close"
                               >
                                 <div class="flex flex-col space-y-10">
                                   <img
