@@ -22,7 +22,7 @@ class FlashNotification
 
 	public function create(string $prefixMessage, array $actions = []): void
 	{
-		$this->message = $prefixMessage.' has been created.';
+		$this->message = $prefixMessage.' has been added.';
 		$this->actions = $actions;
 
 		$this->flash();
@@ -40,8 +40,8 @@ class FlashNotification
 	public function destroy(string $prefixMessage, array $actions = []): void
 	{
 		$this->variant = 'danger';
-		$this->message = $prefixMessage.' has been deleted.';
-		$this->title = 'Successfully deleted!';
+		$this->message = $prefixMessage.' has been removed.';
+		$this->title = 'Successfully removed!';
 		$this->icon = 'trash';
 		$this->actions = $actions;
 
