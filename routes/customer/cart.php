@@ -11,6 +11,9 @@ Route::prefix('carts')->group(function () {
 		// store
 		Route::post('/', 'store')->name('customer.carts.store');
 
+    // update
+    Route::put('/{cart}', 'update')->name('customer.carts.update');
+
     // destroy
     Route::delete('/{cart}', 'destroy')->name('customer.carts.destroy');
 	});

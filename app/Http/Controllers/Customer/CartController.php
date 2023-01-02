@@ -16,7 +16,7 @@ class CartController
 		// TODO: Add pagination
 		$carts = Cart::query()
 						  ->where('user_id', $request->user()->id)
-              ->with('variant', 'product')
+			  ->with('variant', 'product')
 						  ->get();
 
 		return Inertia::render('Customer/Carts/Index', [
@@ -26,50 +26,48 @@ class CartController
 
   public function store(Request $request)
   {
+  	$variant = Variant::findOrFail($request->variantId);
+
   	$request->validate([
-  		'variantId' => 'required|exists:variants,id',
-  		'quantity' => 'required|integer|min:1',
+      'quantity' => 'required|integer|min:1|max:' . $variant->stock,
   	]);
 
-  	// $cart = Cart::query()
-  	//   ->where('user_id', $request->user()->id)
-  	//   ->where('variant_id', $request->input('variant_id'))
-  	//   ->first();
 
-  	// if ($cart) {
-  	// 	$cart->quantity += $request->input('quantity');
-  	// 	$cart->save();
-  	// } else {
-  	// 	$cart = Cart::create([
-  	// 		'user_id' => $request->user()->id,
-  	// 		'variant_id' => $request->input('variant_id'),
-    //     'product_id' => $cart->product_id,
-  	// 		'quantity' => $request->input('quantity'),
-  	// 	]);
-  	// }]
+  	// updateOrCreate
+  	Cart::updateOrCreate([
+  		'user_id' => $request->user()->id,
+  		'variant_id' => $variant->id,
+  		'product_id' => $variant->product_id,
+  	], [
+  		'quantity' => $request->quantity,
+  	]);
 
-    $variant = Variant::findOrFail($request->variantId);
-
-    // updateOrCreate
-    Cart::updateOrCreate([
-      'user_id' => $request->user()->id,
-      'variant_id' => $variant->id,
-      'product_id' => $variant->product_id,
-    ], [
-      'quantity' => $request->quantity,
-    ]);
-
-    (new FlashNotification())->create('Cart');
+  	(new FlashNotification())->create('Cart');
 
   	return redirect()->route('customer.carts.index');
+  }
+
+  public function update(Request $request, Cart $cart)
+  {
+  	$request->validate([
+  		'quantity' => 'required|integer|min:1|max:' . $cart->variant->stock,
+  	]);
+
+  	$cart->update([
+  		'quantity' => $request->quantity,
+  	]);
+
+  	(new FlashNotification())->update('Cart qty.');
+
+  	return redirect()->back();
   }
 
   public function destroy(Cart $cart)
   {
   	$cart->delete();
 
-    (new FlashNotification())->destroy('Cart');
+  	(new FlashNotification())->destroy('Cart');
 
-		return redirect()->back();
+  	return redirect()->back();
   }
 }

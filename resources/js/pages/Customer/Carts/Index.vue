@@ -5,7 +5,11 @@ const props = defineProps<{
   carts: Array<Cart>
 }>()
 
-const { deleteCart } = useCartStore()
+const { deleteCart, updateCart } = useCartStore()
+
+const updateCartDebounce = _.debounce((id: string, quantity: number) => {
+  updateCart(id, quantity)
+}, 500)
 </script>
 
 <template>
@@ -44,13 +48,20 @@ const { deleteCart } = useCartStore()
                 </div>
 
                 <div class="mt-4 sm:mt-0 sm:pr-9">
-                  <!-- <label :for="`quantity-${cartIdx}`" class="sr-only">Quantity, {{ cart.variant.name }}</label>
-                  <select :id="`quantity-${cartIdx}`" :value="cart.quantity" name="quantity-${cartIdx}" class="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
-                    <option v-for="number in cart.variant.stock" :key="number" :value="number">
-                      {{ number }}
-                    </option>
-                  </select>
-                   -->
+                  <div
+                    class="w-24"
+                  >
+                    <JTextField
+                      :id="cart.id"
+                      v-model="cart.quantity"
+                      :name="cart.id"
+                      type="number"
+                      hints="Qty."
+                      :error-message="`${cart.variant.stock} is the maximum quantity available.`"
+                      :is-error="cart.quantity > cart.variant.stock"
+                      @blur="updateCartDebounce(cart.id, cart.quantity)"
+                    />
+                  </div>
 
                   <div class="absolute top-0 right-0">
                     <button type="button" class="inline-flex p-2 -m-2 text-gray-400 hover:text-gray-500" @click="deleteCart(cart.id)">
@@ -121,9 +132,19 @@ const { deleteCart } = useCartStore()
         </dl>
 
         <div class="mt-6">
-          <button type="submit" class="w-full px-4 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
+          <JBtn size="lg" is-expanded>
             Checkout
-          </button>
+          </JBtn>
+        </div>
+
+        <div class="mt-6 text-sm text-center">
+          <p>
+            or
+            <JLink :to="route('products.index')" class="font-medium text-primary-600 hover:text-primary-500">
+              Continue Shopping
+              <span aria-hidden="true"> &rarr;</span>
+            </JLink>
+          </p>
         </div>
       </section>
     </form>
