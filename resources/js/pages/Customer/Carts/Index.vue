@@ -49,11 +49,13 @@ const updateCartDebounce = _.debounce((id: string, quantity: number) => {
 
                 <div class="mt-4 sm:mt-0 sm:pr-9">
                   <div
+                    v-if="cart.variant.inStock"
                     class="w-24"
                   >
                     <JTextField
                       :id="cart.id"
                       v-model="cart.quantity"
+                      :is-disabled="!cart.variant.inStock"
                       :name="cart.id"
                       type="number"
                       hints="Qty."
@@ -72,11 +74,17 @@ const updateCartDebounce = _.debounce((id: string, quantity: number) => {
                 </div>
               </div>
 
-              <p class="flex mt-4 space-x-2 text-sm text-gray-700">
-                <heroicons-check-20-solid v-if="cart.variant?.inStock" class="flex-shrink-0 w-5 h-5 text-green-500" aria-hidden="true" />
-                <heroicons-clock-20-solid v-else class="flex-shrink-0 w-5 h-5 text-gray-300" aria-hidden="true" />
-                <span>{{ cart.variant?.inStock ? 'In stock' : `Ships in 30 minutes` }}</span>
-              </p>
+              <div class="flex justify-between mt-4 text-sm">
+                <p class="flex space-x-2 text-gray-700">
+                  <heroicons-check-20-solid v-if="cart.variant?.inStock" class="flex-shrink-0 w-5 h-5 text-green-500" aria-hidden="true" />
+                  <heroicons-clock-20-solid v-else class="flex-shrink-0 w-5 h-5 text-gray-300" aria-hidden="true" />
+                  <span>{{ cart.variant?.inStock ? 'In stock' : `Out of stock` }}</span>
+                </p>
+
+                <p v-if="cart.variant.inStock">
+                  Total: <span class="font-medium">₱{{ (cart.variant.price * cart.quantity).toFixed(2) }}</span>
+                </p>
+              </div>
             </div>
           </li>
         </ul>
