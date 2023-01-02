@@ -70,7 +70,9 @@ const productVariantPrices = (product: Product) => {
             Biggest Sale of the Year
           </h1>
           <div class="mt-4 sm:mt-6">
-            <a href="#" class="inline-block px-8 py-3 font-medium text-white border border-transparent rounded-md bg-primary-600 hover:bg-primary-700">Shop Category</a>
+            <JLink :to="route('categories.index')" class="inline-block px-8 py-3 font-medium text-white border border-transparent rounded-md bg-primary-600 hover:bg-primary-700">
+              Shop Category
+            </JLink>
           </div>
         </div>
       </div>
