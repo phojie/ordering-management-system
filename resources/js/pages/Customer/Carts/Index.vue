@@ -77,7 +77,7 @@ const updateCartDebounce = _.debounce((id: string, quantity: number) => {
               <div class="flex justify-between mt-4 text-sm">
                 <p class="flex space-x-2 text-gray-700">
                   <heroicons-check-20-solid v-if="cart.variant?.inStock" class="flex-shrink-0 w-5 h-5 text-green-500" aria-hidden="true" />
-                  <heroicons-clock-20-solid v-else class="flex-shrink-0 w-5 h-5 text-gray-300" aria-hidden="true" />
+                  <heroicons-clock-20-solid v-else :class="cart.variant?.inStock ? '' : 'text-warning-500'" class="flex-shrink-0 w-5 h-5 text-gray-300" aria-hidden="true" />
                   <span>{{ cart.variant?.inStock ? 'In stock' : `Out of stock` }}</span>
                 </p>
 
