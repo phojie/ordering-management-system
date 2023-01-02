@@ -4,6 +4,7 @@ export interface Variant {
   color?: string
   price: number
   stock: number
+  inStock: boolean
   product_id?: string
 }
 

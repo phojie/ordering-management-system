@@ -24,6 +24,15 @@ class Variant extends Model
 		'price' => 'float',
 	];
 
+	protected $appends = [
+		'in_stock',
+	];
+
+	public function getInStockAttribute(): bool
+	{
+		return $this->stock > 0;
+	}
+
 	public static function boot(): void
 	{
 		parent::boot();
