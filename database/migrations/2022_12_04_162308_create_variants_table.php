@@ -15,7 +15,7 @@ return new class extends Migration {
 
 			$table->integer('stock')->default(0);
 
-			$table->float('price')->default(0);
+			$table->float('price', 2)->default(0);
 
 			$table->foreignUuid('product_id')->constrained('products')->cascadeOnDelete();
 
