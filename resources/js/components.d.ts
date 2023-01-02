@@ -27,6 +27,7 @@ declare module '@vue/runtime-core' {
     AdminSideBar: typeof import('./components/Admin/AdminSideBar.vue')['default']
     AdminUsersSlideOver: typeof import('./components/Admin/Users/AdminUsersSlideOver.vue')['default']
     AdminUsersTable: typeof import('./components/Admin/Users/AdminUsersTable.vue')['default']
+    AppCategoryCard: typeof import('./components/App/AppCategoryCard.vue')['default']
     AppFooter: typeof import('./components/App/AppFooter.vue')['default']
     AppHeader: typeof import('./components/App/AppHeader.vue')['default']
     AppIcon: typeof import('./components/App/AppIcon.vue')['default']
