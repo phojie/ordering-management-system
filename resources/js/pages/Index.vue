@@ -112,10 +112,10 @@ const perks = [
           <h2 id="favorites-heading" class="text-2xl font-bold tracking-tight text-gray-900">
             Our Favorites
           </h2>
-          <a href="#" class="hidden text-sm font-medium text-primary-600 hover:text-primary-500 md:block">
+          <JLink :to="route('categories.index')" class="hidden text-sm font-medium text-primary-600 hover:text-primary-500 md:block">
             Shop the category
             <span aria-hidden="true"> &rarr;</span>
-          </a>
+          </JLink>
         </div>
 
         <div class="grid grid-cols-2 mt-6 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
@@ -131,10 +131,10 @@ const perks = [
         </div>
 
         <div class="mt-8 text-sm md:hidden">
-          <a href="#" class="font-medium text-primary-600 hover:text-primary-500">
+          <JLink :to="route('categories.index')" class="font-medium text-primary-600 hover:text-primary-500">
             Shop the category
             <span aria-hidden="true"> &rarr;</span>
-          </a>
+          </JLink>
         </div>
       </div>
     </section>
