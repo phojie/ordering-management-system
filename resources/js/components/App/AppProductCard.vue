@@ -53,9 +53,9 @@ const priceRange = $computed(() => {
             :key="variant.id"
           >
             <JBadge
-              v-tooltip="`${variant.stock > 0 ? `PHP ${variant.price}` : 'Out of stock'}`"
+              v-tooltip="`${variant.inStock ? `PHP ${variant.price}` : 'Out of stock'}`"
               class="cursor-pointer group"
-              :variant="variant.stock > 0 ? 'text' : 'danger'"
+              :variant="variant.inStock ? 'text' : 'danger'"
             >
               <span
                 :style="`background-color:${variant.color}`"
@@ -64,7 +64,7 @@ const priceRange = $computed(() => {
               />
               <span
                 class="mr-1 "
-              > {{ variant.stock }} </span>
+              > {{ variant.name }} </span>
             </JBadge>
           </div>
         </div>
