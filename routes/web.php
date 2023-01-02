@@ -13,6 +13,7 @@ require __DIR__.'/public/product.php';
 // customer routes
 Route::middleware(['auth', 'customer'])->group(function () {
 	require __DIR__.'/customer/index.php';
+	require __DIR__.'/customer/cart.php';
 });
 
 // admin routes
