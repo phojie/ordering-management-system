@@ -3,13 +3,17 @@ defineProps<{
   to: any
   active?: boolean
   activeClass?: string
+  disabled?: boolean
 }>()
 </script>
 
 <template>
   <Link
-    :href="to"
-    :class="[active ? activeClass : '', { 'cursor-default': !to || to === '#' }]"
+    :href="!disabled ? to : '#'"
+    :class="[
+      active ? activeClass : '', { 'cursor-default': !to || to === '#' },
+      disabled ? 'cursor-not-allowed' : '',
+    ]"
   >
     <slot />
   </Link>
