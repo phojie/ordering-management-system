@@ -10,6 +10,27 @@ const { deleteCart, updateCart } = useCartStore()
 const updateCartDebounce = _.debounce((id: string, quantity: number) => {
   updateCart(id, quantity)
 }, 500)
+
+// order-summary
+const subTotal: number = $computed(() => {
+  // filter only the variant that is inStock
+  const validCarts = _.filter(props.carts, (cart) => {
+    return cart.variant.inStock
+  })
+
+  // calculate the total price
+  return validCarts.reduce((total, cart) => {
+    return total + (cart.variant.price * cart.quantity)
+  }, 0)
+})
+
+const shipping: number = $computed(() => {
+  return 45
+})
+
+const orderTotal: number = $computed(() => {
+  return shipping + subTotal
+})
 </script>
 
 <template>
@@ -102,7 +123,7 @@ const updateCartDebounce = _.debounce((id: string, quantity: number) => {
               Subtotal
             </dt>
             <dd class="text-sm font-medium text-gray-900">
-              ₱99.00
+              ₱{{ subTotal.toFixed(2) }}
             </dd>
           </div>
           <div class="flex items-center justify-between pt-4 border-t border-gray-200">
@@ -114,7 +135,7 @@ const updateCartDebounce = _.debounce((id: string, quantity: number) => {
               </a>
             </dt>
             <dd class="text-sm font-medium text-gray-900">
-              ₱5.00
+              ₱{{ shipping.toFixed(2) }}
             </dd>
           </div>
           <div class="flex items-center justify-between pt-4 border-t border-gray-200">
@@ -126,7 +147,7 @@ const updateCartDebounce = _.debounce((id: string, quantity: number) => {
               </a>
             </dt>
             <dd class="text-sm font-medium text-gray-900">
-              ₱8.32
+              ₱0.00
             </dd>
           </div>
           <div class="flex items-center justify-between pt-4 border-t border-gray-200">
@@ -134,7 +155,7 @@ const updateCartDebounce = _.debounce((id: string, quantity: number) => {
               Order total
             </dt>
             <dd class="text-base font-medium text-gray-900">
-              ₱112.32
+              ₱{{ orderTotal.toFixed(2) }}
             </dd>
           </div>
         </dl>
