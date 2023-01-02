@@ -12,6 +12,33 @@
 
 namespace App\Models{
 /**
+ * App\Models\Cart
+ *
+ * @property string $id
+ * @property string $user_id
+ * @property string $variant_id
+ * @property string $product_id
+ * @property int $quantity
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Product $product
+ * @property-read \App\Models\Variant $variant
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereVariantId($value)
+ */
+	class Cart extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Category
  *
  * @property string $id
