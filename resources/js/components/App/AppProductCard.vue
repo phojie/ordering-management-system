@@ -13,7 +13,7 @@ const priceRange = $computed(() => {
   const min = Math.min(...prices)
   const max = Math.max(...prices)
 
-  return min === max ? `₱ ${min}` : `₱ ${min} - ₱ ${max}`
+  return min === max ? `₱${min}` : `₱${min} - ₱${max}`
 })
 </script>
 
