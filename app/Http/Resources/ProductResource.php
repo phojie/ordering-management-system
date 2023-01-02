@@ -13,13 +13,14 @@ class ProductResource extends JsonResource
 			'name' => $this->name,
 			'description' => $this->description,
 			'status' => $this->status,
+			'slug' => $this->slug,
 			'createdAt' => $this->created_at,
 			'updatedAt' => $this->updated_at,
-      'image' => $this->image,
+			'image' => $this->image,
 
 			// relationships
 			'variants' => VariantResource::collection($this->whenLoaded('variants')),
-      'categories' => CategoryResource::collection($this->whenLoaded('categories')),
+			'categories' => CategoryResource::collection($this->whenLoaded('categories')),
 		];
 	}
 }
