@@ -1,5 +1,6 @@
 <script  setup lang="ts">
 const currencies = ['PHP']
+let cartCount = $ref<number>(0)
 
 interface featuredItem {
   name: string
@@ -28,6 +29,10 @@ const navigation = {
 }
 
 onMounted(async () => {
+  await useFetch(route('components.carts.count')).get().json().then(({ data }) => {
+    cartCount = data.value
+  })
+
   await useFetch(route('components.categories.random')).get().json().then(({ data }) => {
     // map data
     navigation.categories[0].featured = _.map(data.value, (category) => {
@@ -317,7 +322,7 @@ onMounted(async () => {
                     />
                     <span
                       class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800"
-                    >0</span>
+                    >{{ cartCount }}</span>
                     <span class="sr-only">products in cart, view bag</span>
                   </JLink>
                 </div>

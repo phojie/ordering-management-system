@@ -6,10 +6,12 @@ use App\Http\Controllers\Components\ProductController;
 use App\Http\Controllers\Components\RoleController;
 use App\Http\Controllers\Components\TemporaryFileController;
 use App\Http\Controllers\Components\UserController;
+use App\Http\Controllers\Components\CartController;
 
 // unauthorized
 Route::get('components/categories/random', [CategoryController::class, 'random'])->name('components.categories.random');
 Route::get('components/products/random', [ProductController::class, 'random'])->name('components.products.random');
+Route::get('components/carts/count', [CartController::class,'count'])->name('components.carts.count');
 
 // authorized
 Route::prefix('components')->middleware('auth')->group(function () {
