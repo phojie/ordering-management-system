@@ -41,13 +41,13 @@ watch(search, _.debounce((value: string) => {
 
     <div class="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-8">
       <AppProductCard
-        v-for="product in products" :key="product.id"
+        v-for="product in products"
+        :key="product.id"
         :name="product.name"
         :image="product.image as string"
         :description="product.description"
         :variants="product.variants as Array<Variant>"
         :slug="product.slug as string"
-        :product="product"
       />
     </div>
   </div>

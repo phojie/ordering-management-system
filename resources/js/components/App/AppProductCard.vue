@@ -1,43 +1,83 @@
 <script setup lang="ts">
+import type { Variant } from '@/types/variant'
 const props = defineProps<{
   name: string
   slug: string
   image: string
-  variants: {
-    name: string
-    price: number
-  }[]
+  description: string
+  variants: Array<Variant>
 }>()
 
-const productVariantNames = $computed(() => {
-  return props.variants?.map(variant => variant.name).join(' / ')
-})
+const priceRange = $computed(() => {
+  const prices = props.variants.map(variant => variant.price)
+  const min = Math.min(...prices)
+  const max = Math.max(...prices)
 
-const productVariantPrices = $computed(() => {
-  return props.variants.length > 0 ? `₱${props.variants?.map(variant => variant.price).join(' / ₱')}` : 'No price available'
+  return min === max ? `₱ ${min}` : `₱ ${min} - ₱ ${max}`
 })
 </script>
 
 <template>
-  <div class="relative group">
-    <div class="w-full h-56 overflow-hidden rounded-md group-hover:opacity-75 lg:h-72 xl:h-80">
-      <img :src="image" :alt="name" class="object-cover object-center w-full h-full">
+  <div>
+    <div class="relative">
+      <div class="relative w-full overflow-hidden rounded-lg h-72">
+        <img :src="image" :alt="slug" class="object-cover object-center w-full h-full">
+      </div>
+
+      <div class="relative h-16 mt-4">
+        <h3 class="text-sm font-medium text-gray-900">
+          {{ name }}
+        </h3>
+        <p
+          v-tooltip="`${description} `"
+          class="mt-1 text-sm text-gray-500 line-clamp-2"
+        >
+          {{ description }}
+        </p>
+      </div>
+
+      <div class="absolute inset-x-0 top-0 flex items-end justify-end p-4 overflow-hidden rounded-lg h-72">
+        <div aria-hidden="true" class="absolute inset-x-0 bottom-0 opacity-50 h-36 bg-gradient-to-t from-black" />
+        <p v-if="variants.length > 0" class="relative text-lg font-semibold text-white">
+          {{ priceRange }}
+        </p>
+      </div>
+
+      <div class="flex flex-col mt-3">
+        <h4 class="text-sm text-gray-700">
+          Variants
+        </h4>
+        <div class="flex h-10 gap-1 mt-1 overflow-auto">
+          <div
+            v-for="variant in variants"
+            :key="variant.id"
+          >
+            <JBadge
+              v-tooltip="`${variant.stock > 0 ? `PHP ${variant.price}` : 'Out of stock'}`"
+              class="cursor-pointer group"
+              :variant="variant.stock > 0 ? 'text' : 'danger'"
+            >
+              <span
+                :style="`background-color:${variant.color}`"
+                :class="{ 'bg-gray-400': !variant.color }"
+                class="w-2 h-2 mr-1 rounded-full"
+              />
+              <span
+                class="mr-1 "
+              > {{ variant.stock }} </span>
+            </JBadge>
+          </div>
+        </div>
+      </div>
     </div>
-    <h3 class="mt-4 text-sm text-gray-700">
+    <div class="mt-6">
       <JLink
         :to="route('products.show', {
           slug: slug as string,
-        })"
+        })" class="relative flex items-center justify-center px-8 py-2 text-sm font-medium text-gray-900 bg-gray-100 border border-transparent rounded-md hover:bg-gray-200"
       >
-        <span class="absolute inset-0" />
-        {{ name }}
+        Add to cart<span class="sr-only">, {{ name }}</span>
       </JLink>
-    </h3>
-    <p class="mt-1 text-sm text-gray-500">
-      {{ productVariantPrices }}
-    </p>
-    <p class="mt-1 text-sm font-medium text-gray-900">
-      {{ productVariantNames }}
-    </p>
+    </div>
   </div>
 </template>
