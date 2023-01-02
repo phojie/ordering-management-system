@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -46,10 +47,15 @@ class User extends Authenticatable implements HasMedia
 		'avatar',
 	];
 
+
 	public function getAvatarAttribute(): string
 	{
 		return $this->getFirstMediaUrl('avatar', 'thumb') ?: 'https://robohash.org/'.$this->id.'?set=set1&bgset=bg2&size=400x400';
 	}
+
+  public function carts(): HasMany {
+    return $this->hasMany(Cart::class);
+  }
 
 	public function scopeSearch($query, $search): object
 	{

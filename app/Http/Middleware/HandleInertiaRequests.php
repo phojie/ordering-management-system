@@ -49,6 +49,7 @@ class HandleInertiaRequests extends Middleware
 				'notification' => session('notification'),
 			],
 			'csrfToken' => csrf_token(),
+      'cartCount' => $isAuth? Auth::user()->carts->count() : 0,
 
 			// 'ziggy' => function () use ($request) {1
 			//     return array_merge((new Ziggy)->toArray(), [
