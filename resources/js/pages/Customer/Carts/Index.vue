@@ -184,7 +184,7 @@ const orderTotal: number = $computed(() => {
       </section>
     </form>
 
-    <div class="w-full mt-12">
+    <div v-else class="w-full mt-12">
       <div class="grid place-items-center">
         <img src="/svgs/empty_cart.svg" class="w-80 h-80">
 
