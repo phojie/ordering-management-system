@@ -4,6 +4,8 @@ import type { Cart } from '@/types/cart'
 const props = defineProps<{
   carts: Array<Cart>
 }>()
+
+const { deleteCart } = useCartStore()
 </script>
 
 <template>
@@ -18,7 +20,7 @@ const props = defineProps<{
         </h2>
 
         <ul role="list" class="border-t border-b border-gray-200 divide-y divide-gray-200">
-          <li v-for="(cart, cartIdx) in carts" :key="cart.id" class="flex py-6 sm:py-10">
+          <li v-for="cart in carts" :key="cart.id" class="flex py-6 sm:py-10">
             <div class="flex-shrink-0">
               <img :src="cart.product.image" :alt="cart.product.slug" class="object-cover object-center w-24 h-24 rounded-md sm:h-48 sm:w-48">
             </div>
@@ -42,36 +44,16 @@ const props = defineProps<{
                 </div>
 
                 <div class="mt-4 sm:mt-0 sm:pr-9">
-                  <label :for="`quantity-${cartIdx}`" class="sr-only">Quantity, {{ cart.variant.name }}</label>
+                  <!-- <label :for="`quantity-${cartIdx}`" class="sr-only">Quantity, {{ cart.variant.name }}</label>
                   <select :id="`quantity-${cartIdx}`" :value="cart.quantity" name="quantity-${cartIdx}" class="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
-                    <option value="1">
-                      1
-                    </option>
-                    <option value="2">
-                      2
-                    </option>
-                    <option value="3">
-                      3
-                    </option>
-                    <option value="4">
-                      4
-                    </option>
-                    <option value="5">
-                      5
-                    </option>
-                    <option value="6">
-                      6
-                    </option>
-                    <option value="7">
-                      7
-                    </option>
-                    <option value="8">
-                      8
+                    <option v-for="number in cart.variant.stock" :key="number" :value="number">
+                      {{ number }}
                     </option>
                   </select>
+                   -->
 
                   <div class="absolute top-0 right-0">
-                    <button type="button" class="inline-flex p-2 -m-2 text-gray-400 hover:text-gray-500">
+                    <button type="button" class="inline-flex p-2 -m-2 text-gray-400 hover:text-gray-500" @click="deleteCart(cart.id)">
                       <span class="sr-only">Remove</span>
                       <heroicons-x-mark-20-solid class="w-5 h-5" aria-hidden="true" />
                     </button>

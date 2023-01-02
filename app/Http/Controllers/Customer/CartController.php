@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Resources\CartResource;
 use App\Models\Cart;
 use App\Models\Variant;
+use App\Services\FlashNotification;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -58,6 +59,17 @@ class CartController
       'quantity' => $request->quantity,
     ]);
 
+    (new FlashNotification())->create('Cart');
+
   	return redirect()->route('customer.carts.index');
+  }
+
+  public function destroy(Cart $cart)
+  {
+  	$cart->delete();
+
+    (new FlashNotification())->destroy('Cart');
+
+		return redirect()->back();
   }
 }

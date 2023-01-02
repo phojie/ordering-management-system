@@ -10,5 +10,8 @@ Route::prefix('carts')->group(function () {
 
 		// store
 		Route::post('/', 'store')->name('customer.carts.store');
+
+    // destroy
+    Route::delete('/{cart}', 'destroy')->name('customer.carts.destroy');
 	});
 });
