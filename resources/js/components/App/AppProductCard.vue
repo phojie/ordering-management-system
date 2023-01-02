@@ -76,7 +76,7 @@ const priceRange = $computed(() => {
           slug: slug as string,
         })" class="relative flex items-center justify-center px-8 py-2 text-sm font-medium text-gray-900 bg-gray-100 border border-transparent rounded-md hover:bg-gray-200"
       >
-        Add to cart<span class="sr-only">, {{ name }}</span>
+        View Product
       </JLink>
     </div>
   </div>
