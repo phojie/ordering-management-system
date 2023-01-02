@@ -14,7 +14,7 @@ const productVariantNames = $computed(() => {
 })
 
 const productVariantPrices = $computed(() => {
-  return `₱${props.variants?.map(variant => variant.price).join(' / ₱')}`
+  return props.variants.length > 0 ? `₱${props.variants?.map(variant => variant.price).join(' / ₱')}` : 'No price available'
 })
 </script>
 
