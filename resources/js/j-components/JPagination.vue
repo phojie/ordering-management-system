@@ -36,7 +36,7 @@ const nextLink = computed(() => props.links[props.links.length - 1])
         :to="link.url || '#'"
         :active="link.active"
         class="inline-flex items-center px-4 pt-4 text-sm font-medium text-gray-500 border-t-2 border-transparent hover:border-gray-300 hover:text-gray-700"
-        active-class="inline-flex items-center px-4 pt-4 text-sm font-medium text-indigo-600 border-t-2 border-indigo-500"
+        active-class="inline-flex items-center px-4 pt-4 text-sm font-medium text-primary-600 border-t-2 border-primary-500"
       >
         {{ link.label }}
       </JLink>

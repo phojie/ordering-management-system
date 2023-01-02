@@ -116,14 +116,14 @@ const selectedSize = ref(product.sizes[0])
                 </RadioGroupLabel>
                 <div class="grid grid-cols-1 gap-4 mt-1 sm:grid-cols-2">
                   <RadioGroupOption v-for="size in product.sizes" :key="size.name" v-slot="{ active, checked }" as="template" :value="size">
-                    <div class="relative block p-4 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" :class="[active ? 'ring-2 ring-indigo-500' : '']">
+                    <div class="relative block p-4 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" :class="[active ? 'ring-2 ring-primary-500' : '']">
                       <RadioGroupLabel as="p" class="text-base font-medium text-gray-900">
                         {{ size.name }}
                       </RadioGroupLabel>
                       <RadioGroupDescription as="p" class="mt-1 text-sm text-gray-500">
                         {{ size.description }}
                       </RadioGroupDescription>
-                      <div class="absolute rounded-lg pointer-events-none -inset-px" :class="[active ? 'border' : 'border-2', checked ? 'border-indigo-500' : 'border-transparent']" aria-hidden="true" />
+                      <div class="absolute rounded-lg pointer-events-none -inset-px" :class="[active ? 'border' : 'border-2', checked ? 'border-primary-500' : 'border-transparent']" aria-hidden="true" />
                     </div>
                   </RadioGroupOption>
                 </div>
@@ -136,7 +136,7 @@ const selectedSize = ref(product.sizes[0])
               </a>
             </div>
             <div class="mt-10">
-              <button type="submit" class="flex items-center justify-center w-full px-8 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
+              <button type="submit" class="flex items-center justify-center w-full px-8 py-3 text-base font-medium text-white bg-primary-600 border border-transparent rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-50">
                 Add to cart
               </button>
             </div>
