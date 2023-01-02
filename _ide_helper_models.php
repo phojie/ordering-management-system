@@ -77,6 +77,82 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Order
+ *
+ * @property string $id
+ * @property int $order_number
+ * @property string $name
+ * @property string $email
+ * @property string $phone
+ * @property string $address
+ * @property string $city
+ * @property string $province
+ * @property string $postal_code
+ * @property string $country
+ * @property string $status
+ * @property float $taxes_amount
+ * @property float $shipping_amount
+ * @property float $total_amount
+ * @property string $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderVariant[] $orderVariants
+ * @property-read int|null $order_variants_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Order query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereCountry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereOrderNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order wherePostalCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereProvince($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereShippingAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereTaxesAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereTotalAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
+ */
+	class Order extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\OrderVariant
+ *
+ * @property string $id
+ * @property string $order_id
+ * @property string $variant_id
+ * @property string $product_id
+ * @property int $quantity
+ * @property float $price
+ * @property float $total
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant query()
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant whereOrderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant whereTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant whereVariantId($value)
+ */
+	class OrderVariant extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Permission
  *
  * @property string $id

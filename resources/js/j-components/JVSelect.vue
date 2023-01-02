@@ -19,6 +19,7 @@ interface VSelect {
 
 const props = withDefaults(defineProps<VSelect>(), {
   deselectFromDropdown: true,
+  closeOnSelect: true,
 })
 
 const emit = defineEmits(['update:modelValue'])

@@ -27,6 +27,7 @@
     "floating-vue": "^2.0.0-beta.20",
     "highcharts": "^10.2.1",
     "highcharts-vue": "^1.4.0",
+    "maska": "^2.1.3",
     "pinia": "^2.0.23",
     "typescript": "^4.8.4",
     "vue-filepond": "^7.0.3",

@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->unsignedInteger('order_number');
+
             $table->string('name');
             $table->string('email');
             $table->string('phone');
@@ -18,14 +19,14 @@ return new class extends Migration
             $table->string('city');
             $table->string('province');
             $table->string('postal_code');
-            // $table->string('country');
+            $table->string('country')->default('Philippines');
+            $table->string('status')->default('pending');
 
-            $table->string('status');
-            $table->string('payment_status');
-            $table->string('payment_method');
+            // $table->string('payment_method');
+            // $table->string('payment_status');
             // $table->string('payment_id');
             // $table->string('payment_url');
-            $table->string('payment_amount');
+            // $table->string('payment_amount');
             // $table->string('payment_currency');
             // $table->string('payment_description');
             // $table->string('payment_created_at');
@@ -38,6 +39,14 @@ return new class extends Migration
             // $table->string('payment_provider_id');
             // $table->string('payment_provider_status');
             // $table->string('payment_provider_response');
+
+            $table->float('taxes_amount',2)->default(0);
+            $table->float('shipping_amount',2)->default(0);
+            $table->float('total_amount', 2)->default(0);
+
+            $table->uuid('user_id')
+                  ->constraint('users')
+                  ->onDelete('cascade');
 
             $table->timestamps();
         });

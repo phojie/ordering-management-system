@@ -13,10 +13,9 @@ class CartController
 {
 	public function index(Request $request)
 	{
-		// TODO: Add pagination
 		$carts = Cart::query()
 						  ->where('user_id', $request->user()->id)
-			  ->with('variant', 'product')
+						  ->with('variant', 'product')
 						  ->get();
 
 		return Inertia::render('Customer/Carts/Index', [
@@ -70,9 +69,15 @@ class CartController
   	return redirect()->back();
   }
 
-  public function checkout() {
-    session()->flash('success', 'Successfully checkout!');
+  public function checkout(Request $request)
+  {
+  	$carts = Cart::query()
+  				->where('user_id', $request->user()->id)
+  				->with('variant', 'product')
+  				->get();
 
-  	return redirect()->back();
+  	return Inertia::render('Customer/Carts/Checkout', [
+  		'carts' => CartResource::collection($carts),
+  	]);
   }
 }

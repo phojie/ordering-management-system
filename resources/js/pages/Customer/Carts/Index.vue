@@ -5,7 +5,7 @@ const props = defineProps<{
   carts: Array<Cart>
 }>()
 
-const { deleteCart, updateCart, checkoutCart } = useCartStore()
+const { deleteCart, updateCart } = useCartStore()
 
 const updateCartDebounce = _.debounce((id: string, quantity: number) => {
   updateCart(id, quantity)
@@ -15,7 +15,7 @@ const updateCartDebounce = _.debounce((id: string, quantity: number) => {
 const subTotal: number = $computed(() => {
   // filter only the variant that is inStock
   const validCarts = _.filter(props.carts, (cart) => {
-    return cart.variant.inStock
+    return cart.variant.inStock as boolean
   })
 
   // calculate the total price
@@ -161,13 +161,15 @@ const orderTotal: number = $computed(() => {
         </dl>
 
         <div class="mt-6">
-          <JBtn
-            size="lg"
-            is-expanded
-            checkout
-            label="Checkout"
-            @click="checkoutCart()"
-          />
+          <JLink
+            :to="route('customer.carts.checkout')"
+          >
+            <JBtn
+              size="lg"
+              is-expanded
+              label="Chekout"
+            />
+          </JLink>
         </div>
 
         <div class="mt-6 text-sm text-center">
