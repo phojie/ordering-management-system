@@ -111,7 +111,7 @@ const addToCart = async () => {
                     Variant
                   </h2>
                   <a href="#" class="text-sm font-medium text-primary-600 hover:text-primary-500">
-                    Learn more about variants
+                    Learn more
                   </a>
                 </div>
 
