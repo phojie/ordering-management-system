@@ -16,7 +16,7 @@ const props = defineProps<{
     class="block group"
   >
     <div aria-hidden="true" class="overflow-hidden rounded-lg aspect-w-3 aspect-h-2 group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6">
-      <img :src="image" :alt="slug" class="object-cover object-center w-full h-full">
+      <img :src="image" :alt="slug" class="object-cover object-center w-full h-full" loading="lazy">
     </div>
     <h3 class="mt-4 text-base font-semibold text-gray-900">
       {{ name }}

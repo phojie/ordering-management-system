@@ -21,7 +21,7 @@ const priceRange = $computed(() => {
   <div>
     <div class="relative">
       <div class="relative w-full overflow-hidden rounded-lg h-72">
-        <img :src="image" :alt="slug" class="object-cover object-center w-full h-full">
+        <img :src="image" :alt="slug" class="object-cover object-center w-full h-full" loading="lazy">
       </div>
 
       <div class="relative h-16 mt-4">
