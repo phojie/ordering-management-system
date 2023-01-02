@@ -24,7 +24,9 @@ class ProductController
 
 	public function show(string $slug)
 	{
-		$product = Product::where('slug', $slug)->firstOrFail();
+		$product = Product::query()
+			->with(['variants', 'categories'])
+		  ->where('slug', $slug)->firstOrFail();
 
 		// return new ProductResource($category);
 		return Inertia::render('Customer/Products/Show', [

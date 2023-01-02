@@ -247,6 +247,7 @@ namespace App\Models{
  * @property string $product_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read bool $in_stock
  * @method static \Database\Factories\VariantFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Variant newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Variant newQuery()
