@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('carts')->group(function () {
 	Route::controller(CartController::class)->group(function () {
+    // checkout
+    Route::post('/checkout', 'checkout')->name('customer.carts.checkout');
+
 		// index
 		Route::get('/', 'index')->name('customer.carts.index');
 

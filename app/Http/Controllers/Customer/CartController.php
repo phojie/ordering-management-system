@@ -29,9 +29,8 @@ class CartController
   	$variant = Variant::findOrFail($request->variantId);
 
   	$request->validate([
-      'quantity' => 'required|integer|min:1|max:' . $variant->stock,
+  		'quantity' => 'required|integer|min:1|max:'.$variant->stock,
   	]);
-
 
   	// updateOrCreate
   	Cart::updateOrCreate([
@@ -50,7 +49,7 @@ class CartController
   public function update(Request $request, Cart $cart)
   {
   	$request->validate([
-  		'quantity' => 'required|integer|min:1|max:' . $cart->variant->stock,
+  		'quantity' => 'required|integer|min:1|max:'.$cart->variant->stock,
   	]);
 
   	$cart->update([
@@ -67,6 +66,12 @@ class CartController
   	$cart->delete();
 
   	(new FlashNotification())->destroy('Cart');
+
+  	return redirect()->back();
+  }
+
+  public function checkout() {
+    session()->flash('success', 'Successfully checkout!');
 
   	return redirect()->back();
   }

@@ -83,6 +83,7 @@ declare module '@vue/runtime-core' {
     HeroiconsShieldCheck: typeof import('~icons/heroicons/shield-check')['default']
     HeroiconsShieldCheckSolid: typeof import('~icons/heroicons/shield-check-solid')['default']
     HeroiconsShoppingBag: typeof import('~icons/heroicons/shopping-bag')['default']
+    HeroiconsShoppingCart: typeof import('~icons/heroicons/shopping-cart')['default']
     HeroiconsSquaresPlus20Solid: typeof import('~icons/heroicons/squares-plus20-solid')['default']
     HeroiconsStar20Solid: typeof import('~icons/heroicons/star20-solid')['default']
     HeroiconsTrash20Solid: typeof import('~icons/heroicons/trash20-solid')['default']

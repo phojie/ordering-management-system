@@ -28,11 +28,25 @@ export const useCartStore = defineStore('cart', () => {
     })
   }
 
+  // checkout cart
+  function checkoutCart() {
+    Inertia.post(route('customer.carts.checkout'),
+      {}, {
+        onBefore: () => {
+          processing = true
+        },
+        onFinish: () => {
+          processing = false
+        },
+      })
+  }
+
   return $$({
     processing,
 
     updateCart,
     deleteCart,
+    checkoutCart,
   })
 })
 

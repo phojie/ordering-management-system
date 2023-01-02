@@ -111,11 +111,20 @@ onMounted(async () => {
           <div v-else class="flex items-center space-x-6">
             <JLink
               v-if="useGate().can('Customer')"
+              :to="route('customer.orders.index')"
+              class="text-sm font-medium text-white hover:text-gray-100"
+            >
+              Orders
+            </JLink>
+
+            <JLink
+              v-if="useGate().can('Customer')"
               :to="route('dashboard')"
               class="text-sm font-medium text-white hover:text-gray-100"
             >
               My Account
             </JLink>
+
             <JLink
               v-if="useGate().can('Admin')"
               :to="route('admin.index')"

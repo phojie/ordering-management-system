@@ -14,6 +14,7 @@ require __DIR__.'/public/product.php';
 Route::middleware(['auth', 'customer'])->group(function () {
 	require __DIR__.'/customer/index.php';
 	require __DIR__.'/customer/cart.php';
+  require __DIR__.'/customer/order.php';
 });
 
 // admin routes

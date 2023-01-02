@@ -5,7 +5,7 @@ const props = defineProps<{
   carts: Array<Cart>
 }>()
 
-const { deleteCart, updateCart } = useCartStore()
+const { deleteCart, updateCart, checkoutCart } = useCartStore()
 
 const updateCartDebounce = _.debounce((id: string, quantity: number) => {
   updateCart(id, quantity)
@@ -161,9 +161,13 @@ const orderTotal: number = $computed(() => {
         </dl>
 
         <div class="mt-6">
-          <JBtn size="lg" is-expanded>
-            Checkout
-          </JBtn>
+          <JBtn
+            size="lg"
+            is-expanded
+            checkout
+            label="Checkout"
+            @click="checkoutCart()"
+          />
         </div>
 
         <div class="mt-6 text-sm text-center">

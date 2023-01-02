@@ -47,6 +47,7 @@ class HandleInertiaRequests extends Middleware
 			],
 			'flash' => [
 				'notification' => session('notification'),
+        'success' => session('success'),
 			],
 			'csrfToken' => csrf_token(),
       'cartCount' => $isAuth? Auth::user()->carts->count() : 0,
