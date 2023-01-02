@@ -311,7 +311,7 @@ onMounted(async () => {
                 <!-- Cart -->
                 <div class="flow-root ml-4 lg:ml-8">
                   <JLink :to="route('customer.carts.index')" class="flex items-center p-2 -m-2 group">
-                    <heroicons-shopping-bag
+                    <heroicons-shopping-cart
                       class="flex-shrink-0 w-6 h-6 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
