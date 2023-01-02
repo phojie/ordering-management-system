@@ -1,16 +1,23 @@
 <script  setup lang="ts">
 const currencies = ['PHP']
 
+interface featuredItem {
+  name: string
+  href: string
+  imageSrc: string
+  imageAlt: string
+}
+
 const navigation = {
   categories: [
     {
       name: 'Category',
-      featured: [],
+      featured: [] as Array<featuredItem>,
       exploreHref: 'categories.index',
     },
     {
       name: 'Products',
-      featured: [],
+      featured: [] as Array<featuredItem>,
       exploreHref: 'products.index',
     },
   ],
@@ -32,7 +39,7 @@ onMounted(async () => {
         imageSrc: category.image,
         imageAlt: category.name,
       }
-    })
+    }) as Array<{ name: string; href: string; imageSrc: string; imageAlt: string }>
   })
 
   await useFetch(route('components.products.random')).get().json().then(({ data }) => {
