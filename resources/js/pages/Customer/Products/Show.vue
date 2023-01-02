@@ -8,6 +8,13 @@ const props = defineProps<{
 const reviews = { average: 4, totalCount: 1624 }
 
 const selectedVariant = ref(props.product.variants?.[0])
+
+const addToCart = async () => {
+  await Inertia.post(route('customer.carts.store'), {
+    variantId: selectedVariant.value?.id as string,
+    quantity: 1,
+  })
+}
 </script>
 
 <template>
@@ -98,12 +105,12 @@ const selectedVariant = ref(props.product.variants?.[0])
           <form>
             <div class="sm:flex sm:justify-between">
               <!-- Variant picker -->
-              <div class="mt-8">
+              <div class="w-full mt-8 ">
                 <div class="flex items-center justify-between">
                   <h2 class="text-sm font-medium text-gray-900">
                     Variant
                   </h2>
-                  <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                  <a href="#" class="text-sm font-medium text-primary-600 hover:text-primary-500">
                     Learn more about variants
                   </a>
                 </div>
@@ -112,10 +119,10 @@ const selectedVariant = ref(props.product.variants?.[0])
                   <RadioGroupLabel class="sr-only">
                     Choose a variant
                   </RadioGroupLabel>
-                  <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
+                  <div class="grid grid-cols-3 gap-3 sm:grid-cols-3">
                     <RadioGroupOption v-for="variant in product.variants" :key="variant.name" v-slot="{ active, checked }" as="template" :value="variant" :disabled="!variant.inStock">
-                      <div class="flex items-center justify-center px-3 py-3 text-sm font-medium uppercase border rounded-md sm:flex-1" :class="[variant.inStock ? 'cursor-pointer focus:outline-none' : 'opacity-25 cursor-not-allowed', active ? 'ring-2 ring-offset-2 ring-indigo-500' : '', checked ? 'bg-indigo-600 border-transparent text-white hover:bg-indigo-700' : 'bg-white border-gray-200 text-gray-900 hover:bg-gray-50']">
-                        <RadioGroupLabel as="span">
+                      <div class="flex items-center justify-center px-3 py-3 text-sm font-medium uppercase border rounded-md sm:flex-1" :class="[variant.inStock ? 'cursor-pointer focus:outline-none' : 'opacity-25 cursor-not-allowed', active ? 'ring-2 ring-offset-2 ring-primary-500' : '', checked ? 'bg-primary-600 border-transparent text-white hover:bg-primary-700' : 'bg-white border-gray-200 text-gray-900 hover:bg-gray-50']">
+                        <RadioGroupLabel as="p" class="line-clamp-1">
                           {{ variant.name }}
                         </RadioGroupLabel>
                       </div>
@@ -131,9 +138,9 @@ const selectedVariant = ref(props.product.variants?.[0])
               </a>
             </div>
             <div class="mt-10">
-              <button type="submit" class="flex items-center justify-center w-full px-8 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
+              <JBtn size="lg" is-expanded @click="addToCart()">
                 Add to cart
-              </button>
+              </JBtn>
             </div>
             <div class="mt-6 text-center">
               <a href="#" class="inline-flex text-base font-medium group">

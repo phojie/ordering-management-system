@@ -4,42 +4,6 @@ import type { Cart } from '@/types/cart'
 const props = defineProps<{
   carts: Array<Cart>
 }>()
-
-// const carts = [
-//   {
-//     id: 1,
-//     name: 'Basic Tee',
-//     href: '#',
-//     price: '₱32.00',
-//     color: 'Sienna',
-//     inStock: true,
-//     variant: 'Large',
-//     imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-cart-01.jpg',
-//     imageAlt: 'Front of men\'s Basic Tee in sienna.',
-//   },
-//   {
-//     id: 2,
-//     name: 'Basic Tee',
-//     href: '#',
-//     price: '₱32.00',
-//     color: 'Black',
-//     inStock: false,
-//     leadTime: '3–4 weeks',
-//     variant: 'Large',
-//     imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-cart-02.jpg',
-//     imageAlt: 'Front of men\'s Basic Tee in black.',
-//   },
-//   {
-//     id: 3,
-//     name: 'Nomad Tumbler',
-//     href: '#',
-//     price: '₱35.00',
-//     color: 'White',
-//     inStock: true,
-//     imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-cart-03.jpg',
-//     imageAlt: 'Insulated bottle with white base and black snap lid.',
-//   },
-// ]
 </script>
 
 <template>
@@ -68,15 +32,12 @@ const props = defineProps<{
                     </h3>
                   </div>
                   <div class="flex mt-1 text-sm">
-                    <p class="text-gray-500">
-                      <!-- {{ cart.color }} -->
-                    </p>
-                    <p v-if="cart.variant" class="pl-4 ml-4 text-gray-500 border-l border-gray-200">
-                      <!-- {{ cart.variant }} -->
+                    <p class="text-gray-500 line-clamp-1">
+                      {{ cart.variant.name }}
                     </p>
                   </div>
                   <p class="mt-1 text-sm font-medium text-gray-900">
-                    <!-- {{ cart.price }} -->
+                    ₱{{ cart.variant.price }}
                   </p>
                 </div>
 
