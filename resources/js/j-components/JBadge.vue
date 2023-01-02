@@ -18,7 +18,7 @@ type BadgeSize = keyof typeof sizesLookup
 const baseClasses = 'inline-flex items-center capitalize rounded-md'
 
 const variantsLookup = {
-  text: 'text-gray-800 bg-gray-100',
+  text: 'bg-gray-100 text-gray-800',
   primary: 'bg-primary-100 text-primary-800',
   success: 'bg-success-100 text-success-800',
   warning: 'bg-warning-100 text-warning-800',
