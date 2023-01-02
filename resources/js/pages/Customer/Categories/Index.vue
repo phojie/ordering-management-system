@@ -28,7 +28,7 @@ watch(search, _.debounce((value: string) => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 px-4 py-10 mx-auto overflow-hidden max-w-7xl sm:px-6 lg:px-8">
+  <div class="flex flex-col px-4 py-10 mx-auto space-y-8 overflow-hidden max-w-7xl sm:px-6 lg:px-8">
     <div class="flex justify-end">
       <InputSearch
         v-model="search"
