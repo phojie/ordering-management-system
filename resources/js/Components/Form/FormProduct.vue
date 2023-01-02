@@ -14,7 +14,7 @@ const processing = $computed(() => useProductStore().processing)
     <JSelect
       v-model="form.status"
       label="Status"
-      :products="['active', 'inactive']"
+      :items="['active', 'inactive']"
       :is-disabled="processing"
       default-value="active"
     />
