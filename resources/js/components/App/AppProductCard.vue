@@ -72,11 +72,19 @@ const priceRange = $computed(() => {
     </div>
     <div class="mt-6">
       <JLink
+        :disabled="variants.length === 0"
         :to="route('products.show', {
           slug: slug as string,
-        })" class="relative flex items-center justify-center px-8 py-2 text-sm font-medium text-gray-900 bg-gray-100 border border-transparent rounded-md hover:bg-gray-200"
+        })"
+        class="relative flex items-center justify-center px-8 py-2 text-sm bg-gray-100 border border-transparent rounded-md hover:bg-gray-200"
+        :class="variants.length > 0 ? 'text-gray-900 font-medium' : 'text-warning-600'"
       >
-        View Product
+        <span v-if="variants.length > 0">
+          View Product
+        </span>
+        <span v-else>
+          Not Available
+        </span>
       </JLink>
     </div>
   </div>
