@@ -1439,19 +1439,18 @@
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-3.2.0.tgz#a1484089dd85d6528f435743f84cdd0d215bbb54"
   integrity sha512-E0tnaL4fr+qkdCNxJ+Xd0yM31UwMkQje76fsDVBBUCoGOUPexu2VDUYHL8P4CwV+zMvWw6nlRw19OnRKmYAJpw==
 
-"@volar/language-core@^1.0.9":
-  version "1.0.18"
-  resolved "https://registry.yarnpkg.com/@volar/language-core/-/language-core-1.0.18.tgz#5b1bfb9fbe161e20a836bd5b38b2eab7f855a207"
-  integrity sha512-PFrqAksKhiuAqNV4fefoMilX+JutVq0Z3iM14xjLvWPv68fs2dLedwU84GiHfSPTMmRiPCJ2HhH2rz4qNY42lA==
+"@volar/language-core@^1.0.18":
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/@volar/language-core/-/language-core-1.0.19.tgz#787de46fd7de64c50c8500d799905e9da8d1ce36"
+  integrity sha512-BRxhwqn66VHeLIxxgV4ybY9NDtwMp2bl1w7085qlK7i1pa4jeFR5lJG2U5qd0oI3e0PIWML+PryxSrKNd3+SZw==
   dependencies:
-    "@volar/source-map" "1.0.18"
-    "@vue/reactivity" "^3.2.45"
+    "@volar/source-map" "1.0.19"
     muggle-string "^0.1.0"
 
-"@volar/source-map@1.0.18":
-  version "1.0.18"
-  resolved "https://registry.yarnpkg.com/@volar/source-map/-/source-map-1.0.18.tgz#5b7b5f5647362efebda3675097de7f426435b9d1"
-  integrity sha512-D8AcjrT2ukG5XiZhtSQBhcvL1TTlWOebCqS//Z/hGLGQZjpZHWaKD4OyDzKDzM0U9EtOuDh9rttnabCHDPvY2Q==
+"@volar/source-map@1.0.19":
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/@volar/source-map/-/source-map-1.0.19.tgz#6939a2e47ff99166af653ab92fb8dfafba170279"
+  integrity sha512-5fYKsl1evR/QAZ9LADto3kzbYKfpjZLWS9reNpxGR3ODPFTpaJgYk4lqghFyq4yU7/e/ZPZ1zLXjEsnL526URw==
   dependencies:
     muggle-string "^0.1.0"
 
@@ -1473,7 +1472,7 @@
     "@vue-macros/common" "~0.13.2"
     unplugin "^0.10.2"
 
-"@vue-macros/common@~0.13.2", "@vue-macros/common@~0.13.3", "@vue-macros/common@~0.13.4":
+"@vue-macros/common@~0.13.2", "@vue-macros/common@~0.13.3", "@vue-macros/common@~0.13.5":
   version "0.13.5"
   resolved "https://registry.yarnpkg.com/@vue-macros/common/-/common-0.13.5.tgz#a2f0f250c4ce42ba4977741e3b37e2d6cdfed264"
   integrity sha512-i8BqdPsc+CR9p9KqwGi7QLmLkT+E1rN6qdw5wYI6BIdrayjyxCCoKyRsCoxA2gooZ1UCW75yknmc89zg8yco+w==
@@ -1492,6 +1491,15 @@
     "@vue-macros/common" "~0.13.2"
     ast-walker-scope "^0.3.0"
     unplugin "^0.10.2"
+
+"@vue-macros/define-props@~0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@vue-macros/define-props/-/define-props-0.1.1.tgz#a0c0c313ea79a75a6e5c11284dde76178015d37c"
+  integrity sha512-IZY7+Q90Ja4CQQYaBTXNgIvqfKGFmcjg4Q3EFf9gN6Z9wGGfpzSe1IVOMlWr07rPFynRRGwJAHFoId8xD3hyFQ==
+  dependencies:
+    "@rollup/pluginutils" "^5.0.2"
+    "@vue-macros/common" "~0.13.5"
+    unplugin "^1.0.1"
 
 "@vue-macros/define-render@0.13.7":
   version "0.13.7"
@@ -1560,22 +1568,24 @@
     "@vue-macros/common" "~0.13.2"
     unplugin "^0.10.2"
 
-"@vue-macros/short-vmodel@~0.3.6":
-  version "0.3.8"
-  resolved "https://registry.yarnpkg.com/@vue-macros/short-vmodel/-/short-vmodel-0.3.8.tgz#a45182800b6762f266796765ac71cf1e3686a58f"
-  integrity sha512-S2MP0/ZusUWpnfCJ5J9lSaEhIbaGB9uxmsUI9liA+bFH5yqPG+DDw63tod2HLfthxk9hPQcz1YZR/ZEd3wUaRA==
+"@vue-macros/short-vmodel@~1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@vue-macros/short-vmodel/-/short-vmodel-1.0.1.tgz#5d97bdb83c8e040bbf2f7b0e3b02d2afd24b29de"
+  integrity sha512-JNPXMDUxu6YzM89dU1BHog4ocM16oOuMjdyZ3Iypnk6GgG6y2eucNjHLPopT0HKKL26fUmmo1OkgE87ApNF4lQ==
   dependencies:
-    "@vue-macros/common" "~0.13.4"
+    "@vue-macros/common" "~0.13.5"
     "@vue/compiler-core" "^3.2.45"
 
-"@vue-macros/volar@^0.4.1":
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/@vue-macros/volar/-/volar-0.4.3.tgz#9181d4f526ae47d2597de2ba08a5d4c7116f471d"
-  integrity sha512-wrIbEGa//xajqrmSr21ac8dzZIXFiJKJrnaPLdiHLfH/YFVqi4J6TrPv8DnN+j1w1RhXZdcAPLD+TD+H15Z6Pg==
+"@vue-macros/volar@^0.5.7":
+  version "0.5.7"
+  resolved "https://registry.yarnpkg.com/@vue-macros/volar/-/volar-0.5.7.tgz#eff8981a498fe49c107864ccfc934e1913859554"
+  integrity sha512-U9W8/qCxxGtFYSySekkrTkTsssKolvDk+5AWJ2yjvT9CfQ9EEcmkv4EpmYwgA9GcSZ4mznNAhvbqAHlLpPiyQw==
   dependencies:
-    "@volar/language-core" "^1.0.9"
-    "@vue-macros/short-vmodel" "~0.3.6"
-    muggle-string "^0.1.0"
+    "@volar/language-core" "^1.0.18"
+    "@vue-macros/common" "~0.13.5"
+    "@vue-macros/define-props" "~0.1.1"
+    "@vue-macros/short-vmodel" "~1.0.1"
+    muggle-string "^0.2.1"
 
 "@vue/compiler-core@3.2.45", "@vue/compiler-core@^3.2.45":
   version "3.2.45"
@@ -1635,7 +1645,7 @@
     estree-walker "^2.0.2"
     magic-string "^0.25.7"
 
-"@vue/reactivity@3.2.45", "@vue/reactivity@^3.2.45":
+"@vue/reactivity@3.2.45":
   version "3.2.45"
   resolved "https://registry.yarnpkg.com/@vue/reactivity/-/reactivity-3.2.45.tgz#412a45b574de601be5a4a5d9a8cbd4dee4662ff0"
   integrity sha512-PRvhCcQcyEVohW0P8iQ7HDcIOXRjZfAsOds3N99X/Dzewy8TVhTCT4uXpAHfoKjVTJRA0O0K+6QNkDIZAxNi3A==
@@ -3729,6 +3739,11 @@ muggle-string@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/muggle-string/-/muggle-string-0.1.0.tgz#1fda8a281c8b27bb8b70466dbc9f27586a8baa6c"
   integrity sha512-Tr1knR3d2mKvvWthlk7202rywKbiOm4rVFLsfAaSIhJ6dt9o47W4S+JMtWhd/PW9Wrdew2/S2fSvhz3E2gkfEg==
+
+muggle-string@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/muggle-string/-/muggle-string-0.2.1.tgz#a4d295a62fff363f70273aed502580c5c55cd530"
+  integrity sha512-XVKGP/QTuZQ7y1++6sNLeAALtUSc1nwbupotemZizerLeTCyxrvPRXGfWIIITZaVqrwfIskwawWE0CSHC10X7w==
 
 nanoid@^3.3.4:
   version "3.3.4"

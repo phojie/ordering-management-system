@@ -31,9 +31,11 @@
     "forceConsistentCasingInFileNames": true
   },
   "vueCompilerOptions": {
+    "target": 3,
     "plugins": [
-      // "@vue-macros/volar/define-model",
+      "@vue-macros/volar/define-model"
       // "@vue-macros/volar/short-vmodel"
+      // "@vue-macros/volar/define-slots"
       // ...more feature
     ]
   },
