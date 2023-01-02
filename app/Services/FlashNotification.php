@@ -30,7 +30,7 @@ class FlashNotification
 
 	public function update(string $prefixMessage, array $actions = []): void
 	{
-		$this->message = $prefixMessage.' has been updated.';
+		$this->message = $prefixMessage.' has been changed.';
 		$this->title = 'Successfully updated!';
 		$this->actions = $actions;
 
