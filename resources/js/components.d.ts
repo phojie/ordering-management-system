@@ -32,6 +32,7 @@ declare module '@vue/runtime-core' {
     AppIcon: typeof import('./components/App/AppIcon.vue')['default']
     ApplicationLogo: typeof import('./components/ApplicationLogo.vue')['default']
     AppNotification: typeof import('./components/App/AppNotification.vue')['default']
+    AppProductCard: typeof import('./components/App/AppProductCard.vue')['default']
     AppProfileMenu: typeof import('./components/App/AppProfileMenu.vue')['default']
     AppProfileMenuItem: typeof import('./components/App/AppProfileMenuItem.vue')['default']
     AppProfileMenuItems: typeof import('./components/App/AppProfileMenuItems.vue')['default']
