@@ -188,8 +188,12 @@ const orderTotal: number = $computed(() => {
       <div class="grid place-items-center">
         <img src="/svgs/empty_cart.svg" class="w-80 h-80">
 
-        <div class="font-medium text-gray-900 text-md">
+        <div class="mt-10 text-lg font-medium text-gray-900">
           Your cart is empty.
+          <JLink :to="route('products.index')" class="text-sm font-medium text-primary-600 hover:text-primary-500">
+            Shop here
+            <span aria-hidden="true"> &rarr;</span>
+          </JLink>
         </div>
       </div>
     </div>
