@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<TextField>(), {
 })
 
 // set emits
-const emit = defineEmits(['update:modelValue', 'blur'])
+const emit = defineEmits(['update:modelValue', 'blur', 'change'])
 const value = useVModel(props, 'modelValue', emit)
 
 // set computed
@@ -48,7 +48,9 @@ onMounted(() => {
       :for="id"
       class="block mb-1 text-sm font-medium text-gray-900"
     >
-      {{ label }}
+      <slot name="label">
+        {{ label }}
+      </slot>
     </label>
 
     <!-- input wrapper -->
@@ -94,6 +96,7 @@ onMounted(() => {
         ]"
         class="block w-full pr-10 rounded-md sm:text-sm placeholder:font-normal"
         @blur="emit('blur')"
+        @change="emit('change')"
       >
 
       <div v-if="appendInner || isLoading || isClearable" class="absolute inset-y-0 right-0 flex items-center pr-3">
