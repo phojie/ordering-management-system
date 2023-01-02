@@ -40,7 +40,7 @@ const variantsLookup = {
 const sizesLookup = {
   sm: 'px-3 py-1.5 text-sm focus:ring-2 focus:ring-offset-1',
   md: 'px-4 py-2 text-sm focus:ring-2 focus:ring-offset-2',
-  lg: 'px-8 py-4 text-lg focus:ring focus:ring-offset-2',
+  lg: 'px-8 py-3 text-base focus:ring-2 focus:ring-offset-2',
 }
 </script>
 
