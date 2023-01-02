@@ -29,41 +29,35 @@ watch(search, _.debounce((value: string) => {
 
 <template>
   <div class="flex flex-col px-4 py-10 mx-auto space-y-8 overflow-hidden max-w-7xl sm:px-6 lg:px-8">
-    <div class="flex justify-end">
-      <InputSearch
-        v-model="search"
-        class="w-full lg:max-w-md"
-        :processing="processing"
-        placeholder="Search by category name"
-      />
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900">
+          Shop by Category
+        </h2>
+        <p class="mt-4 text-base text-gray-500">
+          Browse our categories to find the perfect food for you. We have a wide range of categories to choose from.
+        </p>
+      </div>
+
+      <div class="flex justify-end">
+        <InputSearch
+          v-model="search"
+          class="w-full lg:max-w-md"
+          :processing="processing"
+          placeholder="Search by category name"
+        />
+      </div>
     </div>
 
     <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
-      <JLink
-        v-for="category in categories " :key="category.id"
-        :to="route('categories.show', {
-          slug: category.slug as string,
-        })"
-        class="text-sm group"
-      >
-        <div class="w-full overflow-hidden bg-gray-100 rounded-lg aspect-w-1 aspect-h-1 group-hover:opacity-75">
-          <img :src="category.image" :alt="category.slug" class="object-cover object-center w-full h-full">
-        </div>
-        <h3 class="mt-4 font-medium text-gray-900">
-          {{ category.name }}
-        </h3>
-        <p class="italic text-gray-500">
-          {{ category.description }}
-        </p>
-        <p class="mt-2 text-gray-900">
-          <span v-if="category.productsCount as number > 0">
-            {{ category.productsCount }} {{ category.productsCount as number > 1 ? 'products' : 'product' }}
-          </span>
-          <span v-else class="font-light text-warning-600">
-            No products available yet
-          </span>
-        </p>
-      </JLink>
+      <AppCategoryCard
+        v-for="category in categories" :key="category.id"
+        :name="category.name"
+        :image="category.image as string"
+        :description="category.description"
+        :slug="category.slug as string"
+        :products-count="category.productsCount as number"
+      />
     </div>
   </div>
 </template>
