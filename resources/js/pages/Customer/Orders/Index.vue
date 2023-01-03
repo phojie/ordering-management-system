@@ -43,13 +43,13 @@ const props = defineProps<{
                   Order number
                 </dt>
                 <dd class="sm:mt-1">
-                  {{ order.orderNumber }}
+                  #{{ order.orderNumber }}
                 </dd>
               </div>
               <div class="flex justify-between pt-6 font-medium text-gray-900 sm:block sm:pt-0">
                 <dt>Total amount</dt>
                 <dd class="sm:mt-1">
-                  {{ order.totalAmount }}
+                  ₱{{ order.totalAmount }}
                 </dd>
               </div>
             </dl>
@@ -58,9 +58,11 @@ const props = defineProps<{
               <span class="sr-only">for order {{ order.orderNumber }}</span>
             </a>
 
-            <span class="relative inline-flex">
-              <JBtn class="!bg-opacity-10 !text-primary-600 !ring-0" is-read-only is-borderless>Processing</JBtn>
-
+            <span v-else class="relative inline-flex w-full mt-6 sm:mt-0 sm:w-auto">
+              <a href="#" class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:w-auto">
+                Processing
+                <span class="sr-only">for order {{ order.orderNumber }}</span>
+              </a>
               <span class="absolute top-0 right-0 flex w-3 h-3 -mt-1 -mr-1">
                 <span class="absolute inline-flex w-full h-full rounded-full opacity-75 animate-ping bg-primary-400" />
                 <span class="relative inline-flex w-3 h-3 rounded-full bg-primary-500" />
@@ -101,13 +103,13 @@ const props = defineProps<{
                         {{ orderVariant.product.name }}
                       </div>
                       <div class="mt-1 sm:hidden">
-                        {{ orderVariant.price }}
+                        ₱{{ orderVariant.price }} x {{ orderVariant.quantity }}
                       </div>
                     </div>
                   </div>
                 </td>
                 <td class="hidden py-6 pr-8 sm:table-cell">
-                  {{ orderVariant.price }}
+                  ₱{{ orderVariant.price }}
                 </td>
                 <td class="hidden py-6 pr-8 sm:table-cell">
                   {{ orderVariant.quantity }}
