@@ -4,29 +4,6 @@ import type { Order } from '@/types/order'
 const props = defineProps<{
   orders: Array<Order>
 }>()
-
-// const orders = [
-//   {
-//     number: 'WU88191111',
-//     date: 'January 22, 2021',
-//     datetime: '2021-01-22',
-//     invoiceHref: '#',
-//     total: '$238.00',
-//     products: [
-//       {
-//         id: 1,
-//         name: 'Machined Pen and Pencil Set',
-//         href: '#',
-//         price: '$70.00',
-//         status: 'Delivered Jan 25, 2021',
-//         imageSrc: 'https://tailwindui.com/img/ecommerce-images/order-history-page-02-product-01.jpg',
-//         imageAlt: 'Detail of mechanical pencil tip with machined black steel shaft and chrome lead tip.',
-//       },
-//       // More products...
-//     ],
-//   },
-//   // More orders...
-// ]
 </script>
 
 <template>
@@ -77,10 +54,19 @@ const props = defineProps<{
                   </dd>
                 </div>
               </dl>
-              <a :href="order.id" class="flex items-center justify-center w-full px-4 py-2 mt-6 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:mt-0 sm:w-auto">
+              <a v-if="order.status !== 'pending'" :href="order.id" class="flex items-center justify-center w-full px-4 py-2 mt-6 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:mt-0 sm:w-auto">
                 View Invoice
                 <span class="sr-only">for order {{ order.orderNumber }}</span>
               </a>
+
+              <span class="relative inline-flex">
+                <JBtn class="!bg-opacity-10 !text-primary-600 !ring-0" is-read-only is-borderless>Processing</JBtn>
+
+                <span class="absolute top-0 right-0 flex w-3 h-3 -mt-1 -mr-1">
+                  <span class="absolute inline-flex w-full h-full rounded-full opacity-75 animate-ping bg-primary-400" />
+                  <span class="relative inline-flex w-3 h-3 rounded-full bg-primary-500" />
+                </span>
+              </span>
             </div>
 
             <table class="w-full mt-4 text-gray-500 sm:mt-6">
