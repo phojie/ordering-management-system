@@ -135,6 +135,8 @@ namespace App\Models{
  * @property float $total
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Product $product
+ * @property-read \App\Models\Variant $variant
  * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant query()
@@ -306,6 +308,8 @@ namespace App\Models{
  * @property-read int|null $media_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
+ * @property-read int|null $orders_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Permission[] $permissions
  * @property-read int|null $permissions_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles

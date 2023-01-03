@@ -3,15 +3,30 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Requests\OrderRequest;
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use App\Models\Variant;
+use Inertia\Inertia;
+use Request;
 
 class OrderController
 {
+	public function index(Request $request)
+	{
+		$orders = Order::query()
+				->with('orderVariants', 'orderVariants.variant', 'orderVariants.product')
+				->where('user_id', auth()->user()->id)
+				->get();
+
+		return Inertia::render('Customer/Orders/Index', [
+			'orders' => (OrderResource::collection($orders))->resolve(),
+		]);
+	}
+
 	public function store(OrderRequest $request)
 	{
 		\DB::transaction(function () use ($request) {
-      // create order
+			// create order
 			$order = Order::create([
 				'name' => $request->name,
 				'order_number' => $request->orderNumber,
@@ -41,21 +56,22 @@ class OrderController
 				];
 			});
 
-      // create order variants
+			// create order variants
 			$order->orderVariants()->createMany($orderVariants->toArray());
 
-      // remove user carts
-      $request->user()->carts()->delete();
+			// remove user carts
+			$request->user()->carts()->delete();
 
-      // minus stock
-      $orderVariants->each(function ($variant) {
-        $productVariant = Variant::find($variant['variant_id']);
-        $productVariant->stock = $productVariant->stock - $variant['quantity'];
-        $productVariant->save();
-      });
+			// minus stock
+			$orderVariants->each(function ($variant) {
+				$productVariant = Variant::find($variant['variant_id']);
+				$productVariant->stock = $productVariant->stock - $variant['quantity'];
+				$productVariant->save();
+			});
 
 			session()->flash('success', 'Successfully checkout!');
 		});
-		// return redirect()->route('customer.orders.index');
+
+		return redirect()->route('customer.orders.index');
 	}
 }

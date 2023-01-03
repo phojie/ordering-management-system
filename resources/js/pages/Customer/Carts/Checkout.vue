@@ -86,8 +86,8 @@ watch(() => checkoutForm.city, (city) => {
 })
 
 onMounted(() => {
-  // DANGER: this is a hack to make the form work (for now), will be removed in the future, validate first orderNumber
-  checkoutForm.orderNumber = Math.floor(Math.random() * 100000) as number
+  // TODO: this is a hack to make the form work (for now), will be removed in the future, validate first orderNumber
+  checkoutForm.orderNumber = Math.floor(Math.random() * 1000000000) as number
 
   // set orderVariants
   checkoutForm.orderVariants = _.map(props.carts, (cart) => {
