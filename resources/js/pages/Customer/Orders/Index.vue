@@ -134,7 +134,9 @@ const flashMessageData = $computed(() => {
                   {{ orderVariant.quantity }}
                 </td>
                 <td class="hidden py-6 pr-8 sm:table-cell">
-                  {{ orderVariant.status }}
+                  <JBadge :variant="orderVariant.status === 'pending' ? 'warning' : orderVariant.status === 'cancelled' ? 'danger' : 'success'">
+                    {{ orderVariant.status }}
+                  </JBadge>
                 </td>
                 <td class="py-6 font-medium text-right whitespace-nowrap">
                   <JLink
