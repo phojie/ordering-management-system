@@ -77,10 +77,10 @@ const props = defineProps<{
                   </dd>
                 </div>
               </dl>
-              <!-- <a :href="order.invoiceHref" class="flex items-center justify-center w-full px-4 py-2 mt-6 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:mt-0 sm:w-auto">
+              <a :href="order.id" class="flex items-center justify-center w-full px-4 py-2 mt-6 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:mt-0 sm:w-auto">
                 View Invoice
-                <span class="sr-only">for order {{ order.number }}</span>
-              </a> -->
+                <span class="sr-only">for order {{ order.orderNumber }}</span>
+              </a>
             </div>
 
             <table class="w-full mt-4 text-gray-500 sm:mt-6">
@@ -116,13 +116,13 @@ const props = defineProps<{
                           {{ orderVariant.product.name }}
                         </div>
                         <div class="mt-1 sm:hidden">
-                          {{ orderVariant.variant.price }}
+                          {{ orderVariant.price }}
                         </div>
                       </div>
                     </div>
                   </td>
                   <td class="hidden py-6 pr-8 sm:table-cell">
-                    {{ orderVariant.variant.price }}
+                    {{ orderVariant.price }}
                   </td>
                   <td class="hidden py-6 pr-8 sm:table-cell">
                     {{ orderVariant.quantity }}
