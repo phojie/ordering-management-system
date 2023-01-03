@@ -70,7 +70,11 @@ class OrderController
 				$productVariant->save();
 			});
 
-			session()->flash('success', 'Successfully checkout!');
+			session()->flash('success', [
+        'title' => 'Order',
+        'message' => 'Order has been created successfully',
+        'orderNumber' => $order->order_number,
+      ]);
 		});
 
 		return redirect()->route('customer.orders.index');

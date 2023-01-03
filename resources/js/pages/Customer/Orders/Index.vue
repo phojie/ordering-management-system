@@ -4,10 +4,29 @@ import type { Order } from '@/types/order'
 const props = defineProps<{
   orders: Array<Order>
 }>()
+
+// flash-message
+const pageProps = $computed<any>(() => usePage().props.value)
+
+const flashMessageData = $computed(() => {
+  return pageProps.flash.success
+})
 </script>
 
 <template>
   <div class="px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8 lg:pb-24">
+    <div v-if="flashMessageData" class="w-full pb-10 mt-10 mb-10 border-b-2 border-gray-400 ">
+      <h1 class="text-base font-medium text-success-600">
+        Thank you!
+      </h1>
+      <p class="mt-2 text-4xl font-bold tracking-tight">
+        It's on the way!
+      </p>
+      <p class="mt-2 text-base text-gray-500">
+        Your order #{{ flashMessageData.orderNumber }} has been placed and will be shipped as soon as possible.
+      </p>
+    </div>
+
     <div class="max-w-xl">
       <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
         Order history
@@ -59,7 +78,7 @@ const props = defineProps<{
             </a>
 
             <span v-else class="relative inline-flex w-full mt-6 sm:mt-0 sm:w-auto">
-              <a href="#" class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:w-auto">
+              <a href="#" class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 sm:w-auto">
                 Processing
                 <span class="sr-only">for order {{ order.orderNumber }}</span>
               </a>

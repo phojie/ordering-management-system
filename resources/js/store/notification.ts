@@ -53,6 +53,7 @@ export const useNotificationStore = defineStore('notification', () => {
     notifications,
     add,
     remove,
+    pageProps,
   })
 })
 
