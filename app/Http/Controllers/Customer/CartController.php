@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Resources\CartResource;
+use App\Http\Resources\ProductResource;
 use App\Models\Cart;
+use App\Models\Product;
 use App\Models\Variant;
 use App\Services\FlashNotification;
 use Illuminate\Http\Request;
@@ -18,8 +20,18 @@ class CartController
 						  ->with('variant', 'product')
 						  ->get();
 
+    $cartsProductId = $carts->pluck('product_id')->toArray();
+
+		$relatedProducts = Product::query()
+				->with('variants')
+        ->available()
+        ->whereNotIn('id', $cartsProductId)
+				->limit(4)
+				->get();
+
 		return Inertia::render('Customer/Carts/Index', [
 			'carts' => CartResource::collection($carts),
+			'relatedProducts' => ProductResource::collection($relatedProducts),
 		]);
 	}
 

@@ -62,4 +62,9 @@ class Product extends Model implements HasMedia
 		return $query->when($search, fn ($q) => $q->where('name', 'ilike', "%{$search}%")
 		->orWhere('description', 'ilike', "%{$search}%"));
 	}
+
+  public function scopeAvailable($query): object
+  {
+  	return $query->where('status', 'active');
+  }
 }

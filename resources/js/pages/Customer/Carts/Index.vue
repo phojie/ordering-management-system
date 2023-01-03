@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { Variant } from '@/types/variant'
 import type { Cart } from '@/types/cart'
+import type { Product } from '@/types/product'
 
 const props = defineProps<{
   carts: Array<Cart>
+  relatedProducts: Array<Product>
 }>()
 
 const { deleteCart, updateCart } = useCartStore()
@@ -197,5 +200,24 @@ const orderTotal: number = $computed(() => {
         </div>
       </div>
     </div>
+
+    <!-- Related products -->
+    <section aria-labelledby="related-heading" class="mt-24">
+      <h2 id="related-heading" class="text-lg font-medium text-gray-900">
+        You may also like&hellip;
+      </h2>
+
+      <div class="grid grid-cols-1 mt-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <AppProductCard
+          v-for="product in relatedProducts" :key="product.id"
+          :name="product.name"
+          :image="product.image as string"
+          :description="product.description"
+          :variants="product.variants as Array<Variant>"
+          :slug="product.slug as string"
+          :product="product"
+        />
+      </div>
+    </section>
   </div>
 </template>
