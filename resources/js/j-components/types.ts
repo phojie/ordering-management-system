@@ -73,7 +73,7 @@ export interface TableHeader {
   align?: 'start' | 'center' | 'end'
   filterable?: boolean
   filterOptions?: {
-    type: 'text' | 'select' | 'date'
+    type: 'text' | 'select' | 'date' | 'number'
   }
   divider?: boolean
   class?: string

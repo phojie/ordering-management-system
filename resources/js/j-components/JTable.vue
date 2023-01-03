@@ -208,6 +208,7 @@ onMounted(() => {
                     class="max-w-xs py-1"
                     input-class="py-1.5 text-sm"
                     is-clearable
+                    :type="header.filterOptions?.type as any ?? 'text'"
                   />
                 </td>
               </template>
