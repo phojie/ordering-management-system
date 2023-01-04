@@ -20,12 +20,12 @@
 - [ ] Contacts info
 
  **Customer Account**
-- [ ] List of menu 
+- [x] List of product 
 - Categories
 - [ ] Profile
-- [ ] My orders
+- [x] My orders
 - [ ] My addresses
-- [ ] Ability to add orders
+- [x] Ability to add orders
 - COD
 - Online Payment (GCASH)
 
