@@ -2,10 +2,10 @@
 
 ## 👱 Types of User
 
-- [ ] Admin
-	- [ ] Kitchen manager
+- [x] Admin
+	- [x] Kitchen manager
 	- [ ] Deliver Boy
-- [ ] Customer
+- [x] Customer
 
 ----
 
@@ -13,7 +13,7 @@
 
  **Landing Page**
 - [ ] Ability to display all the food and services
-- [ ] Create account upon checkout
+- [x] Create account upon checkout
 - [x] Login account
 
  **About us**
@@ -44,7 +44,7 @@
 	- [x] Read
 	- [x] Update
 	- [x] Delete
-- [ ] Menus 
+- [x] Orders ✅
 	- [ ] Create
 	- [ ] Read
 	- [ ] Update
@@ -59,8 +59,7 @@
 	- [x] Read
 	- [x] Update
 	- [x] Delete
-- [ ] customers profile list 
-- [ ] orders (status)
+- [x] orders (status)
 - New orders
 - Under process orders
 - Out to deliver orders
@@ -80,7 +79,7 @@
 
 - [x] Profile
 - [ ] Addresses
-- [ ] Logout
+- [x] Logout
 
 ---
 
