@@ -77,4 +77,27 @@ class OrderService implements OrderServiceInterface
   		throw $e;
   	}
   }
+
+  public function delete(string $id): void
+  {
+  	try {
+  		\DB::transaction(function () use ($id) {
+  			Order::findOrFail($id)->delete();
+  		});
+  	} catch (\Exception $e) {
+  		throw $e;
+  	}
+  }
+
+  // delete multiple
+  public function deleteMultiple(array $ids): void
+  {
+  	try {
+  		\DB::transaction(function () use ($ids) {
+  			Order::query()->whereIn('id', $ids)->delete();
+  		});
+  	} catch (\Exception $e) {
+  		throw $e;
+  	}
+  }
 }

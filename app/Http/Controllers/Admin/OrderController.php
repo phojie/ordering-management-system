@@ -55,4 +55,26 @@ class OrderController
 
   	return redirect()->back();
   }
+
+  public function destroy(Order $order)
+  {
+  	abort_unless(\Gate::allows('order-delete'), 404);
+
+  	(new OrderService())->delete($order->id);
+
+  	(new FlashNotification())->destroy("Order number # $order->order_number");
+
+  	return redirect()->back();
+  }
+
+  public function destroyMultiple(Request $request)
+  {
+  	\Gate::authorize('order-delete');
+
+  	(new OrderService())->deleteMultiple($request->ids);
+
+  	(new FlashNotification())->destroy(count($request->ids).' order number');
+
+  	return redirect()->back();
+  }
 }

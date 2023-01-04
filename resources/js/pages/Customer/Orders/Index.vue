@@ -72,7 +72,7 @@ const flashMessageData = $computed(() => {
                 </dd>
               </div>
             </dl>
-            <a v-if="order.status !== 'pending'" :href="order.id" class="flex items-center justify-center w-full px-4 py-2 mt-6 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:mt-0 sm:w-auto">
+            <a v-if="order.status === 'delivered'" :href="order.id" class="flex items-center justify-center w-full px-4 py-2 mt-6 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:mt-0 sm:w-auto">
               View Invoice
               <span class="sr-only">for order {{ order.orderNumber }}</span>
             </a>
