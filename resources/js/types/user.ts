@@ -15,8 +15,10 @@ export interface User {
   createdAt?: string
   updatedAt?: string
   password?: string
+  phone?: string
 
   roles?: Array<Role | any>
+  address?: string
 }
 
 export interface Password {

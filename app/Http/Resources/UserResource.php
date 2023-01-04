@@ -20,9 +20,11 @@ class UserResource extends JsonResource
 			'createdAt' => $this->created_at,
 			'status' => $this->status,
 			'avatar' => $this->avatar,
+			'phone' => $this->phone,
 
 			// relationships
 			'roles' => RoleResource::collection($this->whenLoaded('roles')),
+			'addresses' => AddressResource::collection($this->whenLoaded('addresses')),
 		];
 	}
 }

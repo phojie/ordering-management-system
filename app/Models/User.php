@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -27,6 +28,7 @@ class User extends Authenticatable implements HasMedia
 	protected $fillable = [
 		'username',
 		'email',
+		'phone',
 		'first_name',
 		'middle_name',
 		'last_name',
@@ -60,6 +62,11 @@ class User extends Authenticatable implements HasMedia
   public function orders(): HasMany
   {
   	return $this->hasMany(Order::class);
+  }
+
+  public function addresses(): HasOne
+  {
+  	return $this->hasOnes(Address::class);
   }
 
 	public function scopeSearch($query, $search): object

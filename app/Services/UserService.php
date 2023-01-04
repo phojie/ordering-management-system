@@ -63,6 +63,7 @@ class UserService implements UserServiceInterface
   		$user = User::create([
   			'username' => $request->username,
   			'email' => $request->email,
+  			'phone' => $request->phone,
   			'first_name' => $request->firstName,
   			'last_name' => $request->lastName,
   			'image_url' => $request->imageUrl,
@@ -90,8 +91,9 @@ class UserService implements UserServiceInterface
   			$user->update([
   				'username' => $request->username,
   				'email' => $request->email,
+  				'phone' => $request->phone,
   				'first_name' => $request->firstName,
-          'middle_name' => $request->middleName,
+  				'middle_name' => $request->middleName,
   				'last_name' => $request->lastName,
   			]);
 

@@ -65,5 +65,16 @@ const processing = $computed(() => useSettingStore().processing)
       :error-message="$v.email.$errors[0]?.$message"
       :is-error="$v.email.$error"
     />
+
+    <JTextField
+      v-if="formState.title === 'Update phone' || formState.title === 'Update profile'"
+      id="phone"
+      v-model="form.phone"
+      label="Phone number"
+      placeholder="639xxxxxxxxx"
+      :is-disabled="processing"
+      :error-message="$v.phone.$errors[0]?.$message"
+      :is-error="$v.phone.$error"
+    />
   </div>
 </template>

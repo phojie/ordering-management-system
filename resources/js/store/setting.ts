@@ -22,6 +22,7 @@ export const useSettingStore = defineStore('setting', () => {
     email: '',
     username: '',
     avatar: '',
+    phone: '',
   })
 
   const formPassword = $ref<Password>({
@@ -58,6 +59,16 @@ export const useSettingStore = defineStore('setting', () => {
     email: {
       required: helpers.withMessage('Email is required', required),
       email: helpers.withMessage('Email is not valid', email),
+      $autoDirty: true,
+    },
+    phone: {
+      required: helpers.withMessage('Phone number is required', required),
+      startsWith: helpers.withMessage('Phone number must start with 639', (value: string | number) => {
+        return value.toString().startsWith('639') || value.toString().startsWith('+639')
+      }),
+      length: helpers.withMessage('Phone number must be 12 digits', (value: string | number) => {
+        return value.toString().length === 12
+      }),
       $autoDirty: true,
     },
   }
@@ -146,6 +157,7 @@ export const useSettingStore = defineStore('setting', () => {
     form.email = ''
     form.username = ''
     form.avatar = ''
+    form.phone = ''
 
     formPassword.newPassword = ''
     formPassword.currentPassword = ''
