@@ -1,3 +1,5 @@
+import type { User } from './user'
+import type { Pagination } from './../global.d'
 import type { OrderVariant } from './orderVariant'
 
 export interface Order {
@@ -18,8 +20,14 @@ export interface Order {
 
   userId: string
 
-  createdAt: string
-  updatedAt: string
+  createdAt?: string
+  updatedAt?: string
 
   orderVariants: Array<OrderVariant>
+  user?: User | null | undefined
 }
+
+export interface PaginationOrders extends Pagination {
+  data: Array<Order>
+}
+

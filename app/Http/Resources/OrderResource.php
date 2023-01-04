@@ -30,6 +30,7 @@ class OrderResource extends JsonResource
 
         // relationships
         'orderVariants' => OrderVariantResource::collection($this->whenLoaded('orderVariants')),
+        'user' => new UserResource($this->whenLoaded('user')),
       ];
     }
 }

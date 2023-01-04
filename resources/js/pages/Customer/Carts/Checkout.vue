@@ -46,39 +46,19 @@ const checkoutForm = useForm({
   orderVariants: [] as Array<any>,
 })
 
-const paymentMethods = [
-  { id: 1, title: 'Cash on delivery', description: 'Pay with cash upon delivery', disabled: false },
-  { id: 2, title: 'Credit card', description: 'Pay with your credit card', disabled: true },
-  { id: 3, title: 'Paypal', description: 'Pay with your paypal account', disabled: true },
-  { id: 2, title: 'GCash', description: 'Pay with your GCash account', disabled: true },
-]
+const paymentMethods = useConstant().paymentMethods
 
-const selectedPaymentMethod = ref(paymentMethods[0])
+const selectedPaymentmethod = ref(paymentMethods[0])
 
-const availableAddress = [
-  {
-    city: 'Tubod',
-    province: 'Lanao del Norte',
-    postalCode: '9200',
-  },
-  {
-    city: 'Baroy',
-    province: 'Lanao del Norte',
-    postalCode: '9201',
-  },
-]
+const availableaddress = useConstant().availableAddress
 
-const cityOptions = _.map(availableAddress, (address) => {
-  return address.city
-})
+const cityOptions = useConstant().cityOptions
 
-const provinceOptions = _.uniq(_.map(availableAddress, (address) => {
-  return address.province
-}))
+const provinceOptions = useConstant().provinceOptions
 
 // watch city, change postalCode base on city value
 watch(() => checkoutForm.city, (city) => {
-  const address = _.find(availableAddress, (address) => {
+  const address = _.find(availableaddress, (address) => {
     return address.city === city
   }) as any
 
@@ -209,7 +189,7 @@ onMounted(() => {
             </div>
 
             <div class="pt-10 mt-10 border-t border-gray-200">
-              <RadioGroup v-model="selectedPaymentMethod">
+              <RadioGroup v-model="selectedPaymentmethod">
                 <RadioGroupLabel class="text-lg font-medium text-gray-900">
                   Payment method
                 </RadioGroupLabel>
@@ -220,7 +200,7 @@ onMounted(() => {
                   >
                     <div
                       class="relative flex p-4 bg-white border rounded-lg shadow-sm cursor-pointer focus:outline-none" :class="[
-                        checked ? 'border-transparent' : 'border-gray-300', active ? 'ring-2 ring-indigo-500' : '',
+                        checked ? 'border-transparent' : 'border-gray-300', active ? 'ring-2 ring-primary-500' : '',
                         paymentMethod.disabled ? 'opacity-50' : 'opacity-100']"
                     >
                       <span class="flex flex-1">
@@ -229,8 +209,8 @@ onMounted(() => {
                           <RadioGroupDescription as="span" class="flex items-center mt-1 text-sm text-gray-500">{{ paymentMethod.description }}</RadioGroupDescription>
                         </span>
                       </span>
-                      <heroicons-check-circle-20-solid v-if="checked" class="w-5 h-5 text-indigo-600" aria-hidden="true" />
-                      <span class="absolute rounded-lg pointer-events-none -inset-px" :class="[active ? 'border' : 'border-2', checked ? 'border-indigo-500' : 'border-transparent']" aria-hidden="true" />
+                      <heroicons-check-circle-20-solid v-if="checked" class="w-5 h-5 text-primary-600" aria-hidden="true" />
+                      <span class="absolute rounded-lg pointer-events-none -inset-px" :class="[active ? 'border' : 'border-2', checked ? 'border-primary-500' : 'border-transparent']" aria-hidden="true" />
                     </div>
                   </RadioGroupOption>
                 </div>
@@ -270,7 +250,7 @@ onMounted(() => {
                   <JSelect
                     id="city"
                     v-model="checkoutForm.city"
-                    label="Municaplity/City"
+                    label="Municipality/City"
                     :items="cityOptions"
                   />
                 </div>
@@ -298,7 +278,7 @@ onMounted(() => {
               </div>
             </div>
 
-            <div class="mt-10">
+            <div v-if="false" class="mt-10">
               <h3 class="text-lg font-medium text-gray-900">
                 Billing information
               </h3>

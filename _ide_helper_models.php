@@ -98,9 +98,12 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderVariant[] $orderVariants
  * @property-read int|null $order_variants_count
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Order filterOrderNumber($request)
  * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Order search($search)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereCountry($value)
@@ -127,6 +130,7 @@ namespace App\Models{
  * App\Models\OrderVariant
  *
  * @property string $id
+ * @property string $status
  * @property string $order_id
  * @property string $variant_id
  * @property string $product_id
@@ -146,6 +150,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant whereTotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderVariant whereVariantId($value)

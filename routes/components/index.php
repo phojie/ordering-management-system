@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Components\CartController;
 use App\Http\Controllers\Components\CategoryController;
+use App\Http\Controllers\Components\OrderController;
 use App\Http\Controllers\Components\PermissionController;
 use App\Http\Controllers\Components\ProductController;
 use App\Http\Controllers\Components\RoleController;
@@ -36,4 +37,7 @@ Route::prefix('components')->middleware('auth')->group(function () {
 	// products
 	Route::get('products', [ProductController::class, 'index'])->name('components.products');
 	Route::get('products/{id}', [ProductController::class, 'show'])->name('components.products.show');
+
+  // orders
+  Route::get('orders/{id}', [OrderController::class, 'show'])->name('components.orders.show');
 });

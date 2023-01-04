@@ -25,6 +25,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 	require __DIR__.'/admin/category.php';
 	require __DIR__.'/admin/product.php';
+  require __DIR__.'/admin/order.php';
 });
 
 // components routes

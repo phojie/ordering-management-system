@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
@@ -30,7 +32,8 @@ class Order extends Model
 		'user_id',
 	];
 
-	protected $cast = [
+	protected $casts = [
+    'order_number' => 'integer',
 		'taxes_amount' => 'float',
 		'shipping_amount' => 'float',
 		'total_amount' => 'float',
@@ -40,4 +43,30 @@ class Order extends Model
 	{
 		return $this->hasMany(OrderVariant::class);
 	}
+
+  public function user(): BelongsTo
+  {
+  	return $this->belongsTo(User::class);
+  }
+
+  public function scopeSearch($query, $search): object
+  {
+  	return $query->when(
+  		$search,
+  		fn ($q) => $q->where('order_number', 'ilike', "%{$search}%")
+  	->orWhere('name', 'ilike', "%{$search}%")
+  	->orWhere('email', 'ilike', "%{$search}%")
+  	->orWhere('phone', 'ilike', "%{$search}%")
+  	->orWhere('address', 'ilike', "%{$search}%")
+  	->orWhere('city', 'ilike', "%{$search}%")
+  	->orWhere('province', 'ilike', "%{$search}%")
+  	->orWhere('postal_code', 'ilike', "%{$search}%")
+  	->orWhere('status', 'ilike', "%{$search}%")
+  	);
+  }
+
+  public function scopeFilterOrderNumber(Builder $query, $request): Builder
+  {
+      return $query->where('order_number', 'like', "%{$request}%");
+  }
 }

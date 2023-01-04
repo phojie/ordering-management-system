@@ -1,5 +1,5 @@
 import HeroiconsHome from '~icons/heroicons/home'
-import HeroiconsDocumentDuplicate from '~icons/heroicons/document-duplicate'
+// import HeroiconsDocumentDuplicate from '~icons/heroicons/document-duplicate'
 import HeroiconsShoppingCart from '~icons/heroicons/shopping-cart'
 import HeroiconsBeaker from '~icons/heroicons/beaker'
 // import HeroiconsBars3 from '~icons/heroicons/bars-3'
@@ -40,15 +40,15 @@ export const useNavigation = () => {
       href: 'admin.products.index',
       exact: true,
     },
-    {
-      name: 'Menus',
-      icon: HeroiconsDocumentDuplicate,
-      href: '#',
-    },
+    // {
+    //   name: 'Menus',
+    //   icon: HeroiconsDocumentDuplicate,
+    //   href: '#',
+    // },
     {
       name: 'Orders',
       icon: HeroiconsShoppingCart,
-      href: '#',
+      href: 'admin.orders.index',
     },
     // {
     //   name: 'Add-ons',

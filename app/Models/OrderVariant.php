@@ -21,6 +21,12 @@ class OrderVariant extends Model
 		'total',
 	];
 
+  protected $casts = [
+    'price' => 'float',
+    'total' => 'float',
+    'quantity' => 'integer'
+  ];
+
 	public function variant(): BelongsTo
 	{
 		return $this->belongsTo(Variant::class);

@@ -16,7 +16,7 @@ class OrderController
 		$orders = Order::query()
 				->with('orderVariants', 'orderVariants.variant', 'orderVariants.product')
 				->where('user_id', auth()->user()->id)
-        ->latest()
+		->latest()
 				->get();
 
 		return Inertia::render('Customer/Orders/Index', [
@@ -71,10 +71,10 @@ class OrderController
 			});
 
 			session()->flash('success', [
-        'title' => 'Order',
-        'message' => 'Order has been created successfully',
-        'orderNumber' => $order->order_number,
-      ]);
+				'title' => 'Order',
+				'message' => 'Order has been created successfully',
+				'orderNumber' => $order->order_number,
+			]);
 		});
 
 		return redirect()->route('customer.orders.index');

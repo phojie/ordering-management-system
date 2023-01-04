@@ -10,5 +10,8 @@ Route::prefix('orders')->group(function () {
 
 		// store
 		Route::post('/', 'store')->name('customer.orders.store');
+
+    // show
+    Route::get('/{order}', 'show')->name('customer.orders.show');
 	});
 });
