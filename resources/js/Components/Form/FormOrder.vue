@@ -131,7 +131,7 @@ watch(() => form.city, (city) => {
 
     <div>
       <h3 class="text-lg font-medium text-gray-900">
-        Orders Information
+        Shopping cart
       </h3>
 
       <div class="mt-4 space-y-10">
