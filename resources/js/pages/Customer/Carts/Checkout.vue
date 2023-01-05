@@ -290,7 +290,12 @@ onMounted(() => {
                 </div>
               </div>
             </div>
-
+            <div class="mt-6 p-10 border-2 border-dashed text-gray-500 bg-warning-50 rounded-md flex justify-center items-center">
+              <heroicons-exclamation-triangle-20-solid class="mr-2 text-warning-600" />
+              <span class="font-medium text-lg ">
+                Strictly no cancellation of orders.
+              </span>
+            </div>
             <div class="flex justify-end pt-6 mt-10 space-x-4 border-t border-gray-200">
               <JLink
                 :to="route('customer.carts.index')"
