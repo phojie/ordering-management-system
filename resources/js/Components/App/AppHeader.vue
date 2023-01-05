@@ -289,10 +289,10 @@ onMounted(async () => {
                 </button> -->
 
               <!-- Search -->
-              <a href="#" class="p-2 -ml-2 text-gray-400 hover:text-gray-500">
+              <JLink :to="route('products.index')" class="p-2 -ml-2 text-gray-400 hover:text-gray-500">
                 <span class="sr-only">Search</span>
                 <heroicons-magnifying-glass class="w-6 h-6" aria-hidden="true" />
-              </a>
+              </JLink>
             </div>
 
             <!-- Logo (lg-) -->
@@ -301,21 +301,25 @@ onMounted(async () => {
             </JLink>
 
             <div class="flex items-center justify-end flex-1">
-              <a
-                href="#"
+              <JLink
+                :to="route('products.index')"
                 class="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block"
-              >Search</a>
+              >
+                Search
+              </JLink>
 
               <div class="flex items-center lg:ml-8">
                 <!-- Help -->
-                <a href="#" class="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
+                <JLink :to="route('help')" class="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
                   <span class="sr-only">Help</span>
                   <heroicons-question-mark-circle class="w-6 h-6" aria-hidden="true" />
-                </a>
-                <a
-                  href="#"
+                </JLink>
+                <JLink
+                  :to="route('help')"
                   class="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block"
-                >Help</a>
+                >
+                  Help
+                </JLink>
 
                 <!-- Cart -->
                 <div class="flow-root ml-4 lg:ml-8">
