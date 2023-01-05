@@ -59,6 +59,7 @@ declare module '@vue/runtime-core' {
     FormUser: typeof import('./components/Form/FormUser.vue')['default']
     FormVariant: typeof import('./components/Form/FormVariant.vue')['default']
     HeroiconsArrowDown: typeof import('~icons/heroicons/arrow-down')['default']
+    HeroiconsArrowLeftOnRectangle20Solid: typeof import('~icons/heroicons/arrow-left-on-rectangle20-solid')['default']
     HeroiconsArrowLongLeft20Solid: typeof import('~icons/heroicons/arrow-long-left20-solid')['default']
     HeroiconsArrowLongRight20Solid: typeof import('~icons/heroicons/arrow-long-right20-solid')['default']
     HeroiconsArrowPathRoundedSquare20Solid: typeof import('~icons/heroicons/arrow-path-rounded-square20-solid')['default']

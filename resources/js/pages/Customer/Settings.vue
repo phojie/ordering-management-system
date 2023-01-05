@@ -10,11 +10,18 @@ const { formState } = useSettingStore()
   <div class="px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8 lg:pb-24">
     <Head title="Settings | Customer" />
     <div class="relative px-4 sm:px-6 md:px-8 ">
-      <div class="pt-10 pb-16">
-        <div>
+      <div class="pb-16 ">
+        <div class="flex justify-between space-x-5 items-center">
           <h1 class="text-3xl font-bold tracking-tight text-gray-900">
-            Settings
+            Account
           </h1>
+          <div>
+            <JBtn variant="text" @click="useAuthStore().signOut()">
+              <span class="inline-flex ">
+                Logout <heroicons-arrow-left-on-rectangle-20-solid class="ml-3" />
+              </span>
+            </JBtn>
+          </div>
         </div>
         <div class="py-6">
           <TabGroup>

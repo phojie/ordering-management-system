@@ -2,11 +2,52 @@
 const faqs = [
   {
     id: 1,
-    question: 'What\'s the best thing about Switzerland?',
+    question: 'How do I place an order?',
     answer:
-      'I don\'t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa libero labore natus.',
+
   },
-  // More questions about products, orders, and carts
+  {
+    id: 2,
+    question: 'Do you offer Saturday delivery?',
+    answer: 'Yes, we offer Saturday delivery.',
+  },
+  {
+    id: 3,
+    question: 'Can I find out at what time my order will be delivered?',
+    answer:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa libero labore natus.',
+  },
+  {
+    id: 4,
+    question: 'What is your return policy?',
+    answer:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa libero labore natus.',
+  },
+  {
+    id: 5,
+    question: 'How do I track my order?',
+    answer:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa libero labore natus.',
+  },
+  {
+    id: 6,
+    question: 'How do I cancel my order?',
+    answer:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa libero labore natus.',
+  },
+  {
+    id: 7,
+    question: 'How do I return an item?',
+    answer:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa libero labore natus.',
+  },
+  {
+    id: 8,
+    question: 'How do I change my order?',
+    answer:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa libero labore natus.',
+  },
 ]
 </script>
 
