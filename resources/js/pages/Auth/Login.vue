@@ -51,14 +51,14 @@ const processing = computed(() => form.processing)
               :is-disabled="processing"
             />
 
-            <div class="text-sm">
+            <!-- <div class="text-sm">
               <Link
                 :href="route('password.request')"
                 class="font-medium text-primary-600 hover:text-primary-500"
               >
                 Forgot your password?
               </Link>
-            </div>
+            </div> -->
           </div>
 
           <div>

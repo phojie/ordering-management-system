@@ -31,6 +31,7 @@ export const useNavigation = () => {
     {
       name: 'Categories',
       href: 'admin.categories.index',
+      permission: 'category-list',
       icon: HeroiconsQueueList,
       exact: true,
     },
@@ -38,6 +39,7 @@ export const useNavigation = () => {
       name: 'Products',
       icon: HeroiconsBeaker,
       href: 'admin.products.index',
+      permission: 'product-list',
       exact: true,
     },
     // {
@@ -48,6 +50,7 @@ export const useNavigation = () => {
     {
       name: 'Orders',
       icon: HeroiconsShoppingCart,
+      permission: 'order-list',
       href: 'admin.orders.index',
     },
     // {
