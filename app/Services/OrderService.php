@@ -64,8 +64,6 @@ class OrderService implements OrderServiceInterface
   				'total_amount' => $request->totalAmount,
   				'taxes_amount' => $request->taxesAmount,
   				'shipping_amount' => $request->shippingAmount,
-
-  				'user_id' => $request->user()->id,
   			]);
 
   			// set order variants status

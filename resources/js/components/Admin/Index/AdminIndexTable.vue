@@ -8,14 +8,14 @@ const props = defineProps<{
     date: string
     datetime: string
     href: string
-    status: 'success' | 'pending' | 'cancelled'
+    status: 'delivered' | 'pending' | 'cancelled'
   }[]
 }>()
 
 const statusStyles = {
-  success: 'bg-green-100 text-green-800',
+  delivered: 'bg-green-100 text-green-800',
   pending: 'bg-yellow-100 text-yellow-800',
-  cancelled: 'bg-gray-100 text-gray-800',
+  cancelled: 'bg-danger-100 text-danger-800',
 }
 </script>
 

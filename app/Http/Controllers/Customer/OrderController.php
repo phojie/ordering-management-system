@@ -16,7 +16,7 @@ class OrderController
 		$orders = Order::query()
 				->with('orderVariants', 'orderVariants.variant', 'orderVariants.product')
 				->where('user_id', auth()->user()->id)
-		->latest()
+        ->latest()
 				->get();
 
 		return Inertia::render('Customer/Orders/Index', [

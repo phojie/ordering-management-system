@@ -15,7 +15,7 @@ const props = defineProps<{
     date: string
     datetime: string
     href: string
-    status: 'success' | 'pending' | 'cancelled'
+    status: 'delivered' | 'pending' | 'cancelled'
   }>
   ordersProductQuantity: {
     categories: Array<any>
