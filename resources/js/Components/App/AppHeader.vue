@@ -119,7 +119,7 @@ onMounted(async () => {
 
             <JLink
               v-if="useGate().can('Customer')"
-              :to="route('dashboard')"
+              :to="route('customer.settings.index')"
               class="text-sm font-medium text-white hover:text-gray-100"
             >
               My Account
