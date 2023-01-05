@@ -51,6 +51,14 @@ class OrderService implements OrderServiceInterface
   {
   	try {
   		\DB::transaction(function () use ($request, $order) {
+        // if status is cancelled before, and updated to paid
+        if ($order->getOriginal('status') === 'cancelled' && ($request->status === 'delivered' ||$request->status === 'shipped' || $request->status === 'pending')) {
+          // set order variants stock
+          $order->orderVariants()->each(function ($orderVariant) {
+            $orderVariant->variant->decrement('stock', $orderVariant->quantity);
+          });
+        }
+
   			$order->update([
   				'name' => $request->name,
   				'email' => $request->email,
@@ -69,7 +77,14 @@ class OrderService implements OrderServiceInterface
   			// set order variants status
   			$order->orderVariants()->update(['status' => $request->status]);
 
-  			// TODO
+        // if status is cancelled
+        if ($request->status === 'cancelled') {
+          // set order variants stock
+          $order->orderVariants()->each(function ($orderVariant) {
+            $orderVariant->variant->increment('stock', $orderVariant->quantity);
+          });
+        }
+
   		});
   	} catch (\Exception $e) {
   		throw $e;
