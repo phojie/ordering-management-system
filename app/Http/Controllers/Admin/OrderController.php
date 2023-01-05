@@ -31,7 +31,7 @@ class OrderController
 
   public function show($id)
   {
-  	abort_unless(\Gate::allows('order-show'), 404);
+  	abort_unless(\Gate::allows('order-read'), 404);
 
   	$order = (new OrderService())->find($id);
 
@@ -46,8 +46,6 @@ class OrderController
   public function update(OrderRequest $request, Order $order)
   {
   	abort_unless(\Gate::allows('order-update'), 404);
-
-  	\Gate::authorize('product-update');
 
   	(new OrderService())->update($request, $order);
 

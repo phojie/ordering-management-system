@@ -11,7 +11,7 @@ class OrderController
 {
 	public function show($id)
 	{
-    abort_unless(\Gate::allows('order-show'), 404);
+    abort_unless(\Gate::allows('order-read'), 404);
 
     $order = (new OrderService())->find($id);
 
