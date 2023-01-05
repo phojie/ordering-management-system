@@ -23,6 +23,10 @@ const props = defineProps<{
   }
 }>()
 
+defineOptions({
+  layout: AdminLayout,
+})
+
 const auth = useAuthStore()
 
 const roleDisplay = computed(() => {
@@ -33,9 +37,16 @@ const roleDisplay = computed(() => {
   return roles.map(r => r.charAt(0).toUpperCase() + r.slice(1)).join(', ')
 })
 
-defineOptions({
-  layout: AdminLayout,
-})
+const { formState: formStateProduct } = useProductStore()
+const { formState: formStateCategory } = useCategoryStore()
+
+const toggleCreateCategory = () => {
+  formStateCategory.show = true
+}
+
+const toggleCreateProduct = () => {
+  formStateProduct.show = true
+}
 </script>
 
 <template>
@@ -68,14 +79,16 @@ defineOptions({
           <button
             type="button"
             class="inline-flex items-center order-1 px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm sm:order-0 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:ml-0"
+            @click="toggleCreateProduct"
           >
-            Share
+            Add products
           </button>
           <button
             type="button"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-primary-600 order-0 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:order-1 sm:ml-3"
+            class="inline-flex items-center order-first px-4 ml-3 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm sm:order-last bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+            @click="toggleCreateCategory"
           >
-            Create
+            Create categories
           </button>
         </div>
       </div>
@@ -90,6 +103,12 @@ defineOptions({
         <!-- recent activity -->
         <AdminIndexTable :transactions="transactions" />
       </section>
+
+      <!-- Slide category over -->
+      <AdminCategoriesSlideOver :state="formStateCategory.show" />
+
+      <!-- Slide product over -->
+      <AdminProductsSlideOver :state="formStateProduct.show" />
     </main>
   </div>
 </template>

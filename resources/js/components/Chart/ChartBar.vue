@@ -4,6 +4,7 @@ const props = defineProps<{
   categories: Array<any>
   series: Array<any>
 }>()
+
 const data = ref({
   categories: props.categories,
   series: props.series,
