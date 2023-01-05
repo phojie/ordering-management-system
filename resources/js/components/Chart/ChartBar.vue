@@ -30,10 +30,6 @@ const chartOptions = computed(() => {
       },
       gridLineDashStyle: 'shortdot',
     },
-    credits: {
-      href: 'https://pobtubodldn.com/',
-      text: 'src: https://www.Pobtubodldn.com',
-    },
     legend: {
       enabled: false,
     },
