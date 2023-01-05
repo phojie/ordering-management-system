@@ -8,7 +8,7 @@ const props = defineProps<{
     date: string
     datetime: string
     href: string
-    status: 'delivered' | 'pending' | 'cancelled'
+    status: 'delivered' | 'pending' | 'cancelled' | 'shipped'
   }[]
 }>()
 
@@ -16,6 +16,7 @@ const statusStyles = {
   delivered: 'bg-green-100 text-green-800',
   pending: 'bg-yellow-100 text-yellow-800',
   cancelled: 'bg-danger-100 text-danger-800',
+  shipped: 'bg-blue-100 text-blue-800',
 }
 </script>
 
@@ -37,7 +38,7 @@ const statusStyles = {
                   <span class="truncate">{{ transaction.name }}</span>
                   <span><span class="font-medium text-gray-900">{{ transaction.amount }}</span> {{
                     transaction.currency }}</span>
-                  <time :datetime="transaction.datetime">{{ transaction.date }}</time>
+                  <time :datetime="transaction.datetime">{{ useDateFormat(transaction.date, 'MMM DD, YYYY | hh:mm a ').value }}</time>
                 </span>
               </span>
               <heroicons-banknotes-20-solid class="flex-shrink-0 w-5 h-5 text-gray-400" aria-hidden="true" />
@@ -124,13 +125,14 @@ const statusStyles = {
                   >{{ transaction.status }}</span>
                 </td>
                 <td class="px-6 py-4 text-sm text-right text-gray-500 whitespace-nowrap">
-                  <time :datetime="transaction.datetime">{{ transaction.date }}</time>
+                  <time :datetime="transaction.datetime">  {{ useDateFormat(transaction.date, 'MMM DD, YYYY | hh:mm a ').value }}</time>
                 </td>
               </tr>
             </tbody>
           </table>
           <!-- Pagination -->
           <nav
+            v-if="false"
             class="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 sm:px-6"
             aria-label="Pagination"
           >

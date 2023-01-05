@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Customer;
 
+use App\Events\NewOrder;
 use App\Http\Resources\CartResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Cart;

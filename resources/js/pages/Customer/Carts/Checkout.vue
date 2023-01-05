@@ -62,6 +62,7 @@ watch(() => checkoutForm.city, (city) => {
     return address.city === city
   }) as any
 
+  checkoutForm.province = address?.province
   checkoutForm.postalCode = address?.postalCode
 })
 

@@ -30,3 +30,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 // components routes
 require __DIR__.'/components/index.php';
+
+// broadcasting/auth
+Route::post('/broadcasting/auth', function () {
+  return Broadcast::auth(request());
+});

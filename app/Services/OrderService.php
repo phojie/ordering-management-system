@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\OrderStatusUpdated;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Services\Interfaces\OrderServiceInterface;
@@ -59,6 +60,12 @@ class OrderService implements OrderServiceInterface
           });
         }
 
+        // if status is changed
+        if ($order->getOriginal('status') !== $request->status) {
+          // broadcast order status updated
+          broadcast(new OrderStatusUpdated($order));
+        }
+
   			$order->update([
   				'name' => $request->name,
   				'email' => $request->email,
@@ -84,6 +91,7 @@ class OrderService implements OrderServiceInterface
             $orderVariant->variant->increment('stock', $orderVariant->quantity);
           });
         }
+
 
   		});
   	} catch (\Exception $e) {

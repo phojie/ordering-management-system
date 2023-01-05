@@ -85,7 +85,7 @@ export interface TableItems {
 }
 
 export interface Notification {
-  id: number
+  id: number | string
   duration?: number
 
   title: string

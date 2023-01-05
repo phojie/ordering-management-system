@@ -5,66 +5,65 @@ const props = defineProps<{
   series: Array<any>
 }>()
 
-const data = ref({
-  categories: props.categories,
-  series: props.series,
+const data = $ref({
   title: 'Orders per product',
   subtitle: 'Realtime data',
 })
 
 // computed
-const chartOptions = reactive({
-  accessibility: {
-    enabled: false,
-  },
-  chart: {
-    type: 'column',
-    height: '500px',
-  },
-  xAxis: {
-    categories: data.value.categories,
-  },
-  yAxis: {
-    min: 0,
+const chartOptions = computed(() => {
+  return {
+    accessibility: {
+      enabled: false,
+    },
+    chart: {
+      type: 'column',
+      height: '500px',
+    },
+    xAxis: {
+      categories: props.categories,
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: 'Products',
+      },
+      gridLineDashStyle: 'shortdot',
+    },
+    credits: {
+      href: 'https://pobtubodldn.com/',
+      text: 'src: https://www.Pobtubodldn.com',
+    },
+    legend: {
+      enabled: false,
+    },
     title: {
-      text: 'Products',
+      text: data.title,
     },
-    gridLineDashStyle: 'shortdot',
-  },
-  credits: {
-    href: 'https://pobtubodldn.com/',
-    text: 'src: https://www.Pobtubodldn.com',
-  },
-  legend: {
-    enabled: false,
-  },
-  title: {
-    text: data.value.title,
-  },
-  subtitle: {
-    text: data.value.subtitle,
-  },
-  plotOptions: {
-    series: {
+    subtitle: {
+      text: data.subtitle,
+    },
+    plotOptions: {
+      series: {
       // borderWidth: 06366F1,
+      },
     },
-  },
-  tooltip: {
-    headerFormat: '<b>{series.name}</b><br/>',
-    pointFormat: '{point.category}: {point.y}',
-    borderColor: '#3b82f6',
-  },
-  series: [
-    {
-      name: 'Total orders',
-      data: data.value.series,
-      dataLabels: {
-        enabled: true,
-        style: {
-          textOutline: false,
-        },
-        // rotation: -90,
-        align: 'right',
+    tooltip: {
+      headerFormat: '<b>{series.name}</b><br/>',
+      pointFormat: '{point.category}: {point.y}',
+      borderColor: '#3b82f6',
+    },
+    series: [
+      {
+        name: 'Total orders',
+        data: props.series,
+        dataLabels: {
+          enabled: true,
+          style: {
+            textOutline: false,
+          },
+          // rotation: -90,
+          align: 'right',
         // format: '{point.y:.0f}', // one decimal
         // // y: 10, // 10 pixels down from the top
         // style: {
@@ -72,9 +71,10 @@ const chartOptions = reactive({
         //   fontWeight: '600',
         //   fontFamily: 'Jost',
         // },
+        },
       },
-    },
-  ],
+    ],
+  }
 },
 )
 </script>

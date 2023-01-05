@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Customer;
 
+use App\Events\NewOrder;
 use App\Http\Requests\OrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Models\Order;
@@ -16,7 +17,7 @@ class OrderController
 		$orders = Order::query()
 				->with('orderVariants', 'orderVariants.variant', 'orderVariants.product')
 				->where('user_id', auth()->user()->id)
-        ->latest()
+		->latest()
 				->get();
 
 		return Inertia::render('Customer/Orders/Index', [
@@ -69,6 +70,8 @@ class OrderController
 				$productVariant->stock = $productVariant->stock - $variant['quantity'];
 				$productVariant->save();
 			});
+
+			NewOrder::dispatch($order);
 
 			session()->flash('success', [
 				'title' => 'Order',

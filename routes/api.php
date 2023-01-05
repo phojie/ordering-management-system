@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\NewOrder;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,3 +19,23 @@ use Illuminate\Support\Facades\Route;
 // 	Route::middleware('auth:sanctum')->group(function () {
 // 	});
 // });
+
+// trigger broadcast event
+// Route::get('/broadcast', function () {
+// 	$order = Order::first();
+// 	OrderStatusUpdated::dispatch($order);
+
+//   dd($order);
+
+// 	return 'done';
+// });
+
+Route::get('/broadcast', function () {
+	$order = Order::first();
+	// OrderStatusUpdated::dispatch($order);
+	NewOrder::dispatch($order);
+
+	dd($order);
+
+	return 'done';
+});

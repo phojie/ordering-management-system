@@ -25,6 +25,14 @@ watch(rows, (value) => {
 const toggleCreate = () => {
   formState.show = true
 }
+
+onMounted(() => {
+  window.Echo.channel('new-order')
+    .listen('.new.order', (e: any) => {
+      // reload
+      Inertia.reload({ only: ['orders'] })
+    })
+})
 </script>
 
 <template>

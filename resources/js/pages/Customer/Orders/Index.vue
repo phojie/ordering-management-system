@@ -11,6 +11,16 @@ const pageProps = $computed<any>(() => usePage().props.value)
 const flashMessageData = $computed(() => {
   return pageProps.flash.success
 })
+
+onMounted(() => {
+  if (useAuthStore().signedIn) {
+    window.Echo.channel(`orders.${useAuthStore().user.id}`)
+      .listen('.order.status.updated', (e: any) => {
+        // reload
+        Inertia.reload({ only: ['orders'] })
+      })
+  }
+})
 </script>
 
 <template>

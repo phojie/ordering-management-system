@@ -40,8 +40,9 @@ class DashboardController
 		];
 
 		$orders = Order::query()
-						->limit(10)
-						->get();
+				  ->latest()
+				  ->limit(10)
+				  ->get();
 
 		$orders = $orders->map(function ($order) {
 			return [
@@ -51,23 +52,23 @@ class DashboardController
 				'amount' => $order->total_amount,
 				'currency' => 'PHP',
 				'status' => $order->status,
-				'date' => $order->created_at->format('F j, Y'),
-				'datetime' => $order->created_at->format('Y-m-d'),
+				'date' => $order->created_at,
+				'datetime' => $order->created_at,
 			];
 		});
 
-    // get all categories name and id
-    // $categories = Category::withCount('orderVariants')->all(['id', 'name']);
+		// get all categories name and id
+		// $categories = Category::withCount('orderVariants')->all(['id', 'name']);
 
-    // get all product and its total order variants
-    $products = Product::with('orderVariants')->get();
-    $products = $products->map(function ($product) {
-      return [
-        'id'=> $product->id,
-        'name' => $product->name,
-        'orderVariantsQuantity' => $product->orderVariants->sum('quantity'),
-      ];
-    });
+		// get all product and its total order variants
+		$products = Product::with('orderVariants')->get();
+		$products = $products->map(function ($product) {
+			return [
+				'id'=> $product->id,
+				'name' => $product->name,
+				'orderVariantsQuantity' => $product->orderVariants->sum('quantity'),
+			];
+		});
 
 		return Inertia::render('Admin/Index', [
 			'stats' => [
@@ -76,10 +77,10 @@ class DashboardController
 				$totalProductsStat,
 			],
 			'transactions' =>$orders,
-      'ordersProductQuantity' => [
-        'categories' => $products->pluck('name'),
-        'series' => $products->pluck('orderVariantsQuantity')
-      ],
+			'ordersProductQuantity' => [
+				'categories' => $products->pluck('name'),
+				'series' => $products->pluck('orderVariantsQuantity'),
+			],
 		]);
 	}
 }

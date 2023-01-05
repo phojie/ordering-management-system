@@ -35,3 +35,9 @@ export interface PaginationMeta {
   to: number
   total: number
 }
+
+declare global {
+  interface Window {
+    Echo?: any;
+  }
+}

@@ -1,4 +1,23 @@
 <script setup lang="ts">
+onMounted(() => {
+  if (useAuthStore().signedIn) {
+    window.Echo.channel('new-order')
+      .listen('.new.order', (e: any) => {
+        useNotificationStore().add({
+          id: parseInt(_.uniqueId()),
+          title: `${e.order.user.fullName} placed a new order`,
+          message: `Order #${e.order.orderNumber} has been created`,
+          variant: 'success',
+          icon: 'check',
+        })
+      })
+  }
+})
+
+onUnmounted(() => {
+  if (useAuthStore().signedIn)
+    window.Echo.leave('new-order')
+})
 </script>
 
 <template>
