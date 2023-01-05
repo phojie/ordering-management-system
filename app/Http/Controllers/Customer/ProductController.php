@@ -14,8 +14,15 @@ class ProductController
 		// TODO: Add pagination
 		$products = Product::query()
 				->with(['variants', 'categories'])
-				->search($request->search)
-				->get();
+				->search($request->search);
+
+		if ($request->has('category')) {
+			$products = $products->whereHas('categories', function ($query) use ($request) {
+				$query->where('slug', $request->category);
+			});
+		}
+
+		$products = $products->get();
 
 		return Inertia::render('Customer/Products/Index', [
 			'products' => ProductResource::collection($products),

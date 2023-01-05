@@ -22,13 +22,19 @@ class CategoryController
 		]);
 	}
 
-	public function show(string $slug)
+	public function show(string $slug, Request $request)
 	{
-		$category = Category::where('slug', $slug)->firstOrFail();
+		$category = Category::query()
+		  ->with('products', function ($query) use ($request) {
+		  	$query->with(['variants', 'categories'])
+		  		->search($request->search);
+		  })
+		  ->where('slug', $slug)
+		  ->firstOrFail();
 
 		// return new CategoryResource($category);
 		return Inertia::render('Customer/Categories/Show', [
-			'categories' => new CategoryResource($category),
+			'category' => new CategoryResource($category),
 		]);
 	}
 }
