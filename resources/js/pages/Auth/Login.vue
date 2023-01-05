@@ -1,7 +1,5 @@
 <script setup lang="ts">
 defineProps<{
-  canResetPassword: Boolean
-  status: String
 }>()
 
 const auth = useAuthStore()

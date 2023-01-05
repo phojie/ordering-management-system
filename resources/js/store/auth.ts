@@ -9,6 +9,11 @@ export const useAuthStore = defineStore('auth', () => {
   const csrfToken = $computed(() => usePage().props.value.csrfToken)
 
   const form = useForm({
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    username: '',
+
     email: '',
     password: '',
     remember: false,
@@ -45,6 +50,18 @@ export const useAuthStore = defineStore('auth', () => {
     })
   }
 
+  // register
+  function register() {
+    form.post(route('register'), {
+      onSuccess: () => {
+        form.reset()
+      },
+      onError: () => {
+        form.password = ''
+      },
+    })
+  }
+
   return $$({
     // states
     form,
@@ -56,6 +73,7 @@ export const useAuthStore = defineStore('auth', () => {
     // actions
     signOut,
     signIn,
+    register,
   })
 })
 
