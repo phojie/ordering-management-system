@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Product;
 use Inertia\Inertia;
@@ -22,8 +24,8 @@ class PublicController
 				->get();
 
 		return Inertia::render('Index', [
-			'categories' => $randomCategories,
-			'products' => $trendingProducts,
+			'categories' => CategoryResource::collection($randomCategories),
+			'products' =>  ProductResource::collection($trendingProducts),
 		]);
 	}
 }

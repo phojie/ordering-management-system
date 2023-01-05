@@ -120,13 +120,13 @@ const perks = [
 
         <div class="grid grid-cols-2 mt-6 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
           <AppProductCard
-            v-for="product in products" :key="product.id"
+            v-for="product in products"
+            :key="product.id"
             :name="product.name"
             :image="product.image as string"
             :description="product.description"
             :variants="product.variants as Array<Variant>"
             :slug="product.slug as string"
-            :product="product"
           />
         </div>
 
