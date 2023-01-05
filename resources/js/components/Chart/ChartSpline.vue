@@ -7,16 +7,16 @@ const chartOptions = {
     type: 'spline',
   },
   title: {
-    text: 'U.S Solar Employment Growth by Job Category, 2010-2020',
+    text: 'Yearly Orders Growth by Product Category',
   },
 
   subtitle: {
-    text: 'Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>',
+    text: 'Source: <a href="#" target="_blank">Ronalds Catering System</a>',
   },
 
   yAxis: {
     title: {
-      text: 'Number of Employees',
+      text: 'Number of Products',
     },
   },
 
@@ -31,7 +31,7 @@ const chartOptions = {
       label: {
         connectorAllowed: false,
       },
-      pointStart: 2010,
+      pointStart: 2023,
     },
   },
 

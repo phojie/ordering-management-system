@@ -1,12 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-	return Inertia::render('Admin/Index');
-})->name('admin.index');
+Route::get('/',[DashboardController::class,'index'])->name('admin.index');
 
 Route::get('/settings', [SettingController::class, 'index'])->name('admin.settings.index');
 

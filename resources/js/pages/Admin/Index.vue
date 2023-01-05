@@ -1,4 +1,28 @@
 <script setup lang="ts">
+const props = defineProps<{
+  stats: Array<{
+    name: string
+    stat: number
+    previousStat: number
+    change: number
+    changeType: 'increase' | 'decrease'
+  }>
+  transactions: Array<{
+    id: string
+    name: string
+    amount: number
+    currency: string
+    date: string
+    datetime: string
+    href: string
+    status: 'success' | 'pending' | 'cancelled'
+  }>
+  ordersProductQuantity: {
+    categories: Array<any>
+    series: Array<any>
+  }
+}>()
+
 const auth = useAuthStore()
 
 const roleDisplay = computed(() => {
@@ -58,13 +82,13 @@ defineOptions({
 
       <section class="flex flex-col px-4 mt-6 space-y-6 sm:px-6 lg:px-8">
         <!-- stats  -->
-        <AdminIndexStats />
+        <AdminIndexStats :stats="stats" />
 
         <!-- Charts -->
-        <AdminIndexCharts />
+        <AdminIndexCharts :orders-product-quantity="ordersProductQuantity" />
 
         <!-- recent activity -->
-        <AdminIndexTable />
+        <AdminIndexTable :transactions="transactions" />
       </section>
     </main>
   </div>

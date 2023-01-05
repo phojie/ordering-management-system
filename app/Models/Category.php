@@ -63,6 +63,16 @@ class Category extends Model implements HasMedia
   	return $this->belongsToMany(Product::class);
   }
 
+  public function orders(): BelongsToMany
+  {
+  	return $this->belongsToMany(Order::class);
+  }
+
+  public function orderVariants(): BelongsToMany
+  {
+  	return $this->belongsToMany(OrderVariant::class);
+  }
+
 	public static function boot(): void
 	{
 		parent::boot();

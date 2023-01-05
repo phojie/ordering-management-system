@@ -57,6 +57,11 @@ class Product extends Model implements HasMedia
   	return $this->belongsToMany(Category::class);
   }
 
+  public function orderVariants(): HasMany
+  {
+  	return $this->hasMany(OrderVariant::class);
+  }
+
 	public function scopeSearch($query, $search): object
 	{
 		return $query->when($search, fn ($q) => $q->where('name', 'ilike', "%{$search}%")

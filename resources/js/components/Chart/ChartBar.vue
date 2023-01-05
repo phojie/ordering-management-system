@@ -1,8 +1,12 @@
 <script setup lang="ts">
 // import { Chart as Highcharts } from 'highcharts-vue'
+const props = defineProps<{
+  categories: Array<any>
+  series: Array<any>
+}>()
 const data = ref({
-  categories: [],
-  series: [],
+  categories: props.categories,
+  series: props.series,
   title: 'Orders per product',
   subtitle: 'Realtime data',
 })
@@ -47,11 +51,11 @@ const chartOptions = reactive({
   tooltip: {
     headerFormat: '<b>{series.name}</b><br/>',
     pointFormat: '{point.category}: {point.y}',
-    borderColor: '#ec4899',
+    borderColor: '#3b82f6',
   },
   series: [
     {
-      name: 'Total Population',
+      name: 'Total orders',
       data: data.value.series,
       dataLabels: {
         enabled: true,
