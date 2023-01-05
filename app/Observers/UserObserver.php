@@ -19,7 +19,10 @@ class UserObserver
   {
   	// set default role
   	try {
-  		$user->assignRole('Customer');
+  		// if user has no role, assign customer role
+  		if ($user->roles->count() == 0) {
+  			$user->assignRole('Customer');
+  		}
   	} catch (\Throwable $th) {
   		// throw $th;
   	}
