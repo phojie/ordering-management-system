@@ -1,6 +1,15 @@
 <script setup lang="ts">
 const { form, $v, formState } = useSettingStore()
 const processing = $computed(() => useSettingStore().processing)
+
+// watch city, change postalCode base on city value
+watch(() => form.city, (city) => {
+  const address = _.find(useConstant().availableAddress, (address) => {
+    return address.city === city
+  }) as any
+
+  form.postalCode = address?.postalCode
+})
 </script>
 
 <template>
@@ -75,6 +84,50 @@ const processing = $computed(() => useSettingStore().processing)
       :is-disabled="processing"
       :error-message="$v.phone.$errors[0]?.$message"
       :is-error="$v.phone.$error"
+    />
+
+    <JTextField
+      v-if="formState.title === 'Update address' || formState.title === 'Update profile'"
+      id="address"
+      v-model="form.address1"
+      placeholder="1234 Main St, Brgy. 123"
+      label="Address"
+      :is-disabled="processing"
+      :error-message="$v.address1.$errors[0]?.$message"
+      :is-error="$v.address1.$error"
+    />
+
+    <JSelect
+      v-if="formState.title === 'Update address' || formState.title === 'Update profile'"
+      id="city"
+      v-model="form.city"
+      label="Municipality/City"
+      :items="useConstant().cityOptions"
+      :is-disabled="processing"
+      :error-message="$v.city.$errors[0]?.$message"
+      :is-error="$v.city.$error"
+    />
+
+    <JSelect
+      v-if="formState.title === 'Update address' || formState.title === 'Update profile'"
+      id="province"
+      v-model="form.province"
+      label="Province"
+      :items="useConstant().provinceOptions"
+      :is-disabled="processing"
+      :error-message="$v.city.$errors[0]?.$message"
+      :is-error="$v.city.$error"
+    />
+
+    <JTextField
+      v-if="formState.title === 'Update address' || formState.title === 'Update profile'"
+      id="postal-code"
+      v-model="form.postalCode"
+      is-read-only
+      autocomplete="postal-code"
+      :error-message="$v.postalCode.$errors[0]?.$message"
+      :is-error="$v.postalCode.$error"
+      label="Postal code"
     />
   </div>
 </template>

@@ -22,9 +22,34 @@ class UserResource extends JsonResource
 			'avatar' => $this->avatar,
 			'phone' => $this->phone,
 
+      // when address is loaded
+      // merge all to single address1, address2, city, state, zip, country
+      'address1' => $this->whenLoaded('address', function () {
+        return $this->address->address1;
+      }),
+      'address2' => $this->whenLoaded('address', function () {
+        return $this->address->address2;
+      }),
+      'city' => $this->whenLoaded('address', function () {
+        return $this->address->city;
+      }),
+      'province' => $this->whenLoaded('address', function () {
+        return $this->address->province;
+      }),
+      'postalCode' => $this->whenLoaded('address', function () {
+        return $this->address->postal_code;
+      }),
+      'country' => $this->whenLoaded('address', function () {
+        return $this->address->country;
+      }),
+      'fullAddress' => $this->whenLoaded('address', function () {
+        return $this->address->full_address;
+      }),
+
+
+
 			// relationships
 			'roles' => RoleResource::collection($this->whenLoaded('roles')),
-			'addresses' => AddressResource::collection($this->whenLoaded('addresses')),
 		];
 	}
 }

@@ -79,6 +79,20 @@ class UserService implements UserServiceInterface
   		if ($request->avatar) {
   			(new FileUploaderService())->uploadUserAvatarToMedia($user->id, $request->avatar);
   		}
+
+  		// if has request address1
+  		if ($request->address1) {
+  			$user->address()->create([
+  				'address1' => $request->address1,
+  				'address2' => $request->address2,
+  				'city' => $request->city,
+  				'province' => $request->province,
+  				'postal_code' => $request->postalCode,
+  				'country' => $request->country,
+  				'user_id' => $user->id,
+  				'country' => 'Philippines',
+  			]);
+  		}
   	} catch (\Exception $e) {
   		throw $e;
   	}
@@ -108,6 +122,23 @@ class UserService implements UserServiceInterface
   				(new FileUploaderService())->uploadUserAvatarToMedia($user->id, $request->avatar);
   			} else {
   				(new FileUploaderService())->deleteUserAvatarFromMedia($user->id);
+  			}
+
+  			// if has request address1
+  			if ($request->address1) {
+  				$user->address()->updateOrCreate(
+  					['user_id' => $user->id],
+  					[
+  						'address1' => $request->address1,
+  						'address2' => $request->address2,
+  						'city' => $request->city,
+  						'province' => $request->province,
+  						'postal_code' => $request->postalCode,
+  						'country' => $request->country,
+  						'user_id' => $user->id,
+  						'country' => 'Philippines',
+  					]
+  				);
   			}
   		});
   	} catch (\Exception $e) {

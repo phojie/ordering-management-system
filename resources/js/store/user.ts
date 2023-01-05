@@ -179,7 +179,7 @@ export const useUserStore = defineStore('user', () => {
 
   // create user
   async function createUser() {
-    Inertia.post(route('admin.users.store'), form, {
+    Inertia.post(route('admin.users.store'), form as any, {
       onBefore: () => {
         processing = true
       },
@@ -197,7 +197,7 @@ export const useUserStore = defineStore('user', () => {
 
   // update user
   async function updateUser(id: string) {
-    Inertia.put(route('admin.users.update', id), form, {
+    Inertia.put(route('admin.users.update', id), form as any, {
       onBefore: () => {
         processing = true
       },

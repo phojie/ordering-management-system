@@ -23,6 +23,11 @@ export const useSettingStore = defineStore('setting', () => {
     username: '',
     avatar: '',
     phone: '',
+
+    address1: '',
+    city: '',
+    province: '',
+    postalCode: '',
   })
 
   const formPassword = $ref<Password>({
@@ -71,6 +76,23 @@ export const useSettingStore = defineStore('setting', () => {
       }),
       $autoDirty: true,
     },
+
+    address1: {
+      required: helpers.withMessage('Address is required', required),
+      $autoDirty: true,
+    },
+    city: {
+      required: helpers.withMessage('City is required', required),
+      $autoDirty: true,
+    },
+    province: {
+      required: helpers.withMessage('Province is required', required),
+      $autoDirty: true,
+    },
+    postalCode: {
+      required: helpers.withMessage('Postal code is required', required),
+      $autoDirty: true,
+    },
   }
 
   const rulesPassword = {
@@ -114,7 +136,7 @@ export const useSettingStore = defineStore('setting', () => {
 
   // update profile
   async function updateGeneral() {
-    Inertia.put(route('admin.settings.update.general'), form, {
+    Inertia.put(route('admin.settings.update.general'), form as any, {
       onBefore: () => {
         processing = true
       },

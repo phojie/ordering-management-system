@@ -49,6 +49,10 @@ class User extends Authenticatable implements HasMedia
 		'avatar',
 	];
 
+	protected $with = [
+		'address',
+	];
+
 	public function getAvatarAttribute(): string
 	{
 		return $this->getFirstMediaUrl('avatar', 'thumb') ?: 'https://robohash.org/'.$this->id.'?set=set1&bgset=bg2&size=400x400';
@@ -64,9 +68,9 @@ class User extends Authenticatable implements HasMedia
   	return $this->hasMany(Order::class);
   }
 
-  public function addresses(): HasOne
+  public function address(): HasOne
   {
-  	return $this->hasOnes(Address::class);
+  	return $this->hasOne(Address::class);
   }
 
 	public function scopeSearch($query, $search): object

@@ -17,8 +17,15 @@ export interface User {
   password?: string
   phone?: string
 
+  address1?: string
+  city?: string
+  province?: string
+  postalCode?: string
+  address2?: string
+  fullAddress?: string
+  country?: string
+
   roles?: Array<Role | any>
-  address?: string
 }
 
 export interface Password {

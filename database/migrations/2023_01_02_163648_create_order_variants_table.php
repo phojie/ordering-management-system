@@ -9,7 +9,7 @@ return new class extends Migration {
 	{
 		Schema::create('order_variants', function (Blueprint $table) {
 			$table->uuid('id')->primary();
-      $table->string('status')->default('pending');
+			$table->string('status')->default('pending');
 
 			$table->foreignUuid('order_id')
 			->constrained('orders')
@@ -30,4 +30,9 @@ return new class extends Migration {
 			$table->timestamps();
 		});
 	}
+
+  public function down()
+  {
+  	Schema::dropIfExists('order_variants');
+  }
 };

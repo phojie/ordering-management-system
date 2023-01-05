@@ -9,6 +9,11 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
   form.username = user.value.username
   form.avatar = user.value.avatar
   form.email = user.value.email
+  form.phone = user.value.phone
+  form.address1 = user.value.address1
+  form.city = user.value.city
+  form.province = user.value.province
+  form.postalCode = user.value.postalCode
 
   formState.show = true
   formState.title = title
@@ -98,7 +103,7 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
               Phone
             </dt>
             <dd class="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              <span class="flex-grow">+{{ user.phone }}</span>
+              <span v-if="user.phone" class="flex-grow">+{{ user.phone }}</span>
               <span class="flex-shrink-0 ml-4">
                 <button
                   type="button"
@@ -129,12 +134,12 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
               Address
             </dt>
             <dd class="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              <span class="flex-grow">{{ user.address }}</span>
+              <span class="flex-grow">{{ user.fullAddress }}</span>
               <span class="flex-shrink-0 ml-4">
                 <button
                   type="button"
                   class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-                  @click="toggleEdit('Update username')"
+                  @click="toggleEdit('Update address')"
                 >Update</button>
               </span>
             </dd>
