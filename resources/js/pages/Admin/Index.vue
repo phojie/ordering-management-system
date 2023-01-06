@@ -62,9 +62,6 @@ onMounted(() => {
     <Head title="Home | Admin" />
 
     <main class="flex-1">
-      <pre>
-    {{ ordersProductQuantity }}
-    </pre>
       <!-- Page title & actions -->
       <div class="px-4 py-6 bg-white border-b border-gray-200 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
         <div class="flex-1 min-w-0">
