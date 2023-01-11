@@ -75,6 +75,7 @@ declare module '@vue/runtime-core' {
     HeroiconsChevronDown: typeof import('~icons/heroicons/chevron-down')['default']
     HeroiconsChevronDown20Solid: typeof import('~icons/heroicons/chevron-down20-solid')['default']
     HeroiconsChevronUpDown: typeof import('~icons/heroicons/chevron-up-down')['default']
+    HeroiconsClipboardDocumentList: typeof import('~icons/heroicons/clipboard-document-list')['default']
     HeroiconsClock20Solid: typeof import('~icons/heroicons/clock20-solid')['default']
     HeroiconsEnvelope20Solid: typeof import('~icons/heroicons/envelope20-solid')['default']
     HeroiconsExclamationTriangle20Solid: typeof import('~icons/heroicons/exclamation-triangle20-solid')['default']
