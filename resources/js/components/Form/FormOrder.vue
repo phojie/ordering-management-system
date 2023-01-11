@@ -13,6 +13,11 @@ watch(() => form.city, (city) => {
   }) as any
 
   form.postalCode = address?.postalCode
+
+  const subTotalAmount = form.totalAmount - form.shippingAmount
+
+  form.shippingAmount = address?.shippingAmount
+  form.totalAmount = form.taxesAmount + form.shippingAmount + subTotalAmount
 })
 </script>
 
@@ -139,15 +144,15 @@ watch(() => form.city, (city) => {
         <div class="px-4 py-6 border-t border-gray-200 bg-primary-50 sm:px-6">
           <div class="flex justify-between text-sm text-gray-900">
             <p>Shipping Amount</p>
-            <p>₱{{ form.shippingAmount }}</p>
+            <p>₱{{ form.shippingAmount.toFixed(2) }}</p>
           </div>
           <div class="flex justify-between text-sm text-gray-900">
             <p>Taxes Amount</p>
-            <p>₱{{ form.taxesAmount }}</p>
+            <p>₱{{ form.taxesAmount.toFixed(2) }}</p>
           </div>
           <div class="flex justify-between text-xl font-medium text-gray-900">
             <p>Total</p>
-            <p>₱{{ form.totalAmount }}</p>
+            <p>₱{{ form.totalAmount.toFixed(2) }}</p>
           </div>
           <p class="mt-0.5 text-sm text-gray-500">
             Shipping and taxes calculated at checkout.
