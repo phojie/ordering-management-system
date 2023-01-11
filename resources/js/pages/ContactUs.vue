@@ -9,9 +9,7 @@
           Sales Support
         </h2>
         <div class="mt-3">
-          <p class="text-lg text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa libero labore natus.
-          </p>
+          <p class="text-lg text-gray-500" />
         </div>
         <div class="mt-9">
           <div class="flex">
@@ -40,9 +38,7 @@
           Technical Support
         </h2>
         <div class="mt-3">
-          <p class="text-lg text-gray-500">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, repellat error corporis doloribus similique, voluptatibus numquam quam, quae officiis facilis.
-          </p>
+          <p class="text-lg text-gray-500" />
         </div>
         <div class="mt-9">
           <div class="flex">
