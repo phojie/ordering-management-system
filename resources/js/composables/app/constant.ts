@@ -31,25 +31,25 @@ export const useConstant = () => {
       city: 'Tubod',
       province: 'Lanao del Norte',
       postalCode: '9200',
-      shippingAmount: 45,
+      shippingAmount: 35,
     },
     {
       city: 'Baroy',
       province: 'Lanao del Norte',
       postalCode: '9210',
-      shippingAmount: 46,
+      shippingAmount: 30,
     },
     {
       city: 'Lala',
       province: 'Lanao del Norte',
       postalCode: '9211',
-      shippingAmount: 47,
+      shippingAmount: 45,
     },
     {
       city: 'Kapatagan',
       province: 'Lanao del Norte',
       postalCode: '9214',
-      shippingAmount: 48,
+      shippingAmount: 60,
     },
   ]
 
