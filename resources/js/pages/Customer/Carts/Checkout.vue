@@ -122,7 +122,7 @@ onMounted(() => {
                 <p>{{ cart.variant.name }}</p>
               </div>
               <p class="flex-none text-base font-medium text-white">
-                {{ cart.variant.price }}
+                ₱{{ cart.variant.price.toFixed(2) }}
               </p>
             </li>
           </ul>
@@ -291,9 +291,9 @@ onMounted(() => {
                 </div>
               </div>
             </div>
-            <div class="mt-6 p-10 border-2 border-dashed text-gray-500 bg-warning-50 rounded-md flex justify-center items-center">
+            <div class="flex items-center justify-center p-10 mt-6 text-gray-500 border-2 border-dashed rounded-md bg-warning-50">
               <heroicons-exclamation-triangle-20-solid class="mr-2 text-warning-600" />
-              <span class="font-medium text-lg ">
+              <span class="text-lg font-medium ">
                 Strictly no cancellation of orders.
               </span>
             </div>
