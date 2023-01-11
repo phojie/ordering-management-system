@@ -3,10 +3,12 @@
 const props = defineProps<{
   categories: Array<any>
   series: Array<any>
+  type: string
+  title: string
 }>()
 
 const data = $ref({
-  title: 'Orders per product',
+  title: props.title,
   subtitle: 'Realtime data',
 })
 
@@ -17,7 +19,7 @@ const chartOptions = computed(() => {
       enabled: false,
     },
     chart: {
-      type: 'column',
+      type: props.type,
       height: '500px',
     },
     xAxis: {
