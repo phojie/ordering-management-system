@@ -29,7 +29,7 @@ const props = defineProps<{
                 </a>
               </h3>
               <p class="ml-4">
-                ₱{{ orderVariant.variant.price }} x {{ orderVariant.quantity }} = ₱{{ orderVariant.total }}
+                ₱{{ orderVariant.variant.price }} x {{ orderVariant.quantity }} = ₱{{ orderVariant.total.toFixed(2) }}
               </p>
             </div>
             <p class="mt-1 text-sm text-gray-500">
