@@ -31,12 +31,15 @@ const sidebar = useSidebarStore()
       </div>
       <div class="flex items-center ml-4 md:ml-6">
         <button
-          v-if="false"
           type="button"
           class="p-1 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
         >
-          <span class="sr-only">View notifications</span>
-          <heroicons-bell class="w-6 h-6" aria-hidden="true" />
+          <span class="flex">
+            <heroicons-clipboard-document-list class="w-6 h-6" aria-hidden="true" />
+            <span class="ml-1">
+              5
+            </span>
+          </span>
         </button>
         <AppProfileMenu />
       </div>
