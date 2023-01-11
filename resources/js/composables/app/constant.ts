@@ -30,7 +30,7 @@ export const useConstant = () => {
     {
       city: 'Tubod',
       province: 'Lanao del Norte',
-      postalCode: '9200',
+      postalCode: '9209',
       shippingAmount: 35,
     },
     {
