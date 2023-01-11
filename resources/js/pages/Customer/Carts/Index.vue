@@ -12,7 +12,7 @@ const { deleteCart, updateCart } = useCartStore()
 
 const updateCartDebounce = _.debounce((id: string, quantity: number) => {
   updateCart(id, quantity)
-}, 500)
+}, 300)
 
 // order-summary
 const subTotal: number = $computed(() => {
@@ -67,7 +67,7 @@ const orderTotal: number = $computed(() => {
                     </p>
                   </div>
                   <p class="mt-1 text-sm font-medium text-gray-900">
-                    ₱{{ cart.variant.price }}
+                    ₱{{ cart.variant.price.toFixed(2) }}
                   </p>
                 </div>
 
@@ -85,7 +85,7 @@ const orderTotal: number = $computed(() => {
                       hints="Qty."
                       :error-message="`${cart.variant.stock} is the maximum quantity available.`"
                       :is-error="cart.quantity > cart.variant.stock"
-                      @blur="updateCartDebounce(cart.id, cart.quantity)"
+                      @input="updateCartDebounce(cart.id, cart.quantity)"
                     />
                   </div>
 
@@ -102,7 +102,7 @@ const orderTotal: number = $computed(() => {
                 <p class="flex space-x-2 text-gray-700">
                   <heroicons-check-20-solid v-if="cart.variant?.inStock" class="flex-shrink-0 w-5 h-5 text-green-500" aria-hidden="true" />
                   <heroicons-clock-20-solid v-else :class="cart.variant?.inStock ? '' : 'text-warning-500'" class="flex-shrink-0 w-5 h-5 text-gray-300" aria-hidden="true" />
-                  <span>{{ cart.variant?.inStock ? 'In stock' : `Out of stock` }}</span>
+                  <span>{{ cart.variant?.inStock ? `${cart.variant.stock} stock available` : `Out of stock` }}</span>
                 </p>
 
                 <p v-if="cart.variant.inStock">
