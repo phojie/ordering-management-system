@@ -121,8 +121,8 @@ onMounted(() => {
                 </p>
                 <p>{{ cart.variant.name }}</p>
               </div>
-              <p class="flex-none text-base font-medium text-white">
-                ₱{{ cart.variant.price.toFixed(2) }}
+              <p class="flex-none text-base font-medium text-primary-300">
+                ₱{{ cart.variant.price.toFixed(2) }} x {{ cart.quantity }} = <span class="text-white">₱{{ (cart.variant.price * cart.quantity).toFixed(2) }}</span>
               </p>
             </li>
           </ul>
