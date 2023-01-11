@@ -38,7 +38,7 @@ class HandleInertiaRequests extends Middleware
 	public function share(Request $request)
 	{
 		$isAuth = Auth::check();
-    $isAuthHasAdminRole = $isAuth ? Auth::user()->hasRole('admin') : false;
+    $isAuthHasAdminRole = $isAuth ? Auth::user()->hasRole('Admin') : false;
 
 		return array_merge(parent::share($request), [
 			'auth' => [
