@@ -9,9 +9,9 @@ const props = withDefaults(defineProps<AppIconProps>(), {
 
 const logo = computed(() => {
   if (props.dark)
-    return '/logo/dark.png'
+    return '/logo/dark.svg'
 
-  return '/logo/light.png'
+  return '/logo/light.svg'
 })
 </script>
 
