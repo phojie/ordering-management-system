@@ -51,19 +51,24 @@ class Order extends Model
   	return $this->belongsTo(User::class);
   }
 
+  public function countPending(): int
+  {
+  	return $this->where('status', 'pending')->count();
+  }
+
   public function scopeSearch($query, $search): object
   {
   	return $query->when(
   		$search,
   		fn ($q) => $q->where('order_number', 'ilike', "%{$search}%")
-	->orWhere('name', 'ilike', "%{$search}%")
-	->orWhere('email', 'ilike', "%{$search}%")
-	->orWhere('phone', 'ilike', "%{$search}%")
-	->orWhere('address', 'ilike', "%{$search}%")
-	->orWhere('city', 'ilike', "%{$search}%")
-	->orWhere('province', 'ilike', "%{$search}%")
-	->orWhere('postal_code', 'ilike', "%{$search}%")
-	->orWhere('status', 'ilike', "%{$search}%")
+          ->orWhere('name', 'ilike', "%{$search}%")
+          ->orWhere('email', 'ilike', "%{$search}%")
+          ->orWhere('phone', 'ilike', "%{$search}%")
+          ->orWhere('address', 'ilike', "%{$search}%")
+          ->orWhere('city', 'ilike', "%{$search}%")
+          ->orWhere('province', 'ilike', "%{$search}%")
+          ->orWhere('postal_code', 'ilike', "%{$search}%")
+          ->orWhere('status', 'ilike', "%{$search}%")
   	);
   }
 

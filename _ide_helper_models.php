@@ -12,6 +12,39 @@
 
 namespace App\Models{
 /**
+ * App\Models\Address
+ *
+ * @property string $id
+ * @property string $address1
+ * @property string|null $address2
+ * @property string $city
+ * @property string $province
+ * @property string $postal_code
+ * @property string $country
+ * @property string|null $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $full_address
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Address newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Address newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Address query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereAddress1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereAddress2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereCountry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address wherePostalCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereProvince($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereUserId($value)
+ */
+	class Address extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Cart
  *
  * @property string $id
@@ -53,6 +86,10 @@ namespace App\Models{
  * @property-read string $status
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
  * @property-read int|null $media_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderVariant[] $orderVariants
+ * @property-read int|null $order_variants_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
+ * @property-read int|null $orders_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @property-read int|null $products_count
  * @method static \Database\Factories\CategoryFactory factory(...$parameters)
@@ -94,6 +131,8 @@ namespace App\Models{
  * @property float $shipping_amount
  * @property float $total_amount
  * @property string $user_id
+ * @property string|null $delivered_at
+ * @property string|null $delivered_by
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderVariant[] $orderVariants
@@ -108,6 +147,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereCountry($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereDeliveredAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereDeliveredBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereName($value)
@@ -208,6 +249,8 @@ namespace App\Models{
  * @property-read string $image
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
  * @property-read int|null $media_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderVariant[] $orderVariants
+ * @property-read int|null $order_variants_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Variant[] $variants
  * @property-read int|null $variants_count
  * @method static \Illuminate\Database\Eloquent\Builder|Product available()
@@ -301,12 +344,14 @@ namespace App\Models{
  * @property string $last_name
  * @property string $full_name
  * @property string $password
+ * @property string|null $phone
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Address|null $address
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Cart[] $carts
  * @property-read int|null $carts_count
  * @property-read string $avatar
@@ -340,6 +385,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereMiddleName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)

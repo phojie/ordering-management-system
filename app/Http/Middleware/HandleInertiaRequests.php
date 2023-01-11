@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Http\Resources\UserResource;
+use App\Models\Order;
 use Auth;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -37,6 +38,7 @@ class HandleInertiaRequests extends Middleware
 	public function share(Request $request)
 	{
 		$isAuth = Auth::check();
+    $isAuthHasAdminRole = $isAuth ? Auth::user()->hasRole('admin') : false;
 
 		return array_merge(parent::share($request), [
 			'auth' => [
@@ -47,10 +49,11 @@ class HandleInertiaRequests extends Middleware
 			],
 			'flash' => [
 				'notification' => session('notification'),
-        'success' => session('success'),
+				'success' => session('success'),
 			],
 			'csrfToken' => csrf_token(),
-      'cartCount' => $isAuth? Auth::user()->carts->count() : 0,
+			'cartCount' => $isAuth ? Auth::user()->carts->count() : 0,
+			'pendingOrderCount' => $isAuthHasAdminRole ? (new Order())->countPending(): 0,
 
 			// 'ziggy' => function () use ($request) {1
 			//     return array_merge((new Ziggy)->toArray(), [

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Events\NewOrder;
+use App\Events\PendingOrdersNumber;
 use App\Http\Requests\OrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Models\Order;
@@ -72,6 +73,7 @@ class OrderController
 			});
 
 			NewOrder::dispatch($order);
+			broadcast(new PendingOrdersNumber());
 
 			session()->flash('success', [
 				'title' => 'Order',

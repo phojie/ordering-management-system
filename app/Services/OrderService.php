@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Events\OrderStatusUpdated;
+use App\Events\PendingOrdersNumber;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Services\Interfaces\OrderServiceInterface;
@@ -52,19 +53,19 @@ class OrderService implements OrderServiceInterface
   {
   	try {
   		\DB::transaction(function () use ($request, $order) {
-        // if status is cancelled before, and updated to paid
-        if ($order->getOriginal('status') === 'cancelled' && ($request->status === 'delivered' ||$request->status === 'shipped' || $request->status === 'pending')) {
-          // set order variants stock
-          $order->orderVariants()->each(function ($orderVariant) {
-            $orderVariant->variant->decrement('stock', $orderVariant->quantity);
-          });
-        }
+  			// if status is cancelled before, and updated to paid
+  			if ($order->getOriginal('status') === 'cancelled' && ($request->status === 'delivered' || $request->status === 'shipped' || $request->status === 'pending')) {
+  				// set order variants stock
+  				$order->orderVariants()->each(function ($orderVariant) {
+  					$orderVariant->variant->decrement('stock', $orderVariant->quantity);
+  				});
+  			}
 
-        // if status is changed
-        if ($order->getOriginal('status') !== $request->status) {
-          // broadcast order status updated
-          broadcast(new OrderStatusUpdated($order));
-        }
+  			// if status is changed
+  			if ($order->getOriginal('status') !== $request->status) {
+  				// broadcast order status updated
+  				broadcast(new OrderStatusUpdated($order));
+  			}
 
   			$order->update([
   				'name' => $request->name,
@@ -84,15 +85,17 @@ class OrderService implements OrderServiceInterface
   			// set order variants status
   			$order->orderVariants()->update(['status' => $request->status]);
 
-        // if status is cancelled
-        if ($request->status === 'cancelled') {
-          // set order variants stock
-          $order->orderVariants()->each(function ($orderVariant) {
-            $orderVariant->variant->increment('stock', $orderVariant->quantity);
-          });
-        }
+  			// if status is cancelled
+  			if ($request->status === 'cancelled') {
+  				// set order variants stock
+  				$order->orderVariants()->each(function ($orderVariant) {
+  					$orderVariant->variant->increment('stock', $orderVariant->quantity);
+  				});
+  			}
 
-
+  			if ($request->status === 'pending') {
+  				broadcast(new PendingOrdersNumber());
+  			}
   		});
   	} catch (\Exception $e) {
   		throw $e;

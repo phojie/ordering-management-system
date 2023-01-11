@@ -1,5 +1,13 @@
 <script setup lang="ts">
 const sidebar = useSidebarStore()
+
+let count = $ref(usePage().props.value.pendingOrderCount)
+onMounted(() => {
+  window.Echo.channel('pending-order-number')
+    .listen('.pending.order.number', (e: any) => {
+      count = e.pendingOrderNumber
+    })
+})
 </script>
 
 <template>
@@ -37,7 +45,7 @@ const sidebar = useSidebarStore()
           <span class="flex">
             <heroicons-clipboard-document-list class="w-6 h-6" aria-hidden="true" />
             <span class="ml-1">
-              5
+              {{ count }}
             </span>
           </span>
         </button>
