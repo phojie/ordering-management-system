@@ -13,10 +13,10 @@ const props = defineProps<{
       Overview
     </h2>
     <div class="grid flex-1 grid-cols-1 gap-4 lg:grid-cols-12">
-      <div class="col-span-1 p-2 bg-white rounded-lg shadow lg:col-span-7 ">
-        <ChartBar title="Orders per product (Line Chart)" type="line" :series="ordersProductQuantity.series" :categories="ordersProductQuantity.categories" />
-      </div>
       <div class="col-span-1 p-2 bg-white rounded-lg shadow lg:col-span-5 ">
+        <ChartBar title="Orders per product (Line)" type="line" :series="ordersProductQuantity.series" :categories="ordersProductQuantity.categories" />
+      </div>
+      <div class="col-span-1 p-2 bg-white rounded-lg shadow lg:col-span-7 ">
         <ChartBar title="Orders per product (Bar)" type="bar" :series="ordersProductQuantity.series" :categories="ordersProductQuantity.categories" />
       </div>
       <!-- <div class="col-span-1 p-2 bg-white rounded-lg shadow lg:col-span-4 min-h-[500px]">
