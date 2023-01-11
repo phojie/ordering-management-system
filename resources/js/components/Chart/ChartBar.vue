@@ -85,6 +85,7 @@ const chartOptions = computed(() => {
 rect.highcharts-point.highcharts-color-0 {
   @apply !fill-current !text-primary-500;
 }
+
 svg.highcharts-root {
   @apply !font-sans;
 }

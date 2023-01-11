@@ -67,10 +67,16 @@ const getById = async (id: string) => {
     <div class="shadow sm:hidden">
       <ul role="list" class="overflow-hidden divide-y divide-gray-200 shadow sm:hidden">
         <li v-for="transaction in transactions" :key="transaction.id">
-          <a :href="transaction.href" class="block px-4 py-4 bg-white hover:bg-gray-50">
+          <a
+            v-if="useGate().can('order-update')"
+            v-tooltip="'Open order'"
+            href="#"
+            class="block px-4 py-4 bg-white hover:bg-gray-50"
+            @click="getById(transaction.id)"
+          >
             <span class="flex items-center space-x-4">
               <span class="flex flex-1 space-x-2 truncate">
-                <heroicons-banknotes class="flex-shrink-0 w-5 h-5 text-gray-400" aria-hidden="true" />
+                <heroicons-shopping-cart class="flex-shrink-0 w-5 h-5 text-gray-400" aria-hidden="true" />
                 <span class="flex flex-col text-sm text-gray-500 truncate">
                   <span class="truncate">{{ transaction.name }}</span>
                   <span><span class="font-medium text-gray-900">{{ transaction.amount }}</span> {{
@@ -78,7 +84,7 @@ const getById = async (id: string) => {
                   <time :datetime="transaction.datetime">{{ useDateFormat(transaction.date, 'MMM DD, YYYY | hh:mm a ').value }}</time>
                 </span>
               </span>
-              <heroicons-banknotes-20-solid class="flex-shrink-0 w-5 h-5 text-gray-400" aria-hidden="true" />
+              <heroicons-chevron-double-right-20-solid class="flex-shrink-0 w-5 h-5 text-gray-400" aria-hidden="true" />
             </span>
           </a>
         </li>
