@@ -5,13 +5,13 @@ const props = defineProps<{
   product: Product
 }>()
 
-const reviews = { average: 4, totalCount: 1624 }
+// const reviews = { average: 4, totalCount: 1624 }
 
-const selectedVariant = ref(props.product.variants?.[0])
+const selectedVariant = $ref(props.product.variants?.[0])
 
 const addToCart = async () => {
   await Inertia.post(route('customer.carts.store'), {
-    variantId: selectedVariant.value?.id as string,
+    variantId: selectedVariant?.id as string,
     quantity: 1,
   })
 }
@@ -50,10 +50,10 @@ const addToCart = async () => {
 
           <div class="flex items-center">
             <p class="text-lg text-gray-900 sm:text-xl">
-              ₱{{ selectedVariant?.price }}
+              ₱{{ selectedVariant?.price?.toLocaleString("en-US") }}
             </p>
 
-            <div class="pl-4 ml-4 border-l border-gray-300">
+            <!-- <div class="pl-4 ml-4 border-l border-gray-300">
               <h2 class="sr-only">
                 Reviews
               </h2>
@@ -70,7 +70,7 @@ const addToCart = async () => {
                   {{ reviews.totalCount }} reviews
                 </p>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <div class="mt-4 space-y-6">
@@ -82,7 +82,7 @@ const addToCart = async () => {
           <div class="flex items-center mt-6">
             <heroicons-check-20-solid class="flex-shrink-0 w-5 h-5 text-green-500" aria-hidden="true" />
             <p class="ml-2 text-sm text-gray-500">
-              In stock and ready to ship
+              {{ selectedVariant?.stock }} stock available for immediate delivery
             </p>
           </div>
         </section>
