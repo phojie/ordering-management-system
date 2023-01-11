@@ -10,11 +10,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* base area
    html {
-    font-size: 14px;
+    font-size: 13px;
   }
-*/
 
 @layer base {
   * {
