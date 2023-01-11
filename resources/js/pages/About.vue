@@ -3,7 +3,7 @@ const people = [
   {
     name: 'Edralyn Q. Uga',
     role: 'Owner / Manager',
-    imageUrl: 'https://miro.medium.com/max/1400/1*oC1wQeImbqzcfO3jixK2oQ.jpeg',
+    imageUrl: '/images/owner.jpg',
     bio: 'Owner and manager of Ronalds Catering & Services',
     facebookUrl: 'https://www.facebook.com/edralyn.uga',
     emailUrl: 'edralyn_73@yahoo.com',
@@ -59,7 +59,7 @@ const people = [
                         </a>
                       </li>
                       <li>
-                        <a :href="`mailto: ${person.emailUrl}`" class="text-gray-400 hover:text-gray-500">
+                        <a :href="`mailto:${person.emailUrl}`" class="text-gray-400 hover:text-gray-500">
                           <span class="sr-only">Email</span>
                           <material-symbols-attach-email class="w-6 h-6" />
                         </a>
