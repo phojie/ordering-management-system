@@ -31,9 +31,10 @@ class NewOrder implements ShouldBroadcast
 
 	public function broadcastWith(): array
 	{
-    $orderData = Order::with('user')->find($this->order->id);
-    return [
-    'order' => new OrderResource($orderData),
-    ];
+		$orderData = Order::with('user')->find($this->order->id);
+
+		return [
+			'order' => new OrderResource($orderData),
+		];
 	}
 }
