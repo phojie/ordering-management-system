@@ -5,6 +5,16 @@ const props = defineProps<{
   carts: Array<Cart>
 }>()
 
+const paymentMethods = useConstant().paymentMethods
+
+const selectedPaymentmethod = ref(paymentMethods[0])
+
+const availableaddress = useConstant().availableAddress
+
+const cityOptions = useConstant().cityOptions
+
+const provinceOptions = useConstant().provinceOptions
+
 // order-summary
 const subTotal: number = $computed(() => {
   // filter only the variant that is inStock
@@ -18,9 +28,7 @@ const subTotal: number = $computed(() => {
   }, 0)
 })
 
-const shipping: number = $computed(() => {
-  return 45
-})
+let shipping: number = $ref(availableaddress[0].shippingAmount as number)
 
 const orderTotal: number = $computed(() => {
   return shipping + subTotal
@@ -46,16 +54,6 @@ const checkoutForm = useForm({
   orderVariants: [] as Array<any>,
 })
 
-const paymentMethods = useConstant().paymentMethods
-
-const selectedPaymentmethod = ref(paymentMethods[0])
-
-const availableaddress = useConstant().availableAddress
-
-const cityOptions = useConstant().cityOptions
-
-const provinceOptions = useConstant().provinceOptions
-
 // watch city, change postalCode base on city value
 watch(() => checkoutForm.city, (city) => {
   const address = _.find(availableaddress, (address) => {
@@ -64,6 +62,7 @@ watch(() => checkoutForm.city, (city) => {
 
   checkoutForm.province = address?.province
   checkoutForm.postalCode = address?.postalCode
+  shipping = address?.shippingAmount
 })
 
 onMounted(() => {
