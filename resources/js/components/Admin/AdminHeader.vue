@@ -15,7 +15,7 @@ const sidebar = useSidebarStore()
     <!-- Search bar -->
     <div class="flex justify-between flex-1 px-4 sm:px-6 lg:mx-auto lg:px-8">
       <div class="flex flex-1">
-        <div class="flex w-full md:ml-0">
+        <div v-if="false" class="flex w-full md:ml-0">
           <label for="search-field" class="sr-only">Search</label>
           <div class="relative w-full text-gray-400 focus-within:text-gray-600">
             <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none" aria-hidden="true">
@@ -31,6 +31,7 @@ const sidebar = useSidebarStore()
       </div>
       <div class="flex items-center ml-4 md:ml-6">
         <button
+          v-if="false"
           type="button"
           class="p-1 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
         >
