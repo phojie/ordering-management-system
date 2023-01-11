@@ -22,6 +22,8 @@ onUnmounted(() => {
 
 <template>
   <div class="bg-white ">
+    <Head title="Ronalds Catering" />
+
     <AppHeader />
 
     <slot />

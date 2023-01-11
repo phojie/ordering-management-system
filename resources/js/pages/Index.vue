@@ -33,7 +33,6 @@ const perks = [
 </script>
 
 <template>
-  <Head title="Ronalds Catering" />
   <main>
     <!-- Hero section -->
     <div class="relative">
