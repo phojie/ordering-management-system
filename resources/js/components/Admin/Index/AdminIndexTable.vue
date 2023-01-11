@@ -156,7 +156,7 @@ const getById = async (id: string) => {
                   </div>
                 </td>
                 <td class="px-6 py-4 text-sm text-right text-gray-500 whitespace-nowrap">
-                  <span class="font-medium text-gray-900">{{ transaction.amount }}</span>
+                  <span class="font-medium text-gray-900">{{ transaction.amount.toFixed(2) }}</span>
                   {{ transaction.currency }}
                 </td>
                 <td class="hidden px-6 py-4 text-sm text-gray-500 whitespace-nowrap md:block">
@@ -166,7 +166,7 @@ const getById = async (id: string) => {
                   >{{ transaction.status }}</span>
                 </td>
                 <td class="px-6 py-4 text-sm text-right text-gray-500 whitespace-nowrap">
-                  <time :datetime="transaction.datetime">  {{ useDateFormat(transaction.date, 'MMM DD, YYYY | hh:mm a ').value }}</time>
+                  <time :datetime="transaction.datetime">  {{ useDateFormat(transaction.date, 'MMM DD, YYYY - hh:mm a ').value }}</time>
                 </td>
               </tr>
             </tbody>
