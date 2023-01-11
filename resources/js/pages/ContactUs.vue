@@ -2,35 +2,35 @@
 </script>
 
 <template>
-  <div class="mx-auto max-w-7xl py-52 px-6 lg:px-8 m">
-    <div class="mx-auto max-w-lg md:grid md:max-w-none md:grid-cols-2 md:gap-8">
+  <div class="px-6 mx-auto max-w-7xl py-52 lg:px-8 m">
+    <div class="max-w-lg mx-auto md:grid md:max-w-none md:grid-cols-2 md:gap-8">
       <div>
         <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl sm:tracking-tight">
           Sales Support
         </h2>
         <div class="mt-3">
           <p class="text-lg text-gray-500">
-            Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor lacus arcu.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa libero labore natus.
           </p>
         </div>
         <div class="mt-9">
           <div class="flex">
             <div class="flex-shrink-0">
-              <heroicons-phone-20-solid class="h-6 w-6 text-gray-400" aria-hidden="true" />
+              <heroicons-phone-20-solid class="w-6 h-6 text-gray-400" aria-hidden="true" />
             </div>
             <div class="ml-3 text-base text-gray-500">
-              <p>+639 (555) 123 4567</p>
+              <p>+639177102873</p>
               <p class="mt-1">
-                Mon-Fri 8am to 6pm PST
+                Mon-Sun 8am to 8pm UST
               </p>
             </div>
           </div>
-          <div class="mt-6 flex">
+          <div class="flex mt-6">
             <div class="flex-shrink-0">
-              <heroicons-envelope-20-solid class="h-6 w-6 text-gray-400" aria-hidden="true" />
+              <heroicons-envelope-20-solid class="w-6 h-6 text-gray-400" aria-hidden="true" />
             </div>
             <div class="ml-3 text-base text-gray-500">
-              <p>support@example.com</p>
+              <p>support@ronaldscatering.com</p>
             </div>
           </div>
         </div>
@@ -47,21 +47,21 @@
         <div class="mt-9">
           <div class="flex">
             <div class="flex-shrink-0">
-              <heroicons-phone-20-solid class="h-6 w-6 text-gray-400" aria-hidden="true" />
+              <heroicons-phone-20-solid class="w-6 h-6 text-gray-400" aria-hidden="true" />
             </div>
             <div class="ml-3 text-base text-gray-500">
-              <p>+6399 (555) 123 4567</p>
+              <p>+639551830719</p>
               <p class="mt-1">
-                Mon-Fri 8am to 6pm PST
+                Mon-Sun 8am to 8pm UST
               </p>
             </div>
           </div>
-          <div class="mt-6 flex">
+          <div class="flex mt-6">
             <div class="flex-shrink-0">
-              <heroicons-envelope-20-solid class="h-6 w-6 text-gray-400" aria-hidden="true" />
+              <heroicons-envelope-20-solid class="w-6 h-6 text-gray-400" aria-hidden="true" />
             </div>
             <div class="ml-3 text-base text-gray-500">
-              <p>support@example.com</p>
+              <p>support@ronaldscatering.com</p>
             </div>
           </div>
         </div>
