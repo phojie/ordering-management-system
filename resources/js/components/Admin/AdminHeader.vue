@@ -38,8 +38,9 @@ onMounted(() => {
         </div>
       </div>
       <div class="flex items-center ml-4 md:ml-6">
-        <button
-          type="button"
+        <JLink
+          :to="route('admin.orders.index')"
+          as="button"
           class="p-1 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
         >
           <span class="flex">
@@ -48,7 +49,7 @@ onMounted(() => {
               {{ count }}
             </span>
           </span>
-        </button>
+        </JLink>
         <AppProfileMenu />
       </div>
     </div>
