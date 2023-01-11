@@ -4,7 +4,7 @@ defineProps<{
   orders: PaginationOrders
 }>()
 
-const { formState, form, headers, deleteOrders, restoreOrder } = useOrderStore()
+const { formState, form, headers, deleteOrders } = useOrderStore()
 const processing = toRef(useOrderStore(), 'processing')
 const selected = ref<any>([])
 
@@ -40,7 +40,7 @@ const toggleEdit = (order: Order) => {
   formState.description = `Edit the details for order number #${order.orderNumber}`
 }
 
-const getById = async (id: number) => {
+const getById = async (id: string) => {
   await useFetch(route('components.orders.show', id)).get().json().then(({ data }) => {
     toggleEdit(data.value)
   })
