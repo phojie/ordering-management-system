@@ -79,10 +79,17 @@ const addToCart = async () => {
             </p>
           </div>
 
-          <div class="flex items-center mt-6">
+          <div v-if="selectedVariant?.inStock" class="flex items-center mt-6">
             <heroicons-check-20-solid class="flex-shrink-0 w-5 h-5 text-green-500" aria-hidden="true" />
             <p class="ml-2 text-sm text-gray-500">
               {{ selectedVariant?.stock }} stock available for immediate delivery
+            </p>
+          </div>
+
+          <div v-else class="flex items-center mt-6">
+            <heroicons-x-mark-20-solid class="flex-shrink-0 w-5 h-5 text-danger-500" aria-hidden="true" />
+            <p class="ml-2 text-sm text-gray-500">
+              Out of stock
             </p>
           </div>
         </section>
