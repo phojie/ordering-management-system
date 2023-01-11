@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Order } from '@/types/order'
+
 const props = defineProps<{
   transactions: {
     id: string
@@ -17,6 +19,41 @@ const statusStyles = {
   pending: 'bg-yellow-100 text-yellow-800',
   cancelled: 'bg-danger-100 text-danger-800',
   shipped: 'bg-blue-100 text-blue-800',
+}
+
+const { formState, form, headers, deleteOrders, restoreOrder } = useOrderStore()
+
+const toggleEdit = (order: Order) => {
+  form.id = order.id
+  form.status = order.status
+  form.name = order.name
+  form.email = order.email
+  form.phone = order.phone
+  form.address = order.address
+  form.city = order.city
+  form.province = order.province
+  form.postalCode = order.postalCode
+  form.status = order.status
+
+  form.totalAmount = order.totalAmount
+  form.taxesAmount = order.taxesAmount
+  form.shippingAmount = order.shippingAmount
+
+  form.userId = order.userId
+
+  form.orderVariants = order.orderVariants
+  form.user = order.user
+
+  formState.type = 'edit'
+  formState.show = true
+  formState.title = 'Edit Order'
+  formState.description = `Edit the details for order number #${order.orderNumber}`
+}
+
+const getById = async (id: string) => {
+  await useFetch(route('components.orders.show', id)).get().json().then(({ data }) => {
+    toggleEdit(data.value)
+  })
 }
 </script>
 
@@ -48,6 +85,7 @@ const statusStyles = {
       </ul>
 
       <nav
+        v-if="false"
         class="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200"
         aria-label="Pagination"
       >
@@ -102,10 +140,13 @@ const statusStyles = {
                 <td class="w-full px-6 py-4 text-sm text-gray-900 max-w-0 whitespace-nowrap">
                   <div class="flex">
                     <a
-                      :href="transaction.href"
+                      v-if="useGate().can('order-update')"
+                      v-tooltip="'Open order'"
+                      href="#"
                       class="inline-flex space-x-2 text-sm truncate group"
+                      @click="getById(transaction.id)"
                     >
-                      <heroicons-banknotes
+                      <heroicons-shopping-cart
                         class="flex-shrink-0 w-5 h-5 text-gray-400 group-hover:text-gray-500"
                         aria-hidden="true"
                       />
