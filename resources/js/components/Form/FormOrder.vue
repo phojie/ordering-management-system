@@ -54,7 +54,7 @@ watch(() => form.city, (city) => {
         <JTextField
           id="phone"
           v-model="form.phone"
-          placeholder="639"
+          placeholder="09"
           label="Phone"
           :is-disabled="processing"
           :error-message="$v.phone.$errors[0]?.$message"

@@ -80,7 +80,7 @@ watch(() => form.city, (city) => {
       id="phone"
       v-model="form.phone"
       label="Phone number"
-      placeholder="639xxxxxxxxx"
+      placeholder="09xxxxxxxxxx"
       :is-disabled="processing"
       :error-message="$v.phone.$errors[0]?.$message"
       :is-error="$v.phone.$error"
