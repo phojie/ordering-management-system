@@ -144,15 +144,15 @@ watch(() => form.city, (city) => {
         <div class="px-4 py-6 border-t border-gray-200 bg-primary-50 sm:px-6">
           <div class="flex justify-between text-sm text-gray-900">
             <p>Shipping Amount</p>
-            <p>₱{{ form.shippingAmount.toFixed(2) }}</p>
+            <p>₱{{ form.shippingAmount?.toFixed(2) }}</p>
           </div>
           <div class="flex justify-between text-sm text-gray-900">
             <p>Taxes Amount</p>
-            <p>₱{{ form.taxesAmount.toFixed(2) }}</p>
+            <p>₱{{ form.taxesAmount?.toFixed(2) }}</p>
           </div>
           <div class="flex justify-between text-xl font-medium text-gray-900">
             <p>Total</p>
-            <p>₱{{ form.totalAmount.toFixed(2) }}</p>
+            <p>₱{{ form.totalAmount?.toFixed(2) }}</p>
           </div>
           <p class="mt-0.5 text-sm text-gray-500">
             Shipping and taxes calculated at checkout.
