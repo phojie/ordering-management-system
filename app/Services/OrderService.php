@@ -93,9 +93,7 @@ class OrderService implements OrderServiceInterface
   				});
   			}
 
-  			if ($request->status === 'pending') {
   				broadcast(new PendingOrdersNumber());
-  			}
   		});
   	} catch (\Exception $e) {
   		throw $e;
