@@ -179,7 +179,7 @@ onMounted(() => {
 
                 <JTextField
                   id="phone"
-                  v-model.number="checkoutForm.phone"
+                  v-model="checkoutForm.phone"
                   name="phone"
                   placeholder="09"
                   :error-message="checkoutForm.errors?.phone"

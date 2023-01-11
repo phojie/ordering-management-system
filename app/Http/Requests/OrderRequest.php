@@ -14,7 +14,7 @@ class OrderRequest extends FormRequest
 		return [
 			'name' => 'required',
 			'email' => 'required',
-			'phone' => 'required|numeric|digits:12|starts_with:09',
+			'phone' => 'required|numeric|digits:11|starts_with:09',
 			'address' => 'required',
 			'city' => 'required',
 			'province' => 'required',

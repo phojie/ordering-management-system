@@ -29,7 +29,7 @@ class UserRequest extends FormRequest
    		$rules['password'] = [];
    		$rules['username'] = ['required', 'unique:users,username,'.auth()->id()];
    		$rules['email'] = ['required', 'email', 'unique:users,email,'.auth()->id()];
-   		$rules['phone'] = ['required', 'unique:users,phone,'.auth()->id(), 'numeric', 'digits:12', 'starts_with:09'];
+   		$rules['phone'] = ['required', 'unique:users,phone,'.auth()->id(), 'numeric', 'digits:11', 'starts_with:09'];
    	} elseif ($this->route()->getActionMethod() === 'updatePassword') {
    		$rules = [];
    		$rules['currentPassword'] = ['required', 'current_password'];
