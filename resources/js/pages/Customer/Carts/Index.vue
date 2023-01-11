@@ -12,7 +12,7 @@ const { deleteCart, updateCart } = useCartStore()
 
 const updateCartDebounce = _.debounce((id: string, quantity: number) => {
   updateCart(id, quantity)
-}, 300)
+}, 500)
 
 // order-summary
 const subTotal: number = $computed(() => {
