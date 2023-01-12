@@ -309,7 +309,14 @@ onMounted(async () => {
               </JLink>
 
               <div class="flex items-center lg:ml-8">
-                <!-- Help -->
+                <JLink :to="route('about')" class="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
+                  <span class="sr-only">About us</span>
+                  <heroicons-information-circle class="w-6 h-6" aria-hidden="true" />
+                </JLink>
+                <JLink :to="route('contact-us')" class="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
+                  <span class="sr-only">Contact us</span>
+                  <heroicons-phone class="w-6 h-6" aria-hidden="true" />
+                </JLink>
                 <JLink :to="route('help')" class="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
                   <span class="sr-only">Help</span>
                   <heroicons-question-mark-circle class="w-6 h-6" aria-hidden="true" />
