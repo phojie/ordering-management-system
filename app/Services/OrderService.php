@@ -61,12 +61,6 @@ class OrderService implements OrderServiceInterface
   				});
   			}
 
-  			// if status is changed
-  			if ($order->getOriginal('status') !== $request->status) {
-  				// broadcast order status updated
-  				broadcast(new OrderStatusUpdated($order));
-  			}
-
   			$order->update([
   				'name' => $request->name,
   				'email' => $request->email,
@@ -93,7 +87,8 @@ class OrderService implements OrderServiceInterface
   				});
   			}
 
-  				broadcast(new PendingOrdersNumber());
+  			broadcast(new OrderStatusUpdated($order));
+  			broadcast(new PendingOrdersNumber());
   		});
   	} catch (\Exception $e) {
   		throw $e;

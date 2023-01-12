@@ -61,14 +61,14 @@ class Order extends Model
   	return $query->when(
   		$search,
   		fn ($q) => $q->where('order_number', 'ilike', "%{$search}%")
-          ->orWhere('name', 'ilike', "%{$search}%")
-          ->orWhere('email', 'ilike', "%{$search}%")
-          ->orWhere('phone', 'ilike', "%{$search}%")
-          ->orWhere('address', 'ilike', "%{$search}%")
-          ->orWhere('city', 'ilike', "%{$search}%")
-          ->orWhere('province', 'ilike', "%{$search}%")
-          ->orWhere('postal_code', 'ilike', "%{$search}%")
-          ->orWhere('status', 'ilike', "%{$search}%")
+  		  ->orWhere('name', 'ilike', "%{$search}%")
+  		  ->orWhere('email', 'ilike', "%{$search}%")
+  		  ->orWhere('phone', 'ilike', "%{$search}%")
+  		  ->orWhere('address', 'ilike', "%{$search}%")
+  		  ->orWhere('city', 'ilike', "%{$search}%")
+  		  ->orWhere('province', 'ilike', "%{$search}%")
+  		  ->orWhere('postal_code', 'ilike', "%{$search}%")
+  		  ->orWhere('status', 'ilike', "%{$search}%")
   	);
   }
 
