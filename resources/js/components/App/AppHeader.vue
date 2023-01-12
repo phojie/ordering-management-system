@@ -288,17 +288,17 @@ onMounted(async () => {
                   <heroicons-bars-3 class="w-6 h-6" aria-hidden="true" />
                 </button> -->
 
+              <!-- Logo (mobile-) -->
+              <JLink v-if="useRoute().currentRoute !== 'login'" :to="route('index')" class="lg:hidden">
+                <AppIcon class="w-auto h-14" alt="." />
+              </JLink>
+
               <!-- Search -->
               <JLink :to="route('products.index')" class="p-2 -ml-2 text-gray-400 hover:text-gray-500">
                 <span class="sr-only">Search</span>
                 <heroicons-magnifying-glass class="w-6 h-6" aria-hidden="true" />
               </JLink>
             </div>
-
-            <!-- Logo (lg-) -->
-            <JLink v-if="useRoute().currentRoute !== 'login'" :to="route('index')" class="lg:hidden">
-              <AppIcon class="w-auto h-14" alt="." />
-            </JLink>
 
             <div class="flex items-center justify-end flex-1">
               <JLink
