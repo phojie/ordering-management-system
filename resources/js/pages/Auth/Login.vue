@@ -5,6 +5,8 @@ defineProps<{
 const auth = useAuthStore()
 const form = auth.form
 const processing = computed(() => form.processing)
+
+const isPasswordView = $ref(false)
 </script>
 
 <template>
@@ -36,12 +38,20 @@ const processing = computed(() => form.processing)
           <JTextField
             id="password"
             v-model="form.password"
-            type="password"
+            :type="isPasswordView ? 'text' : 'password'"
             label="Password"
+            :append-inner="true"
             :is-disabled="processing"
             :error-message="form.errors?.password"
             :is-error="_.has(form.errors, 'password')"
-          />
+          >
+            <template #appendInner>
+              <span class="text-gray-500 cursor-pointer" @click="isPasswordView = !isPasswordView">
+                <heroicons-eye-20-solid v-if="isPasswordView" class="w-5 h-5" />
+                <heroicons-eye-slash-20-solid v-else class="w-5 h-5" />
+              </span>
+            </template>
+          </JTextField>
 
           <div class="flex items-center justify-between">
             <JCheckbox

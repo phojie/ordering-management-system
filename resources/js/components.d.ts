@@ -79,6 +79,8 @@ declare module '@vue/runtime-core' {
     HeroiconsClock20Solid: typeof import('~icons/heroicons/clock20-solid')['default']
     HeroiconsEnvelope20Solid: typeof import('~icons/heroicons/envelope20-solid')['default']
     HeroiconsExclamationTriangle20Solid: typeof import('~icons/heroicons/exclamation-triangle20-solid')['default']
+    HeroiconsEye20Solid: typeof import('~icons/heroicons/eye20-solid')['default']
+    HeroiconsEyeSlash20Solid: typeof import('~icons/heroicons/eye-slash20-solid')['default']
     HeroiconsInformationCircle: typeof import('~icons/heroicons/information-circle')['default']
     HeroiconsLink20Solid: typeof import('~icons/heroicons/link20-solid')['default']
     HeroiconsMagnifyingGlass: typeof import('~icons/heroicons/magnifying-glass')['default']
