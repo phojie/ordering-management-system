@@ -17,7 +17,7 @@ onMounted(() => {
     window.Echo.channel(`orders.${useAuthStore().user.id}`)
       .listen('.order.status.updated', (e: any) => {
         // reload
-        Inertia.reload({ only: ['orders'] })
+        Inertia.reload()
       })
   }
 })

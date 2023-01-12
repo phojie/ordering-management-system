@@ -21,7 +21,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="bg-white ">
+  <div class="bg-white">
     <Head title="Ronalds Catering" />
 
     <AppHeader />
