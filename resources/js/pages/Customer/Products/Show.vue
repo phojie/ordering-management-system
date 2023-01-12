@@ -129,7 +129,7 @@ const addToCart = async () => {
                   <div class="grid grid-cols-3 gap-3 sm:grid-cols-3">
                     <RadioGroupOption v-for="variant in product.variants" :key="variant.name" v-slot="{ active, checked }" as="template" :value="variant" :disabled="!variant.inStock">
                       <div class="flex items-center justify-center px-3 py-3 text-sm font-medium uppercase border rounded-md sm:flex-1" :class="[variant.inStock ? 'cursor-pointer focus:outline-none' : 'opacity-25 cursor-not-allowed', active ? 'ring-2 ring-offset-2 ring-primary-500' : '', checked ? 'bg-primary-600 border-transparent text-white hover:bg-primary-700' : 'bg-white border-gray-200 text-gray-900 hover:bg-gray-50']">
-                        <RadioGroupLabel as="p" class="line-clamp-1">
+                        <RadioGroupLabel as="p" class="line-clamp-3">
                           {{ variant.name }}
                         </RadioGroupLabel>
                       </div>
