@@ -68,11 +68,11 @@ export const useSettingStore = defineStore('setting', () => {
     },
     phone: {
       required: helpers.withMessage('Phone number is required', required),
-      startsWith: helpers.withMessage('Phone number must start with 639', (value: string | number) => {
-        return value.toString().startsWith('639') || value.toString().startsWith('+639')
+      startsWith: helpers.withMessage('Phone number must start with 09', (value: string | number) => {
+        return value.toString().startsWith('09') || value.toString().startsWith('09')
       }),
-      length: helpers.withMessage('Phone number must be 12 digits', (value: string | number) => {
-        return value.toString().length === 12
+      length: helpers.withMessage('Phone number must be 11 digits', (value: string | number) => {
+        return value.toString().length === 11
       }),
       $autoDirty: true,
     },
