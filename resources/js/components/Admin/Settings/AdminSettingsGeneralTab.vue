@@ -3,10 +3,10 @@ const user = toRef(useAuthStore(), 'user')
 const { form, formState } = useSettingStore()
 
 const enableSingleUpdate = $computed(() => {
-  if (user.value.phone !== null || user.value.address1 !== null)
-    return true
+  if (user.value.phone == null || user.value.address1 == null)
+    return false
 
-  return false
+  return true
 })
 
 const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
@@ -38,7 +38,6 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
           </h3>
           <button
             type="button"
-            :disabled="enableSingleUpdate"
             class="hover:text-primary-500 text-primary-600"
             @click="toggleEdit('Update profile')"
           >
