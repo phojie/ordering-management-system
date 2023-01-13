@@ -176,7 +176,6 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
               <span class="flex-grow">*******</span>
               <span class="flex-shrink-0 ml-4">
                 <button
-                  :disabled="enableSingleUpdate"
                   type="button"
                   class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                   @click="toggleEdit('Update password', 'editPassword')"
