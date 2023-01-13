@@ -109,7 +109,7 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
               Phone
             </dt>
             <dd class="flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              <span class="flex-grow">+{{ user.phone }}</span>
+              <span class="flex-grow">{{ user.phone }}</span>
               <span class="flex-shrink-0 ml-4">
                 <button
                   type="button"
