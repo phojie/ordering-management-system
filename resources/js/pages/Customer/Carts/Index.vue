@@ -58,7 +58,13 @@ const orderTotal: number = $computed(() => {
                 <div>
                   <div class="flex justify-between">
                     <h3 class="text-sm">
-                      <a :href="cart.product.slug" class="font-medium text-gray-700 hover:text-gray-800">{{ cart.product.name }}</a>
+                      <a
+                        :href="route('products.show', {
+                          slug: cart.product.slug as string,
+                        })"
+                        target="_blank"
+                        class="font-medium text-gray-700 hover:text-gray-800"
+                      >{{ cart.product.name }}</a>
                     </h3>
                   </div>
                   <div class="flex mt-1 text-sm">
