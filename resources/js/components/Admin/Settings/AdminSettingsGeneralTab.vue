@@ -2,11 +2,11 @@
 const user = toRef(useAuthStore(), 'user')
 const { form, formState } = useSettingStore()
 
-const enableSingleUpdate = $computed(() => {
+const disableSingleUpdate = $computed(() => {
   if (user.value.phone == null || user.value.address1 == null)
-    return false
+    return true
 
-  return true
+  return false
 })
 
 const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
@@ -60,7 +60,7 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
               <span class="flex-shrink-0 ml-4">
                 <button
                   type="button"
-                  :disabled="enableSingleUpdate"
+                  :disabled="disableSingleUpdate"
                   class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                   @click="toggleEdit('Update name')"
                 >
@@ -80,7 +80,7 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
               <span class="flex items-start flex-shrink-0 ml-4 space-x-4">
                 <button
                   type="button"
-                  :disabled="enableSingleUpdate"
+                  :disabled="disableSingleUpdate"
                   class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                   @click="toggleEdit('Update photo')"
                 >Update</button>
@@ -96,7 +96,7 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
               <span class="flex-shrink-0 ml-4">
                 <button
                   type="button"
-                  :disabled="enableSingleUpdate"
+                  :disabled="disableSingleUpdate"
                   class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                   @click="toggleEdit('Update email')"
                 >Update</button>
@@ -112,7 +112,7 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
               <span class="flex-shrink-0 ml-4">
                 <button
                   type="button"
-                  :disabled="enableSingleUpdate"
+                  :disabled="disableSingleUpdate"
                   class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                   @click="toggleEdit('Update phone')"
                 >Update</button>
@@ -127,7 +127,7 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
               <span class="flex-grow">{{ user.username }}</span>
               <span class="flex-shrink-0 ml-4">
                 <button
-                  :disabled="enableSingleUpdate"
+                  :disabled="disableSingleUpdate"
                   type="button"
                   class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                   @click="toggleEdit('Update username')"
@@ -144,7 +144,7 @@ const toggleEdit = (title: string, type?: 'edit' | 'editPassword') => {
               <span class="flex-grow">{{ user.fullAddress }}</span>
               <span class="flex-shrink-0 ml-4">
                 <button
-                  :disabled="enableSingleUpdate"
+                  :disabled="disableSingleUpdate"
                   type="button"
                   class="font-medium rounded-md text-primary-600 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                   @click="toggleEdit('Update address')"
