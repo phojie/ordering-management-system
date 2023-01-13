@@ -9,6 +9,7 @@ watch(() => form.city, (city) => {
   }) as any
 
   form.postalCode = address?.postalCode
+  form.province = address?.province
 })
 </script>
 
