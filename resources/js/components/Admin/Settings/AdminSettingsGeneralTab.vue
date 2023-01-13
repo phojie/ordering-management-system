@@ -3,7 +3,7 @@ const user = toRef(useAuthStore(), 'user')
 const { form, formState } = useSettingStore()
 
 const enableSingleUpdate = $computed(() => {
-  if (user.value.phone || user.value.address1)
+  if (user.value.phone !== null || user.value.address1 !== null)
     return true
 
   return false
