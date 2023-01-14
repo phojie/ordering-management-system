@@ -11,7 +11,7 @@ export interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   // defaults
-  acceptedFileTypes: Array<'image/*'>,
+  acceptedFileTypes: () => ['image/*'],
 })
 
 // set model
