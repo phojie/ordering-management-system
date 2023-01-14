@@ -18,7 +18,6 @@ watch(() => form.city, (city) => {
     <JFileInput
       v-if="formState.title === 'Update photo' || formState.title === 'Update profile'"
       v-model="form.avatar"
-      accepted-file-types="image/*"
       label="Photo"
     />
 

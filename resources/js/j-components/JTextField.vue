@@ -1,15 +1,38 @@
 <script setup lang="ts">
-import type { TextField } from './types'
 import HeroiconsExclamationCircle20Solid from '~icons/heroicons/exclamation-circle-20-solid'
 
+export interface Props {
+  // string
+  id: string
+  name?: string
+  type?: 'text' | 'number' | 'password' | 'tel' | 'url'
+  placeholder?: string
+  label?: string
+  appendInner?: unknown
+  prependInner?: unknown
+  hints?: string
+  errorMessage?: string
+  inputClass?: string
+
+  // boolean
+  autofocus?: boolean
+  isError?: boolean
+  isDisabled?: boolean
+  isReadOnly?: boolean
+  isLoading?: boolean
+  isClearable?: boolean
+
+  // object
+}
+
 // set default props
-const props = withDefaults(defineProps<TextField>(), {
+const props = withDefaults(defineProps<Props>(), {
   type: 'text',
 })
 
-// set emits
-const emit = defineEmits(['update:modelValue', 'blur', 'change'])
-const value = useVModel(props, 'modelValue', emit)
+const { modelValue: value } = defineModel<{
+  modelValue: any
+}>()
 
 // set computed
 const appendInner = computed(() => {
@@ -95,8 +118,6 @@ onMounted(() => {
           props.inputClass,
         ]"
         class="block w-full pr-10 rounded-md sm:text-sm placeholder:font-normal"
-        @blur="emit('blur')"
-        @change="emit('change')"
       >
 
       <div v-if="appendInner || isLoading || isClearable" class="absolute inset-y-0 right-0 flex items-center pr-3">

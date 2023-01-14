@@ -7,8 +7,9 @@ const props = defineProps<{
   processing?: boolean
 }>()
 
-const emit = defineEmits(['update:modelValue'])
-const value = useVModel(props, 'modelValue', emit)
+const { modelValue: value } = defineModel<{
+  modelValue: any
+}>()
 
 const { meta, control, k } = useMagicKeys()
 

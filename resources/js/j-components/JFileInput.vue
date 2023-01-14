@@ -3,26 +3,28 @@
 // @ts-expect-error
 import { setOptions } from 'vue-filepond'
 
-interface FileInput {
-  modelValue: any
+export interface Props {
   label?: string
-  acceptedFileTypes?: 'image/*' | 'application/pdf' | 'application/*'
+  acceptedFileTypes?: Array<'image/*' | 'application/pdf' | 'application/*'>
   allowMultiple?: boolean
 }
 
-const props = withDefaults(defineProps<FileInput>(), {
+const props = withDefaults(defineProps<Props>(), {
   // defaults
+  acceptedFileTypes: Array<'image/*'>,
 })
 
-// set emits
-const emit = defineEmits(['update:modelValue'])
+// set model
+const { modelValue } = defineModel<{
+  modelValue: any
+}>()
 
 // set refs
 const pond = ref<any>(null)
-const files = ref<any>(props.modelValue)
+const files = ref<any>(modelValue.value)
 
 const emptyFiles = computed(() => {
-  return props.modelValue === ''
+  return modelValue.value === ''
 })
 
 const serverId = () => {
@@ -42,11 +44,11 @@ function setServerFetch() {
     allowFilePoster: true,
     files: [
       {
-        source: props.modelValue,
+        source: modelValue.value,
         options: {
           type: 'LOCAL',
           metadata: {
-            poster: props.modelValue,
+            poster: modelValue.value,
           },
         },
       },
@@ -110,18 +112,18 @@ function setServerProcess() {
 }
 
 function handleProcessFile() {
-  emit('update:modelValue', serverId())
+  modelValue.value = serverId()
 }
 
 function handleRemoveFile() {
   nextTick(() => {
     setServerProcess()
-    emit('update:modelValue', '')
+    modelValue.value = ''
   })
 }
 
 // watch
-watch(() => props.modelValue, (value) => {
+watch(() => modelValue.value, (value) => {
   if (value === '')
     handleRemoveFile()
 })

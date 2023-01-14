@@ -1,28 +1,3 @@
-export interface TextField {
-  // string
-  id: string
-  name?: string
-  type?: 'text' | 'number' | 'password' | 'tel' | 'url'
-  placeholder?: string
-  modelValue?: any
-  label?: string
-  appendInner?: unknown
-  prependInner?: unknown
-  hints?: string
-  errorMessage?: string
-  inputClass?: string
-
-  // boolean
-  autofocus?: boolean
-  isError?: boolean
-  isDisabled?: boolean
-  isReadOnly?: boolean
-  isLoading?: boolean
-  isClearable?: boolean
-
-  // object
-}
-
 export interface TextArea {
   // string
   id: string
