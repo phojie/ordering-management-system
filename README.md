@@ -137,6 +137,18 @@
   ```
 
 - ```bash
+  php artisan migrate --seed
+  ```
+
+- ```bash
+  php artisan storage:link
+  ```
+
+- ```bash
+  php artisan serve
+  ```
+
+- ```bash
   yarn install && yarn dev
   ```
 
