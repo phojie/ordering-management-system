@@ -2,6 +2,9 @@
 
 [![Laravel Forge Site Deployment Status](https://img.shields.io/endpoint?url=https%3A%2F%2Fforge.laravel.com%2Fsite-badges%2Ffdc0a2b1-62a9-41cd-94d3-9a3d13b1b808%3Fcommit%3D1&style=plastic)](https://forge.laravel.com)
 
+<!-- display image here from public folder cover.png -->
+<img src="/public/cover.png" alt=“cover” height="500" width="700" style="border-radius:20px">
+
 ## 👱 Types of User
 
 - [x] Admin
