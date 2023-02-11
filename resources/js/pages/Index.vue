@@ -40,7 +40,7 @@ const perks = [
       <div aria-hidden="true" class="absolute inset-0 hidden sm:flex sm:flex-col">
         <div class="relative flex-1 w-full bg-gray-800">
           <div class="absolute inset-0 overflow-hidden">
-            <img src="/images/4cover-photo.jpg" alt="" class="object-cover object-center w-full h-full">
+            <img src="/images/1cover-photo.jpg" alt="" class="object-cover object-center w-full h-full">
           </div>
           <div class="absolute inset-0 bg-gray-900 opacity-50" />
         </div>
