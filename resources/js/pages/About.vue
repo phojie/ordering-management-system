@@ -8,14 +8,6 @@ const people = [
     facebookUrl: 'https://www.facebook.com/edralyn.uga',
     emailUrl: 'edralyn_73@yahoo.com',
   },
-  // {
-  //   name: 'Phojie Rengel',
-  //   role: 'Co-Founder / CEO',
-  //   imageUrl: 'https://avatars.githubusercontent.com/u/33350692?v=4',
-  //   bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
-  //   twitterUrl: '#',
-  //   linkedinUrl: '#',
-  // },
 ]
 </script>
 
