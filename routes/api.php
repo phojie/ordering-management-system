@@ -14,28 +14,3 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-// Route::domain('admin.'.config('app.url'))->group(function () {
-// 	Route::middleware('auth:sanctum')->group(function () {
-// 	});
-// });
-
-// trigger broadcast event
-// Route::get('/broadcast', function () {
-// 	$order = Order::first();
-// 	OrderStatusUpdated::dispatch($order);
-
-//   dd($order);
-
-// 	return 'done';
-// });
-
-Route::get('/broadcast', function () {
-	$order = Order::first();
-	// OrderStatusUpdated::dispatch($order);
-	NewOrder::dispatch($order);
-
-	dd($order);
-
-	return 'done';
-});
