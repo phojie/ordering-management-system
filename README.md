@@ -24,9 +24,9 @@
  **Customer Account**
 - [x] List of product 
 - Categories
-- [ ] Profile
+- [x] Profile
 - [x] My orders
-- [ ] My addresses
+- [x] My addresses
 - [x] Ability to add orders
 - COD
 - Online Payment (GCASH)
