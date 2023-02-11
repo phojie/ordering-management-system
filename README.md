@@ -4,7 +4,7 @@
 
 - [x] Admin
 	- [x] Kitchen manager
-	- [ ] Deliver Boy
+	- [x] Deliver Boy
 - [x] Customer
 
 ----
@@ -12,12 +12,12 @@
 ## 👱 User Interface
 
  **Landing Page**
-- [ ] Ability to display all the food and services
+- [x] Ability to display all the food and services
 - [x] Create account upon checkout
 - [x] Login account
 
  **About us**
-- [ ] Contacts info
+- [x] Contacts info
 
  **Customer Account**
 - [x] List of product 
@@ -30,10 +30,10 @@
 - Online Payment (GCASH)
 
 **Admin Account**
-- [ ] Dashboard
-	- [ ] Summary (last 30 days)
-	- [ ] Overview charts
-	- [ ] Recent activity table
+- [x] Dashboard
+	- [x] Summary (last 30 days)
+	- [x] Overview charts
+	- [x] Recent activity table
 - [x] Categories ✅
 	- [x] Create
 	- [x] Read
@@ -45,10 +45,9 @@
 	- [x] Update
 	- [x] Delete
 - [x] Orders ✅
-	- [ ] Create
-	- [ ] Read
-	- [ ] Update
-	- [ ] Delete
+	- [x] Read
+	- [x] Update
+	- [x] Delete
 - [x] users ✅
 	- [x] Create
 	- [x] Read
@@ -78,20 +77,20 @@
 ## 🛠️ Settings
 
 - [x] Profile
-- [ ] Addresses
+- [x] Address
 - [x] Logout
 
 ---
 
 ## 👨‍🔬 Misc. Features
 
-- [ ] Realtime notification
-- [ ] Realtime events
+- [x] Realtime notification
+- [x] Realtime events
 
 ----
 
 ## 🚀 Deployment
 
-- `Domain name` -
+- `Domain name` - https://ronaldscatering.com/
 - `Hosting platform` -
 - `Server platform` -
