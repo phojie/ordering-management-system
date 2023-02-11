@@ -111,43 +111,58 @@
 
 ## 🚧 Installation
 
-- ```bash
+1. Clone the repository
+```bash
   git clone https://github.com/Phojie/restaurant-management-system.git
-  ```
-
-- ```bash
   cd restaurant-management-system
   ```
 
-- ```bash
-
+2. Install the dependencies
+```bash
   composer install
+  yarn install 
   ```
 
-- ```bash 
+3. Copy the example env file and make the required configuration changes in the .env file
+```bash 
   cp .env.example .env
   ```
 
-- Fill in the credentials in the `.env` file that is generated
-
-- ```bash
+4. Generate a new application key and optimize the application
+```bash
   php artisan key:generate && php artisan optimize
   ```
 
-- ```bash
+5. Run the database migrations (Set the database connection in .env before migrating)
+```bash
   php artisan migrate --seed
   ```
 
-- ```bash
+5.  Create a symbolic link from "public/storage" to "storage/app/public"
+```bash
   php artisan storage:link
   ```
 
-- ```bash
+6. Start the local development server (Vue)
+```bash
+  yarn dev
+  ```
+
+7. Start the local development server (Laravel)
+```bash
   php artisan serve
   ```
 
-- ```bash
-  yarn install && yarn dev
-  ```
+You're ready to go! Visit in your browser (e.g. http://localhost:8000), and login with:
 
+- **Username:** admin@test.com
+- **Password:** password
 
+## 🧪 Running tests
+🚧 **Note:** Tests are still in development. 🚧
+
+To run the tests, run:
+
+```bash
+php artisan test
+```
