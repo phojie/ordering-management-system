@@ -141,7 +141,6 @@
 - ```bash
   yarn install || npm install
   ```
-  ```
 
 - ```bash
   yarn run dev || npm run dev
