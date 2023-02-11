@@ -111,7 +111,7 @@
 - `Email` - admin@test.com
 - `Password` - password
 
-## Installation
+## 🚧 Installation
 
 - ```bash
   git clone https://github.com/Phojie/restaurant-management-system.git
@@ -132,17 +132,12 @@
 
 - Fill in the credentials in the `.env` file that is generated
 
-<!-- generate key, php artisan optimize -->
-
 - ```bash
   php artisan key:generate && php artisan optimize
   ```
 
 - ```bash
-  yarn install || npm install
+  yarn install && yarn dev
   ```
 
-- ```bash
-  yarn run dev || npm run dev
-  ```
 
