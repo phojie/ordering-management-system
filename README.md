@@ -138,17 +138,17 @@
   php artisan migrate --seed
   ```
 
-5.  Create a symbolic link from "public/storage" to "storage/app/public"
+6.  Create a symbolic link from "public/storage" to "storage/app/public"
 ```bash
   php artisan storage:link
   ```
 
-6. Start the local development server (Vue)
+7. Start the local development server (Vue)
 ```bash
   yarn dev
   ```
 
-7. Start the local development server (Laravel)
+8. Start the local development server (Laravel)
 ```bash
   php artisan serve
   ```
