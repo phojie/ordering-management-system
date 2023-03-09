@@ -10,13 +10,13 @@ use App\Models\Order;
  */
 interface OrderServiceInterface
 {
-	public function get(object $request): object;
+    public function get(object $request): object;
 
-	public function find(string $id): ?object;
+    public function find(string $id): ?object;
 
-	public function update(OrderRequest $request, Order $order): void;
+    public function update(OrderRequest $request, Order $order): void;
 
-	public function delete(string $id): void;
+    public function delete(string $id): void;
 
-	public function deleteMultiple(array $ids): void;
+    public function deleteMultiple(array $ids): void;
 }

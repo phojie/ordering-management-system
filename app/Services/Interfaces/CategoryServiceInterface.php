@@ -7,17 +7,17 @@ use App\Models\Category;
 
 interface CategoryServiceInterface
 {
-	public function get(object $request): object;
+    public function get(object $request): object;
 
-	public function store(CategoryRequest $request): void;
+    public function store(CategoryRequest $request): void;
 
-	public function update(CategoryRequest $request, Category $category): void;
+    public function update(CategoryRequest $request, Category $category): void;
 
-	public function delete(string $id): void;
+    public function delete(string $id): void;
 
-	public function deleteMultiple(array $ids): void;
+    public function deleteMultiple(array $ids): void;
 
-	public function restore(string $id): void;
+    public function restore(string $id): void;
 
-	public function retoreMultiple(array $ids): void;
+    public function retoreMultiple(array $ids): void;
 }

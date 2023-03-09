@@ -9,35 +9,35 @@ use Inertia\Inertia;
 
 class ProductController
 {
-	public function index(Request $request)
-	{
-		// TODO: Add pagination
-		$products = Product::query()
-				->with(['variants', 'categories'])
-				->search($request->search);
+    public function index(Request $request)
+    {
+        // TODO: Add pagination
+        $products = Product::query()
+                ->with(['variants', 'categories'])
+                ->search($request->search);
 
-		if ($request->has('category')) {
-			$products = $products->whereHas('categories', function ($query) use ($request) {
-				$query->where('slug', $request->category);
-			});
-		}
+        if ($request->has('category')) {
+            $products = $products->whereHas('categories', function ($query) use ($request) {
+                $query->where('slug', $request->category);
+            });
+        }
 
-		$products = $products->get();
+        $products = $products->get();
 
-		return Inertia::render('Customer/Products/Index', [
-			'products' => ProductResource::collection($products),
-		]);
-	}
+        return Inertia::render('Customer/Products/Index', [
+            'products' => ProductResource::collection($products),
+        ]);
+    }
 
-	public function show(string $slug)
-	{
-		$product = Product::query()
-			->with(['variants', 'categories'])
-		  ->where('slug', $slug)->firstOrFail();
+    public function show(string $slug)
+    {
+        $product = Product::query()
+            ->with(['variants', 'categories'])
+          ->where('slug', $slug)->firstOrFail();
 
-		// return new ProductResource($category);
-		return Inertia::render('Customer/Products/Show', [
-			'product' => new ProductResource($product),
-		]);
-	}
+        // return new ProductResource($category);
+        return Inertia::render('Customer/Products/Show', [
+            'product' => new ProductResource($product),
+        ]);
+    }
 }

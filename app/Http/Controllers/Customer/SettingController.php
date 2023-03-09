@@ -9,33 +9,33 @@ use App\Services\UserService;
 
 class SettingController
 {
-	protected $user;
+    protected $user;
 
-	public function __construct()
-	{
-		$this->user = User::findOrFail(auth()->id());
-	}
+    public function __construct()
+    {
+        $this->user = User::findOrFail(auth()->id());
+    }
 
-	public function index()
-	{
-		return inertia('Customer/Settings');
-	}
+    public function index()
+    {
+        return inertia('Customer/Settings');
+    }
 
-	public function updateGeneral(UserRequest $request)
-	{
-		(new UserService())->update($request, $this->user);
+    public function updateGeneral(UserRequest $request)
+    {
+        (new UserService())->update($request, $this->user);
 
-		(new FlashNotification())->update('Your profile');
+        (new FlashNotification())->update('Your profile');
 
-		return redirect()->back();
-	}
+        return redirect()->back();
+    }
 
-	public function updatePassword(UserRequest $request)
-	{
-		(new UserService())->changePassword($request->newPassword, $this->user);
+    public function updatePassword(UserRequest $request)
+    {
+        (new UserService())->changePassword($request->newPassword, $this->user);
 
-		(new FlashNotification())->update('Your password');
+        (new FlashNotification())->update('Your password');
 
-		return redirect()->back();
-	}
+        return redirect()->back();
+    }
 }

@@ -16,10 +16,10 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-          'name' => $name = $this->faker->unique()->words(1, true),
-          'slug' => Str::slug($name),
-          'description' => $this->faker->sentence,
-          'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
+            'name' => $name = $this->faker->unique()->words(1, true),
+            'slug' => Str::slug($name),
+            'description' => $this->faker->sentence,
+            'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }

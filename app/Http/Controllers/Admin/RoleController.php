@@ -11,117 +11,117 @@ use Illuminate\Http\Request;
 
 class RoleController
 {
-	public function index(Request $request)
-	{
-		abort_unless(\Gate::allows('role-list'), 404);
+    public function index(Request $request)
+    {
+        abort_unless(\Gate::allows('role-list'), 404);
 
-		// set query
-		$query = (new RoleService())->get($request);
+        // set query
+        $query = (new RoleService())->get($request);
 
-		// set pagination
-		$roles = $query->paginate($request->rows ?? config('jie.per_page'))->appends($request->all());
+        // set pagination
+        $roles = $query->paginate($request->rows ?? config('jie.per_page'))->appends($request->all());
 
-		// set resource
-		$query = RoleResource::collection($roles);
+        // set resource
+        $query = RoleResource::collection($roles);
 
-		return inertia('Admin/Roles/Index', [
-			'roles' => $query,
-		]);
-	}
+        return inertia('Admin/Roles/Index', [
+            'roles' => $query,
+        ]);
+    }
 
-	public function store(RoleRequest $request)
-	{
-		\Gate::authorize('role-create');
+    public function store(RoleRequest $request)
+    {
+        \Gate::authorize('role-create');
 
-		(new RoleService())->store($request);
+        (new RoleService())->store($request);
 
-		(new FlashNotification())->create($request->name);
+        (new FlashNotification())->create($request->name);
 
-		return redirect()->back();
-	}
+        return redirect()->back();
+    }
 
-	public function show($id)
-	{
-	}
+    public function show($id)
+    {
+    }
 
-	public function update(RoleRequest $request, Role $role)
-	{
-		\Gate::authorize('role-update');
+    public function update(RoleRequest $request, Role $role)
+    {
+        \Gate::authorize('role-update');
 
-		(new RoleService())->update($request, $role);
+        (new RoleService())->update($request, $role);
 
-		(new FlashNotification)->update($request->name);
+        (new FlashNotification())->update($request->name);
 
-		return redirect()->back();
-	}
+        return redirect()->back();
+    }
 
-	public function destroy(Role $role)
-	{
-		\Gate::authorize('role-delete');
+    public function destroy(Role $role)
+    {
+        \Gate::authorize('role-delete');
 
-		(new RoleService())->delete($role->id);
+        (new RoleService())->delete($role->id);
 
-		(new FlashNotification)->destroy($role->name, [
-			[
-				'url' => route('admin.roles.restore', $role->id),
-				'method' => 'put',
-			],
-		]);
+        (new FlashNotification())->destroy($role->name, [
+            [
+                'url' => route('admin.roles.restore', $role->id),
+                'method' => 'put',
+            ],
+        ]);
 
-		return redirect()->back();
-	}
+        return redirect()->back();
+    }
 
   public function destroyMultiple(Request $request)
   {
-  	\Gate::authorize('role-delete');
+      \Gate::authorize('role-delete');
 
-  	(new RoleService())->deleteMultiple($request->ids);
+      (new RoleService())->deleteMultiple($request->ids);
 
-  	(new FlashNotification)->destroy(count($request->ids).' roles', [
-  		[
-  			'url' => route('admin.roles.restore-multiple'),
-  			'method' => 'put',
-  			'data' => [
-  				'ids' => $request->ids,
-  			],
-  		],
-  	]);
+      (new FlashNotification())->destroy(count($request->ids).' roles', [
+          [
+              'url' => route('admin.roles.restore-multiple'),
+              'method' => 'put',
+              'data' => [
+                  'ids' => $request->ids,
+              ],
+          ],
+      ]);
 
-  	return redirect()->back();
+      return redirect()->back();
   }
 
   public function restore(Role $role)
   {
-  	\Gate::authorize('role-delete');
+      \Gate::authorize('role-delete');
 
-  	(new RoleService())->restore($role->id);
+      (new RoleService())->restore($role->id);
 
-  	(new FlashNotification)->restore($role->name, [
-  		[
-  			'url' => route('admin.roles.destroy', $role->id),
-  			'method' => 'delete',
-  		],
-  	]);
+      (new FlashNotification())->restore($role->name, [
+          [
+              'url' => route('admin.roles.destroy', $role->id),
+              'method' => 'delete',
+          ],
+      ]);
 
-  	return redirect()->back();
+      return redirect()->back();
   }
 
   public function restoreMultiple(Request $request)
   {
-  	\Gate::authorize('role-delete');
+      \Gate::authorize('role-delete');
 
-  	(new RoleService())->retoreMultiple($request->ids);
+      (new RoleService())->retoreMultiple($request->ids);
 
-  	(new FlashNotification)->restore(count($request->ids).' roles', [
-  		[
-  			'url' => route('admin.roles.destroy-multiple'),
-  			'method' => 'delete',
-  			'data' => [
-  				'ids' => $request->ids,
-  			],
-  		],
-  	]);
+      (new FlashNotification())->restore(count($request->ids).' roles', [
+          [
+              'url' => route('admin.roles.destroy-multiple'),
+              'method' => 'delete',
+              'data' => [
+                  'ids' => $request->ids,
+              ],
+          ],
+      ]);
 
-  	return redirect()->back();
+      return redirect()->back();
   }
 }

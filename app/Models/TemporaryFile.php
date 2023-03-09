@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class TemporaryFile extends Model
 {
-	use HasFactory;
-	use HasUuids;
+    use HasFactory;
+    use HasUuids;
 
-	protected $fillable = [
-		'folder',
-		'filename',
-	];
+    protected $fillable = [
+        'folder',
+        'filename',
+    ];
 }

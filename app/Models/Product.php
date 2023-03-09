@@ -14,62 +14,62 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Product extends Model implements HasMedia
 {
-	use HasFactory;
-	use HasUuids;
-	use SoftDeletes;
-	use InteractsWithMedia;
+    use HasFactory;
+    use HasUuids;
+    use SoftDeletes;
+    use InteractsWithMedia;
 
-	public $fillable = [
-		'name',
-		'description',
-		'status',
-	];
+    public $fillable = [
+        'name',
+        'description',
+        'status',
+    ];
 
-	protected $appends = [
-		'image',
-	];
+    protected $appends = [
+        'image',
+    ];
 
-	public function getImageAttribute(): string
-	{
-		return $this->getFirstMediaUrl('image', 'thumb') ?: 'https://robohash.org/'.$this->id.'?set=set1&bgset=bg2&size=600x600';
-	}
+    public function getImageAttribute(): string
+    {
+        return $this->getFirstMediaUrl('image', 'thumb') ?: 'https://robohash.org/'.$this->id.'?set=set1&bgset=bg2&size=600x600';
+    }
 
   public function registerMediaCollections(): void
   {
-  	$this->addMediaCollection('image')
-  		  ->singleFile();
+      $this->addMediaCollection('image')
+            ->singleFile();
   }
 
   public function registerMediaConversions(Media $media = null): void
   {
-  	$this->addMediaConversion('image')
-  		  ->width(600)
-  		  ->height(600);
+      $this->addMediaConversion('image')
+            ->width(600)
+            ->height(600);
   }
 
-	public function variants(): HasMany
-	{
-		return $this->hasMany(Variant::class);
-	}
+    public function variants(): HasMany
+    {
+        return $this->hasMany(Variant::class);
+    }
 
   public function categories(): BelongsToMany
   {
-  	return $this->belongsToMany(Category::class);
+      return $this->belongsToMany(Category::class);
   }
 
   public function orderVariants(): HasMany
   {
-  	return $this->hasMany(OrderVariant::class);
+      return $this->hasMany(OrderVariant::class);
   }
 
-	public function scopeSearch($query, $search): object
-	{
-		return $query->when($search, fn ($q) => $q->where('name', 'ilike', "%{$search}%")
-		->orWhere('description', 'ilike', "%{$search}%"));
-	}
+    public function scopeSearch($query, $search): object
+    {
+        return $query->when($search, fn ($q) => $q->where('name', 'ilike', "%{$search}%")
+        ->orWhere('description', 'ilike', "%{$search}%"));
+    }
 
   public function scopeAvailable($query): object
   {
-  	return $query->where('status', 'active');
+      return $query->where('status', 'active');
   }
 }

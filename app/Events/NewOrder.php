@@ -12,29 +12,31 @@ use Illuminate\Queue\SerializesModels;
 
 class NewOrder implements ShouldBroadcast
 {
-	use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
-	public function __construct(public $order)
-	{
-		//
-	}
+    public function __construct(public $order)
+    {
+        //
+    }
 
-	public function broadcastOn(): Channel|array
-	{
-		return new Channel('new-order');
-	}
+    public function broadcastOn(): Channel|array
+    {
+        return new Channel('new-order');
+    }
 
-	public function broadcastAs(): string
-	{
-		return 'new.order';
-	}
+    public function broadcastAs(): string
+    {
+        return 'new.order';
+    }
 
-	public function broadcastWith(): array
-	{
-		$orderData = Order::with('user')->find($this->order->id);
+    public function broadcastWith(): array
+    {
+        $orderData = Order::with('user')->find($this->order->id);
 
-		return [
-			'order' => new OrderResource($orderData),
-		];
-	}
+        return [
+            'order' => new OrderResource($orderData),
+        ];
+    }
 }

@@ -7,21 +7,21 @@ use App\Models\Role;
 
 class RoleController
 {
-	public function index()
-	{
-		// TODO implement searchable and pagination
-		$query = Role::get();
+    public function index()
+    {
+        // TODO implement searchable and pagination
+        $query = Role::get();
 
-		return response()->json($query, 200);
-	}
+        return response()->json($query, 200);
+    }
 
   public function show($id)
   {
-  	$query = Role::query()
-  			->with('permissions')
-  			->find($id);
-  	$role = new RoleResource($query);
+      $query = Role::query()
+              ->with('permissions')
+              ->find($id);
+      $role = new RoleResource($query);
 
-  	return response()->json($role, 200);
+      return response()->json($role, 200);
   }
 }

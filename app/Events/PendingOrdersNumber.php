@@ -11,27 +11,29 @@ use Illuminate\Queue\SerializesModels;
 
 class PendingOrdersNumber implements ShouldBroadcast
 {
-	use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
-	public function __construct()
-	{
-		//
-	}
+    public function __construct()
+    {
+        //
+    }
 
-	public function broadcastOn(): Channel|array
-	{
-		return new Channel('pending-order-number');
-	}
+    public function broadcastOn(): Channel|array
+    {
+        return new Channel('pending-order-number');
+    }
 
-	public function broadcastAs(): string
-	{
-		return 'pending.order.number';
-	}
+    public function broadcastAs(): string
+    {
+        return 'pending.order.number';
+    }
 
-	public function broadcastWith(): array
-	{
-		return [
-			'pendingOrderNumber' => (new Order())->countPending(),
-		];
-	}
+    public function broadcastWith(): array
+    {
+        return [
+            'pendingOrderNumber' => (new Order())->countPending(),
+        ];
+    }
 }

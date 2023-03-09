@@ -7,16 +7,16 @@ use Spatie\Permission\Models\Permission as ModelsPermission;
 
 class Permission extends ModelsPermission
 {
-	use HasUuids;
+    use HasUuids;
 
-	protected $casts = [
-		'model_id' => 'string',
-	];
+    protected $casts = [
+        'model_id' => 'string',
+    ];
 
-  protected $hidden = [
-    'pivot',
-    'guard_name',
-    'created_at',
-		'updated_at',
-  ];
+    protected $hidden = [
+        'pivot',
+        'guard_name',
+        'created_at',
+        'updated_at',
+    ];
 }

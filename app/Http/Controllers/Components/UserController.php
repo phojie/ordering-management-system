@@ -6,10 +6,10 @@ use App\Services\UserService;
 
 class UserController
 {
-	public function show($id)
-	{
-		$user = (new UserService())->show($id);
+    public function show($id)
+    {
+        $user = (new UserService())->show($id);
 
-		return response()->json($user, 200);
-	}
+        return response()->json($user, 200);
+    }
 }

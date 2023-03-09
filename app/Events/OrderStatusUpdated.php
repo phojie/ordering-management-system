@@ -3,7 +3,6 @@
 namespace App\Events;
 
 use App\Http\Resources\OrderResource;
-use App\Http\Resources\UserResource;
 use App\Models\Order;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -14,32 +13,35 @@ use Illuminate\Queue\SerializesModels;
 
 class OrderStatusUpdated implements ShouldBroadcast
 {
-	use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
-	public function __construct(public $order)
-	{
-		//
-	}
+    public function __construct(public $order)
+    {
+        //
+    }
 
-	public function broadcastOn(): Channel|array
-	{
-		return new Channel('orders.'.$this->order->user_id);
+    public function broadcastOn(): Channel|array
+    {
+        return new Channel('orders.'.$this->order->user_id);
 
-		// return [
-		// 	new PrivateChannel('user.'.$this->user->id),
-		// ];
-	}
+        // return [
+        // 	new PrivateChannel('user.'.$this->user->id),
+        // ];
+    }
 
   public function broadcastAs(): string
   {
-    return 'order.status.updated';
+      return 'order.status.updated';
   }
 
   public function broadcastWith(): array
   {
-    $orderData = Order::with('user')->find($this->order->id);
-    return [
-      'order' => new OrderResource($orderData),
-    ];
+      $orderData = Order::with('user')->find($this->order->id);
+
+      return [
+          'order' => new OrderResource($orderData),
+      ];
   }
 }

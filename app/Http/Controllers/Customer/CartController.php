@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Customer;
 
-use App\Events\NewOrder;
 use App\Http\Resources\CartResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Cart;
@@ -14,83 +13,83 @@ use Inertia\Inertia;
 
 class CartController
 {
-	public function index(Request $request)
-	{
-		$carts = Cart::query()
-						  ->where('user_id', $request->user()->id)
-						  ->with('variant', 'product')
-						  ->get();
+    public function index(Request $request)
+    {
+        $carts = Cart::query()
+                          ->where('user_id', $request->user()->id)
+                          ->with('variant', 'product')
+                          ->get();
 
-    $cartsProductId = $carts->pluck('product_id')->toArray();
+        $cartsProductId = $carts->pluck('product_id')->toArray();
 
-		$relatedProducts = Product::query()
-				->with('variants')
+        $relatedProducts = Product::query()
+                ->with('variants')
         ->available()
         ->whereNotIn('id', $cartsProductId)
-				->limit(4)
-				->get();
+                ->limit(4)
+                ->get();
 
-		return Inertia::render('Customer/Carts/Index', [
-			'carts' => CartResource::collection($carts),
-			'relatedProducts' => ProductResource::collection($relatedProducts),
-		]);
-	}
+        return Inertia::render('Customer/Carts/Index', [
+            'carts' => CartResource::collection($carts),
+            'relatedProducts' => ProductResource::collection($relatedProducts),
+        ]);
+    }
 
   public function store(Request $request)
   {
-  	$variant = Variant::findOrFail($request->variantId);
+      $variant = Variant::findOrFail($request->variantId);
 
-  	$request->validate([
-  		'quantity' => 'required|integer|min:1|max:'.$variant->stock,
-  	]);
+      $request->validate([
+          'quantity' => 'required|integer|min:1|max:'.$variant->stock,
+      ]);
 
-  	// updateOrCreate
-  	Cart::updateOrCreate([
-  		'user_id' => $request->user()->id,
-  		'variant_id' => $variant->id,
-  		'product_id' => $variant->product_id,
-  	], [
-  		'quantity' => $request->quantity,
-  	]);
+      // updateOrCreate
+      Cart::updateOrCreate([
+          'user_id' => $request->user()->id,
+          'variant_id' => $variant->id,
+          'product_id' => $variant->product_id,
+      ], [
+          'quantity' => $request->quantity,
+      ]);
 
-  	(new FlashNotification())->create('Cart');
+      (new FlashNotification())->create('Cart');
 
-  	return redirect()->route('customer.carts.index');
+      return redirect()->route('customer.carts.index');
   }
 
   public function update(Request $request, Cart $cart)
   {
-  	$request->validate([
-  		'quantity' => 'required|integer|min:1|max:'.$cart->variant->stock,
-  	]);
+      $request->validate([
+          'quantity' => 'required|integer|min:1|max:'.$cart->variant->stock,
+      ]);
 
-  	$cart->update([
-  		'quantity' => $request->quantity,
-  	]);
+      $cart->update([
+          'quantity' => $request->quantity,
+      ]);
 
-  	(new FlashNotification())->update('Cart qty.');
+      (new FlashNotification())->update('Cart qty.');
 
-  	return redirect()->back();
+      return redirect()->back();
   }
 
   public function destroy(Cart $cart)
   {
-  	$cart->delete();
+      $cart->delete();
 
-  	(new FlashNotification())->destroy('Cart');
+      (new FlashNotification())->destroy('Cart');
 
-  	return redirect()->back();
+      return redirect()->back();
   }
 
   public function checkout(Request $request)
   {
-  	$carts = Cart::query()
-  				->where('user_id', $request->user()->id)
-  				->with('variant', 'product')
-  				->get();
+      $carts = Cart::query()
+                  ->where('user_id', $request->user()->id)
+                  ->with('variant', 'product')
+                  ->get();
 
-  	return Inertia::render('Customer/Carts/Checkout', [
-  		'carts' => CartResource::collection($carts),
-  	]);
+      return Inertia::render('Customer/Carts/Checkout', [
+          'carts' => CartResource::collection($carts),
+      ]);
   }
 }

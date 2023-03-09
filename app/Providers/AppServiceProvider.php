@@ -7,15 +7,15 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-	public function register(): void
-	{
-		if ($this->app->environment('local')) {
-      $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
-		}
-	}
+    public function register(): void
+    {
+        if ($this->app->environment('local')) {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
+    }
 
-	public function boot(): void
-	{
-		JsonResource::withoutWrapping();
-	}
+    public function boot(): void
+    {
+        JsonResource::withoutWrapping();
+    }
 }

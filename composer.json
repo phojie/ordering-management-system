@@ -24,7 +24,7 @@
     "fakerphp/faker": "^1.9.1",
     "getsolaris/laravel-make-service": "^1.1",
     "laravel/breeze": "^1.14",
-    "laravel/pint": "^1.0",
+    "laravel/pint": "^1.6",
     "laravel/sail": "^1.0.1",
     "mockery/mockery": "^1.4.4",
     "nunomaduro/collision": "^6.1",

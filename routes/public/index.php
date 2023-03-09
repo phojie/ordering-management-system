@@ -3,19 +3,18 @@
 use App\Http\Controllers\PublicController;
 use Inertia\Inertia;
 
-
 Route::controller(PublicController::class)->group(function () {
-  Route::get('/', 'index')->name('index');
+    Route::get('/', 'index')->name('index');
 });
 
 Route::get('/about', function () {
-	return Inertia::render('About');
+    return Inertia::render('About');
 })->name('about');
 
 Route::get('/contact-us', function () {
-	return Inertia::render('ContactUs');
+    return Inertia::render('ContactUs');
 })->name('contact-us');
 
 Route::get('/help', function () {
-	return Inertia::render('Help');
+    return Inertia::render('Help');
 })->name('help');

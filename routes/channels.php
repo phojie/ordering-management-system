@@ -1,7 +1,6 @@
 <?php
 
 use App\Broadcasting\OrderChannel;
-use App\Models\Order;
 use App\Models\User;
 use Illuminate\Support\Facades\Broadcast;
 

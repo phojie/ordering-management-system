@@ -14,70 +14,70 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Category extends Model implements HasMedia
 {
-	use HasFactory;
-	use HasUuids;
-	use SoftDeletes;
-	use InteractsWithMedia;
+    use HasFactory;
+    use HasUuids;
+    use SoftDeletes;
+    use InteractsWithMedia;
 
-	protected $fillable = [
-		'name',
-		'description',
-	];
+    protected $fillable = [
+        'name',
+        'description',
+    ];
 
-	protected $appends = [
-		'status',
-		'image',
-	];
+    protected $appends = [
+        'status',
+        'image',
+    ];
 
-	public function getImageAttribute(): string
-	{
-		return $this->getFirstMediaUrl('image', 'thumb') ?: 'https://robohash.org/'.$this->id.'?set=set1&bgset=bg2&size=600x600';
-	}
+    public function getImageAttribute(): string
+    {
+        return $this->getFirstMediaUrl('image', 'thumb') ?: 'https://robohash.org/'.$this->id.'?set=set1&bgset=bg2&size=600x600';
+    }
 
   public function registerMediaCollections(): void
   {
-  	$this->addMediaCollection('image')
-  		  ->singleFile();
+      $this->addMediaCollection('image')
+            ->singleFile();
   }
 
   public function registerMediaConversions(Media $media = null): void
   {
-  	$this->addMediaConversion('image')
-  		  ->width(600)
-  		  ->height(600);
+      $this->addMediaConversion('image')
+            ->width(600)
+            ->height(600);
   }
 
-	public function getStatusAttribute(): string
-	{
-		return $this->deleted_at ? 'deleted' : 'active';
-	}
+    public function getStatusAttribute(): string
+    {
+        return $this->deleted_at ? 'deleted' : 'active';
+    }
 
-	public function scopeSearch($query, $search): object
-	{
-		return $query->when($search, fn ($q) => $q->where('name', 'ilike', "%{$search}%")
-		  ->orWhere('description', 'ilike', "%{$search}%"));
-	}
+    public function scopeSearch($query, $search): object
+    {
+        return $query->when($search, fn ($q) => $q->where('name', 'ilike', "%{$search}%")
+          ->orWhere('description', 'ilike', "%{$search}%"));
+    }
 
   public function products(): BelongsToMany
   {
-  	return $this->belongsToMany(Product::class);
+      return $this->belongsToMany(Product::class);
   }
 
   public function orders(): BelongsToMany
   {
-  	return $this->belongsToMany(Order::class);
+      return $this->belongsToMany(Order::class);
   }
 
   public function orderVariants(): BelongsToMany
   {
-  	return $this->belongsToMany(OrderVariant::class);
+      return $this->belongsToMany(OrderVariant::class);
   }
 
-	public static function boot(): void
-	{
-		parent::boot();
-		self::creating(function ($model) {
-			$model->color = (new MiscServices())->getRandomColor();
-		});
-	}
+    public static function boot(): void
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->color = (new MiscServices())->getRandomColor();
+        });
+    }
 }

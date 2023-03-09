@@ -9,32 +9,32 @@ use Inertia\Inertia;
 
 class CategoryController
 {
-	public function index(Request $request)
-	{
-		// TODO: Add pagination
-		$categories = Category::query()
-			->withCount(['products'])
-				->search($request->search)
-				->get();
+    public function index(Request $request)
+    {
+        // TODO: Add pagination
+        $categories = Category::query()
+            ->withCount(['products'])
+                ->search($request->search)
+                ->get();
 
-		return Inertia::render('Customer/Categories/Index', [
-			'categories' => CategoryResource::collection($categories),
-		]);
-	}
+        return Inertia::render('Customer/Categories/Index', [
+            'categories' => CategoryResource::collection($categories),
+        ]);
+    }
 
-	public function show(string $slug, Request $request)
-	{
-		$category = Category::query()
-		  ->with('products', function ($query) use ($request) {
-		  	$query->with(['variants', 'categories'])
-		  		->search($request->search);
-		  })
-		  ->where('slug', $slug)
-		  ->firstOrFail();
+    public function show(string $slug, Request $request)
+    {
+        $category = Category::query()
+          ->with('products', function ($query) use ($request) {
+              $query->with(['variants', 'categories'])
+                  ->search($request->search);
+          })
+          ->where('slug', $slug)
+          ->firstOrFail();
 
-		// return new CategoryResource($category);
-		return Inertia::render('Customer/Categories/Show', [
-			'category' => new CategoryResource($category),
-		]);
-	}
+        // return new CategoryResource($category);
+        return Inertia::render('Customer/Categories/Show', [
+            'category' => new CategoryResource($category),
+        ]);
+    }
 }

@@ -10,22 +10,22 @@ use Inertia\Inertia;
 
 class PublicController
 {
-	public function index()
-	{
-		$randomCategories = Category::query()
-			->inRandomOrder()
-			->limit(3)
-			->get();
+    public function index()
+    {
+        $randomCategories = Category::query()
+            ->inRandomOrder()
+            ->limit(3)
+            ->get();
 
-		$trendingProducts = Product::query()
-				->inRandomOrder()
+        $trendingProducts = Product::query()
+                ->inRandomOrder()
         ->with('variants', fn ($query) => $query->where('stock', '>', 0))
-				->limit(4)
-				->get();
+                ->limit(4)
+                ->get();
 
-		return Inertia::render('Index', [
-			'categories' => CategoryResource::collection($randomCategories),
-			'products' =>  ProductResource::collection($trendingProducts),
-		]);
-	}
+        return Inertia::render('Index', [
+            'categories' => CategoryResource::collection($randomCategories),
+            'products' => ProductResource::collection($trendingProducts),
+        ]);
+    }
 }
