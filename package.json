@@ -5,10 +5,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && vite build --ssr",
-    "release": "standard-version"
+    "release": "standard-version",
+    "lint": "eslint .",
+    "pint": "./vendor/bin/pint --dirty"
   },
   "dependencies": {
     "@antfu/eslint-config": "^0.27.0",
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
     "@headlessui/vue": "^1.7.3",
     "@iconify/iconify": "^3.0.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -51,6 +55,7 @@
     "@vue/server-renderer": "^3.2.31",
     "autoprefixer": "^10.4.13",
     "axios": "^0.27",
+    "husky": "^8.0.3",
     "laravel-echo": "^1.14.2",
     "laravel-vite-plugin": "^0.6.0",
     "lodash": "^4.17.19",
@@ -65,5 +70,8 @@
     "vite": "^3.0.0",
     "vite-plugin-pwa": "^0.13.3",
     "vue": "^3.2.31"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }
