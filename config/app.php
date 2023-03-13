@@ -214,4 +214,8 @@ return [
     ])->toArray(),
 
     // extra
+
+    'google' => [
+        'analytics_id' => env('GOOGLE_ANALYTICS_ID'),
+    ],
 ];
