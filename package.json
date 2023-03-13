@@ -7,6 +7,7 @@
     "build": "vite build && vite build --ssr",
     "release": "standard-version",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "./vendor/bin/pint --test"
   },
   "dependencies": {
