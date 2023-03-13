@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Category } from '@/types/category'
 import type { Product } from '@/types/product'
-import { Variant } from '@/types/variant'
 
 const props = defineProps<{
   categories: Array<Category>
@@ -91,7 +90,7 @@ const perks = [
                   <h3 class="mt-1 font-semibold text-white">
                     <JLink
                       :to="route('categories.show', {
-                        slug: category.slug as string,
+                        slug: category.slug,
                       })"
                     >
                       <span class="absolute inset-0" />
@@ -123,10 +122,10 @@ const perks = [
             v-for="product in products"
             :key="product.id"
             :name="product.name"
-            :image="product.image as string"
+            :image="product.image"
             :description="product.description"
-            :variants="product.variants as Array<Variant>"
-            :slug="product.slug as string"
+            :variants="product.variants"
+            :slug="product.slug"
           />
         </div>
 
