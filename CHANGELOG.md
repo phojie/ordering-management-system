@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/Phojie/restaurant-management-system/compare/v0.0.2...v0.0.3) (2023-03-13)
+
+
+### Features
+
+* add analytics ([beeacc1](https://github.com/Phojie/restaurant-management-system/commit/beeacc19076edd14d3435092d4b028450e656d29))
+
+
+### Bug Fixes
+
+* remove awaits ([3d1b05d](https://github.com/Phojie/restaurant-management-system/commit/3d1b05d80b98f867e819c6464cab9ae2274a129a))
+
 ### [0.0.2](https://github.com/Phojie/restaurant-management-system/compare/v0.0.1...v0.0.2) (2023-03-09)
 
 ### 0.0.1 (2023-02-11)
