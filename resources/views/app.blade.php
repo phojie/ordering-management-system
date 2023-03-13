@@ -13,6 +13,17 @@
     @vite('resources/js/app.js')
     @inertiaHead
   </head>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MV19YGQZ1D"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-MV19YGQZ1D');
+  </script>
+
   <body class="font-sans antialiased">
     @inertia
   </body>
