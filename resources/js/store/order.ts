@@ -1,5 +1,5 @@
 import { helpers, required } from '@vuelidate/validators'
-import type { TableHeader } from './../j-components/types'
+import type { TableHeader } from '@/j-components/types'
 import type { Order } from '@/types/order'
 
 type FormType = 'create' | 'edit'
@@ -159,10 +159,10 @@ export const useOrderStore = defineStore('order', () => {
       return
 
     if (formState.type === 'create')
-      createOrder()
+      await createOrder()
 
     else
-      updateOrder(form.id as string)
+      await updateOrder(form.id as string)
   }
 
   // reload orders
@@ -187,11 +187,11 @@ export const useOrderStore = defineStore('order', () => {
   }
 
   // get orders
-  function getOrders(reqestData: any) {
-    Inertia.get(route('admin.orders.index'),
+  async function getOrders(requestData: any) {
+    await Inertia.get(route('admin.orders.index'),
       {
         ...route().params,
-        ...reqestData,
+        ...requestData,
       },
       {
         preserveState: true,
@@ -360,4 +360,3 @@ export const useOrderStore = defineStore('order', () => {
 // make sure to pass the right store definition, `useOrder` in this case.
 if (import.meta.hot)
   import.meta.hot.accept(acceptHMRUpdate(useOrderStore, import.meta.hot))
-
