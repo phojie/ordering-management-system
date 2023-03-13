@@ -159,10 +159,10 @@ export const useOrderStore = defineStore('order', () => {
       return
 
     if (formState.type === 'create')
-      await createOrder()
+      createOrder()
 
     else
-      await updateOrder(form.id as string)
+      updateOrder(form.id as string)
   }
 
   // reload orders
