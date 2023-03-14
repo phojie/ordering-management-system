@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Image\Exceptions\InvalidManipulation;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -94,9 +93,6 @@ class User extends Authenticatable implements HasMedia
              ->singleFile();
     }
 
-    /**
-     * @throws InvalidManipulation
-     */
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('avatar')
