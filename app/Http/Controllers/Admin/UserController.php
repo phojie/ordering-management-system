@@ -9,14 +9,17 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\FlashNotification;
 use App\Services\UserService;
+use Gate;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Controller;
+use Inertia\Response;
 
 class UserController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
-        abort_unless(\Gate::allows('user-list'), 404);
+        abort_unless(Gate::allows('user-list'), 404);
 
         // set query
         $query = (new UserService())->get($request);
@@ -32,9 +35,18 @@ class UserController extends Controller
         ]);
     }
 
-    public function store(UserRequest $request)
+    /*
+    public function show(User $user): Response
     {
-        \Gate::authorize('user-create');
+    return inertia('Admin/Users/Show', [
+       'user' => new UserResource($user),
+    ]);
+    }
+    */
+
+    public function store(UserRequest $request): RedirectResponse
+    {
+        Gate::authorize('user-create');
 
         (new UserService())->store($request);
 
@@ -43,25 +55,20 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function show(User $user)
+    public function update(UserRequest $request, User $user): RedirectResponse
     {
-        // get user
+        Gate::authorize('user-update');
+
+        (new UserService())->update($request, $user);
+
+        (new FlashNotification())->update($request->username);
+
+        return redirect()->back();
     }
 
-  public function update(UserRequest $request, User $user)
-  {
-      \Gate::authorize('user-update');
-
-      (new UserService())->update($request, $user);
-
-      (new FlashNotification())->update($request->username);
-
-      return redirect()->back();
-  }
-
-    public function destroy(User $user)
+    public function destroy(User $user): RedirectResponse
     {
-        \Gate::authorize('user-delete');
+        Gate::authorize('user-delete');
 
         (new UserService())->delete($user->id);
 
@@ -75,9 +82,9 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function destroyMultiple(Request $request)
+    public function destroyMultiple(Request $request): RedirectResponse
     {
-        \Gate::authorize('user-delete');
+        Gate::authorize('user-delete');
 
         (new UserService())->deleteMultiple($request->ids);
 
@@ -94,38 +101,38 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-  public function restore(User $user)
-  {
-      \Gate::authorize('user-delete');
+    public function restore(User $user): RedirectResponse
+    {
+        Gate::authorize('user-delete');
 
-      (new UserService())->restore($user->id);
+        (new UserService())->restore($user->id);
 
-      (new FlashNotification())->restore($user->username, [
-          [
-              'url' => route('admin.users.destroy', $user->id),
-              'method' => 'delete',
-          ],
-      ]);
+        (new FlashNotification())->restore($user->username, [
+            [
+                'url' => route('admin.users.destroy', $user->id),
+                'method' => 'delete',
+            ],
+        ]);
 
-      return redirect()->back();
-  }
+        return redirect()->back();
+    }
 
-  public function restoreMultiple(Request $request)
-  {
-      \Gate::authorize('user-delete');
+    public function restoreMultiple(Request $request): RedirectResponse
+    {
+        Gate::authorize('user-delete');
 
-      (new UserService())->retoreMultiple($request->ids);
+        (new UserService())->retoreMultiple($request->ids);
 
-      (new FlashNotification())->restore(count($request->ids).' users', [
-          [
-              'url' => route('admin.users.destroy-multiple'),
-              'method' => 'delete',
-              'data' => [
-                  'ids' => $request->ids,
-              ],
-          ],
-      ]);
+        (new FlashNotification())->restore(count($request->ids).' users', [
+            [
+                'url' => route('admin.users.destroy-multiple'),
+                'method' => 'delete',
+                'data' => [
+                    'ids' => $request->ids,
+                ],
+            ],
+        ]);
 
-      return redirect()->back();
-  }
+        return redirect()->back();
+    }
 }

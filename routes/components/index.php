@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\Components\CartController;
 use App\Http\Controllers\Components\CategoryController;
 use App\Http\Controllers\Components\OrderController;
