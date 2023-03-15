@@ -9,13 +9,14 @@ use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use App\Services\FlashNotification;
 use App\Services\ProductService;
+use Gate;
 use Illuminate\Http\Request;
 
 class ProductController
 {
     public function index(Request $request)
     {
-        abort_unless(\Gate::allows('product-list'), 404);
+        abort_unless(Gate::allows('product-list'), 404);
 
         // set query
         $query = (new ProductService())->get($request);
@@ -33,7 +34,7 @@ class ProductController
 
     public function store(ProductRequest $request)
     {
-        \Gate::authorize('product-create');
+        Gate::authorize('product-create');
 
         (new ProductService())->store($request);
 
@@ -48,7 +49,7 @@ class ProductController
 
     public function update(ProductRequest $request, Product $product)
     {
-        \Gate::authorize('product-update');
+        Gate::authorize('product-update');
 
         (new ProductService())->update($request, $product);
 
@@ -59,7 +60,7 @@ class ProductController
 
     public function destroy(Product $product)
     {
-        \Gate::authorize('product-delete');
+        Gate::authorize('product-delete');
 
         (new ProductService())->delete($product->id);
 
@@ -73,57 +74,57 @@ class ProductController
         return redirect()->back();
     }
 
-  public function destroyMultiple(Request $request)
-  {
-      \Gate::authorize('product-delete');
+    public function destroyMultiple(Request $request)
+    {
+        Gate::authorize('product-delete');
 
-      (new ProductService())->deleteMultiple($request->ids);
+        (new ProductService())->deleteMultiple($request->ids);
 
-      (new FlashNotification())->destroy(count($request->ids).' products', [
-          [
-              'url' => route('admin.products.restore-multiple'),
-              'method' => 'put',
-              'data' => [
-                  'ids' => $request->ids,
-              ],
-          ],
-      ]);
+        (new FlashNotification())->destroy(count($request->ids).' products', [
+            [
+                'url' => route('admin.products.restore-multiple'),
+                'method' => 'put',
+                'data' => [
+                    'ids' => $request->ids,
+                ],
+            ],
+        ]);
 
-      return redirect()->back();
-  }
+        return redirect()->back();
+    }
 
-  public function restore(Product $product)
-  {
-      \Gate::authorize('product-delete');
+    public function restore(Product $product)
+    {
+        Gate::authorize('product-delete');
 
-      (new ProductService())->restore($product->id);
+        (new ProductService())->restore($product->id);
 
-      (new FlashNotification())->restore($product->name, [
-          [
-              'url' => route('admin.products.destroy', $product->id),
-              'method' => 'delete',
-          ],
-      ]);
+        (new FlashNotification())->restore($product->name, [
+            [
+                'url' => route('admin.products.destroy', $product->id),
+                'method' => 'delete',
+            ],
+        ]);
 
-      return redirect()->back();
-  }
+        return redirect()->back();
+    }
 
-  public function restoreMultiple(Request $request)
-  {
-      \Gate::authorize('product-delete');
+    public function restoreMultiple(Request $request)
+    {
+        Gate::authorize('product-delete');
 
-      (new ProductService())->retoreMultiple($request->ids);
+        (new ProductService())->retoreMultiple($request->ids);
 
-      (new FlashNotification())->restore(count($request->ids).' products', [
-          [
-              'url' => route('admin.products.destroy-multiple'),
-              'method' => 'delete',
-              'data' => [
-                  'ids' => $request->ids,
-              ],
-          ],
-      ]);
+        (new FlashNotification())->restore(count($request->ids).' products', [
+            [
+                'url' => route('admin.products.destroy-multiple'),
+                'method' => 'delete',
+                'data' => [
+                    'ids' => $request->ids,
+                ],
+            ],
+        ]);
 
-      return redirect()->back();
-  }
+        return redirect()->back();
+    }
 }

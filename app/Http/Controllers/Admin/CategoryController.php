@@ -9,13 +9,14 @@ use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use App\Services\CategoryService;
 use App\Services\FlashNotification;
+use Gate;
 use Illuminate\Http\Request;
 
 class CategoryController
 {
     public function index(Request $request)
     {
-        abort_unless(\Gate::allows('category-list'), 404);
+        abort_unless(Gate::allows('category-list'), 404);
 
         // set query
         $query = (new CategoryService())->get($request);
@@ -33,7 +34,7 @@ class CategoryController
 
     public function store(CategoryRequest $request)
     {
-        \Gate::authorize('category-create');
+        Gate::authorize('category-create');
 
         (new CategoryService())->store($request);
 
@@ -48,7 +49,7 @@ class CategoryController
 
     public function update(CategoryRequest $request, Category $category)
     {
-        \Gate::authorize('category-update');
+        Gate::authorize('category-update');
 
         (new CategoryService())->update($request, $category);
 
@@ -59,7 +60,7 @@ class CategoryController
 
     public function destroy(Category $category)
     {
-        \Gate::authorize('category-delete');
+        Gate::authorize('category-delete');
 
         (new CategoryService())->delete($category->id);
 
@@ -73,57 +74,57 @@ class CategoryController
         return redirect()->back();
     }
 
-  public function destroyMultiple(Request $request)
-  {
-      \Gate::authorize('category-delete');
+    public function destroyMultiple(Request $request)
+    {
+        Gate::authorize('category-delete');
 
-      (new CategoryService())->deleteMultiple($request->ids);
+        (new CategoryService())->deleteMultiple($request->ids);
 
-      (new FlashNotification())->destroy(count($request->ids).' categories', [
-          [
-              'url' => route('admin.categories.restore-multiple'),
-              'method' => 'put',
-              'data' => [
-                  'ids' => $request->ids,
-              ],
-          ],
-      ]);
+        (new FlashNotification())->destroy(count($request->ids).' categories', [
+            [
+                'url' => route('admin.categories.restore-multiple'),
+                'method' => 'put',
+                'data' => [
+                    'ids' => $request->ids,
+                ],
+            ],
+        ]);
 
-      return redirect()->back();
-  }
+        return redirect()->back();
+    }
 
-  public function restore(Category $category)
-  {
-      \Gate::authorize('category-delete');
+    public function restore(Category $category)
+    {
+        Gate::authorize('category-delete');
 
-      (new CategoryService())->restore($category->id);
+        (new CategoryService())->restore($category->id);
 
-      (new FlashNotification())->restore($category->name, [
-          [
-              'url' => route('admin.categories.destroy', $category->id),
-              'method' => 'delete',
-          ],
-      ]);
+        (new FlashNotification())->restore($category->name, [
+            [
+                'url' => route('admin.categories.destroy', $category->id),
+                'method' => 'delete',
+            ],
+        ]);
 
-      return redirect()->back();
-  }
+        return redirect()->back();
+    }
 
-  public function restoreMultiple(Request $request)
-  {
-      \Gate::authorize('category-delete');
+    public function restoreMultiple(Request $request)
+    {
+        Gate::authorize('category-delete');
 
-      (new CategoryService())->retoreMultiple($request->ids);
+        (new CategoryService())->retoreMultiple($request->ids);
 
-      (new FlashNotification())->restore(count($request->ids).' categories', [
-          [
-              'url' => route('admin.categories.destroy-multiple'),
-              'method' => 'delete',
-              'data' => [
-                  'ids' => $request->ids,
-              ],
-          ],
-      ]);
+        (new FlashNotification())->restore(count($request->ids).' categories', [
+            [
+                'url' => route('admin.categories.destroy-multiple'),
+                'method' => 'delete',
+                'data' => [
+                    'ids' => $request->ids,
+                ],
+            ],
+        ]);
 
-      return redirect()->back();
-  }
+        return redirect()->back();
+    }
 }

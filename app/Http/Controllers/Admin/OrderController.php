@@ -9,13 +9,14 @@ use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use App\Services\FlashNotification;
 use App\Services\OrderService;
+use Gate;
 use Illuminate\Http\Request;
 
 class OrderController
 {
     public function index(Request $request)
     {
-        abort_unless(\Gate::allows('order-list'), 404);
+        abort_unless(Gate::allows('order-list'), 404);
 
         // set query
         $query = (new OrderService())->get($request);
@@ -31,50 +32,50 @@ class OrderController
         ]);
     }
 
-  public function show($id)
-  {
-      abort_unless(\Gate::allows('order-read'), 404);
+    public function show($id)
+    {
+        abort_unless(Gate::allows('order-read'), 404);
 
-      $order = (new OrderService())->find($id);
+        $order = (new OrderService())->find($id);
 
-      $order = new OrderResource($order);
+        $order = new OrderResource($order);
 
-      return inertia('Admin/Orders/Show', [
-          'order' => $order,
-      ]);
-  }
+        return inertia('Admin/Orders/Show', [
+            'order' => $order,
+        ]);
+    }
 
   // update
-  public function update(OrderRequest $request, Order $order)
-  {
-      abort_unless(\Gate::allows('order-update'), 404);
+    public function update(OrderRequest $request, Order $order)
+    {
+        abort_unless(Gate::allows('order-update'), 404);
 
-      (new OrderService())->update($request, $order);
+        (new OrderService())->update($request, $order);
 
-      (new FlashNotification())->update("Order number # $order->order_number");
+        (new FlashNotification())->update("Order number # $order->order_number");
 
-      return redirect()->back();
-  }
+        return redirect()->back();
+    }
 
-  public function destroy(Order $order)
-  {
-      abort_unless(\Gate::allows('order-delete'), 404);
+    public function destroy(Order $order)
+    {
+        abort_unless(Gate::allows('order-delete'), 404);
 
-      (new OrderService())->delete($order->id);
+        (new OrderService())->delete($order->id);
 
-      (new FlashNotification())->destroy("Order number # $order->order_number");
+        (new FlashNotification())->destroy("Order number # $order->order_number");
 
-      return redirect()->back();
-  }
+        return redirect()->back();
+    }
 
-  public function destroyMultiple(Request $request)
-  {
-      \Gate::authorize('order-delete');
+    public function destroyMultiple(Request $request)
+    {
+        Gate::authorize('order-delete');
 
-      (new OrderService())->deleteMultiple($request->ids);
+        (new OrderService())->deleteMultiple($request->ids);
 
-      (new FlashNotification())->destroy(count($request->ids).' order number');
+        (new FlashNotification())->destroy(count($request->ids).' order number');
 
-      return redirect()->back();
-  }
+        return redirect()->back();
+    }
 }
