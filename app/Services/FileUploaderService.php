@@ -8,84 +8,82 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\TemporaryFile;
 use App\Models\User;
+use Exception;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
 class FileUploaderService
 {
     public function uploadUserAvatarToMedia(string $id, string $avatar): void
     {
-        try {
-            $temporaryFile = TemporaryFile::where('folder', $avatar)->first();
-            if ($temporaryFile) {
-                $user = User::findOrFail($id);
-                $user->addMedia(storage_path('app/public/tmp/'.$avatar.'/'.$temporaryFile->filename))
-                        ->toMediaCollection('avatar');
-
-                (new TemporaryFileService())->delete($temporaryFile->folder);
+        $temporaryFile = TemporaryFile::where('folder', $avatar)->first();
+        if ($temporaryFile) {
+            $user = User::findOrFail($id);
+            try {
+                $user->addMedia(storage_path('app/public/tmp/' . $avatar . '/' . $temporaryFile->filename))
+                    ->toMediaCollection('avatar');
+            } catch (FileDoesNotExist|FileIsTooBig $e) {
+                // do nothing
             }
-        } catch (\Exception $e) {
-            throw $e;
+
+            try {
+                (new TemporaryFileService())->delete($temporaryFile->folder);
+            } catch (Exception $e) {
+                // do nothing
+            }
         }
     }
 
-  public function uploadProductImageToMedia(string $id, string $image): void
-  {
-      try {
-          $temporaryFile = TemporaryFile::where('folder', $image)->first();
-          if ($temporaryFile) {
-              $product = Product::findOrFail($id);
-              $product->addMedia(storage_path('app/public/tmp/'.$image.'/'.$temporaryFile->filename))
-                      ->toMediaCollection('image');
+    public function uploadProductImageToMedia(string $id, string $image): void
+    {
+        $temporaryFile = TemporaryFile::where('folder', $image)->first();
+        if ($temporaryFile) {
+            $product = Product::findOrFail($id);
+            try {
+                $product->addMedia(storage_path('app/public/tmp/' . $image . '/' . $temporaryFile->filename))
+                    ->toMediaCollection('image');
+            } catch (FileDoesNotExist|FileIsTooBig $e) {
+                // do nothing
+            }
 
-              (new TemporaryFileService())->delete($temporaryFile->folder);
-          }
-      } catch (\Exception $e) {
-          throw $e;
-      }
-  }
+            (new TemporaryFileService())->delete($temporaryFile->folder);
+        }
+    }
 
-  public function uploadCategoryImageToMedia(string $id, string $image): void
-  {
-      try {
-          $temporaryFile = TemporaryFile::where('folder', $image)->first();
-          if ($temporaryFile) {
-              $product = Category::findOrFail($id);
-              $product->addMedia(storage_path('app/public/tmp/'.$image.'/'.$temporaryFile->filename))
-                      ->toMediaCollection('image');
+    public function uploadCategoryImageToMedia(string $id, string $image): void
+    {
+        $temporaryFile = TemporaryFile::where('folder', $image)->first();
+        if ($temporaryFile) {
+            $product = Category::findOrFail($id);
+            try {
+                $product->addMedia(storage_path('app/public/tmp/' . $image . '/' . $temporaryFile->filename))
+                    ->toMediaCollection('image');
+            } catch (FileDoesNotExist|FileIsTooBig $e) {
+                // do nothing
+            }
 
-              (new TemporaryFileService())->delete($temporaryFile->folder);
-          }
-      } catch (\Exception $e) {
-          throw $e;
-      }
-  }
+            try {
+                (new TemporaryFileService())->delete($temporaryFile->folder);
+            } catch (Exception $e) {
+                // do nothing
+            }
+        }
+    }
+    public function deleteUserAvatarFromMedia(string $id): void
+    {
+        $user = User::findOrFail($id);
+        $user->clearMediaCollection('avatar');
+    }
 
-  public function deleteUserAvatarFromMedia(string $id): void
-  {
-      try {
-          $user = User::findOrFail($id);
-          $user->clearMediaCollection('avatar');
-      } catch (\Exception $e) {
-          throw $e;
-      }
-  }
-
-  public function deleteProductImageFromMedia(string $id): void
-  {
-      try {
-          $product = Product::findOrFail($id);
-          $product->clearMediaCollection('image');
-      } catch (\Exception $e) {
-          throw $e;
-      }
-  }
+    public function deleteProductImageFromMedia(string $id): void
+    {
+        $product = Product::findOrFail($id);
+        $product->clearMediaCollection('image');
+    }
 
     public function deleteCategoryImageFromMedia(string $id): void
     {
-        try {
-            $product = Category::findOrFail($id);
-            $product->clearMediaCollection('image');
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        $product = Category::findOrFail($id);
+        $product->clearMediaCollection('image');
     }
 }

@@ -46,7 +46,7 @@ class UserController extends Controller
 
     public function store(UserRequest $request): RedirectResponse
     {
-        Gate::authorize('user-create');
+        abort_unless(Gate::allows('user-create'), 404);
 
         (new UserService())->store($request);
 
@@ -57,7 +57,7 @@ class UserController extends Controller
 
     public function update(UserRequest $request, User $user): RedirectResponse
     {
-        Gate::authorize('user-update');
+        abort_unless(Gate::allows('user-update'), 404);
 
         (new UserService())->update($request, $user);
 
@@ -68,7 +68,7 @@ class UserController extends Controller
 
     public function destroy(User $user): RedirectResponse
     {
-        Gate::authorize('user-delete');
+        abort_unless(Gate::allows('user-delete'), 404);
 
         (new UserService())->delete($user->id);
 
@@ -84,7 +84,7 @@ class UserController extends Controller
 
     public function destroyMultiple(Request $request): RedirectResponse
     {
-        Gate::authorize('user-delete');
+        abort_unless(Gate::allows('user-delete'), 404);
 
         (new UserService())->deleteMultiple($request->ids);
 
@@ -103,7 +103,7 @@ class UserController extends Controller
 
     public function restore(User $user): RedirectResponse
     {
-        Gate::authorize('user-delete');
+        abort_unless(Gate::allows('user-delete'), 404);
 
         (new UserService())->restore($user->id);
 
@@ -119,9 +119,9 @@ class UserController extends Controller
 
     public function restoreMultiple(Request $request): RedirectResponse
     {
-        Gate::authorize('user-delete');
+        abort_unless(Gate::allows('user-delete'), 404);
 
-        (new UserService())->retoreMultiple($request->ids);
+        (new UserService())->restoreMultiple($request->ids);
 
         (new FlashNotification())->restore(count($request->ids).' users', [
             [

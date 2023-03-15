@@ -23,7 +23,7 @@ interface UserServiceInterface
 
     public function restore(string $id): void;
 
-    public function retoreMultiple(array $ids): void;
+    public function restoreMultiple(array $ids): void;
 
     public function changePassword(string $newPassword, User $user): void;
 }
