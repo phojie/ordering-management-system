@@ -11,11 +11,10 @@ use App\Services\UserService;
 
 class SettingController
 {
-    protected $user;
-
-    public function __construct()
+    public User $user;
+    public function __construct(User $user)
     {
-        $this->user = User::findOrFail(auth()->id());
+        $this->user = $user->find(auth()->user()->id);
     }
 
     public function index()

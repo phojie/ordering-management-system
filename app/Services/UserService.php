@@ -80,7 +80,7 @@ class UserService implements UserServiceInterface
               'city' => $request->city,
               'province' => $request->province,
               'postal_code' => $request->postalCode,
-              'country' => $request->country,
+              'country' => 'Philippines',
               'user_id' => $user->id,
           ]);
       }
@@ -121,7 +121,7 @@ class UserService implements UserServiceInterface
                       'city' => $request->city,
                       'province' => $request->province,
                       'postal_code' => $request->postalCode,
-                      'country' => $request->country,
+                      'country' => 'Philippines',
                       'user_id' => $user->id,
                   ]
               );
