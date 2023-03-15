@@ -50,7 +50,7 @@ class UserController extends Controller
 
         (new UserService())->store($request);
 
-        (new FlashNotification())->create($request->username);
+        (new FlashNotification())->create($request->username ?? '');
 
         return redirect()->back();
     }
@@ -61,7 +61,7 @@ class UserController extends Controller
 
         (new UserService())->update($request, $user);
 
-        (new FlashNotification())->update($request->username);
+        (new FlashNotification())->update($request->username ?? '');
 
         return redirect()->back();
     }
@@ -86,14 +86,14 @@ class UserController extends Controller
     {
         abort_unless(Gate::allows('user-delete'), 404);
 
-        (new UserService())->deleteMultiple($request->ids);
+        (new UserService())->deleteMultiple($request->ids ?? []);
 
-        (new FlashNotification())->destroy(count($request->ids).' users', [
+        (new FlashNotification())->destroy(count($request->ids ?? []).' users', [
             [
                 'url' => route('admin.users.restore-multiple'),
                 'method' => 'put',
                 'data' => [
-                    'ids' => $request->ids,
+                    'ids' => $request->ids ?? [],
                 ],
             ],
         ]);
@@ -121,14 +121,13 @@ class UserController extends Controller
     {
         abort_unless(Gate::allows('user-delete'), 404);
 
-        (new UserService())->restoreMultiple($request->ids);
-
-        (new FlashNotification())->restore(count($request->ids).' users', [
+        (new UserService())->restoreMultiple($request->ids ?? []);
+        (new FlashNotification())->restore(count($request->ids ?? []).' users', [
             [
                 'url' => route('admin.users.destroy-multiple'),
                 'method' => 'delete',
                 'data' => [
-                    'ids' => $request->ids,
+                    'ids' => $request->ids ?? [],
                 ],
             ],
         ]);
