@@ -8,7 +8,8 @@
     "release": "standard-version",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "./vendor/bin/pint --test"
+    "prepare": "husky install"
+
   },
   "dependencies": {
     "@antfu/eslint-config": "^0.27.0",
@@ -59,6 +60,7 @@
     "husky": "^8.0.3",
     "laravel-echo": "^1.14.2",
     "laravel-vite-plugin": "^0.6.0",
+    "lint-staged": "^13.2.0",
     "lodash": "^4.17.19",
     "postcss": "^8.4.20",
     "pusher-js": "^8.0.0",
@@ -73,6 +75,6 @@
     "vue": "^3.2.31"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "**/*.php": "./vendor/bin/pint"
   }
 }
