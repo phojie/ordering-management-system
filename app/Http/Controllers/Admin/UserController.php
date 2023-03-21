@@ -122,6 +122,7 @@ class UserController extends Controller
         abort_unless(Gate::allows('user-delete'), 404);
 
         (new UserService())->restoreMultiple($request->ids ?? []);
+
         (new FlashNotification())->restore(count($request->ids ?? []).' users', [
             [
                 'url' => route('admin.users.destroy-multiple'),

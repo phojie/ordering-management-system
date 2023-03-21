@@ -7,6 +7,8 @@ namespace App\Services;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Services\Interfaces\CategoryServiceInterface;
+use DB;
+use Exception;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class CategoryService implements CategoryServiceInterface
@@ -28,7 +30,7 @@ class CategoryService implements CategoryServiceInterface
               ->allowedFilters(['name', 'description']);
 
             return $query;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw $e;
         }
     }
@@ -36,7 +38,7 @@ class CategoryService implements CategoryServiceInterface
    public function store(CategoryRequest $request): void
    {
        try {
-           \DB::transaction(function () use ($request) {
+           DB::transaction(function () use ($request) {
                $category = Category::create(
                    [
                        'name' => $request->name,
@@ -52,7 +54,7 @@ class CategoryService implements CategoryServiceInterface
                    (new FileUploaderService())->uploadCategoryImageToMedia($category->id, $request->image);
                }
            });
-       } catch (\Exception $e) {
+       } catch (Exception $e) {
            throw $e;
        }
    }
@@ -60,7 +62,7 @@ class CategoryService implements CategoryServiceInterface
    public function update(CategoryRequest $request, Category $category): void
    {
        try {
-           \DB::transaction(function () use ($request, $category) {
+           DB::transaction(function () use ($request, $category) {
                $category->update([
                    'name' => $request->name,
                    'description' => $request->description,
@@ -76,7 +78,7 @@ class CategoryService implements CategoryServiceInterface
                    (new FileUploaderService())->deleteCategoryImageFromMedia($category->id);
                }
            });
-       } catch (\Exception $e) {
+       } catch (Exception $e) {
            throw $e;
        }
    }
@@ -85,7 +87,7 @@ class CategoryService implements CategoryServiceInterface
    {
        try {
            Category::findOrFail($id)->delete();
-       } catch (\Exception $e) {
+       } catch (Exception $e) {
            throw $e;
        }
    }
@@ -93,10 +95,10 @@ class CategoryService implements CategoryServiceInterface
   public function deleteMultiple(array $ids): void
   {
       try {
-          \DB::transaction(function () use ($ids) {
+          DB::transaction(function () use ($ids) {
               Category::whereIn('id', $ids)->get()->each->delete();
           });
-      } catch (\Exception $e) {
+      } catch (Exception $e) {
           throw $e;
       }
   }
@@ -105,19 +107,15 @@ class CategoryService implements CategoryServiceInterface
   {
       try {
           Category::onlyTrashed()->findOrFail($id)->restore();
-      } catch (\Exception $e) {
+      } catch (Exception $e) {
           throw $e;
       }
   }
 
   public function retoreMultiple(array $ids): void
   {
-      try {
-          \DB::transaction(function () use ($ids) {
-              Category::onlyTrashed()->whereIn('id', $ids)->get()->each->restore();
-          });
-      } catch (\Exception $e) {
-          throw $e;
-      }
+      DB::transaction(function () use ($ids) {
+          Category::onlyTrashed()->whereIn('id', $ids)->get()->each->restore();
+      });
   }
 }

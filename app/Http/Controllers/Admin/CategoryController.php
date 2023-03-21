@@ -10,11 +10,13 @@ use App\Models\Category;
 use App\Services\CategoryService;
 use App\Services\FlashNotification;
 use Gate;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Inertia\Response;
 
 class CategoryController
 {
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
         abort_unless(Gate::allows('category-list'), 404);
 
@@ -32,9 +34,9 @@ class CategoryController
         ]);
     }
 
-    public function store(CategoryRequest $request)
+    public function store(CategoryRequest $request): RedirectResponse
     {
-        Gate::authorize('category-create');
+        abort_unless(Gate::allows('category-create'), 404);
 
         (new CategoryService())->store($request);
 
@@ -43,13 +45,9 @@ class CategoryController
         return redirect()->back();
     }
 
-    public function show($id)
+    public function update(CategoryRequest $request, Category $category): RedirectResponse
     {
-    }
-
-    public function update(CategoryRequest $request, Category $category)
-    {
-        Gate::authorize('category-update');
+        abort_unless(Gate::allows('category-update'), 404);
 
         (new CategoryService())->update($request, $category);
 
@@ -58,9 +56,9 @@ class CategoryController
         return redirect()->back();
     }
 
-    public function destroy(Category $category)
+    public function destroy(Category $category): RedirectResponse
     {
-        Gate::authorize('category-delete');
+        abort_unless(Gate::allows('category-delete'), 404);
 
         (new CategoryService())->delete($category->id);
 
@@ -74,9 +72,9 @@ class CategoryController
         return redirect()->back();
     }
 
-    public function destroyMultiple(Request $request)
+    public function destroyMultiple(Request $request): RedirectResponse
     {
-        Gate::authorize('category-delete');
+        abort_unless(Gate::allows('category-delete'), 404);
 
         (new CategoryService())->deleteMultiple($request->ids);
 
@@ -93,9 +91,9 @@ class CategoryController
         return redirect()->back();
     }
 
-    public function restore(Category $category)
+    public function restore(Category $category): RedirectResponse
     {
-        Gate::authorize('category-delete');
+        abort_unless(Gate::allows('category-delete'), 404);
 
         (new CategoryService())->restore($category->id);
 
@@ -109,18 +107,18 @@ class CategoryController
         return redirect()->back();
     }
 
-    public function restoreMultiple(Request $request)
+    public function restoreMultiple(Request $request): RedirectResponse
     {
-        Gate::authorize('category-delete');
+        abort_unless(Gate::allows('category-delete'), 404);
 
-        (new CategoryService())->retoreMultiple($request->ids);
+        (new CategoryService())->retoreMultiple($request->ids ?? []);
 
-        (new FlashNotification())->restore(count($request->ids).' categories', [
+        (new FlashNotification())->restore(count($request->ids ?? []).' categories', [
             [
                 'url' => route('admin.categories.destroy-multiple'),
                 'method' => 'delete',
                 'data' => [
-                    'ids' => $request->ids,
+                    'ids' => $request->ids ?? [],
                 ],
             ],
         ]);
