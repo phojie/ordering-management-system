@@ -150,7 +150,7 @@
   php artisan key:generate && php artisan optimize
 ```
 
-5. Run the database migrations (Set the database connection in .env before migrating) ⚠️ This DB is designed based on PGSQL only
+5. Run the database migrations (Set the database connection in .env before migrating) ⚠️ This DB is designed based on PGSQL
 
 ```bash
   php artisan migrate --seed
