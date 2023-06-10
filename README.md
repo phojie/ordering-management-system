@@ -1,8 +1,9 @@
 # ✨ Application Features
 
 <!-- display image here from public folder cover.png -->
-
-<img src="/public/cover.png" alt=“cover” height="500" width="700" style="border-radius:20px">
+<kbd>
+  <img width="686" alt="Screenshot 2023-06-10 at 1 31 08 PM" src="https://github.com/phojie/ordering-management-system/assets/33350692/d87325ad-3230-4a8a-a546-ae86476f44a5">
+</kbd>
 
 ## 👱 Types of User
 
