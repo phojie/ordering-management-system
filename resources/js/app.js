@@ -37,7 +37,7 @@ import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css'
 import 'floating-vue/dist/style.css'
 import 'vue-select/dist/vue-select.css'
 
-//  to be study ...
+//  to be added ...
 // import FilePondPluginImageCrop from 'filepond-plugin-image-crop'
 // import FilePondPluginImageTransform from 'filepond-plugin-image-transform'
 
